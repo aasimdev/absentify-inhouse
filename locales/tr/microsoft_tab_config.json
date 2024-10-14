@@ -1,0 +1,8 @@
+{
+  "All_departments": "Tüm departmanlar",
+  "title": "Devamsızlık departmanı görünümünüzü buradan yapılandırabilirsiniz. Sekme açıldığında, kullanıcının bu görünümde hakları varsa, bu departmandaki devamsızlıklar görüntülenecektir.",
+  "choose_department": "Bir departman seçin",
+  "tab_config": "Sekme Yapılandırması",
+  "suggestedTabName": "Devamsızlıklar {{suggestedTabName}}",
+  "tab_name": "Sekme adı"
+}

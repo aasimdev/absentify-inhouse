@@ -1,0 +1,8 @@
+{
+  "All_departments": "Todos os departamentos",
+  "title": "Você pode configurar sua exibição de departamento de ausências aqui. Quando a guia é aberta, as ausências deste departamento serão exibidas se o usuário tiver permissão para visualizar esta visualização.",
+  "choose_department": "Escolha um departamento",
+  "tab_config": "Aba de configuração",
+  "suggestedTabName": "Ausências {{suggestedTabName}}",
+  "tab_name": "Nome da aba"
+}

@@ -1,0 +1,5 @@
+{
+  "configure_account_again": "Nem tudtuk azonosítani ezt a vásárlást. Nyissa meg újra ezt a SaaS-előfizetést az Azure portálon vagy a Microsoft 365 Admin Centerben, és válassza újra a \"Fiók konfigurálása\" vagy a \"Fiók kezelése\" lehetőséget.",
+  "configure_now_email": " Vagy használja a \"Konfiguráld most\" gombot, amelyet a vásárlás után kapott e-mailben talál.",
+  "ms_payment_token_error": "Hiba történt, nem tudtuk véglegesíteni a vásárlást."
+}

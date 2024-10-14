@@ -1,0 +1,8 @@
+{
+  "All_departments": "Minden részleg",
+  "title": "Itt konfigurálhatja a hiányzó osztályok nézetét. A lap megnyitásakor megjelennek az adott osztályon lévő hiányzások, ha a felhasználónak vannak jogai ehhez a nézethez.",
+  "choose_department": "Válasszon egy osztályt",
+  "tab_config": "Lap Konfiguráció",
+  "suggestedTabName": "Távollét {{suggestedTabName}}",
+  "tab_name": "Lap neve"
+}

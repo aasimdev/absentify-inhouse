@@ -1,0 +1,8 @@
+{
+  "All_departments": "Wszystkie działy",
+  "title": "W tym miejscu możesz skonfigurować widok działu w absentify. Po otwarciu karty będą wyświetlane nieobecności w tym dziale, jeśli użytkownik ma prawa do tego widoku.",
+  "choose_department": "Wybierz dział",
+  "tab_config": "Konfiguracja zakładki",
+  "suggestedTabName": "Nieobecności {{suggestedTabName}}",
+  "tab_name": "Nazwa karty"
+}

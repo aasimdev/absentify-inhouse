@@ -1,0 +1,29 @@
+FROM node:18-alpine AS base
+
+# Installiere notwendige Systemabhängigkeiten
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+# Installiere Node.js Abhängigkeiten
+COPY package.json schema.prisma yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN \
+    if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+    elif [ -f package-lock.json ]; then npm ci; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
+
+# Kopiere Projektdateien
+COPY . .
+
+# Stelle sicher, dass die Prisma Schema Datei im erwarteten Verzeichnis liegt
+RUN mkdir -p ./prisma && cp schema.prisma ./prisma/
+
+# Generiere den Prisma-Client
+RUN npx prisma generate
+
+EXPOSE 5555
+
+ENV HOST=0.0.0.0
+CMD ["npx", "prisma", "studio", "--schema=./prisma/schema.prisma"]

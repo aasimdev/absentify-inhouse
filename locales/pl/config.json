@@ -1,0 +1,8 @@
+{
+  "All_departments": "Wszystkie działy",
+  "title": "W tym miejscu możesz skonfigurować widok działu nieobecności. Po otwarciu karty będą wyświetlane nieobecności w tym dziale, jeśli użytkownik ma prawa do tego widoku.",
+  "choose_department": "Wybierz dział",
+  "tab_config": "Zakładka Konfiguracja",
+  "suggestedTabName": "Nieobecności {{suggestedTabName}}",
+  "tab_name": "Nazwa karty"
+}

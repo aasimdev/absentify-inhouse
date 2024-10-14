@@ -1,0 +1,1316 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider     = "mysql"
+  url          = env("PRISMA_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AccountDeletionReason {
+  id                  Int      @id @default(autoincrement())
+  createdAt           DateTime @default(now())
+  firstReason         String   @db.VarChar(2500)
+  secondReason        String   @db.VarChar(2500)
+  thirdReason         String?  @db.VarChar(2500)
+  deleted_users_count Int      @default(0)
+}
+
+model Member {
+  id                                             String                              @id @default(uuid())
+  createdAt                                      DateTime                            @default(now())
+  updatedAt                                      DateTime                            @updatedAt
+  is_admin                                       Boolean                             @default(false)
+  employment_start_date                          DateTime?                           @db.Date
+  employment_end_date                            DateTime?                           @db.Date
+  workspace_id                                   String
+  birthday                                       DateTime?                           @db.Date
+  public_holiday_id                              String
+  name                                           String?
+  email                                          String?
+  custom_id                                      String?
+  default_timeline_department_id                 String?
+  approver_config_department_id                  String?
+  approver_config_microsoft_profile_manager_sync Int?
+  approval_process                               ApprovalProcess                     @default(Linear_all_have_to_agree)
+  sendinblue_contact_id                          String?                             @unique
+  firstName                                      String?
+  lastName                                       String?
+  displayName                                    String?
+  date_format                                    String                              @default("MM/dd/yyyy")
+  time_format                                    TimeFormat                          @default(H24)
+  long_datetime_format                           String                              @default("MM/dd/yyyy HH:mm")
+  week_start                                     String                              @default("0") @db.Char(1)
+  display_calendar_weeks                         Boolean                             @default(false)
+  timezone                                       String?
+  language                                       String                              @default("en")
+  email_notif_bday_anniv_remind                  Boolean                             @default(false)
+  email_notif_weekly_absence_summary             Boolean                             @default(false)
+  email_notifications_updates                    Boolean                             @default(true)
+  email_ical_notifications                       Boolean                             @default(true)
+  microsoft_tenantId                             String?
+  mobile_phone                                   String?
+  business_phone                                 String?
+  microsoft_user_id                              String?                             @unique
+  has_cdn_image                                  Boolean                             @default(false)
+  notifications_receiving_method                 NotificationReceivingMethod         @default(EmailAndTeamsBot)
+  status                                         Status                              @default(ACTIVE)
+  deletedLeveTyes                                LeaveType[]
+  allowances                                     MemberAllowance[]
+  is_approver_of                                 MemberApprover[]                    @relation("approver_member")
+  has_approvers                                  MemberApprover[]                    @relation("member")
+  departments                                    MemberDepartment[]
+  schedules                                      MemberSchedule[]
+  requests                                       Request[]                           @relation("requester")
+  request_deatils                                RequestDetail[]                     @relation("requester_details")
+  request_deatils_canceld                        RequestDetail[]                     @relation("canceld_by")
+  request_creator                                Request[]                           @relation("creator")
+  memberMailboxSettings                          MemberMailboxSettings[]
+  request_approvers                              RequestApprover[]                   @relation("request_approvers")
+  request_status_changed                         RequestApprover[]                   @relation("request_status_changed")
+  api_keys                                       ApiKey[]
+  workspace                                      Workspace                           @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  public_holiday                                 PublicHoliday                       @relation(fields: [public_holiday_id], references: [id], onDelete: Restrict)
+  allowance_policy_subscriptions                 MemberAllowancePolicySubscription[]
+  allowance_adjustments                          MemberAllowanceAdjustment[]
+  allowance_adjustment_creator                   MemberAllowanceAdjustment[]         @relation("creator")
+  sign_in_logs                                   SignInLog[]
+  member_microsoft_token                         MemberMicrosoftToken[]
+  calendar_sync_setting_token_owner              CalendarSyncSetting[]
+  allowance_type_configurtaions                  MemberAllowanceTypeConfigurtaion[]
+  public_holiday_day_sync_status                 PublicHolidayDaySyncStatus[]
+
+  @@index([workspace_id])
+  @@index([email])
+  @@index([public_holiday_id])
+  @@index([microsoft_user_id])
+}
+
+model MemberMicrosoftToken {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  member_id     String
+  refresh_token String   @db.LongText
+  scope         String
+  client_id     String
+
+  member Member @relation(fields: [member_id], references: [id], onDelete: Cascade)
+
+  @@unique([client_id, member_id])
+  @@index([member_id])
+}
+
+model Workspace {
+  id                                      String                             @id @default(uuid())
+  createdAt                               DateTime                           @default(now())
+  updatedAt                               DateTime                           @updatedAt
+  name                                    String
+  global_timezone                         String
+  global_language                         String                             @default("en")
+  global_date_format                      String                             @default("MM/dd/yyyy")
+  global_time_format                      TimeFormat                         @default(H24)
+  global_week_start                       String                             @default("0") @db.Char(1)
+  global_name_format                      DisplayNameFormat                  @default(Microsoft_DisplayName)
+  fiscal_year_start_month                 Int                                @default(0)
+  global_display_calendar_weeks           Boolean                            @default(false)
+  privacy_show_leavetypes                 Boolean                            @default(true)
+  privacy_show_calendarview               Boolean                            @default(true)
+  privacy_show_otherdepartments           Boolean                            @default(false)
+  privacy_show_absences_in_past           Boolean                            @default(true)
+  referrer                                String?
+  gclid                                   String?
+  enabled_to_purchase_enterprise          Boolean                            @default(false)
+  min_enterprise_users                    Int                                @default(50)
+  microsoft_mailboxSettings_read_write    MicrosoftAppStatus                 @default(NONE)
+  microsoft_groups_read_write_all         MicrosoftAppStatus                 @default(NONE)
+  microsoft_calendars_read_write          MicrosoftAppStatus                 @default(NONE)
+  microsoft_users_read_all                MicrosoftAppStatus                 @default(NONE)
+  schedule                                WorkspaceSchedule?
+  departments                             Department[]
+  group_sync_settings                     GroupSyncSetting[]
+  members                                 Member[]
+  leave_types                             LeaveType[]
+  member_allowances                       MemberAllowance[]
+  member_approvers                        MemberApprover[]
+  member_departments                      MemberDepartment[]
+  member_schedules                        MemberSchedule[]
+  member_allowance_type_configurtaions    MemberAllowanceTypeConfigurtaion[]
+  public_holidays                         PublicHoliday[]
+  public_holiday_days                     PublicHolidayDay[]
+  public_holiday_days_languages           PublicHolidayDayLanguage[]
+  requests                                Request[]
+  request_details                         RequestDetail[]
+  memberMailboxSettings                   MemberMailboxSettings[]
+  webhookSetting                          WebhookSetting[]
+  webhookHistory                          WebhookHistory[]
+  subscriptions                           Subscription[]
+  calendarSyncSettings                    CalendarSyncSetting[]
+  requestSyncLogs                         RequestSyncLog[]
+  api_key                                 ApiKey[]
+  company_logo_url                        String?                            @db.VarChar(2500)
+  company_logo_ratio_square               Boolean                            @default(true)
+  display_logo                            Display                            @default(ShowLogo)
+  favicon_url                             String?                            @db.VarChar(2500)
+  allow_manager_past_request_cancellation Boolean                            @default(false)
+  allowance_types                         AllowanceType[]
+  timeghost_sync_settings                 TimeghostSyncSetting[]
+  paddle_billing_details                  PaddleBillingDetails[]
+  old_pricing                             Boolean                            @default(false)
+  ai_bot_enabled                          Boolean                            @default(false)
+  email_history                           EmailHistory[]
+  public_holiday_day_sync_status          PublicHolidayDaySyncStatus[]
+}
+
+model MemberMailboxSettings {
+  id                                      String                                         @id @default(uuid())
+  createdAt                               DateTime                                       @default(now())
+  updatedAt                               DateTime                                       @updatedAt
+  workspace_id                            String
+  member_id                               String
+  leave_type_id                           String
+  internalReplyMessage                    String                                         @db.VarChar(2500)
+  externalReplyMessage                    String                                         @db.VarChar(2500)
+  externalAudience                        MailboxAutomaticRepliesSettingExternalAudience
+  allow_member_edit_out_of_office_message Boolean                                        @default(true)
+
+  member     Member    @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  workspace  Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  leave_type LeaveType @relation(fields: [leave_type_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+  @@index([workspace_id])
+  @@index([leave_type_id])
+}
+
+model Subscription {
+  id                          String               @id @default(uuid())
+  createdAt                   DateTime             @default(now())
+  updatedAt                   DateTime             @updatedAt
+  workspace_id                String
+  provider                    SubscriptionProvider
+  status                      SubscriptionStatus
+  subscription_id             String
+  subscription_plan_id        String //also product_id
+  price_id                    String?
+  customer_user_id            String
+  quantity                    Float
+  modifier_id                 String?
+  unpaid                      Float?
+  unit_price                  Float                @default(0)
+  currency                    String               @default("USD")
+  cancellation_effective_date DateTime?
+  past_due_since              DateTime?
+  billing_cycle_interval      BillingCycleInterval @default(month)
+  workspace                   Workspace            @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id])
+  @@index([createdAt, unpaid])
+}
+
+model UserAmountStats {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  workspace_id    String
+  number_of_users Int
+}
+
+model ApiKey {
+  id               String    @id @default(uuid())
+  key              String    @unique @default(uuid())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  workspace_id     String
+  valid_until      DateTime
+  description      String
+  run_as_member_id String
+  workspace        Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  run_as           Member    @relation(fields: [run_as_member_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id])
+  @@index([run_as_member_id])
+}
+
+model AllowanceType {
+  id                                    String                              @id @default(uuid())
+  createdAt                             DateTime                            @default(now())
+  updatedAt                             DateTime                            @updatedAt
+  workspace_id                          String
+  name                                  String
+  active                                Boolean                             @default(true)
+  default                               Boolean                             @default(true)
+  allowance_unit                        AllowanceUnit                       @default(days)
+  ignore_allowance_limit                Boolean                             @default(false)
+  max_carry_forward                     Float                               @default(0)
+  carry_forward_deadline                DateTime?                           @default("1970-12-31T00:00:00.000Z")
+  allowance_policies                    AllowancePolicy[]
+  member_allowance_policy_subscriptions MemberAllowancePolicySubscription[]
+  leave_types                           LeaveType[]
+  member_allowance_adjustments          MemberAllowanceAdjustment[]
+  member_allowances                     MemberAllowance[]
+  member_allowance_typ_configurtaions   MemberAllowanceTypeConfigurtaion[]
+
+  workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id])
+}
+
+model AllowancePolicy {
+  id                                    String                              @id @default(uuid())
+  createdAt                             DateTime                            @default(now())
+  updatedAt                             DateTime                            @updatedAt
+  workspace_id                          String
+  name                                  String
+  accrual_month                         Int
+  active                                Boolean                             @default(true)
+  policy_amount                         Float
+  accrual_cycle                         AllowancePoliciesCycle
+  cycle_on_employment_start             Boolean                             @default(false)
+  policy_duration                       Int?
+  upfront_allocation                    Boolean                             @default(true)
+  allowance_type_id                     String
+  allowance_type                        AllowanceType                       @relation(fields: [allowance_type_id], references: [id], onDelete: Cascade)
+  max_carry_forward                     Float?
+  member_allowance_policy_subscriptions MemberAllowancePolicySubscription[]
+
+  @@index([workspace_id, allowance_type_id])
+  @@index([allowance_type_id])
+}
+
+model WebhookSetting {
+  id             String           @id @default(uuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  workspace_id   String
+  url            String           @db.VarChar(2500)
+  workspace      Workspace        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  webhookHistory WebhookHistory[]
+  source         WebhookSource    @default(Website)
+  event          String           @default("request_created;request_status_changed")
+
+  @@index([workspace_id])
+}
+
+model WebhookHistory {
+  id                     Int                     @id @default(autoincrement())
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  workspace_id           String
+  request_id             String
+  status                 WebhookHistoryStatus
+  webhook_setting_id     String
+  webhookHistoryAttempts WebhookHistoryAttempt[]
+  webhook_setting        WebhookSetting          @relation(fields: [webhook_setting_id], references: [id], onDelete: Cascade)
+  workspace              Workspace               @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  request                Request                 @relation(fields: [request_id], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([webhook_setting_id])
+  @@index([workspace_id])
+  @@index([request_id])
+}
+
+model WebhookHistoryAttempt {
+  id                 Int      @id @default(autoincrement())
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  url                String   @db.VarChar(5000)
+  request_data       String   @db.Text
+  response_data      String   @db.Text
+  webhook_history_id Int
+
+  webhook_history WebhookHistory @relation(fields: [webhook_history_id], references: [id], onDelete: Cascade)
+
+  @@index([webhook_history_id])
+}
+
+model CalendarSyncSetting {
+  id                             String                          @id @default(uuid())
+  createdAt                      DateTime                        @default(now())
+  updatedAt                      DateTime                        @updatedAt
+  workspace_id                   String
+  name                           String
+  description                    String                          @db.VarChar(2500)
+  calendar_id                    String?
+  calendar_name                  String?
+  calendar_microsoft_user_id     String?
+  calendar_microsoft_tenant_id   String?
+  calendar_sync_type             CalendarSyncSettingCalendarType
+  email                          String?
+  token_member_id                String?
+  deleted                        Boolean                         @default(false)
+  workspace                      Workspace                       @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  calendarSyncSettingLeaveTypes  CalendarSyncSettingLeaveType[]
+  calendarSyncSettingDepartments CalendarSyncSettingDepartment[]
+  requestSyncLogs                RequestSyncLog[]
+
+  member Member? @relation(fields: [token_member_id], references: [id], onDelete: Restrict)
+
+  @@index([workspace_id])
+  @@index([token_member_id])
+}
+
+model TimeghostSyncSetting {
+  id                              String                           @id @default(uuid())
+  createdAt                       DateTime                         @default(now())
+  updatedAt                       DateTime                         @updatedAt
+  workspace_id                    String
+  name                            String
+  description                     String                           @db.VarChar(2500)
+  timeghost_workspace_id          String
+  timeghost_api_access_token      String
+  invalid_apikey_notification_sent Boolean?                        @default(false) // New field to track notification status
+  deleted                         Boolean                          @default(false)
+  workspace                       Workspace                        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  timeghostSyncSettingLeaveTypes  TimeghostSyncSettingLeaveType[]
+  timeghostSyncSettingDepartments TimeghostSyncSettingDepartment[]
+  requestSyncLogs                 RequestSyncLog[]
+
+  @@index([workspace_id])
+}
+
+model CalendarSyncSettingLeaveType {
+  id                       String              @id @default(uuid())
+  createdAt                DateTime            @default(now())
+  updatedAt                DateTime            @updatedAt
+  leave_type_id            String
+  calendar_sync_setting_id String
+  sync_as_name             String
+  leave_type               LeaveType           @relation(fields: [leave_type_id], references: [id], onDelete: Cascade)
+  calendar_sync_setting    CalendarSyncSetting @relation(fields: [calendar_sync_setting_id], references: [id], onDelete: Cascade)
+  only_approved            Boolean             @default(false)
+
+  @@unique([leave_type_id, calendar_sync_setting_id])
+  @@index([calendar_sync_setting_id])
+}
+
+model TimeghostSyncSettingLeaveType {
+  id                        String               @id @default(uuid())
+  createdAt                 DateTime             @default(now())
+  updatedAt                 DateTime             @updatedAt
+  leave_type_id             String
+  timeghost_sync_setting_id String
+  leave_type                LeaveType            @relation(fields: [leave_type_id], references: [id], onDelete: Cascade)
+  timeghost_sync_setting    TimeghostSyncSetting @relation(fields: [timeghost_sync_setting_id], references: [id], onDelete: Cascade)
+
+  @@unique([leave_type_id, timeghost_sync_setting_id])
+  @@index([timeghost_sync_setting_id])
+}
+
+model CalendarSyncSettingDepartment {
+  id                       String              @id @default(uuid())
+  createdAt                DateTime            @default(now())
+  updatedAt                DateTime            @updatedAt
+  department_id            String
+  calendar_sync_setting_id String
+  department               Department          @relation(fields: [department_id], references: [id], onDelete: Cascade)
+  calendar_sync_setting    CalendarSyncSetting @relation(fields: [calendar_sync_setting_id], references: [id], onDelete: Cascade)
+
+  @@unique([department_id, calendar_sync_setting_id])
+  @@index([calendar_sync_setting_id])
+}
+
+model TimeghostSyncSettingDepartment {
+  id                        String               @id @default(uuid())
+  createdAt                 DateTime             @default(now())
+  updatedAt                 DateTime             @updatedAt
+  department_id             String
+  timeghost_sync_setting_id String
+  department                Department           @relation(fields: [department_id], references: [id], onDelete: Cascade)
+  timeghost_sync_setting    TimeghostSyncSetting @relation(fields: [timeghost_sync_setting_id], references: [id], onDelete: Cascade)
+
+  @@unique([department_id, timeghost_sync_setting_id])
+  @@index([timeghost_sync_setting_id])
+}
+
+model Department {
+  id                              String                           @id @default(uuid())
+  createdAt                       DateTime                         @default(now())
+  updatedAt                       DateTime                         @updatedAt
+  name                            String
+  maximum_absent                  Int?
+  workspace_id                    String
+  members                         MemberDepartment[]
+  workspace                       Workspace                        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  calendarSyncSettingDepartments  CalendarSyncSettingDepartment[]
+  timeghostSyncSettingDepartments TimeghostSyncSettingDepartment[]
+  approval_process                ApprovalProcess                  @default(Linear_all_have_to_agree)
+  groupSyncSettings               DepartmentGroupSyncSetting[]
+  default_department_allowances   Json?
+
+  @@index([workspace_id])
+}
+
+model GroupSyncSetting {
+  id                              String                       @id @default(uuid())
+  createdAt                       DateTime                     @default(now())
+  updatedAt                       DateTime                     @updatedAt
+  name                            String
+  description                     String
+  group_id                        String                       @unique
+  automatic_account_create_option Boolean
+  manager_change_option           Boolean
+  remove_from_department_option   Boolean
+  workspace_id                    String
+  workspace                       Workspace                    @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  departments                     DepartmentGroupSyncSetting[]
+
+  @@index([workspace_id])
+}
+
+model DepartmentGroupSyncSetting {
+  department            Department       @relation(fields: [department_id], references: [id], onDelete: Cascade)
+  department_id         String
+  groupSyncSetting      GroupSyncSetting @relation(fields: [group_sync_setting_id], references: [id], onDelete: Cascade)
+  group_sync_setting_id String
+
+  @@id([department_id, group_sync_setting_id])
+  @@index([group_sync_setting_id, department_id])
+}
+
+model PaddleBillingDetails {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  customer_id  String
+  address_id   String?
+  business_id  String?
+  workspace_id String
+
+  workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id])
+}
+
+enum DisplayNameFormat {
+  Microsoft_DisplayName
+  First
+  Last
+  FirstLast
+  LastFirst
+}
+
+enum Status {
+  INACTIVE
+  ACTIVE
+  ARCHIVED
+}
+
+enum ApplicationType {
+  WEB
+  TEAMS
+}
+
+enum CompanyLogoRatio {
+  LANDSCAPE
+  SQUARE
+}
+
+enum Display {
+  ShowLogoAndName
+  ShowLogo
+}
+
+enum ApprovalProcess {
+  Linear_all_have_to_agree
+  Linear_one_has_to_agree
+  Parallel_all_have_to_agree
+  Parallel_one_has_to_agree
+}
+
+enum CalendarSyncSettingCalendarType {
+  outlook_calendar
+  ical_email
+  outlook_group_calendar
+}
+
+enum AllowancePoliciesCycle {
+  month
+  year
+}
+
+enum AllowanceUnit {
+  days
+  hours
+}
+
+enum LeaveUnit {
+  days
+  half_days
+  hours
+  minutes_30
+  minutes_15
+  minutes_10
+  minutes_5
+  minutes_1
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  past_due
+  paused
+  deleted
+  pending
+}
+
+enum SubscriptionProvider {
+  absentify
+  paddle
+  paddle_v2
+  microsoftFulfillment
+}
+
+enum BillingCycleInterval {
+  day
+  week
+  month
+  year
+}
+
+enum WebhookSource {
+  Website
+  MicrosoftPowerAutomate
+}
+
+enum TimeFormat {
+  H12
+  H24
+}
+
+enum MailboxAutomaticRepliesSettingExternalAudience {
+  none
+  contactsOnly
+  all
+}
+
+enum MicrosoftAppStatus {
+  PENDING
+  ACTIVATED
+  REVOKED
+  NONE
+}
+
+enum WebhookHistoryStatus {
+  PENDING
+  SUCCESS
+  ERROR
+}
+
+enum PublicHolidayDuration {
+  Morning
+  Afternoon
+  FullDay
+}
+
+enum OutOfOfficeMessageStatus {
+  None
+  MustBeConfigured
+  Configured
+  Error
+  MustBeRemoved
+}
+
+enum TimeghostAccesStatus {
+  None
+  Success
+  Error
+}
+
+enum OutlookShowAs {
+  free
+  tentative
+  busy
+  oof
+  workingElsewhere
+  unknown
+}
+
+model LeaveType {
+  id                                      String                          @id @default(uuid())
+  createdAt                               DateTime                        @default(now())
+  updatedAt                               DateTime                        @updatedAt
+  name                                    String
+  color                                   String
+  icon                                    String
+  take_from_allowance                     Boolean                         @default(false)
+  needs_approval                          Boolean                         @default(true)
+  maximum_absent                          Boolean                         @default(true)
+  deleted                                 Boolean                         @default(false)
+  deleted_at                              DateTime?
+  deleted_by_member_id                    String?
+  workspace_id                            String
+  request_details                         RequestDetail[]
+  privacy_hide_leavetype                  Boolean                         @default(false)
+  outlook_synchronization_show_as         OutlookShowAs                   @default(oof)
+  outlook_synchronization_subject         String?
+  position                                Int                             @default(0)
+  allowance_type_id                       String?
+  allowance_type                          AllowanceType?                  @relation(fields: [allowance_type_id], references: [id], onDelete: SetNull)
+  memberMailboxSettings                   MemberMailboxSettings[]
+  calendarSyncSettingLeaveTypes           CalendarSyncSettingLeaveType[]
+  timeghostSyncSettingLeaveTypes          TimeghostSyncSettingLeaveType[]
+  reason_mandatory                        Boolean                         @default(false)
+  reason_hint_text                        String?                         @db.VarChar(250)
+  sync_option                             SyncEnabled                     @default(All)
+  sync_to_outlook_as_dynamics_365_tracked Boolean                         @default(false)
+  leave_unit                              LeaveUnit                       @default(days)
+  ignore_schedule                       Boolean                             @default(false)
+  ignore_public_holidays                Boolean                             @default(false)
+
+  workspace  Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  deleted_by Member?   @relation(fields: [deleted_by_member_id], references: [id], onDelete: SetNull)
+
+  @@index([workspace_id, deleted])
+  @@index([deleted_by_member_id])
+  @@index([allowance_type_id])
+}
+
+enum SyncEnabled {
+  Disabled
+  All
+  OnlyApproved
+}
+
+model MemberAllowance {
+  id                        String   @id @default(uuid())
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+  member_id                 String
+  workspace_id              String
+  year                      Int
+  start                     DateTime
+  end                       DateTime
+  policies                  Float    @default(0)
+  adjustments               Float    @default(0)
+  carry_over                Float    @default(0)
+  expiration                Float    @default(0)
+  taken                     Float
+  remaining                 Float
+  //todo delete
+  allowance                 Float
+  //todo delete
+  brought_forward           Float
+  //todo delete
+  compensatory_time_off     Float
+  leave_types_stats         Json?
+  allowance_type_id         String
+  overwrite_brought_forward Boolean  @default(false)
+
+  member         Member        @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  workspace      Workspace     @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  allowance_type AllowanceType @relation(fields: [allowance_type_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+  @@index([workspace_id])
+  @@index([allowance_type_id])
+}
+
+model MemberAllowanceTypeConfigurtaion {
+  id                String   @id @default(uuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  member_id         String
+  workspace_id      String
+  allowance_type_id String
+  default           Boolean  @default(false)
+  disabled          Boolean  @default(false)
+
+  member         Member        @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  workspace      Workspace     @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  allowance_type AllowanceType @relation(fields: [allowance_type_id], references: [id], onDelete: Cascade)
+
+  @@unique([member_id, allowance_type_id])
+  @@index([member_id])
+  @@index([workspace_id])
+  @@index([allowance_type_id])
+}
+
+model MemberAllowancePolicySubscription {
+  id                Int             @id @default(autoincrement())
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  member_id         String
+  workspace_id      String
+  policy_start_date DateTime
+  policy_end_date   DateTime?
+  policy_id         String
+  allowance_type_id String
+  allowance_type    AllowanceType   @relation(fields: [allowance_type_id], references: [id], onDelete: Cascade)
+  policy            AllowancePolicy @relation(fields: [policy_id], references: [id], onDelete: Cascade)
+  member            Member          @relation(fields: [member_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id, member_id])
+  @@index([member_id])
+  @@index([policy_id])
+  @@index([allowance_type_id])
+}
+
+model MemberAllowanceAdjustment {
+  id                  Int           @id @default(autoincrement())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  member_id           String
+  workspace_id        String
+  comment             String
+  amount              Float
+  date                DateTime
+  allowance_type_id   String
+  expiry_date         DateTime?
+  createdBy_member_id String?
+  member              Member        @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  created_by          Member?       @relation("creator", fields: [createdBy_member_id], references: [id], onDelete: SetNull)
+  allowance_type      AllowanceType @relation(fields: [allowance_type_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+  @@index([createdBy_member_id])
+  @@index([allowance_type_id])
+}
+
+model MemberApprover {
+  id                                      String   @id @default(uuid())
+  createdAt                               DateTime @default(now())
+  updatedAt                               DateTime @updatedAt
+  member_id                               String
+  workspace_id                            String
+  approver_member_id                      String
+  predecessor_approver_member_approver_id String?
+  changed_by_webhook                      Boolean  @default(false)
+
+  member          Member    @relation("member", fields: [member_id], references: [id], onDelete: Cascade)
+  approver_member Member    @relation("approver_member", fields: [approver_member_id], references: [id], onDelete: Cascade)
+  workspace       Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+  @@index([approver_member_id])
+  @@index([workspace_id])
+}
+
+model MemberDepartment {
+  id                     String                @id @default(uuid())
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+  member_id              String
+  workspace_id           String
+  department_id          String
+  manager_type           DepartmentManagerType @default(Member)
+  predecessor_manager_id String?
+  changed_by_webhook     Boolean               @default(false)
+
+  member     Member     @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  department Department @relation(fields: [department_id], references: [id], onDelete: Cascade)
+  workspace  Workspace  @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@unique([department_id, member_id])
+  @@index([member_id])
+  @@index([workspace_id])
+}
+
+model MemberSchedule {
+  id                    String    @id @default(uuid())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  member_id             String
+  workspace_id          String
+  from                  DateTime? @db.Date
+  monday_am_start       DateTime  @db.Time
+  monday_am_end         DateTime  @db.Time
+  monday_pm_start       DateTime  @db.Time
+  monday_pm_end         DateTime  @db.Time
+  monday_am_enabled     Boolean
+  monday_pm_enabled     Boolean
+  monday_deduct_fullday Boolean   @default(false)
+
+  tuesday_am_start       DateTime @db.Time
+  tuesday_am_end         DateTime @db.Time
+  tuesday_pm_start       DateTime @db.Time
+  tuesday_pm_end         DateTime @db.Time
+  tuesday_am_enabled     Boolean
+  tuesday_pm_enabled     Boolean
+  tuesday_deduct_fullday Boolean  @default(false)
+
+  wednesday_am_start       DateTime @db.Time
+  wednesday_am_end         DateTime @db.Time
+  wednesday_pm_start       DateTime @db.Time
+  wednesday_pm_end         DateTime @db.Time
+  wednesday_am_enabled     Boolean
+  wednesday_pm_enabled     Boolean
+  wednesday_deduct_fullday Boolean  @default(false)
+
+  thursday_am_start       DateTime @db.Time
+  thursday_am_end         DateTime @db.Time
+  thursday_pm_start       DateTime @db.Time
+  thursday_pm_end         DateTime @db.Time
+  thursday_am_enabled     Boolean
+  thursday_pm_enabled     Boolean
+  thursday_deduct_fullday Boolean  @default(false)
+
+  friday_am_start       DateTime @db.Time
+  friday_am_end         DateTime @db.Time
+  friday_pm_start       DateTime @db.Time
+  friday_pm_end         DateTime @db.Time
+  friday_am_enabled     Boolean
+  friday_pm_enabled     Boolean
+  friday_deduct_fullday Boolean  @default(false)
+
+  saturday_am_start       DateTime @db.Time
+  saturday_am_end         DateTime @db.Time
+  saturday_pm_start       DateTime @db.Time
+  saturday_pm_end         DateTime @db.Time
+  saturday_am_enabled     Boolean
+  saturday_pm_enabled     Boolean
+  saturday_deduct_fullday Boolean  @default(false)
+
+  sunday_am_start       DateTime @db.Time
+  sunday_am_end         DateTime @db.Time
+  sunday_pm_start       DateTime @db.Time
+  sunday_pm_end         DateTime @db.Time
+  sunday_am_enabled     Boolean
+  sunday_pm_enabled     Boolean
+  sunday_deduct_fullday Boolean  @default(false)
+
+  member    Member    @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+  @@index([workspace_id])
+}
+
+model PublicHolidayDay {
+  id                   String                @id @default(uuid())
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  date                 DateTime              @db.Date
+  year                 Int
+  workspace_id         String
+  custom_value         Boolean               @default(false)
+  public_holiday_id    String
+  duration             PublicHolidayDuration @default(FullDay)
+  holidayapi_uuid_year String?
+
+  workspace                      Workspace                    @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  public_holiday                 PublicHoliday                @relation(fields: [public_holiday_id], references: [id], onDelete: Cascade)
+  public_holiday_day_languages   PublicHolidayDayLanguage[]
+  holiday_api                    HolidayApi?                  @relation(fields: [holidayapi_uuid_year], references: [id_year], onDelete: SetNull)
+  public_holiday_day_sync_status PublicHolidayDaySyncStatus[]
+
+  @@index([workspace_id, date])
+  @@index([workspace_id, public_holiday_id])
+  @@index([public_holiday_id])
+  @@index([holidayapi_uuid_year])
+}
+
+model PublicHolidayDayLanguage {
+  id                    String   @id @default(uuid())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  name                  String
+  language              String
+  workspace_id          String
+  public_holiday_day_id String
+
+  workspace          Workspace        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  public_holiday_day PublicHolidayDay @relation(fields: [public_holiday_day_id], references: [id], onDelete: Cascade)
+
+  @@unique([public_holiday_day_id, language])
+  @@index([public_holiday_day_id])
+  @@index([workspace_id])
+}
+
+model PublicHoliday {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  name         String
+  country_code String?
+  county_code  String?
+
+  workspace_id        String
+  public_holiday_days PublicHolidayDay[]
+  public_holiday      Member[]
+
+  workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+
+  @@index([workspace_id])
+}
+
+model HolidayApi {
+  id_year      String   @id
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  date         String
+  observed     String
+  public       Boolean
+  country      String
+  subdivisions String?  @db.Text
+  year         Int
+
+  holiday_api_languages HolidayApiLanguage[]
+  PublicHolidayDay      PublicHolidayDay[]
+}
+
+model HolidayApiLanguage {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  name           String
+  language       String
+  holiday_api_id String
+
+  holiday_api HolidayApi @relation(fields: [holiday_api_id], references: [id_year], onDelete: Cascade)
+
+  @@unique([holiday_api_id, language])
+  @@index([holiday_api_id, language])
+}
+
+model Request {
+  id                           String                   @id @default(uuid())
+  createdAt                    DateTime                 @default(now())
+  createdBy_member_id          String?
+  updatedAt                    DateTime                 @updatedAt
+  start                        DateTime                 @db.DateTime(0)
+  end                          DateTime                 @db.DateTime(0)
+  start_at                     StartAt                  @default(morning)
+  end_at                       EndAt                    @default(end_of_day)
+  leave_unit                   LeaveUnit                @default(days)
+  requester_member_id          String
+  workspace_id                 String
+  year                         Int
+  request_details_id           String?
+  out_of_office_message_status OutOfOfficeMessageStatus @default(None)
+  requester_member             Member                   @relation("requester", fields: [requester_member_id], references: [id], onDelete: Cascade)
+  details                      RequestDetail?           @relation(fields: [request_details_id], references: [id], onDelete: Cascade)
+  workspace                    Workspace                @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  request_creator_member       Member?                  @relation("creator", fields: [createdBy_member_id], references: [id], onDelete: SetNull)
+  webhookHistory               WebhookHistory[]
+  requestSyncLogs              RequestSyncLog[]
+  requester_adaptive_card_id   String?
+
+  @@index([start, out_of_office_message_status])
+  @@index([requester_member_id])
+  @@index([workspace_id, start, end, requester_member_id])
+  @@index([createdBy_member_id])
+  @@index([request_details_id])
+}
+
+model RequestSyncLog {
+  id                                 Int                   @id @default(autoincrement())
+  createdAt                          DateTime              @default(now())
+  updatedAt                          DateTime              @updatedAt
+  request_id                         String
+  workspace_id                       String
+  calendar_id                        String?
+  calendar_event_id                  String?
+  calendar_sync_setting_id           String?
+  calendar_microsoft_user_id         String?
+  calendar_microsoft_tenant_id       String?
+  timeghost_item_id                  String?
+  timeghost_api_access_token         String?
+  timeghost_api_access_authenticated TimeghostAccesStatus  @default(None)
+  timeghost_sync_setting_id          String?
+  timeghost_workspace_id             String?
+  timeghost_user_id                  String?
+  timeghost_time_entry               String?                 @db.VarChar(2500)
+  email                              String?
+  error                              String?               @db.VarChar(2500)
+  sync_type                          SyncType?
+  sync_status                        SyncStatus
+  request                            Request               @relation(fields: [request_id], references: [id], onDelete: Cascade)
+  workspace                          Workspace             @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  calendar_sync_setting              CalendarSyncSetting?  @relation(fields: [calendar_sync_setting_id], references: [id], onDelete: Cascade)
+  timeghost_sync_setting             TimeghostSyncSetting? @relation(fields: [timeghost_sync_setting_id], references: [id], onDelete: Cascade)
+
+  @@index([request_id])
+  @@index([updatedAt, sync_status])
+  @@index([workspace_id, request_id])
+  @@index([calendar_sync_setting_id])
+  @@index([timeghost_sync_setting_id])
+}
+
+model RequestDetail {
+  id                       String            @id @default(uuid())
+  createdAt                DateTime          @default(now())
+  updatedAt                DateTime          @updatedAt
+  leave_type_id            String
+  workspace_id             String
+  requester_member_id      String
+  status                   RequestStatus
+  reason                   String?           @db.VarChar(2500)
+  cancel_reason            String?           @db.VarChar(2500)
+  canceld_by_member_id     String?
+  canceld_date             DateTime?
+  workday_absence_duration Float             @default(0)
+  duration                 Float             @default(0)
+  request                  Request[]
+  requester_member         Member?           @relation("requester_details", fields: [requester_member_id], references: [id], onDelete: Cascade)
+  canceld_by_member        Member?           @relation("canceld_by", fields: [canceld_by_member_id], references: [id], onDelete: SetNull)
+  workspace                Workspace         @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  leave_type               LeaveType         @relation(fields: [leave_type_id], references: [id], onDelete: Cascade)
+  request_approvers        RequestApprover[]
+  approval_process         ApprovalProcess   @default(Linear_all_have_to_agree)
+
+  @@index([requester_member_id])
+  @@index([canceld_by_member_id])
+  @@index([workspace_id, status])
+  @@index([leave_type_id])
+}
+
+model RequestApprover {
+  id                                     Int                   @id @default(autoincrement())
+  uuid                                   String                @default(uuid())
+  createdAt                              DateTime              @default(now())
+  updatedAt                              DateTime              @updatedAt
+  workspace_id                           String
+  approver_member_id                     String?
+  status                                 RequestApproverStatus
+  reason                                 String?               @db.VarChar(2500)
+  status_change_date                     DateTime?
+  request_details_id                     String
+  reminderDate                           DateTime              @default(now())
+  request_detail                         RequestDetail         @relation(fields: [request_details_id], references: [id], onDelete: Cascade)
+  approver_member                        Member?               @relation("request_approvers", fields: [approver_member_id], references: [id], onDelete: SetNull)
+  predecessor_request_member_approver_id String?
+  status_changed_by_member_id            String?
+  status_changed_by_member               Member?               @relation("request_status_changed", fields: [status_changed_by_member_id], references: [id], onDelete: SetNull)
+  adaptive_card_id                       String?
+
+  @@unique([uuid])
+  @@index([request_details_id])
+  @@index([approver_member_id])
+  @@index([status_changed_by_member_id])
+}
+
+model MicrosoftLeads {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  firstName   String?
+  lastName    String?
+  email       String?
+  phone       String?
+  country     String?
+  company     String?
+  leadSource  String?
+  actionCode  String?
+  offerTitle  String?
+  description String?
+}
+
+model SignInLog {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  time_of_creation DateTime
+  app              String
+  device           String
+  ip               String
+  member_id        String
+  location         String?
+
+  member Member @relation(fields: [member_id], references: [id], onDelete: Cascade)
+
+  @@index([member_id])
+}
+
+enum StartAt {
+  morning
+  afternoon
+}
+
+enum EndAt {
+  lunchtime
+  end_of_day
+}
+
+enum DepartmentManagerType {
+  Member
+  Manager
+}
+
+enum SyncJobType {
+  SyncRequest
+  SyncCalendar
+}
+
+enum SyncType {
+  Outlook_User_Calendar
+  Shared_Outlook_Calendar
+  Ical
+  timeghost
+  Outlook_Group_Calendar
+}
+
+enum SyncStatus {
+  NotSynced
+  Synced
+  Failed
+  MustBeDeleted
+  Removed
+  Skipped
+}
+
+enum RequestApproverStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  CANCELED
+  APPROVED_BY_ANOTHER_MANAGER
+  DECLINED_BY_ANOTHER_MANAGER
+  CANCELED_BY_ANOTHER_MANAGER
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  CANCELED
+}
+
+model WorkspaceSchedule {
+  id                    String   @id @default(uuid())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  workspace_id          String   @unique
+  monday_am_start       DateTime @db.Time
+  monday_am_end         DateTime @db.Time
+  monday_pm_start       DateTime @db.Time
+  monday_pm_end         DateTime @db.Time
+  monday_am_enabled     Boolean
+  monday_pm_enabled     Boolean
+  monday_deduct_fullday Boolean  @default(false)
+
+  tuesday_am_start       DateTime @db.Time
+  tuesday_am_end         DateTime @db.Time
+  tuesday_pm_start       DateTime @db.Time
+  tuesday_pm_end         DateTime @db.Time
+  tuesday_am_enabled     Boolean
+  tuesday_pm_enabled     Boolean
+  tuesday_deduct_fullday Boolean  @default(false)
+
+  wednesday_am_start       DateTime @db.Time
+  wednesday_am_end         DateTime @db.Time
+  wednesday_pm_start       DateTime @db.Time
+  wednesday_pm_end         DateTime @db.Time
+  wednesday_am_enabled     Boolean
+  wednesday_pm_enabled     Boolean
+  wednesday_deduct_fullday Boolean  @default(false)
+
+  thursday_am_start       DateTime @db.Time
+  thursday_am_end         DateTime @db.Time
+  thursday_pm_start       DateTime @db.Time
+  thursday_pm_end         DateTime @db.Time
+  thursday_am_enabled     Boolean
+  thursday_pm_enabled     Boolean
+  thursday_deduct_fullday Boolean  @default(false)
+
+  friday_am_start       DateTime @db.Time
+  friday_am_end         DateTime @db.Time
+  friday_pm_start       DateTime @db.Time
+  friday_pm_end         DateTime @db.Time
+  friday_am_enabled     Boolean
+  friday_pm_enabled     Boolean
+  friday_deduct_fullday Boolean  @default(false)
+
+  saturday_am_start       DateTime @db.Time
+  saturday_am_end         DateTime @db.Time
+  saturday_pm_start       DateTime @db.Time
+  saturday_pm_end         DateTime @db.Time
+  saturday_am_enabled     Boolean
+  saturday_pm_enabled     Boolean
+  saturday_deduct_fullday Boolean  @default(false)
+
+  sunday_am_start       DateTime @db.Time
+  sunday_am_end         DateTime @db.Time
+  sunday_pm_start       DateTime @db.Time
+  sunday_pm_end         DateTime @db.Time
+  sunday_am_enabled     Boolean
+  sunday_pm_enabled     Boolean
+  sunday_deduct_fullday Boolean  @default(false)
+
+  workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+}
+
+model TeamsBotConversationReferences {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user_aad_id String
+  ref_id      String   @unique
+  ref_data    Json
+}
+
+model MicrosoftGraphSubscription {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  subscription_id String   @unique
+  expiration_date DateTime
+  resource        String
+  change_type     String
+  tenant_id       String
+
+  @@index([tenant_id])
+}
+
+enum NotificationReceivingMethod {
+  TeamsBot
+  EmailAndTeamsBot
+}
+
+model EmailHistory {
+  id           Int      @id @default(autoincrement())
+  workspace_id String
+  to           String
+  subject      String
+  body         String   @db.LongText
+  status       String
+  error        String?
+  sentAt       DateTime @default(now())
+  operationId  String
+
+  workspace         Workspace                     @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  recipientStatuses EmailHitsoryRecipientStatus[]
+
+  @@index([workspace_id])
+  @@index([operationId])
+}
+
+model EmailHitsoryRecipientStatus {
+  id                       Int       @id @default(autoincrement())
+  emailHistoryId           Int
+  recipient                String
+  deliveryStatus           String?
+  deliveryDetails          String?   @db.Text
+  deliveryAttemptTimestamp DateTime?
+
+  emailHistory EmailHistory @relation(fields: [emailHistoryId], references: [id], onDelete: Cascade)
+
+  @@index([emailHistoryId])
+  @@index([recipient])
+}
+
+model PublicHolidayDaySyncStatus {
+  id                    Int       @id @default(autoincrement())
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  workspace_id          String
+  synced_date           DateTime?
+  synced_status         String?
+  synced_error          String?
+  synced_error_detail   String?   @db.Text
+  public_holiday_day_id String
+  member_id             String
+  outlook_event_id      String?
+  microsoft_user_id     String
+  microsoft_tenant_id   String
+  retry_count           Int       @default(0)
+
+  workspace          Workspace        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  public_holiday_day PublicHolidayDay @relation(fields: [public_holiday_day_id], references: [id], onDelete: Cascade)
+  member             Member           @relation(fields: [member_id], references: [id], onDelete: Cascade)
+}

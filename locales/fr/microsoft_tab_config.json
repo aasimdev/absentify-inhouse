@@ -1,0 +1,8 @@
+{
+  "All_departments": "Tous les départements",
+  "title": "Il est possible de configurer ici la vue du département des absences. Lorsque l'onglet est ouvert, les absences dans ce département seront affichées si l'utilisateur a des droits sur cette vue.",
+  "choose_department": "Choisir un service",
+  "tab_config": "Onglet Configuration",
+  "suggestedTabName": "Absences",
+  "tab_name": "Nom de l'onglet"
+}

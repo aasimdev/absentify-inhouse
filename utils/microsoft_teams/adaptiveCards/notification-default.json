@@ -1,0 +1,151 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${h1}",
+      "weight": "Bolder",
+      "size": "Large",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "${firstLine}",
+      "weight": "Bolder",
+      "size": "Medium",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "${secondLine}",
+      "weight": "Bolder",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "${thirdLine}",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "${fourthLine}",
+      "weight": "Lighter",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "${fifthLine}",
+      "weight": "Lighter",
+      "wrap": true
+    },
+    {
+      "$data": "${users}",
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "${image}",
+                  "size": "Medium",
+                  "style": "Person"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${name}",
+                  "weight": "Bolder",
+                  "wrap": true
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "${status}",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ActionSet",
+      "separator": true,
+
+      "actions": [
+        {
+          "type": "Action.OpenUrl",
+          "title": "${buttonText}",
+          "style": "positive",
+          "url": "${buttonLink}"
+        }
+      ],
+      "spacing": "Medium"
+    },
+    {
+      "type": "Container",
+      "separator": true,
+      "$when": "${showApprovalActions == true}",
+      "items": [
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Submit",
+              "title": "Approve",
+              "style": "positive",
+              "data": {
+                "id": "${uniqueId}",
+                "action": "approve"
+              }
+            },
+            {
+              "type": "Action.ShowCard",
+              "title": "Reject",
+              "style": "destructive",
+              "card": {
+                "type": "AdaptiveCard",
+                "body": [
+                  {
+                    "type": "Input.Text",
+                    "id": "rejectionComments",
+                    "label": "Please specify an appropriate reason for rejection",
+                    "isMultiline": true,
+                    "isRequired": true,
+                    "errorMessage": "A reason for rejection is necessary"
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "Action.Submit",
+                    "title": "Send",
+                    "data": {
+                      "id": "${uniqueId}",
+                      "action": "reject"
+                    }
+                  }
+                ],
+                "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "msteams": {
+    "width": "Full"
+  }
+}

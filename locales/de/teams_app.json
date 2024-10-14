@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - Verwalte Urlaubsanträge direkt in Microsoft Teams",
+  "description.short": "Der einfachste Weg, die Urlaube und Freizeiten von Mitarbeitern zu verwalten",
+  "description.full": "absentify ist kostenlos und extra für die Microsoft 365 Umgebung entwickelt worden, um die Abwesenheiten und Urlaube deines Teams oder deines Unternehmens an einem Ort zu pflegen und eine Übersicht zu bekommen. Dabei profitierst du von der vollständigen Integration in Microsoft Teams und Microsoft 365. Keine langweiligen Excel Sheets mehr. Einfach zu bedienen.",
+  "staticTabs[0].name": "Start",
+  "staticTabs[1].name": "Offene Anträge",
+  "activities.activityTypes[0].description": "absentify Benachrichtigungen",
+  "activities.activityTypes[0].templateText": "{message}"
+}

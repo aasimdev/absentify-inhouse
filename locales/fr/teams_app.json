@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - suit et gère tous les congés, les demandes de congé et les tendances des congés sur Teams",
+  "description.short": "Le moyen le plus simple de demander et d'approuver les congés des employés via Microsoft Teams.",
+  "description.full": "absentify est gratuit et spécialement conçu pour l'environnement Microsoft 365 pour gérer les absences de votre équipe ou de vos employés et avoir un aperçu de toutes les absences et des motifs données. Vous bénéficiez d'une intégration complète du suivi des congés payés avec Microsoft Teams, Outlook, Office et Microsoft 365, fini les feuilles Excel ennuyeuses. absentify est le moyen le plus simple d'approuver les vacances et les congés.",
+  "staticTabs[0].name": "Démarrer",
+  "staticTabs[1].name": "Demandes ouvertes",
+  "activities.activityTypes[0].description": "notifications d'absentify",
+  "activities.activityTypes[0].templateText": "{message}"
+}

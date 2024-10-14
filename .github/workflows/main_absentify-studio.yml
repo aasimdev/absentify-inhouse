@@ -1,0 +1,62 @@
+name: Build and deploy container app to Azure Web App - absentify-studio
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'schema.prisma'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    environment: 'Production'
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to registry
+        uses: docker/login-action@v2
+        with:
+          registry: absentify.azurecr.io
+          username: ${{ secrets.AzureAppService_ContainerUsername_107bed9d73e044f8835dd98b27cd0c6c }}
+          password: ${{ secrets.AzureAppService_ContainerPassword_8b5ae1f23c23451ea3b781ffa364c139 }}
+
+      - name: Build and push container image to registry
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: absentify.azurecr.io/absentify/absentify-app-docker-prisma-studio:${{ github.sha }}
+          file: ./Dockerfile_PrismaStudio
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'absentify-studio'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_8bab8f7c5c7849b58ceacae72b3862ed }}
+          images: 'absentify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_107bed9d73e044f8835dd98b27cd0c6c }}/absentify-app-docker-prisma-studio:${{ github.sha }}'
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Login to Azure CLI
+        run: |
+          az login --service-principal -u c483bfd3-733b-40a8-93bc-c092512f8855 -p=${{ secrets.Azure_Container_Secret }} --tenant 43b518ca-563a-4dbb-a9c9-250802ea8563
+
+      - name: Delete old container images
+        run: |
+          az acr manifest list-metadata --registry absentify --name absentify/absentify-app-docker-prisma-studio --orderby time_desc --query "[].digest" --output tsv | awk 'NR>10 {print $1}' | xargs -I% az acr repository delete --name absentify --image absentify/absentify-app-docker-prisma-studio@% --yes

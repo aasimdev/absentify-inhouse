@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "Gestiona todas las ausencias, las solicitudes de permisos y las tendencias de los permisos en Teams",
+  "description.short": "Gestiona las los permisos de vacaciones de los empleados en Microsoft Teams",
+  "description.full": "absentify es gratuito y está diseñado específicamente para el entorno de Microsoft 365 para gestionar las ausencias de tu equipo o de tus empleados y tener una visión general de todas las ausencias y su motivo. Te beneficias de la plena integración del seguimiento del tiempo libre pagado con Microsoft Teams y Microsoft 365. ¡Se acabaron las aburridas hojas de Excel! absentify es la forma más fácil de aprobar las vacaciones y los días festivos.",
+  "staticTabs[0].name": "Comenzar",
+  "staticTabs[1].name": "Solicitudes abiertas",
+  "activities.activityTypes[0].description": "notificaciones de absentify",
+  "activities.activityTypes[0].templateText": "{message}"
+}

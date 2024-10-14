@@ -1,0 +1,5 @@
+{
+  "configure_account_again": "Não foi possível identificar esta compra. Volta a abrir esta subscrição SaaS no portal do Azure ou no Centro de Administração do Microsoft 365 e seleciona novamente \"Configurar conta\" ou \"Gerir conta\".",
+  "configure_now_email": " Ou, em alternativa, utiliza novamente o botão \"Configurar agora\" no e-mail que recebeste após a compra.",
+  "ms_payment_token_error": "Ocorreu um erro, não foi possível finalizar a tua compra."
+}

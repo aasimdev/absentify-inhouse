@@ -1,0 +1,29 @@
+{
+  "background_color": "#6264a7",
+  "description": "The easiest way to apply and approve employee time off through Microsoft",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "absentify - absence and time off Management",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "absentify",
+  "start_url": "/",
+  "theme_color": "#6264a7",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/favicon.ico"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": []
+}

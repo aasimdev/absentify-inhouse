@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "Követheti és kezelheti az összes szabadságot, szabadságkérelmet és szabadságtrendeket a Teamsben.",
+  "description.short": "A munkavállalók szabadidejének kezelése a Microsoft Teams segítségével ",
+  "description.full": "Az absentify ingyenes és kifejezetten a Microsoft 365 környezethez készült, hogy kezelje csapata vagy alkalmazottai távollétét, és áttekintést kapjon az összes szabadnapról és annak okáról. Előnye a fizetett szabadnapok nyomon követésének teljes integrációja a Microsoft Teams és a Microsoft 365 rendszerrel, nincs többé unalmas Excel táblázat. absentify a legegyszerűbb módja a szabadság és a szabadságok jóváhagyásának.",
+  "staticTabs[0].name": "Indítsa el a  oldalt.",
+  "staticTabs[1].name": "Jóváhagyásra váró kérelmek",
+  "activities.activityTypes[0].description": "értesítések elmaradása",
+  "activities.activityTypes[0].templateText": "{message}"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - track and manage all leave, leave requests and leave trends on Teams",
+  "description.short": "The easiest way to apply and approve employee time off through Microsoft Teams",
+  "description.full": "absentify is free and specially designed for the Microsoft 365 environment to manage your team's or employee's absences and have an overview of all time off and reason given. You benefit from full integration of paid time off tracking with Microsoft Teams and Microsoft 365, no more boring Excel sheets. absentify is the easiest way to approve vacation time and holidays.",
+  "staticTabs[0].name": "Start",
+  "staticTabs[1].name": "Open requests",
+  "activities.activityTypes[0].description": "absentify notifications",
+  "activities.activityTypes[0].templateText": "{message}"
+}

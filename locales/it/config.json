@@ -1,0 +1,8 @@
+{
+  "All_departments": "Tutti i dipartimenti",
+  "title": "Qui puoi configurare la visualizzazione del tuo reparto di assenze. Quando la scheda viene aperta, verranno visualizzate le assenze di questo reparto se l'utente ha i diritti per questa visualizzazione.",
+  "choose_department": "Scegli un reparto",
+  "tab_config": "Configurazione della scheda",
+  "suggestedTabName": "Assenze {{suggestedTabName}}",
+  "tab_name": "Nome della scheda"
+}

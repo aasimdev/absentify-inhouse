@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://res.cdn.office.net/teams-js/2.14.0/js/MicrosoftTeams.min.js"
+      integrity="sha384-+DItxkmrHBjTqyGZe60m2HxjR/eDhdYpaTux8gT9/YqHSMxASoTe+Y66GvNEMT8k"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <script>
+      // Warten, bis das DOM vollständig geladen ist
+      document.addEventListener('DOMContentLoaded', async function () {
+        // Stellen Sie sicher, dass MicrosoftTeams verfügbar ist
+        if (typeof microsoftTeams !== 'undefined') {
+          // AUTH
+          await microsoftTeams.app.initialize();
+          const hash = window.location.hash.substr(1); // Entfernen der Raute am Anfang
+
+          // URLSearchParams-Objekt für die Query-Parameter im Fragment
+          const hashParams = new URLSearchParams(hash);
+
+          // Wert des "code"-Parameters
+          const code = hashParams.get('code');
+
+          microsoftTeams.authentication.notifySuccess({ code: code });
+        } else {
+          alert('MicrosoftTeams not ready.');
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "configure_account_again": "Nie udało się zidentyfikować tego zakupu. Otwórz ponownie tę subskrypcję SaaS w portalu Azure lub w Centrum administracyjnym Microsoft 365 i wybierz ponownie opcję \"Skonfiguruj konto\" lub \"Zarządzaj kontem\".",
+  "configure_now_email": " Możesz też ponownie użyć przycisku \"Skonfiguruj teraz\" w wiadomości e-mail, którą otrzymałeś po zakupie.",
+  "ms_payment_token_error": "Wystąpił błąd, nie mogliśmy sfinalizować Twojego zakupu."
+}

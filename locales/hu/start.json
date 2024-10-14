@@ -1,0 +1,16 @@
+{
+  "Overview": "Áttekintés",
+  "Create_request": "Kérelem létrehozása",
+  "to": "-",
+  "Previous_month": "Előző hónap",
+  "Next_month": " Következő hónap",
+  "Department": "Részleg",
+  "All_departments": "Minden részleg",
+  "absentToday": "Ma hiányzik",
+  "Insights": "Elemzés",
+  "Stats": "Statisztikák",
+  "allMembersPresent": "Minden alkalmazott jelen van ma 💪",
+  "Admin_Panel": "Admin panel",
+  "Group_booking": "Csoportos kérés",
+  "group_booking_required_business_plan": "Legalább egy üzleti tervre van szükséged ahhoz, hogy csoportos kérelmeket hozz létre."
+}

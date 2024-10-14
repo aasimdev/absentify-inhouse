@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "Абсентиф",
+  "name.full": "absentify - отслеживай и управляй всеми отпусками, заявлениями на отпуск и тенденциями отпусков в Teams",
+  "description.short": "Самый простой способ подать заявку и утвердить отгул сотрудника через Microsoft Teams",
+  "description.full": "absentify - бесплатное и специально разработанное для среды Microsoft 365 приложение, позволяющее управлять отсутствием твоей команды или сотрудников и иметь представление обо всех отгулах и их причинах. Ты получаешь преимущество от полной интеграции отслеживания оплачиваемых отгулов с Microsoft Teams и Microsoft 365, больше никаких скучных листов Excel. absentify - это самый простой способ утвердить время отпуска и праздников.",
+  "staticTabs[0].name": "Начать",
+  "staticTabs[1].name": "Открытые запросы",
+  "activities.activityTypes[0].description": "Уведомления об исчезновении",
+  "activities.activityTypes[0].templateText": "{message}"
+}

@@ -1,0 +1,8 @@
+{
+  "All_departments": "Todos los departamentos",
+  "title": "Aquí puedes configurar la vista de tu departamento de absentismo. Cuando se abra la pestaña, se mostrarán las ausencias de este departamento si el usuario tiene derechos para esta vista.",
+  "choose_department": "Elige un departamento",
+  "tab_config": "Pestaña Config",
+  "suggestedTabName": "Ausencias {{suggestedTabName}}",
+  "tab_name": "Nombre de la pestaña"
+}

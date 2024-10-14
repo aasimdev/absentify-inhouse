@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - śledź i zarządzaj wszystkimi urlopami, wnioskami urlopowymi i trendami urlopowymi w Teams",
+  "description.short": "Najprostszy sposób zarządzania nieobecnościami pracowników w Microsoft Teams",
+  "description.full": "absentify jest darmowy i specjalnie zaprojektowany dla środowiska Microsoft 365, aby zarządzać nieobecnościami Twojego zespołu lub pracownika i mieć wgląd nieobecności i ich powody. Korzystasz z pełnej integracji śledzenia płatnego czasu wolnego z Microsoft Teams i Microsoft 365, koniec z nudnymi arkuszami Excela. absentify to najprostszy sposób na zatwierdzanie urlopów i wakacji.",
+  "staticTabs[0].name": "Rozpocznij",
+  "staticTabs[1].name": "Oczekujące wnioski",
+  "activities.activityTypes[0].description": "powiadomienia absentify",
+  "activities.activityTypes[0].templateText": "{message}"
+}

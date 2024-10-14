@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+
+  <body>
+    <script>
+      (function () {
+        var generateRandomState = () => {
+          var array = new Uint32Array(1);
+          window.crypto.getRandomValues(array);
+          return array[0].toString(36);
+        };
+
+        var generateMicrosoftLoginUrl = () => {
+          var host = window.location.host; // z.B. "localhost:3000"
+          var protocol = window.location.protocol; // z.B. "http:"
+
+          var redirectUri = location.origin + '/teams/auth-end.html';
+
+          var baseUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
+          var params = new URLSearchParams({
+            client_id: '4dce2abf-3f8e-4281-9f7a-d602fc391886',
+            scope: 'openid email profile offline_access User.Read',
+            response_type: 'code',
+            redirect_uri: redirectUri,
+            response_mode: 'fragment',
+            state: generateRandomState()
+          });
+
+          return `${baseUrl}?${params.toString()}`;
+        };
+        // AUTH
+        location.href = generateMicrosoftLoginUrl();
+      })();
+    </script>
+  </body>
+</html>

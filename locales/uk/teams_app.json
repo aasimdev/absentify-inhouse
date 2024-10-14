@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - відстежуйте та керуйте всіма відпустками, запитами на відпустку та тенденціями щодо відпусток у Teams",
+  "description.short": "Найпростіший спосіб подати заявку та затвердити відсутність працівника через Microsoft Teams",
+  "description.full": "absentify - це безкоштовна програма, спеціально розроблена для середовища Microsoft 365, щоб керувати відсутністю вашої команди або працівника та мати огляд усіх відпусток із зазначенням причин. Ви отримуєте вигоду від повної інтеграції відстеження оплачуваних днів відпустки з Microsoft Teams і Microsoft 365, більше ніяких нудних таблиць Excel. absentify - це найпростіший спосіб затвердити час відпустки та святкові дні.",
+  "staticTabs[0].name": "Старт",
+  "staticTabs[1].name": "Відкриті запити",
+  "activities.activityTypes[0].description": "сповіщення absentify",
+  "activities.activityTypes[0].templateText": "{message}"
+}

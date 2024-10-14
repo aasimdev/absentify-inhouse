@@ -1,0 +1,16 @@
+{
+  "Overview": "Vue d'ensemble",
+  "Create_request": "Faire une demande",
+  "to": "à",
+  "Previous_month": "Mois précédent",
+  "Next_month": "Mois suivant",
+  "Department": "Département",
+  "All_departments": "Tous les départements",
+  "absentToday": "Absent aujourd'hui",
+  "Insights": "Aperçus",
+  "Stats": "Statistiques",
+  "allMembersPresent": "Tous les employés sont présents aujourd'hui 💪.",
+  "Admin_Panel": "Panneau d'administration",
+  "Group_booking": "Demande de groupe",
+  "group_booking_required_business_plan": "Vous avez besoin d'au moins un Plan Business pour créer des demandes de groupe."
+}

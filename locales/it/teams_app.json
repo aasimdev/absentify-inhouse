@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "Traccia e gestisce tutti i congedi, le richieste di congedo e le tendenze dei congedi in Team",
+  "description.short": "Gestione delle ferie dei dipendenti tramite Microsoft Teams",
+  "description.full": "absentify è gratuito e progettato appositamente per l'ambiente Microsoft 365 per gestire le assenze del tuo team o dei tuoi dipendenti e avere una panoramica di tutte le assenze e dei motivi addotti. Potrai beneficiare della completa integrazione del monitoraggio delle assenze con Microsoft Teams e Microsoft 365, senza più noiosi fogli Excel. absentify è il modo più semplice per approvare ferie e vacanze.",
+  "staticTabs[0].name": "Iniziare",
+  "staticTabs[1].name": "Richieste aperte",
+  "activities.activityTypes[0].description": "Notifiche di assentamento",
+  "activities.activityTypes[0].templateText": "{message}"
+}

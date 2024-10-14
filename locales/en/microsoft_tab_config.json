@@ -1,0 +1,8 @@
+{
+  "All_departments": "All departments",
+  "title": "You can configure your absentify department view here. When the tab is opened, the absences in this department will be displayed if the user has rights to this view.",
+  "choose_department": "Choose a department",
+  "tab_config": "Tab Config",
+  "suggestedTabName": "Absences {{suggestedTabName}}",
+  "tab_name": "Tab name"
+}

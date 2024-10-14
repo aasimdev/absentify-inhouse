@@ -1,0 +1,16 @@
+{
+  "Overview": "Overview",
+  "Create_request": "Create request",
+  "to": "to",
+  "Previous_month": "Previous month",
+  "Next_month": "Next month",
+  "Department": "Department",
+  "All_departments": "All departments",
+  "absentToday": "Absent today",
+  "Insights": "Insights",
+  "Stats": "Stats",
+  "allMembersPresent": "All employees are present today 💪",
+  "Admin_Panel": "Admin Panel",
+  "Group_booking": "Group request",
+  "group_booking_required_business_plan": "You need at least a Business Plan to create group requests."
+}

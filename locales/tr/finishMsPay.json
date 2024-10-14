@@ -1,0 +1,5 @@
+{
+  "configure_account_again": "Bu satın alma işlemini tanımlayamadık. Azure portalında veya Microsoft 365 Yönetim Merkezi'nde bu SaaS aboneliğini yeniden açın ve \"Hesabı Yapılandır\" veya \"Hesabı Yönet \"i tekrar seçin.",
+  "configure_now_email": " Ya da alternatif olarak, satın alma işleminden sonra aldığınız e-postadaki \"Şimdi yapılandır\" düğmesini tekrar kullanın.",
+  "ms_payment_token_error": "Bir hata oluştu, satın alma işleminizi tamamlayamadık."
+}

@@ -1,0 +1,5 @@
+{
+  "configure_account_again": "Non siamo riusciti a identificare questo acquisto. Riapri questo abbonamento SaaS nel portale Azure o in Microsoft 365 Admin Center e seleziona nuovamente \"Configura account\" o \"Gestisci account\".",
+  "configure_now_email": " In alternativa, utilizza nuovamente il pulsante \"Configura ora\" nell'e-mail che hai ricevuto dopo l'acquisto.",
+  "ms_payment_token_error": "Si è verificato un errore, non siamo riusciti a finalizzare l'acquisto."
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "ausenta-te",
+  "name.full": "absentify - acompanha e gere todas as férias, pedidos de férias e tendências de férias no Teams",
+  "description.short": "A forma mais fácil de aplicar e aprovar as folgas dos colaboradores através do Microsoft Teams",
+  "description.full": "O absentify é gratuito e foi especialmente concebido para o ambiente do Microsoft 365 para gerir as ausências da tua equipa ou dos teus colaboradores e ter uma visão geral de todas as folgas e dos motivos apresentados. Beneficia da integração total do acompanhamento das ausências pagas com o Microsoft Teams e o Microsoft 365, sem mais folhas de Excel aborrecidas. absentify é a forma mais fácil de aprovar férias e feriados.",
+  "staticTabs[0].name": "Começa",
+  "staticTabs[1].name": "Pedidos em aberto",
+  "activities.activityTypes[0].description": "ausenta as notificações",
+  "activities.activityTypes[0].templateText": "{message}"
+}

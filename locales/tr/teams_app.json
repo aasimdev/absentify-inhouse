@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.12/MicrosoftTeams.schema.json",
+  "name.short": "absentify",
+  "name.full": "absentify - Teams'deki tüm izinleri, izin taleplerini ve izin eğilimlerini takip edin ve yönetin",
+  "description.short": "Microsoft Teams aracılığıyla çalışan izinlerini uygulamanın ve onaylamanın en kolay yolu",
+  "description.full": "absentify ücretsizdir ve ekibinizin veya çalışanınızın devamsızlıklarını yönetmek ve tüm izin sürelerine ve verilen nedenlere genel bir bakış sağlamak için Microsoft 365 ortamı için özel olarak tasarlanmıştır. Microsoft Teams ve Microsoft 365 ile ücretli izin takibinin tam entegrasyonundan yararlanırsınız, artık sıkıcı Excel sayfaları yok. absentify, tatil süresini ve tatilleri onaylamanın en kolay yoludur.",
+  "staticTabs[0].name": "Başlangıç",
+  "staticTabs[1].name": "Açık talepler",
+  "activities.activityTypes[0].description": "bildirimleri yok say",
+  "activities.activityTypes[0].templateText": "{message}"
+}

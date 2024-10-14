@@ -1,0 +1,231 @@
+name: Build and deploy container app to Azure Web App - absentify-dev
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches-ignore:
+      - l10n_main
+    types: [opened, synchronize, reopened, closed]
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: 'ubuntu-latest'
+    environment: 'Development'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
+          yarn install
+
+      - name: Run tests
+        env:
+          SKIP_ENV_VALIDATION: true
+        run: yarn test
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to registry
+        uses: docker/login-action@v2
+        with:
+          registry: https://absentify.azurecr.io/
+          username: ${{ secrets.AzureAppService_ContainerUsername_4a49cc1cd87049159a84e9c0253de47b }}
+          password: ${{ secrets.AzureAppService_ContainerPassword_d790f44d279b4d959c294883161d90bb }}
+
+      - name: Login to Azure CLI
+        run: |
+          az login --service-principal -u c483bfd3-733b-40a8-93bc-c092512f8855 -p=${{ secrets.Azure_Container_Secret }} --tenant 43b518ca-563a-4dbb-a9c9-250802ea8563
+
+      - name: Create MySQL Database for PR
+        id: create-db
+        run: |
+          db_name="pr_${{ github.event.number }}"
+          db_username="absentifyadmin"
+          db_password="${{ secrets.MYSQL_PASSWORD }}"
+          db_exists=$(az mysql flexible-server db show --resource-group absentify-dev --server-name absentify-dev --database-name $db_name --query "name" --output tsv || echo "notfound")
+          if [ "$db_exists" == "notfound" ]; then
+            az mysql flexible-server db create --resource-group absentify-dev --server-name absentify-dev --database-name $db_name
+            db_url="mysql://${db_username}:${db_password}@absentify-dev.mysql.database.azure.com:3306/${db_name}?useSSL=true"
+            echo "PRISMA_DATABASE_URL=$db_url" >> $GITHUB_ENV
+          else
+            db_url="mysql://${db_username}:${db_password}@absentify-dev.mysql.database.azure.com:3306/${db_name}?useSSL=true"
+            echo "Database $db_name already exists."
+            echo "PRISMA_DATABASE_URL=$db_url" >> $GITHUB_ENV
+          fi
+
+
+      - name: Run database migrations
+        env:
+          PRISMA_DATABASE_URL: ${{ env.PRISMA_DATABASE_URL }}
+        run: |
+          npx prisma db push --accept-data-loss
+
+      - name: Build and push container image to registry
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: absentify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4a49cc1cd87049159a84e9c0253de47b }}/absentify-app-docker-dev:${{ github.sha }}
+          file: ./Dockerfile
+          build-args: |
+            NEXT_PUBLIC_AZURE_AD_TENANT_ID=${{ vars.NEXT_PUBLIC_AZURE_AD_TENANT_ID }}
+            NEXT_PUBLIC_GA_MEASUREMENT_ID=${{ vars.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+            NEXT_PUBLIC_IS_LOCALHOST=${{ vars.NEXT_PUBLIC_IS_LOCALHOST }}
+            NEXT_PUBLIC_MAINTENANCE=${{ vars.NEXT_PUBLIC_MAINTENANCE }}
+            NEXT_PUBLIC_MSAL_CLIENTID=${{ vars.NEXT_PUBLIC_MSAL_CLIENTID }}
+            NEXT_PUBLIC_MSAL_CLIENTID_CALENDARS_PERMISSION=${{ vars.NEXT_PUBLIC_MSAL_CLIENTID_CALENDARS_PERMISSION }}
+            NEXT_PUBLIC_MSAL_CLIENTID_GROUPS_PERMISSION=${{ vars.NEXT_PUBLIC_MSAL_CLIENTID_GROUPS_PERMISSION }}
+            NEXT_PUBLIC_MSAL_CLIENTID_MAILBOX_PERMISSION=${{ vars.NEXT_PUBLIC_MSAL_CLIENTID_MAILBOX_PERMISSION }}
+            NEXT_PUBLIC_MSAL_CLIENTID_USERS_PERMISSION=${{ vars.NEXT_PUBLIC_MSAL_CLIENTID_USERS_PERMISSION }}
+            NEXT_PUBLIC_MS_PWA=${{ vars.NEXT_PUBLIC_MS_PWA }}
+            NEXT_PUBLIC_PADDLE_API_URL=${{ vars.NEXT_PUBLIC_PADDLE_API_URL }}
+            NEXT_PUBLIC_PADDLE_SANDBOX=${{ vars.NEXT_PUBLIC_PADDLE_SANDBOX }}
+            NEXT_PUBLIC_PADDLE_VENDOR_ID=${{ vars.NEXT_PUBLIC_PADDLE_VENDOR_ID }}
+            NEXT_PUBLIC_RUNMODE=${{ vars.NEXT_PUBLIC_RUNMODE }}
+            SKIP_ENV_VALIDATION=true
+            SENTRY_URL=${{ vars.SENTRY_URL }}
+            SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+            NEXT_PUBLIC_APPINSIGHTS_CONNECTIONSTRING=${{ vars.NEXT_PUBLIC_APPINSIGHTS_CONNECTIONSTRING }}
+            NEXT_PUBLIC_APPINSIGHTS_INSTRUMENTATIONKEY=${{ vars.NEXT_PUBLIC_APPINSIGHTS_INSTRUMENTATIONKEY }}
+            AZURE_BLOB_URL=${{ secrets.AZURE_BLOB_URL }}
+            AZURE_BLOB_COMPANY_LOGO_URL=${{ secrets.AZURE_BLOB_COMPANY_LOGO_URL }}
+
+  deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Set Slot Name
+        id: set-slot
+        run: |
+          echo "slot_name=pr-${{ github.event.number }}" >> $GITHUB_ENV
+
+      - name: Login to Azure CLI
+        run: |
+          az login --service-principal -u c483bfd3-733b-40a8-93bc-c092512f8855 -p=${{ secrets.Azure_Container_Secret }} --tenant 43b518ca-563a-4dbb-a9c9-250802ea8563
+
+      - name: Create Deployment Slot
+        run: |
+          az webapp deployment slot create --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} || echo "Slot already exists"
+
+      - name: Copy App Settings from Production Slot to New Slot
+        run: |
+          az webapp config appsettings list --name absentify-dev --resource-group absentify-dev --slot absentify-dev > appsettings.json
+          az webapp config appsettings set --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} --settings @appsettings.json
+
+      - name: Set Docker Registry Server Password
+        run: |
+          az webapp config appsettings set --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} --settings DOCKER_REGISTRY_SERVER_PASSWORD=${{ secrets.AzureAppService_ContainerPassword_d790f44d279b4d959c294883161d90bb }}
+
+      - name: Set PRISMA_DATABASE_URL in slot
+        run: |
+          az webapp config appsettings set --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} --settings PRISMA_DATABASE_URL=mysql://absentifyadmin:${{ secrets.MYSQL_PASSWORD }}@absentify-dev.mysql.database.azure.com:3306/pr_${{ github.event.number }}?useSSL=true
+
+      - name: Set Branch in slot
+        run: |
+          az webapp config appsettings set --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} --settings BRANCH=${{ env.slot_name }}
+
+      - name: Deploy to Azure Web App Slot
+        run: |
+          az webapp config container set --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }} \
+            --docker-custom-image-name absentify.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4a49cc1cd87049159a84e9c0253de47b }}/absentify-app-docker-dev:${{ github.sha }}
+
+      - name: Restart Web App Slot
+        run: |
+          az webapp restart --name absentify-dev --resource-group absentify-dev --slot ${{ env.slot_name }}
+
+      - name: Post Slot URL to Pull Request
+        if: github.event_name == 'pull_request'
+        run: |
+          pr_number=${{ github.event.number }}
+          slot_name=${{ env.slot_name }}
+          webapp_url="https://absentify-dev-${slot_name}.azurewebsites.net"
+          curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" \
+            -d "{\"body\": \"Deployment for this PR is available at: ${webapp_url}\"}" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${pr_number}/comments
+
+      - name: Trigger Inngest API
+        run: |
+          slot_name=${{ env.slot_name }}
+          webapp_url="https://absentify-dev-${slot_name}.azurewebsites.net"
+          curl -X PUT "${webapp_url}/api/inngest"
+
+      - name: Post Comment to Linear Issue
+        if: github.event_name == 'pull_request'
+        run: |
+          set -x  # Enable command echo for debugging
+          branch_name=${{ github.head_ref }}
+          issue_id=$(echo "$branch_name" | grep -oP '[a-z]+-[0-9]+')
+          echo "Extracted Linear issue ID: $issue_id"
+          if [ -n "$issue_id" ]; then
+            webapp_url="https://absentify-dev-${slot_name}.azurewebsites.net"
+            response=$(curl -s -X POST -H "Authorization: ${{ secrets.LINEAR_API_KEY }}" -H "Content-Type: application/json" \
+              -d '{ "query": "query { issue(id: \"'$issue_id'\") { id } }" }' \
+              https://api.linear.app/graphql)
+            echo "Linear issue query response: $response"
+            linear_issue_id=$(echo $response | jq -r '.data.issue.id')
+            if [ "$linear_issue_id" != "null" ]; then
+              json_payload=$(jq -n --arg id "$linear_issue_id" --arg body "Deployment for this PR is available at: $webapp_url" '{"query": "mutation ($input: CommentCreateInput!) { commentCreate(input: $input) { success } }", "variables": { "input": { "issueId": $id, "body": $body } } }')
+              update_response=$(curl -s -X POST -H "Authorization: ${{ secrets.LINEAR_API_KEY }}" -H "Content-Type: application/json" \
+                -d "$json_payload" \
+                https://api.linear.app/graphql)
+              echo "Linear issue update response: $update_response"
+            else
+              echo "No Linear issue ID found in the response."
+            fi
+          else
+            echo "No issue ID extracted from the branch name."
+          fi
+          set +x  # Disable command echo
+        continue-on-error: true # Add this line to ensure the workflow continues even if this step fails
+
+  delete_slot:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Azure CLI
+        run: |
+          az login --service-principal -u c483bfd3-733b-40a8-93bc-c092512f8855 -p=${{ secrets.Azure_Container_Secret }} --tenant 43b518ca-563a-4dbb-a9c9-250802ea8563
+
+      - name: Delete Deployment Slot
+        run: |
+          az webapp deployment slot delete --name absentify-dev --resource-group absentify-dev --slot pr-${{ github.event.number }}
+
+      - name: Delete MySQL Database for PR
+        run: |
+          db_name="pr_${{ github.event.number }}"
+          db_exists=$(az mysql flexible-server db show --resource-group absentify-dev --server-name absentify-dev --database-name $db_name --query "name" --output tsv || echo "notfound")
+          if [ "$db_exists" != "notfound" ]; then
+            az mysql flexible-server db delete --resource-group absentify-dev --server-name absentify-dev --database-name $db_name --yes
+          else
+            echo "Database $db_name does not exist."
+          fi
+
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event_name == 'push'
+    steps:
+      - name: Login to Azure CLI
+        run: |
+          az login --service-principal -u c483bfd3-733b-40a8-93bc-c092512f8855 -p=${{ secrets.Azure_Container_Secret }} --tenant 43b518ca-563a-4dbb-a9c9-250802ea8563
+
+      - name: Delete old container images
+        run: |
+          az acr manifest list-metadata --registry absentify --name absentify/absentify-app-docker-dev --orderby time_desc --query "[].digest" --output tsv | awk 'NR>30 {print $1}' | xargs -I% az acr repository delete --name absentify --image absentify/absentify-app-docker-dev@% --yes

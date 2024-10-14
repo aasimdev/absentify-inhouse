@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@import url('../node_modules/react-toastify/dist/ReactToastify.min.css');
+@tailwind utilities;
+
+
+.heropattern-texture-gray-400 {
+  background-color: #9ca3af;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%237e7e7e' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.heropattern-texture-green-400 {
+  background-color: #4ade80;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23fbfbfc' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");}
+.heropattern-texture-blue-400 {
+  background-color: #003366;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23fbfbfc' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");}
+
+  .heropattern-texture-brown-400 {
+    background-color: #8B4513;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23fbfbfc' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");}
+  
+.stooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .stooltip {
+  @apply visible z-50;
+}
+
+.ql-editor{
+  height: 250px;
+  max-height: 250px;
+  overflow: auto;
+}
+
+
+.heropattern-texture-green-400 {
+  background-color: #4ade80;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23fbfbfc' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+
+.ql-editor {
+  height: 250px;
+  max-height: 250px;
+  overflow: auto;
+
+}
+
+
+
+.heropattern-texture-green-400 {
+  background-color: #4ade80;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23fbfbfc' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+
+.ql-editor {
+  height: 250px;
+  max-height: 250px;
+  overflow: auto;
+}

@@ -1,0 +1,1 @@
+export const mainLink = process.env.NEXT_PUBLIC_RUNMODE == 'Development' ? 'http://localhost:3000' : 'https://app.absentify.com';

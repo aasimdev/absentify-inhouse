@@ -1,0 +1,8 @@
+{
+  "All_departments": "Alle Abteilungen",
+  "title": "Hier kannst du die Abteilungsansicht von absentify konfigurieren. Wenn die Registerkarte geöffnet wird, werden die Abwesenheiten in dieser Abteilung angezeigt, wenn der Nutzer Rechte für diese Ansicht hat.",
+  "choose_department": "Wähle eine Abteilung",
+  "tab_config": "Registerkarte Konfiguration",
+  "suggestedTabName": "Abwesenheiten {{suggestedTabName}}",
+  "tab_name": "Tab-Name"
+}

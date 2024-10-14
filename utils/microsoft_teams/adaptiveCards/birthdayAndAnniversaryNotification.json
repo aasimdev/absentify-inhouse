@@ -1,0 +1,132 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4",
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${pageTitle}",
+      "weight": "Bolder",
+      "size": "Large",
+      "wrap": true
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${birthdayTitle}",
+          "weight": "Bolder",
+          "size": "Medium",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "${noUpcomingBirthdaysText}",
+          "wrap": true,
+          "isVisible": "${noUpcomingBirthdaysTextVisible == true}"
+        },
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${imageUrl}",
+                      "size": "Medium",
+                      "style": "Person"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${name}",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${date}",
+                      "isSubtle": true,
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "isVisible": true
+            }
+          ],
+          "$data": "${birthdayEvents}"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "${anniversaryTitle}",
+          "weight": "Bolder",
+          "size": "Medium",
+          "wrap": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "${noUpcomingAnniversariesText}",
+          "wrap": true,
+          "isVisible": "${noUpcomingAnniversariesTextVisible == true}"
+        },
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "ColumnSet",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "auto",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "url": "${imageUrl}",
+                      "size": "Medium",
+                      "style": "Person"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "${name}",
+                      "wrap": true
+                    },
+                    {
+                      "type": "TextBlock",
+                      "text": "${date}",
+                      "isSubtle": true,
+                      "wrap": true
+                    }
+                  ]
+                }
+              ],
+              "isVisible": true
+            }
+          ],
+          "$data": "${anniversaryEvents}"
+        }
+      ]
+    }
+  ]
+}
