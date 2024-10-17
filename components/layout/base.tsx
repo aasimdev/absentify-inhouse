@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { Status } from '@prisma/client';
 import { addDays } from 'date-fns';
 import PastDueAnnouncement from './components/PastDueAnnouncement';
+import DarkThemeSwitcher from '@components/DarkThemeSwitcher';
 export const createLogo = (logo: string | null | undefined, size: string) => {
   let picture = null;
   if (logo) {
@@ -189,8 +190,12 @@ const BaseLayout = (props: { children: any }) => {
                         )}
                       </Disclosure.Button>
                     </div>
+
                     <div className="hidden lg:ml-4 lg:block">
                       <div className="flex items-center">
+                        <div className="p-1">
+                          <DarkThemeSwitcher />
+                        </div>
                         <button
                           type="button"
                           onClick={() => {
@@ -484,7 +489,7 @@ const BaseLayout = (props: { children: any }) => {
       </Disclosure>
       <main className="relative -mt-32 mb-5">
         <div className={`mx-auto max-w-screen-2xl  px-2 pb-6 sm:px-6 lg:px-32 lg:pb-16 xl:px-28 1xl:px-2`}>
-          <div className="overflow-auto rounded-lg bg-white shadow">
+          <div className="overflow-auto rounded-lg bg-white shadow dark:bg-black dark:shadow-gray-400">
             {!current_member && router.route != '/' && (
               <div className="mx-auto w-full rounded-md border p-4">
                 <div className="flex animate-pulse space-x-4">
@@ -501,7 +506,7 @@ const BaseLayout = (props: { children: any }) => {
           </div>
         </div>
       </main>
-    {/*      <Announcment /> */}
+      {/*      <Announcment /> */}
       <PastDueAnnouncement />
     </div>
   );

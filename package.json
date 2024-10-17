@@ -91,6 +91,7 @@
     "react-responsive": "^9.0.2",
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
+    "react-toggle-dark-mode": "^1.1.1",
     "react-tooltip": "^5.26.4",
     "serialize-error": "^11.0.3",
     "sharp": "0.32.6",

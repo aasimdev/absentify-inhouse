@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <script async src="https://widget.frill.co/v2/widget.js"></script>
           <script async src="/rw.js" data-rewardful="1a8721"></script>
         </Head>
-        <body>
+        <body className='dark:bg-black'>
           <Main />
           <NextScript />
         </body>
