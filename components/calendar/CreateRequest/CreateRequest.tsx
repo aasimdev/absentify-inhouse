@@ -104,10 +104,10 @@ export default function CreateRequest(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white dark:bg-[#25253b] rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                     {t('Book_time_off')}
                   </Dialog.Title>
                   {props.initDateValues &&
@@ -842,14 +842,14 @@ const Form: React.FC<{
   return (
     <div>
       {!startBulkRequest && (
-        <form className="bg-white p-4 rounded">
+        <form className="bg-white dark:bg-[#3d3e66] p-4 rounded">
           <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
             {props.showUserSelect && (
               <div className="sm:col-span-3">
-                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 dark:text-white">
                   {t('Who_for')}
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 dark:text-white">
                   {(requestMemberIsLoading || isLoading) && memebersSelectable?.length == 0 && <Loader />}
                   {!(requestMemberIsLoading || isLoading) &&
                     memebersSelectable?.length == 1 &&
@@ -904,7 +904,7 @@ const Form: React.FC<{
             )}
             {props.showDepartmentSelect && (
               <div className="sm:col-span-3">
-                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 dark:text-white">
                   {t('Who_for')}
                 </label>
                 <div className="mt-1">
@@ -945,7 +945,7 @@ const Form: React.FC<{
             <div
               className={`${props.showUserSelect || props.showDepartmentSelect ? 'sm:col-span-3' : 'sm:col-span-6'} `}
             >
-              <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 dark:text-white">
                 {t('Leave_type')}
               </label>
               <div className="mt-1">
@@ -984,7 +984,7 @@ const Form: React.FC<{
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 dark:text-white">
                 {t('Starting')}
               </label>
               <div className="mt-1">
@@ -1089,7 +1089,7 @@ const Form: React.FC<{
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 dark:text-white">
                 {t('Ending')}
               </label>
               <div className="mt-1">
@@ -1195,7 +1195,7 @@ const Form: React.FC<{
             </div>
 
             <div className="sm:col-span-6">
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-white">
                 {selectedLeaveType?.reason_mandatory ? (
                   <>
                     <span>{t('Reason')}</span>
@@ -1220,7 +1220,7 @@ const Form: React.FC<{
               {selectedLeaveType?.take_from_allowance && isDayUnit(selectedLeaveType.leave_unit) && (
                 <div className="border-y border-gray-200 mt-4">
                   <div className="flex justify-center px-4 pt-4 sm:px-6 ">
-                    <span className="mr-2 mt-2">{t('Takes')}</span>
+                    <span className="mr-2 mt-2 dark:text-white">{t('Takes')}</span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-300">
                       {!durationIsLoading && durationSum >= 0 && parseInt(`${durationSum}`)}
                       {!durationIsLoading && <span className="ml-0.5">{hasDecimal(durationSum) && '½'}</span>}
@@ -1230,7 +1230,7 @@ const Form: React.FC<{
                         </div>
                       )}
                     </span>
-                    <span className="ml-2 mt-2">
+                    <span className="ml-2 mt-2 dark:text-white">
                       {durationSum > 1 ? t('days') : t('day')}{' '}
                       {t('from_allowance', { allowance: selectedLeaveType?.allowance_type?.name })}
                     </span>

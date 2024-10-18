@@ -118,8 +118,8 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
   if (!current_member) return null;
   return (
     <>
-      <div className="grid grid-cols-1 border-t border-b bg-white shadow sm:rounded sm:border md:grid-cols-10">
-        <div className="border-b  md:col-span-10">
+      <div className="grid grid-cols-1 border-t dark:border-[#595869] border-b bg-white dark:bg-[#2a2a2a] shadow sm:rounded sm:border md:grid-cols-10">
+        <div className="border-b dark:border-[#595869] md:col-span-10 dark:bg-[#1d1d1d]">
           <div className="-mb-px flex justify-between pl-6">
             <div className="flex ">
               <div className="flex py-6 text-lg  font-normal ">
@@ -136,7 +136,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                         if (minDateMaxDate && minDateMaxDate.minYear <= year - 1) setYear(year - 1);
                       }}
                     >
-                      <ArrowLeftIcon className="h-4 ml-1" />
+                      <ArrowLeftIcon className="h-4 ml-1 dark:text-white" />
                     </a>
                   </span>
                   <ReactTooltip
@@ -161,7 +161,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                         if (minDateMaxDate && minDateMaxDate.maxYear >= year + 1) setYear(year + 1);
                       }}
                     >
-                      <ArrowRightIcon className="h-4 ml-1" />
+                      <ArrowRightIcon className="h-4 ml-1 dark:text-white" />
                     </a>
                   </span>
                   <ReactTooltip
@@ -174,7 +174,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                     }}
                   />
                 </div>
-                <div className="self-center">
+                <div className="self-center dark:text-white">
                   {start.getMonth() == 0 && (
                     <>
                       {capitalizeFirstMonthLetter(

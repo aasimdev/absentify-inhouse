@@ -565,7 +565,7 @@ const Cell = ({
     <>
       <div
         className={classNames(
-          'relative h-10 box-content',
+          'relative h-10 box-content dark:bg-[#a4a7d99e]',
           withBorder ? 'border-r border-gray-300 bg-transparent w-10' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
         )}
       >

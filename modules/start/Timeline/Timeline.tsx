@@ -591,11 +591,11 @@ const Timeline: NextPage = () => {
   if (!days) return null;
   return (
     <>
-      <div className="flex min-h-96 grow flex-col border-y bg-white shadow sm:rounded sm:border">
-        <div className="  border-b">
+      <div className="flex min-h-96 grow flex-col border-y bg-white dark:bg-[#2a2a2a] shadow sm:rounded sm:border dark:sm:border-black">
+        <div className="  border-b dark:border-b-gray-600 dark:bg-[#1d1d1d]">
           <div className="grid grid-cols-1 sm:grid-cols-3">
             <div className="p-4">
-              <div className="flex space-x-4 py-2 pr-2 text-lg font-normal sm:border-r">
+              <div className="flex space-x-4 py-2 pr-2 text-lg font-normal sm:border-r dark:border-r-gray-600">
                 <div className="inline-flex mt-1.5 ">
                   <span
                     data-tooltip-id="datenav-tooltip"
@@ -610,7 +610,7 @@ const Timeline: NextPage = () => {
                         if (containerRef && containerRef.current) setTimelineScrollPos(containerRef.current.scrollTop);
                       }}
                     >
-                      <ArrowLeftIcon className="h-4 mr-1" />
+                      <ArrowLeftIcon className="h-4 mr-1 dark:text-white" />
                     </a>
                   </span>
                   <ReactTooltip
@@ -633,19 +633,19 @@ const Timeline: NextPage = () => {
                         if (fiscal_year <= new Date().getFullYear() + 1) calcAndSetDateRanges(false);
                       }}
                     >
-                      <ArrowRightIcon className="h-4 ml-1" />
+                      <ArrowRightIcon className="h-4 ml-1 dark:text-white" />
                     </a>
                   </span>
                   <ReactTooltip id="datenav-tooltip" className="shadow z-50" classNameArrow="shadow-sm" place="top" />
                 </div>
 
-                <div>{dateRangeText}</div>
+                <div className='dark:text-white'>{dateRangeText}</div>
               </div>
             </div>
             <div className="p-4 ">
               {departmentDropDownValues && departmentDropDownValues.length >= 2 && (
                 <div className="grid md:grid md:grid-cols-3 md:items-start md:gap-4">
-                  <label className="block break-normal text-sm font-medium text-gray-700 sm:py-2">
+                  <label className="block break-normal text-sm font-medium text-gray-700 dark:text-white sm:py-2">
                     {`${t('Department')}: `}
                   </label>
                   <div className="z-20 mt-1 sm:col-span-2 sm:mt-0 ">
@@ -794,9 +794,9 @@ const Timeline: NextPage = () => {
         <div className="-mb-px flex  h-[50vh]  justify-end py-2 pl-0 pr-2 lg:h-[70vh] lg:pr-2 lg:pl-1   ">
           <div
             ref={containerRef}
-            className={'flex h-auto w-full flex-col overflow-y-auto overflow-x-hidden bg-white  text-sm '}
+            className={'flex h-auto w-full flex-col overflow-y-auto overflow-x-hidden bg-white dark:bg-[#2a2a2a] text-sm '}
           >
-            <div className={` sticky top-0 z-[15] inline-flex w-auto justify-end bg-white text-sm `}>
+            <div className={` sticky top-0 z-[15] inline-flex w-auto justify-end bg-white text-sm dark:bg-[#2a2a2a]`}>
               {days.map((d, index) => {
                 if (showCW) {
                   const isMonday = d.getDay() === 1;
@@ -820,7 +820,7 @@ const Timeline: NextPage = () => {
                         className={
                           d.toDateString() === TODAY.toDateString()
                             ? 'w-10 border-2 border-blue-500 text-center'
-                            : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10'
+                            : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-white'
                         }
                       >
                         {d.toLocaleDateString(lang, {
@@ -841,8 +841,8 @@ const Timeline: NextPage = () => {
                     <div
                       className={
                         d.toDateString() === TODAY.toDateString()
-                          ? 'w-10 border-2 border-blue-500 text-center'
-                          : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10'
+                          ? 'w-10 border-2 border-blue-500 text-center dark:text-white'
+                          : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-white'
                       }
                       key={index}
                     >
@@ -947,18 +947,14 @@ const Timeline: NextPage = () => {
                               </div>
                               {remaining != null && (
                                 <span
-                                  className={` -translate-y-1/6 absolute top-0 right-1 inline-flex w-[33px] -translate-x-[50%]  justify-center rounded-full px-2 py-0.5 font-bold leading-none text-white `}
-                                  style={{
-                                    backgroundColor: '#4a52bb',
-                                    fontSize: '8px'
-                                  }}
+                                  className={` -translate-y-1/6 absolute top-0 right-1 inline-flex w-[33px] -translate-x-[50%]  justify-center rounded-full px-2 py-0.5 font-bold leading-none text-white dark:text-black bg-[#4a52bb] text-[8px] dark:bg-white`}
                                 >
                                   {remainginAllowance}
                                 </span>
                               )}
                             </span>
                             <div
-                              className={`my-auto truncate pl-0 font-bold sm:pl-2 `}
+                              className={`my-auto truncate pl-0 font-bold sm:pl-2 dark:text-white`}
                               data-tooltip-id="name-tooltip"
                               data-tooltip-content={member.name as string}
                               data-tooltip-variant="light"

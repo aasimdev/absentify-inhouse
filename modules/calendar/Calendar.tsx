@@ -250,7 +250,7 @@ const Calendar = (props: {
   return (
     <>
       <div className="sm:mx-2 sm:my-4 xg:mx-0 xl:mx-2">
-        <div className="bg-grey-lighter px-2 py-2 text-center ">
+        <div className="bg-grey-lighter dark:text-white px-2 py-2 text-center ">
           {monthName}
         </div>
         <div className="mx-3 mt-4 inline-flex text-center text-xs leading-6 text-gray-500">
