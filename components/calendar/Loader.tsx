@@ -6,7 +6,7 @@ type Props = {
 export default function Loader({height = '5', width = '5'}: Props) {
   return(
     <svg
-    className={`h-${height} w-${width} animate-spin`}
+    className={`h-${height} w-${width} animate-spin dark:text-white`}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"

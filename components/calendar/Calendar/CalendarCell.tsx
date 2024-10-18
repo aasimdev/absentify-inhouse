@@ -772,7 +772,7 @@ const Cell = ({
           determineIcon() ? (
             <Icon key={'2'} name={determineIcon()} className="" color="white" width="5" />
           ) : (
-            <span className="text-black text-sm text-center">{date.getDate()}</span>
+            <span className="text-black text-sm text-center dark:text-white">{date.getDate()}</span>
           )}
         </div>
       </div>

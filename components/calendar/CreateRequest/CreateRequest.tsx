@@ -854,7 +854,7 @@ const Form: React.FC<{
                   {!(requestMemberIsLoading || isLoading) &&
                     memebersSelectable?.length == 1 &&
                     selectedRequester &&
-                    !searchtext && <div>{selectedRequester.name}</div>}
+                    !searchtext && <div className='dark:text-white'>{selectedRequester.name}</div>}
                   {(searchtext || memebersSelectable?.length > 1) && (
                     <Controller
                       rules={{ required: true }}
