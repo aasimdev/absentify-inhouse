@@ -494,7 +494,7 @@ const Cell = ({
               }`}
             >
               {schedule.morning && (
-                <div className={`absolute inset-0 bg-gray-300 opacity-40 ${getOverlayClass(true)}`}></div>
+                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 ${getOverlayClass(true)}`}></div>
               )}
             </div>
           </div>
@@ -510,7 +510,7 @@ const Cell = ({
               }`}
             >
               {schedule.afternoon && (
-                <div className={`absolute inset-0 bg-gray-300 opacity-40 ${getOverlayClass(false)}`}></div>
+                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 ${getOverlayClass(false)}`}></div>
               )}
             </div>
           </div>
@@ -565,7 +565,7 @@ const Cell = ({
     <>
       <div
         className={classNames(
-          'relative h-10 box-content dark:bg-[#a4a7d99e]',
+          'relative h-10 box-content dark:bg-teams_brand_dark_100',
           withBorder ? 'border-r border-gray-300 bg-transparent w-10' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
         )}
       >
@@ -577,7 +577,7 @@ const Cell = ({
           data-tooltip-id="cell-tooltip"
           data-tooltip-content={combineMorningTooltips()}
           className={`absolute z-20 top-0 left-0 h-10 w-1/2  ${
-            userHasPermissionToCreateRequest && hoverLeft ? 'bg-gray-300' : 'bg-transparent'
+            userHasPermissionToCreateRequest && hoverLeft ? 'bg-black' : 'bg-transparent'
           } ${(userHasPermissionToCreateRequest || lRequests[0] || publicHoliday?.morning) && 'cursor-pointer'}`}
           onMouseEnter={() => handleMouseEnter('left')}
           onMouseLeave={() => handleMouseLeave('left')}
@@ -772,7 +772,7 @@ const Cell = ({
           determineIcon() ? (
             <Icon key={'2'} name={determineIcon()} className="" color="white" width="5" />
           ) : (
-            <span className="text-black text-sm text-center dark:text-white">{date.getDate()}</span>
+            <span className="text-black text-sm text-center dark:text-gray-200">{date.getDate()}</span>
           )}
         </div>
       </div>

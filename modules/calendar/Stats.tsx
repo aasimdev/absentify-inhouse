@@ -157,22 +157,22 @@ const Stats = (props: {
           };
         });
         return (
-          <div className="mt-3 overflow-hidden bg-white shadow sm:rounded-lg" key={allowance.id}>
+          <div className="mt-3 overflow-hidden bg-white dark:bg-teams_dark_mode_core shadow sm:rounded-lg" key={allowance.id}>
             <div className="px-4 py-5 sm:px-2  w-full text-center ">
-              <h3 className="text-lg font-medium leading-6 text-gray-900">{allowance.allowance_type?.name}</h3>
+              <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">{allowance.allowance_type?.name}</h3>
             </div>
-            <div className="border-t border-gray-200" key={allowance.id + 'w'}>
+            <div className="border-t border-gray-200 dark:border-gray-400" key={allowance.id + 'w'}>
               <dl>
-                <div className="bg-white px-4 pt-2 grid grid-cols-3 gap-4">
-                  <dt className="text-sm font-medium text-gray-500 col-span-2"></dt>
-                  <dd className=" text-right text-sm text-gray-900 ">
+                <div className="bg-white dark:bg-teams_dark_mode_core px-4 pt-2 grid grid-cols-3 gap-4">
+                  <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-200"></dt>
+                  <dd className=" text-right text-sm text-gray-900 dark:text-white">
                     {allowance.allowance_type.allowance_unit == 'days' && t('Days')}
                     {allowance.allowance_type.allowance_unit == 'hours' && t('Hours')}
                   </dd>
                 </div>
-                <div className="bg-white px-4 pt-2 grid grid-cols-3 gap-4 ">
-                  <dt className="text-sm font-medium text-gray-500 col-span-2">{t('Allowance')}</dt>
-                  <dd className="mt-0 text-right text-sm text-gray-900 ">
+                <div className="bg-white dark:bg-teams_dark_mode_core px-4 pt-2 grid grid-cols-3 gap-4 ">
+                  <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">{t('Allowance')}</dt>
+                  <dd className="mt-0 text-right text-sm text-gray-900 dark:text-white">
                     {formatDuration(
                       allowance.allowance,
                       lang,
@@ -182,11 +182,11 @@ const Stats = (props: {
                     )}
                   </dd>
                 </div>
-                <div className="bg-white px-4 pt-2 grid grid-cols-3 gap-4 ">
-                  <dt className="text-sm font-medium text-gray-500 col-span-2">
+                <div className="bg-white dark:bg-teams_dark_mode_core px-4 pt-2 grid grid-cols-3 gap-4 ">
+                  <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">
                     {t('Brought_forward') + ' (' + (props.dateRange.startDate.getFullYear() - 1) + ')'}
                   </dt>
-                  <dd className=" text-right text-sm text-gray-900 mt-0">
+                  <dd className=" text-right text-sm text-gray-900 mt-0 dark:text-white">
                     {formatDuration(
                       allowance.brought_forward,
                       lang,
@@ -197,9 +197,9 @@ const Stats = (props: {
                   </dd>
                 </div>
                 {allowance.compensatory_time_off != 0 && (
-                  <div className="bg-white px-4 pt-2 grid grid-cols-3 gap-4 ">
-                    <dt className="text-sm font-medium text-gray-500 col-span-2">{t('compensatory_time_off')}</dt>
-                    <dd className=" text-right text-sm text-gray-900 mt-0">
+                  <div className="bg-white dark:bg-teams_dark_mode_core px-4 pt-2 grid grid-cols-3 gap-4 ">
+                    <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">{t('compensatory_time_off')}</dt>
+                    <dd className=" text-right text-sm text-gray-900 mt-0 dark:text-white">
                       {formatDuration(
                         allowance.compensatory_time_off,
                         lang,
@@ -217,11 +217,11 @@ const Stats = (props: {
                     if (!x.leave_type) return null;
                     if (!x.leave_type.take_from_allowance) return null;
                     return (
-                      <div className=" bg-white px-4 pt-5 flex" key={x.id + 'leavetype'}>
-                        <dt className="flex-1 text-sm font-medium text-gray-500 col-span-2">
+                      <div className=" bg-white dark:bg-teams_dark_mode_core px-4 pt-5 flex" key={x.id + 'leavetype'}>
+                        <dt className="flex-1 text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">
                           <LeaveRow leaveType={x.leave_type} />
                         </dt>
-                        <dd className=" text-right text-sm text-gray-900 mt-0 ml-1">
+                        <dd className=" text-right text-sm text-gray-900 mt-0 ml-1 dark:text-white">
                           {formatDuration(
                             x.amount,
                             lang,
@@ -234,12 +234,12 @@ const Stats = (props: {
                     );
                   })}
 
-                <div className="border-t bg-white px-4 py-2 grid grid-cols-3 gap-4  xl:px-4">
-                  <dt className="mt-1 text-sm font-medium text-gray-500 col-span-2">
+                <div className="border-t dark:border-gray-400 bg-white dark:bg-teams_dark_mode_core px-4 py-2 grid grid-cols-3 gap-4  xl:px-4">
+                  <dt className="mt-1 text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">
                     {allowance.allowance_type.allowance_unit == 'days' && t('Days_remaining')}
                     {allowance.allowance_type.allowance_unit == 'hours' && t('Hours_remaining')}
                   </dt>
-                  <dd className=" text-right text-lg text-gray-900 mt-0">
+                  <dd className=" text-right text-lg text-gray-900 mt-0 dark:text-white">
                     {formatDuration(
                       allowance.remaining,
                       lang,
@@ -255,15 +255,15 @@ const Stats = (props: {
         );
       })}
 
-      <div className="mt-3 overflow-hidden bg-white shadow sm:rounded-lg">
+      <div className="mt-3 overflow-hidden bg-white dark:bg-teams_dark_mode_core shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:px-2  w-full text-center">
-          <h3 className="text-lg font-medium leading-6 text-gray-900">{t('Non-deductible_leave')}</h3>
+          <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">{t('Non-deductible_leave')}</h3>
         </div>
-        <div className="border border-gray-200 pb-4">
+        <div className="border-t border-gray-200 dark:border-gray-400 pb-4">
           <dl>
-            <div className="bg-white px-4 pt-2 grid grid-cols-3 gap-4 sm:px-4">
-              <dt className="text-sm font-medium text-gray-500 col-span-2">{t('Public_holidays')}</dt>
-              <dd className=" text-right text-sm text-gray-900 mt-0">
+            <div className="bg-white dark:bg-teams_dark_mode_core px-4 pt-2 grid grid-cols-3 gap-4 sm:px-4">
+              <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">{t('Public_holidays')}</dt>
+              <dd className=" text-right text-sm text-gray-900 mt-0 dark:text-white">
                 {publicHolidayDays &&
                   formatDuration(calcPublicHolidayDays(publicHolidayDays), lang, AllowanceUnit.days, true, t)}
               </dd>

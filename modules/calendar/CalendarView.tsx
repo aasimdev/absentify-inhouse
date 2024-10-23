@@ -118,8 +118,8 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
   if (!current_member) return null;
   return (
     <>
-      <div className="grid grid-cols-1 border-t dark:border-[#595869] border-b bg-white dark:bg-[#2a2a2a] shadow sm:rounded sm:border md:grid-cols-10">
-        <div className="border-b dark:border-[#595869] md:col-span-10 dark:bg-[#1d1d1d]">
+      <div className="grid grid-cols-1 border-t dark:border-[#595869] border-b bg-white dark:bg-teams_dark_mode shadow sm:rounded sm:border md:grid-cols-10">
+        <div className="border-b dark:border-[#595869] md:col-span-10 dark:bg-teams_brand_dark_100">
           <div className="-mb-px flex justify-between pl-6">
             <div className="flex ">
               <div className="flex py-6 text-lg  font-normal ">
@@ -220,7 +220,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
               >
                 <button
                   type="button"
-                  className=" mx-6 inline-flex items-center rounded border border-gray-300 bg-white px-6 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                  className=" mx-6 inline-flex items-center rounded border border-gray-300 bg-white dark:bg-transparent px-6 py-1.5 text-sm font-medium text-gray-700 dark:text-white shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 dark:ring-teams_brand_dark_400 focus:ring-offset-2"
                 >
                   <PlusCircleIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
                   {t('Create_request')}

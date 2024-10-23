@@ -48,7 +48,16 @@ const config = {
         teams_brand_1001: '#37385c',
         teams_dark_mode: '#1f1f1f',
         teams_light_mode: '#f5f5f5',
-        teams_dark_mode_menu_underline: '#666666'
+        teams_dark_mode_menu_underline: '#666666',
+        teams_dark_mode_core: colors.neutral[950],
+        teams_brand_dark_100: "#292929",
+        teams_brand_dark_200: "#ADADAD",
+        teams_brand_dark_300: "#5960C3",
+        teams_brand_dark_400: "#757575",
+        teams_brand_dark_500: "#3D3D3D",
+        teams_brand_dark_600: "#191919",
+        
+
       },
       minHeight: (theme) => ({
         ...theme('spacing')

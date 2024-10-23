@@ -16,7 +16,7 @@ const Price: React.FC<{
   const { t } = useTranslation('upgrade');
   if (props.dollar && !props.minUsers) {
     return (
-      <div className={`py-1 ${props.fontSize} text-gray-800 inline`}>
+      <div className={`py-1 dark:text-gray-300 ${props.fontSize} text-gray-800 inline`}>
         {props.from && <span className="text-sm">{t('from')}</span>}{' '}
         {currencies[props.currency]?.symbol + props.amount?.toFixed(2).toLocaleString()}
         <p className="text-sm inline">

@@ -4,9 +4,49 @@
 @tailwind utilities;
 
 
+@layer components {
+
+  .my-react-select-container .my-react-select__control {
+    @apply bg-white dark:bg-transparent border border-neutral-300 dark:border-teams_brand_dark_400 hover:border-neutral-400 dark:hover:border-teams_brand_dark_400;
+  }
+
+  .my-react-select-container .my-react-select__control--is-focused {
+    @apply border-neutral-500 hover:border-neutral-500 dark:border-teams_brand_dark_400 dark:hover:border-teams_brand_dark_400 shadow-none text-white;
+  }
+
+  .my-react-select-container .my-react-select__menu {
+    @apply bg-neutral-100 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600;
+  }
+
+  .my-react-select-container .my-react-select__option {
+    @apply text-neutral-600 dark:text-white bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800;
+  }
+  /* .my-react-select-container .my-react-select__option--is-focused {
+    @apply bg-neutral-200 dark:bg-neutral-800;
+  } */
+
+  .my-react-select-container .my-react-select__indicator-separator {
+    @apply bg-neutral-400 dark:bg-teams_brand_dark_400;
+  }
+  .my-react-select-container .my-react-select__dropdown-indicator {
+    @apply text-neutral-600 dark:text-white;
+  }
+
+  .my-react-select-container .my-react-select__input-container,
+  .my-react-select-container .my-react-select__placeholder,
+  .my-react-select-container .my-react-select__single-value {
+    @apply text-neutral-600 dark:text-white;
+  }
+}
+
+
 .heropattern-texture-gray-400 {
   background-color: #9ca3af;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%237e7e7e' fill-opacity='0.62' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+.dark .heropattern-texture-gray-400 {
+  background-color: theme('colors.teams_brand_dark_500');
+  background-image: none;
 }
 
 .heropattern-texture-green-400 {

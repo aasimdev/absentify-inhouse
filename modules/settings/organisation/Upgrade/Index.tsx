@@ -27,6 +27,7 @@ import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { Features } from './Features';
 import { summarizeSubscriptions } from '~/lib/subscriptionHelper';
+import { useDarkSide } from '@components/ThemeContext';
 const Upgrade: NextPage = () => {
   const { t } = useTranslation('upgrade');
   const [visible, setVisible] = useState(false);
@@ -102,7 +103,7 @@ const Upgrade: NextPage = () => {
           className={props.className}
           data-tooltip-id={props.id}
           data-tooltip-content={props.text}
-          data-tooltip-variant="light"
+          data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
         >
           {props.content}
         </span>
@@ -191,7 +192,7 @@ const Upgrade: NextPage = () => {
   );
 
   const Spacer: React.FC<{ width: string }> = (props) => {
-    return <hr className={`${props.width} flex my-5`}></hr>;
+    return <hr className={`${props.width} flex my-5 dark:border-gray-500`}></hr>;
   };
 
   const paddleCheckout = (plan: 'smallTeamPlan' | 'enterprisePlan' | 'businessPlan') => {
@@ -295,7 +296,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:focus:ring-teams_brand_dark_300 dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -306,7 +307,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_300"
           >
             {t('paused')}
           </Button>
@@ -323,7 +324,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
             onClick={() => {
               if (!subscription.status) {
                 setBillingInfoVisible(true);
@@ -343,7 +344,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
             onClick={() => {
               setDownGradeButton('business');
             }}
@@ -406,7 +407,7 @@ const Upgrade: NextPage = () => {
             setBillingInfoVisible(true);
             setUpgradeInfo('businessPlan');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('upgrade')}
         </Button>
@@ -433,7 +434,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -446,7 +447,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setDownGradeButton('free');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('downgrade') + ' (' + t('Cancel') + ')'}
         </Button>
@@ -501,7 +502,7 @@ const Upgrade: NextPage = () => {
             onClick={() => {
               setDownGradeButton('small_team');
             }}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
           >
             {t('downgrade')}
           </Button>
@@ -514,7 +515,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -525,7 +526,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_300"
           >
             {t('paused')}
           </Button>
@@ -591,7 +592,7 @@ const Upgrade: NextPage = () => {
             setBillingInfoVisible(true);
             setUpgradeInfo('smallTeamPlan');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('upgrade')}
         </Button>
@@ -750,7 +751,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -761,7 +762,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
             onClick={() => {
               if (!subscription.status) {
                 setBillingInfoVisible(true);
@@ -910,7 +911,7 @@ const Upgrade: NextPage = () => {
               }
             });
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
         >
           {t('upgrade')}
         </Button>
@@ -1008,15 +1009,17 @@ const Upgrade: NextPage = () => {
             settoggleEnabled(!toggleEnabled);
           }}
           className={classNames(
-            toggleEnabled ? 'bg-teams_brand_foreground_bg' : 'bg-gray-400',
-            'relative inline-flex flex-shrink-0 h-6 lg:w-11 border-2  w-10  border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none '
+            toggleEnabled
+              ? 'bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300'
+              : 'bg-gray-400 dark:bg-transparent dark:ring-white',
+            'relative inline-flex flex-shrink-0 h-6 lg:w-11 border-2  w-10  border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none dark:ring-1 dark:ring-offset-0'
           )}
         >
           <span className="sr-only">Use setting</span>
           <span
             aria-hidden="true"
             className={classNames(
-              toggleEnabled ? 'translate-x-5' : 'translate-x-0',
+              toggleEnabled ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
               'pointer-events-none inline-block lg:h-5  mt-0.5 lg:mt-0 h-4 lg:w-5 w-4 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
             )}
           />
@@ -1028,26 +1031,31 @@ const Upgrade: NextPage = () => {
   const businessPlan = getPriceByName(paddlePrices, toggleEnabled, 'BUSINESS');
   const enterprisePlan = getPriceByName(paddlePrices, toggleEnabled, 'ENTERPRISE');
 
+  const [theme] = useDarkSide();
+
   return (
     <>
       <div className="divide-y divide-gray-200 lg:col-span-10 min-h-screen">
         <div className="flex py-6 md:py-6 flex-col w-full px-6 md:px-6">
           <div className="flex flex-col space-y-2">
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-semibold">{t('upgrade')}</h1>
+              <h1 className="text-2xl font-semibold dark:text-white">{t('upgrade')}</h1>
             </div>
 
             <div className="flex flex-col space-y-10">
               <div className="flex flex-col sm:flex-row justify-between">
                 <p className="text-sm">
-                  <span className="block text-sm mt-2">{t('vat_description_1')}</span>
+                  <span className="block text-sm mt-2 dark:text-gray-400">{t('vat_description_1')}</span>
                 </p>
                 {subscription.business == false &&
                   subscription.small_team == 0 &&
                   subscription.business_by_user == 0 &&
                   subscription.enterprise == 0 && (
                     <div className="flex items-center mt-2 sm:mt-0 mr-auto sm:mr-0 flex-row space-x-2">
-                      <label className="cursor-pointer leading-none text-center text-sm w-72" htmlFor="cycle-year">
+                      <label
+                        className="cursor-pointer leading-none text-center text-sm w-72 dark:text-gray-400"
+                        htmlFor="cycle-year"
+                      >
                         {t('payAnnually')} ({t('saveUpTo')})
                       </label>
                       <Toggle></Toggle>
@@ -1177,7 +1185,7 @@ const Upgrade: NextPage = () => {
                             className={` truncate text-xs  h-auto lg:w-40 w-40 cursor-pointer `}
                             data-tooltip-id="addOn-tooltip"
                             data-tooltip-content={t('addOn5Descript')}
-                            data-tooltip-variant="light"
+                            data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
                             {t('addOn5Descript')}
                           </p>
@@ -1197,26 +1205,38 @@ const Upgrade: NextPage = () => {
               )}
               {/** Core features*/}
               <div className="flex flex-col space-y-5">
-                <h2 className="text-xl font-bold">{t('coreFeatures')}</h2>
+                <h2 className="text-xl font-bold dark:text-gray-200">{t('coreFeatures')}</h2>
                 <div className="flex relative lg:justify-center">
                   <div className="flex flex-col overflow-x-auto overflow-scroll-fixed -mr-10 lg:mr-0">
                     <div className="flex flex-row lg:space-x-2" style={{ paddingLeft: '200px' }}>
                       <div
-                        className="flex justify-start  absolute -left-px pl-px z-10 bg-white bg-surface-0 py-3 shrink-0 h-full "
+                        className="flex justify-start absolute -left-px pl-px z-10 bg-white bg-surface-0 py-3 shrink-0 h-full dark:bg-transparent"
                         style={{ width: '220px' }}
                       >
                         {' '}
                       </div>
-                      <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
+                      <div
+                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
+                        style={{ width: '210px' }}
+                      >
                         {t('free')}
                       </div>
-                      <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
+                      <div
+                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
+                        style={{ width: '210px' }}
+                      >
                         {t('smallTeam')}
                       </div>
-                      <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
+                      <div
+                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
+                        style={{ width: '210px' }}
+                      >
                         {t('startup')}
                       </div>
-                      <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
+                      <div
+                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
+                        style={{ width: '210px' }}
+                      >
                         {t('enterprise')}
                       </div>
                     </div>
@@ -1227,18 +1247,18 @@ const Upgrade: NextPage = () => {
                         style={{ paddingLeft: '200px' }}
                       >
                         <div
-                          className="flex justify-between absolute -left-px  pl-px   z-10 bg-white text-sm font-bold py-2  shrink-0 "
+                          className="flex justify-between absolute -left-px  pl-px   z-10 bg-white text-sm font-bold py-2  shrink-0 dark:bg-transparent"
                           style={{ width: '220px' }}
                         >
                           <div>
-                            <p> {feature && t(feature.name)}</p>
+                            <p className="dark:text-gray-200"> {feature && t(feature.name)}</p>
                           </div>{' '}
                           <div className="px-2 pl-0 cursor-pointer ">
                             <span
-                              className="ml-1 flex items-center cursor-pointer"
+                              className="ml-1 flex items-center cursor-pointer dark:text-gray-200"
                               data-tooltip-id="feature-tooltip"
                               data-tooltip-content={feature && feature.tooltip}
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >
                               <svg
                                 className="w-5 h-5"
@@ -1258,25 +1278,25 @@ const Upgrade: NextPage = () => {
                           </div>
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.free}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.smallteam}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.startup}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.enterprise}

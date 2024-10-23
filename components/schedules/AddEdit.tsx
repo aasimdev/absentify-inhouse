@@ -15,75 +15,88 @@ import { notifyError, notifySuccess } from '~/helper/notify';
 import Loader from '@components/calendar/Loader';
 import { CustomHeader } from '@components/CustomHeader';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
-import { TimeField } from "@mui/x-date-pickers/TimeField";
+import { TimeField } from '@mui/x-date-pickers/TimeField';
 import { setHours, setMinutes, setSeconds } from 'date-fns';
-import { utcToZonedTime } from "date-fns-tz";
+import { utcToZonedTime } from 'date-fns-tz';
+import { useDarkSide } from '@components/ThemeContext';
 
 type Props = {
-  value: Date, 
-  useAmPm: boolean,
-  onChange: (...event: any[]) => void,
+  value: Date;
+  useAmPm: boolean;
+  onChange: (...event: any[]) => void;
   disabled: boolean;
   calcFields: (up: boolean) => void;
-}
+};
 
-
-const CustomTimeField = ({ value, useAmPm, onChange, disabled, calcFields}: Props) => {
+const CustomTimeField = ({ value, useAmPm, onChange, disabled, calcFields }: Props) => {
   const [localTempValue, setLocalTempValue] = useState<Date | null>(value);
-
+  const [theme] = useDarkSide();
   useEffect(() => {
     setLocalTempValue(value);
   }, [value]);
-  return(
+  return (
     <TimeField
-    disabled={disabled}
-    value={localTempValue ? localTempValue : value}
-    ampm={useAmPm}
-    onChange={(val) => setLocalTempValue(val)}
-    onBlur={() => {
-        if(!localTempValue) return;
+      disabled={disabled}
+      value={localTempValue ? localTempValue : value}
+      ampm={useAmPm}
+      onChange={(val) => setLocalTempValue(val)}
+      onBlur={() => {
+        if (!localTempValue) return;
         const newValue = localTempValue;
         onChange(newValue);
         calcFields(value < newValue);
-    }}
-    size="small"
-    sx={{
-      '& .MuiOutlinedInput-root': {
-        '& .MuiOutlinedInput-notchedOutline': {
-          border: 'none',
+      }}
+      size="small"
+      sx={{
+        '& .MuiOutlinedInput-root': {
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none'
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            border: 'none'
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: 'none'
+          }
         },
-        '&:hover .MuiOutlinedInput-notchedOutline': {
-          border: 'none',
+        '& .MuiInputBase-input': {
+          borderRadius: '4px',
+          border: '1px solid #c4c4c4',
+          color: theme === 'dark' ? '#fff' : '#000', 
+          '&:hover': {
+            border: '1px solid #a0a0a0'
+          },
+          '&:focus': {
+            border: '1px solid #3d3e66',
+            outline: 'none'
+          },
+          '&.Mui-disabled':{
+            WebkitTextFillColor: theme === 'dark' ? 'rgba(255,255,255, 0.38)' : 'rgba(0,0,0, 0.38)'
+          }
         },
-        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          border: 'none',
-        },
-      },
-      '& .MuiInputBase-input': {
-        borderRadius: '4px',
-        border: '1px solid #c4c4c4',
-        '&:hover': {
-          border: '1px solid #a0a0a0',
-        },
-        '&:focus': {
-          border: '1px solid #3d3e66',
-          outline: 'none',
-        },
-      },
-    }}
-  />
+      }}
+    />
   );
-}
+};
 
 function convertTimeStringToDate(timeString: string | Date) {
-  if(typeof timeString === 'object') return timeString;
+  if (typeof timeString === 'object') return timeString;
   if (!timeString) return null;
   const parts = timeString.split(':');
   if (parts.length !== 3) return null;
 
   const [hours, minutes, seconds] = parts.map(Number);
-  if (hours !== undefined && hours >= 0 && hours <= 23 && minutes !== undefined && minutes >= 0 && minutes <= 59 
-    && seconds !== undefined && seconds >= 0 && seconds <= 59) {
+  if (
+    hours !== undefined &&
+    hours >= 0 &&
+    hours <= 23 &&
+    minutes !== undefined &&
+    minutes >= 0 &&
+    minutes <= 59 &&
+    seconds !== undefined &&
+    seconds >= 0 &&
+    seconds <= 59
+  ) {
     const now = new Date();
     return setSeconds(setMinutes(setHours(now, hours), minutes), seconds);
   } else {
@@ -133,20 +146,20 @@ export default function AddEditSchedule(props: {
 
       setValue('from', dateToIsoDate(d));
     }
-    
+
     setValue('monday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.monday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.monday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.monday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.monday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.monday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.monday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.monday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.monday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.monday_pm_end),
       am_enabled: props.schedule ? props.schedule.monday_am_enabled : workspaceSchedule.monday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.monday_pm_enabled : workspaceSchedule.monday_pm_enabled,
       deduct_fullday: props.schedule ? props.schedule.monday_deduct_fullday : workspaceSchedule.monday_deduct_fullday
@@ -154,17 +167,17 @@ export default function AddEditSchedule(props: {
 
     setValue('tuesday', {
       am_start: props.schedule
-      ? (dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_am_start))
-      : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.tuesday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.tuesday_pm_end),
       am_enabled: props.schedule ? props.schedule.tuesday_am_enabled : workspaceSchedule.tuesday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.tuesday_pm_enabled : workspaceSchedule.tuesday_pm_enabled,
       deduct_fullday: props.schedule ? props.schedule.tuesday_deduct_fullday : workspaceSchedule.tuesday_deduct_fullday
@@ -172,17 +185,17 @@ export default function AddEditSchedule(props: {
 
     setValue('wednesday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.wednesday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.wednesday_pm_end),
       am_enabled: props.schedule ? props.schedule.wednesday_am_enabled : workspaceSchedule.wednesday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.wednesday_pm_enabled : workspaceSchedule.wednesday_pm_enabled,
       deduct_fullday: props.schedule
@@ -192,17 +205,17 @@ export default function AddEditSchedule(props: {
 
     setValue('thursday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.thursday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.thursday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.thursday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.thursday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.thursday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.thursday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.thursday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.thursday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.thursday_pm_end),
       am_enabled: props.schedule ? props.schedule.thursday_am_enabled : workspaceSchedule.thursday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.thursday_pm_enabled : workspaceSchedule.thursday_pm_enabled,
       deduct_fullday: props.schedule
@@ -212,17 +225,17 @@ export default function AddEditSchedule(props: {
 
     setValue('friday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.friday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.friday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.friday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.friday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.friday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.friday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.friday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.friday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.friday_pm_end),
       am_enabled: props.schedule ? props.schedule.friday_am_enabled : workspaceSchedule.friday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.friday_pm_enabled : workspaceSchedule.friday_pm_enabled,
       deduct_fullday: props.schedule ? props.schedule.friday_deduct_fullday : workspaceSchedule.friday_deduct_fullday
@@ -230,17 +243,17 @@ export default function AddEditSchedule(props: {
 
     setValue('saturday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.saturday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.saturday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.saturday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.saturday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.saturday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.saturday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.saturday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.saturday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.saturday_pm_end),
       am_enabled: props.schedule ? props.schedule.saturday_am_enabled : workspaceSchedule.saturday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.saturday_pm_enabled : workspaceSchedule.saturday_pm_enabled,
       deduct_fullday: props.schedule
@@ -250,17 +263,17 @@ export default function AddEditSchedule(props: {
 
     setValue('sunday', {
       am_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.sunday_am_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_am_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.sunday_am_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_am_start),
       am_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.sunday_am_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_am_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.sunday_am_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_am_end),
       pm_start: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.sunday_pm_start))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_pm_start)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.sunday_pm_start)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_pm_start),
       pm_end: props.schedule
-        ? (dateFromDatabaseIgnoreTimezone(props.schedule.sunday_pm_end))
-        : (dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_pm_end)),
+        ? dateFromDatabaseIgnoreTimezone(props.schedule.sunday_pm_end)
+        : dateFromDatabaseIgnoreTimezone(workspaceSchedule.sunday_pm_end),
       am_enabled: props.schedule ? props.schedule.sunday_am_enabled : workspaceSchedule.sunday_am_enabled,
       pm_enabled: props.schedule ? props.schedule.sunday_pm_enabled : workspaceSchedule.sunday_pm_enabled,
       deduct_fullday: props.schedule ? props.schedule.sunday_deduct_fullday : workspaceSchedule.sunday_deduct_fullday
@@ -390,7 +403,7 @@ export default function AddEditSchedule(props: {
     }
   };
   return (
-    <form className="w-full border lg:col-span-9" onSubmit={handleSubmit(onSubmit)}>
+    <form className="w-full border lg:col-span-9 dark:border-gray-500" onSubmit={handleSubmit(onSubmit)}>
       <div className="py-6 px-4 sm:p-6 lg:pb-8 ">
         {props.mode == 'member_schedules' && (
           <div className="mt-6 flex flex-row space-x-8 lg:justify-between">
@@ -628,7 +641,7 @@ interface RowValue {
   pm_end: Date;
   deduct_fullday: boolean;
 }
-function Row(props: { onChange: Function; value: RowValue; weekday: number; enableEdit: boolean, useAmPm: boolean }) {
+function Row(props: { onChange: Function; value: RowValue; weekday: number; enableEdit: boolean; useAmPm: boolean }) {
   const { t } = useTranslation('schedules');
   const { register, control, setValue, watch, getValues } = useForm<RowValue>();
   const watchAmEnabled = watch('am_enabled');
@@ -650,34 +663,33 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
     let amEnd = getValues('am_end');
     let pmStart = getValues('pm_start');
     let pmEnd = getValues('pm_end');
-  
+
     if (up) {
       if (amStart > amEnd) {
         amEnd = new Date(amStart.getTime() + 30 * 60000);
         setValue('am_end', amEnd);
       }
-  
+
       if (amEnd > pmStart) {
         pmStart = new Date(amEnd.getTime() + 30 * 60000);
         setValue('pm_start', pmStart);
       }
-  
+
       if (pmStart > pmEnd) {
         pmEnd = new Date(pmStart.getTime() + 30 * 60000);
         setValue('pm_end', pmEnd);
       }
     } else {
-
       if (pmEnd < pmStart) {
         pmStart = new Date(pmEnd.getTime() - 30 * 60000);
         setValue('pm_start', pmStart);
       }
-  
+
       if (pmStart < amEnd) {
         amEnd = new Date(pmStart.getTime() - 30 * 60000);
         setValue('am_end', amEnd);
       }
-  
+
       if (amEnd < amStart) {
         amStart = new Date(amEnd.getTime() - 30 * 60000);
         setValue('am_start', amStart);
@@ -712,7 +724,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchAllFields]);
-  
+
   const amEnabled = getValues('am_enabled');
   const pmEnabled = getValues('pm_enabled');
   useEffect(() => {
@@ -770,7 +782,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
     <>
       <div className="mb-3 mt-5  grid grid-cols-2 gap-1 text-left">
         <div>
-          <p className="my-auto w-60 font-semibold">
+          <p className="my-auto w-60 font-semibold dark:text-white">
             <>
               {weekdayName} ({label})
             </>
@@ -798,30 +810,29 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
               rules={{ required: true }}
               control={control}
               name="am_start"
-              render={({field: {onChange, value}}) => (
-                <CustomTimeField 
-                  value={value} 
-                  useAmPm={props.useAmPm} 
-                  onChange={onChange} 
+              render={({ field: { onChange, value } }) => (
+                <CustomTimeField
+                  value={value}
+                  useAmPm={props.useAmPm}
+                  onChange={onChange}
                   disabled={calcIsDisabled(watchAmEnabled)}
                   calcFields={calcFields}
-                  
                 />
               )}
             />
           </div>
 
-          <span className="my-auto mr-2 text-center">{t('to')}</span>
+          <span className="my-auto mr-2 text-center dark:text-gray-200">{t('to')}</span>
           <div className="col-span-2">
             <Controller
               rules={{ required: true }}
               control={control}
               name="am_end"
               render={({ field: { onChange, value } }) => (
-                <CustomTimeField 
-                  value={value} 
-                  useAmPm={props.useAmPm} 
-                  onChange={onChange} 
+                <CustomTimeField
+                  value={value}
+                  useAmPm={props.useAmPm}
+                  onChange={onChange}
                   disabled={calcIsDisabled(watchAmEnabled)}
                   calcFields={calcFields}
                 />
@@ -851,27 +862,27 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
               control={control}
               name="pm_start"
               render={({ field: { onChange, value } }) => (
-                <CustomTimeField 
-                  value={value} 
-                  useAmPm={props.useAmPm} 
-                  onChange={onChange} 
+                <CustomTimeField
+                  value={value}
+                  useAmPm={props.useAmPm}
+                  onChange={onChange}
                   disabled={calcIsDisabled(watchPmEnabled)}
                   calcFields={calcFields}
                 />
               )}
             />
           </div>
-          <span className="my-auto mr-2 text-center">{t('to')}</span>
+          <span className="my-auto mr-2 text-center dark:text-gray-200">{t('to')}</span>
           <div className="col-span-2">
             <Controller
               rules={{ required: true }}
               control={control}
               name="pm_end"
               render={({ field: { onChange, value } }) => (
-                <CustomTimeField 
-                  value={value} 
-                  useAmPm={props.useAmPm} 
-                  onChange={onChange} 
+                <CustomTimeField
+                  value={value}
+                  useAmPm={props.useAmPm}
+                  onChange={onChange}
                   disabled={calcIsDisabled(watchPmEnabled)}
                   calcFields={calcFields}
                 />

@@ -110,16 +110,16 @@ const Billing: NextPage = () => {
         <div className="flex flex-col space-y-10">
           <div className="flex flex-col space-y-2">
             <div className="flex items-center justify-between">
-              <h1 className="font-semibold text-2xl">{t('tittle')}</h1>
+              <h1 className="font-semibold text-2xl dark:text-white">{t('tittle')}</h1>
             </div>
-            <p className="text-subtitle text-sm">{t('subtitle')}</p>
+            <p className="text-subtitle text-sm dark:text-gray-400">{t('subtitle')}</p>
           </div>
           <div>
             <div className="flex flex-col space-y-3">
-              <h3 className=" text-base font-medium">{t('current')}</h3>
+              <h3 className=" text-base font-medium dark:text-gray-200">{t('current')}</h3>
               {!subscription.has_valid_subscription && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
@@ -131,7 +131,7 @@ const Billing: NextPage = () => {
 
               {subscription.business && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
@@ -143,7 +143,7 @@ const Billing: NextPage = () => {
 
               {subscription.enterprise > 0 && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
@@ -155,7 +155,7 @@ const Billing: NextPage = () => {
 
               {subscription.small_team > 0 && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
@@ -167,7 +167,7 @@ const Billing: NextPage = () => {
 
               {subscription.business_by_user > 0 && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
@@ -177,12 +177,12 @@ const Billing: NextPage = () => {
                 />
               )}
 
-              {subscription?.status == 'paused' && <p className="text-sm">{t('selectedPlan_paused')}</p>}
+              {subscription?.status == 'paused' && <p className="text-sm dark:text-gray-400">{t('selectedPlan_paused')}</p>}
 
-              {subscription?.status == 'past_due' && <p className="text-sm">{t('selectedPlan_past_due')}</p>}
+              {subscription?.status == 'past_due' && <p className="text-sm dark:text-gray-400">{t('selectedPlan_past_due')}</p>}
 
               {current_member && subscription?.status == 'deleted' && subscription.cancellation_effective_date && (
-                <p className="text-sm">
+                <p className="text-sm dark:text-gray-400">
                   {t('selectedPlan_deleted', {
                     date: format(subscription.cancellation_effective_date, current_member.date_format)
                   })}
@@ -191,7 +191,7 @@ const Billing: NextPage = () => {
 
               {workspace && subscription.addons.unlimited_departments && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('eBAddon', {
                       interpolation: { escapeValue: false },
@@ -202,7 +202,7 @@ const Billing: NextPage = () => {
               )}
               {workspace && subscription.business && subscription.addons.departments - 4 > 0 && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('countDepartmentAddon', {
                       interpolation: { escapeValue: false },
@@ -213,7 +213,7 @@ const Billing: NextPage = () => {
               )}
               {workspace && subscription.business && subscription.addons.calendar_sync - 1 > 0 && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('calendar_sync', {
                       number: subscription.addons.calendar_sync - 1,
@@ -225,7 +225,7 @@ const Billing: NextPage = () => {
               )}
               {workspace && subscription.business && subscription.addons.multi_manager && (
                 <p
-                  className="text-sm"
+                  className="text-sm dark:text-gray-400"
                   dangerouslySetInnerHTML={{
                     __html: t('multi_manager', {
                       interpolation: { escapeValue: false },
@@ -236,7 +236,7 @@ const Billing: NextPage = () => {
               )}
               {subscription?.status == 'pending' && <p className="text-sm"> {t('selectedPlan_pending')} </p>}
               <Link href="/settings/organisation/upgrade" legacyBehavior>
-                <p className="text-sm text-teams_brand_foreground_bg hover:text-teams_brand_border_1 cursor-pointer">
+                <p className="text-sm text-teams_brand_foreground_bg hover:text-teams_brand_border_1 cursor-pointer dark:text-teams_brand_border_1">
                   {t('upgrade')} --{'>'}
                 </p>
               </Link>
@@ -250,7 +250,7 @@ const Billing: NextPage = () => {
                 <div key={x.subscription_id}>
                   {x.state != 'deleted' && x.payment_information && (
                     <>
-                      <hr className="flex w-full text-element-0 mt-12 mb-8" />
+                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
                       <div className="flex flex-col space-y-3">
                         <h3 className="text-base font-medium">{t('Payement_details')}</h3>
                         {x.next_payment && (
@@ -339,7 +339,7 @@ const Billing: NextPage = () => {
                 <div key={x.subscription_id}>
                   {x.state != 'deleted' && (
                     <>
-                      <hr className="flex w-full text-element-0 mt-12 mb-8" />
+                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
                       <div className="flex flex-col space-y-3">
                         <h3 className="text-base font-medium">{t('Payement_details')}</h3>
                         {x.next_payment && (
@@ -376,11 +376,11 @@ const Billing: NextPage = () => {
                   )}
                 </div>
               ))}
-            <hr className="flex w-full text-element-0 mt-12 mb-8" />
+            <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
             <div className="flex flex-col space-y-3">
-              <h3 className="font-medium text-base">{t('history')}</h3>
-              {!payments && <p className="text-sm">{t('defaultHistory')} </p>}
-              {payments?.length == 0 && <p className="text-sm">{t('defaultHistory')} </p>}
+              <h3 className="font-medium text-base dark:text-gray-200">{t('history')}</h3>
+              {!payments && <p className="text-sm dark:text-gray-400">{t('defaultHistory')} </p>}
+              {payments?.length == 0 && <p className="text-sm dark:text-gray-400">{t('defaultHistory')} </p>}
               {payments && current_member && (
                 <ol className="w-64 ">
                   {payments.map((payment) => (

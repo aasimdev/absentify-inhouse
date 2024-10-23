@@ -24,6 +24,7 @@ import { Department, Status } from '@prisma/client';
 import { formatDuration } from '~/helper/formatDuration';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import Select from 'react-select';
+import { useDarkSide } from '@components/ThemeContext';
 
 const Users = () => {
   const { t, lang } = useTranslation('users');
@@ -236,6 +237,10 @@ const Users = () => {
       setSelectMultiMode(false);
     }
   }, [actionTypeClicked]);
+
+
+  const [theme] = useDarkSide();
+
   return (
     <div className="divide-y divide-gray-200 lg:col-span-10">
       {/* Profile section */}
@@ -267,7 +272,8 @@ const Users = () => {
                         ? departaments.filter((dep) => selectedDeps.map((dep) => dep.id).includes(dep.id))
                         : undefined
                     }
-                    className="w-full z-10"
+                      className="w-full z-10 my-react-select-container"
+                        classNamePrefix="my-react-select"
                     name="department_ids"
                     onChange={(val) => {
                       if (val) {
@@ -295,7 +301,7 @@ const Users = () => {
                   <input
                     id="search"
                     name="search"
-                    className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm"
+                    className="block w-full rounded-md border border-gray-300 dark:border-teams_brand_dark_400 bg-white dark:bg-transparent py-2 pl-10 pr-3 text-sm placeholder-gray-500 dark:text-white focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm"
                     placeholder={t('search')}
                     type="search"
                     ref={searchRef}
@@ -314,11 +320,11 @@ const Users = () => {
                 <table className="min-w-full divide-y divide-gray-200">
                   {/* depends on selecting several users or not */}
                   {!selectMultiMode && !(selectedMembers.length > 0) ? (
-                    <thead className="bg-gray-50">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                       <tr>
                         <th
                           scope="col"
-                          className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:w-40 `}
+                          className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 lg:w-40 `}
                         >
                           <span className="flex h-6 items-center">
                             <input
@@ -336,13 +342,13 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell lg:w-40"
+                          className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 md:table-cell lg:w-40"
                         >
                           {t('department_s')}
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 ${
                             isCustomBP3 ? ' table-cell ' : ' hidden '
                           }`}
                         >
@@ -350,7 +356,7 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500  ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200  ${
                             isCustomBP2 ? ' table-cell ' : ' hidden '
                           } `}
                         >
@@ -358,7 +364,7 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500  ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200  ${
                             isCustomBP1 ? ' table-cell ' : ' hidden '
                           } `}
                         >
@@ -550,7 +556,7 @@ const Users = () => {
                     </thead>
                   )}
 
-                  <tbody className="divide-y divide-gray-200 bg-white ">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                     {isLoading && <CustomListLoading />}
                     {!isLoading &&
                       members.map((member) => (
@@ -559,7 +565,7 @@ const Users = () => {
                             className={`flex w-full flex-row whitespace-nowrap px-3 py-4 text-sm font-medium ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500'
+                                : 'text-gray-500 dark:text-gray-200'
                             }  `}
                           >
                             <span className="flex h-auto items-center">
@@ -598,7 +604,7 @@ const Users = () => {
                                   data-tooltip-id="bell-tooltip"
                                   data-tooltip-content={t('inactive_user')}
                                   data-tooltip-offset={10}
-                                  data-tooltip-variant="light"
+                                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 />
                               )}
                             </span>
@@ -613,7 +619,7 @@ const Users = () => {
                               <span
                                 data-tooltip-id="member-tooltip"
                                 data-tooltip-content={member.name as string}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {member.name}
                               </span>
@@ -623,14 +629,14 @@ const Users = () => {
                             className={`hidden w-80 whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500'
+                                : 'text-gray-500 dark:text-gray-200'
                             } md:table-cell`}
                           >
                             <span className="min-w-20  ml-2 mt-2 w-32 truncate lg:w-40 cursor-pointer">
                               <span
                                 data-tooltip-id="member-tooltip"
                                 data-tooltip-content={member.departments.map((x) => x.department?.name).join(', ')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {member.departments.length > 1
                                   ? member.departments.length + ' ' + t('departments')
@@ -642,14 +648,14 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500'
+                                : 'text-gray-500 dark:text-gray-200'
                             } ${isCustomBP3 ? ' table-cell w-50' : ' hidden '}`}
                           >
                             <span className="min-w-20  ml-2 mt-2 w-28 truncate lg:w-32 cursor-pointer">
                               <span
                                 data-tooltip-id="member-tooltip"
                                 data-tooltip-content={getManagerOfMember(member.id) as string}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 <p className="w-36 xl:w-50 truncate inline-block align-middle ">
                                   {' '}
@@ -662,7 +668,7 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500'
+                                : 'text-gray-500 dark:text-gray-200'
                             } ${isCustomBP2 ? ' table-cell ' : ' hidden '}`}
                           >
                             {allowancePart(member)}
@@ -671,7 +677,7 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500'
+                                : 'text-gray-500 dark:text-gray-200'
                             }  ${isCustomBP1 ? ' table-cell ' : ' hidden '} `}
                           >
                             {allowancePart(member, 1)}
@@ -687,14 +693,14 @@ const Users = () => {
                                 setValueForEdit(member);
                                 setModalOpen(true);
                               }}
-                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 ' : 'hidden'}  `}
+                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200' : 'hidden'}  `}
                             >
                               <span
                                 className=""
                                 aria-hidden="true"
                                 data-tooltip-id="member-tooltip"
                                 data-tooltip-content={t('Edit')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -717,18 +723,18 @@ const Users = () => {
                                 e.preventDefault();
                                 router.push('/calendar/' + member.id);
                               }}
-                              className="cursor-pointer"
+                              className="cursor-pointer dark:text-gray-200"
                             >
                               <span
                                 className=""
                                 aria-hidden="true"
                                 data-tooltip-id="member-tooltip"
                                 data-tooltip-content={t('View_calendar')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 <CalendarDaysIcon
                                   className={`${
-                                    !selectMultiMode ? 'cursor-pointer text-gray-400 h-5 w-5 ' : 'hidden'
+                                    !selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200 h-5 w-5 ' : 'hidden'
                                   }  `}
                                   aria-hidden="true"
                                 />
@@ -738,7 +744,7 @@ const Users = () => {
                           <td
                             className={` ${
                               isCustomBP3 ? ' px-5 lg:px-3 ' : ' '
-                            } whitespace-nowrap py-4 text-right text-sm font-medium`}
+                            } whitespace-nowrap py-4 text-right text-sm font-medium dark:text-gray-200`}
                           >
                             <a
                               onClick={async (e) => {
@@ -751,7 +757,7 @@ const Users = () => {
                                 setArchiveUsersAlert([member]);
                                 setLoading(member.id);
                               }}
-                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 ' : 'hidden'}  `}
+                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200' : 'hidden'}  `}
                             >
                               {loading == member.id && (
                                 <div className="-ml-1 mr-3">
@@ -762,7 +768,7 @@ const Users = () => {
                                 <span
                                   data-tooltip-id="member-tooltip"
                                   data-tooltip-content={t('Archive')}
-                                  data-tooltip-variant="light"
+                                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -783,9 +789,9 @@ const Users = () => {
                                 <span
                                   data-tooltip-id="member-tooltip"
                                   data-tooltip-content={t('Delete')}
-                                  data-tooltip-variant="light"
+                                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
-                                  <TrashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                  <TrashIcon className="h-5 w-5 text-gray-400 dark:text-gray-200" aria-hidden="true" />
                                 </span>
                               )}
                             </a>

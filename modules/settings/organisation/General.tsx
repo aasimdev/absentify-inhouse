@@ -292,11 +292,11 @@ const General: NextPage = () => {
 
   const logo = createLogo(workspace?.company_logo_url, workspace?.company_logo_ratio_square ? '256x256' : '400x80');
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
+    <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10 dark:bg-teams_brand_dark_100" onSubmit={handleSubmit(onSubmit)}>
       {/* Workspace section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Workspace_settings')}</h2>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">{t('Workspace_settings')}</h2>
         </div>
         {enterprisePlan ? (
           <>
@@ -389,7 +389,7 @@ const General: NextPage = () => {
             <div className="mt-6 flex flex-col lg:flex-row">
               <div className="grow space-y-6">
                 <div>
-                  <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     {t('Display')}
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm">
@@ -423,7 +423,8 @@ const General: NextPage = () => {
             <div className="mt-6 flex flex-col lg:flex-row">
               <div className="grow space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                    
                     {t('Company_name')}
                   </label>
                   <div className="mt-1 flex rounded-md shadow-sm">
@@ -432,7 +433,7 @@ const General: NextPage = () => {
                       type="text"
                       name="name"
                       autoComplete="name"
-                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400"
                     />
                   </div>{' '}
                   {errors.name && <span>{t('This_field_is_required')}</span>}
@@ -515,16 +516,17 @@ const General: NextPage = () => {
           <div className="mt-6 flex flex-col lg:flex-row">
             <div className="grow space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                   {t('Company_name')}
                 </label>
+                
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <input
                     {...register('name', { required: true })}
                     type="text"
                     name="name"
                     autoComplete="name"
-                    className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                    className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400"
                   />
                 </div>{' '}
                 {errors.name && <span>{t('This_field_is_required')}</span>}
@@ -536,7 +538,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_Time_zone')}
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -557,7 +559,8 @@ const General: NextPage = () => {
                       }}
                       menuPortalTarget={document.body}
                       value={changedTimezones.find((x) => x.tzCode === value)}
-                      className="w-full"
+                      className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onMenuOpen={() => {
                         setValue('global_timezone', '__SEARCH_FOR__');
                       }}
@@ -578,7 +581,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_language')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -612,7 +615,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? languageOptions.find((x) => x.value === value) : undefined}
-                      className="w-full "
+                   className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={async (val) => {
                         onChange(val?.value);
                       }}
@@ -633,7 +637,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Fiscal_year_starts_month')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -667,7 +671,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? months.find((x) => x.value === value) : months.find((x) => x.value === 0)}
-                      className="w-full "
+                  className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={async (val) => {
                         onChange(val?.value);
                       }}
@@ -683,7 +688,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_date_format')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -717,7 +722,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? dateFormats.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                       className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -733,7 +739,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_time_format')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -767,7 +773,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? timeFormats.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                     className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -783,7 +790,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_week_start')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -817,7 +824,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={weekStartData.find((x) => x.value === value)}
-                      className="w-full"
+                     className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -833,7 +841,7 @@ const General: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_Name_Format')}
                 <span
                   className="ml-1 flex items-center cursor-pointer"
@@ -867,7 +875,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={default_Name_Format.find((x) => x.value === value)}
-                      className="w-full"
+                       className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -885,10 +894,10 @@ const General: NextPage = () => {
             <div>
               <Switch.Group as="li" className="flex items-center justify-between py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Global_Display_calendar_weeks')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500  dark:text-gray-400">
                     {t('Global_Display_calendar_weeks_description')}
                   </Switch.Description>
                 </div>
@@ -902,14 +911,14 @@ const General: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
-                          value ? 'translate-x-5' : 'translate-x-0',
+                          value ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
                           'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                         )}
                       />
@@ -917,7 +926,7 @@ const General: NextPage = () => {
                   )}
                 />
               </Switch.Group>
-              <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Business_hours')}
               </label>
               <div className="mt-1 flex ">
@@ -940,19 +949,19 @@ const General: NextPage = () => {
       </div>
 
       {/* Privacy section */}
-      <div className="divide-y divide-gray-200 pt-6">
+      <div className="divide-y divide-gray-200 pt-6 dark:divide-gray-500">
         <div className="px-4 sm:px-6">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Privacy')}</h2>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">{t('Privacy')}</h2>
             <p className="mt-1 text-sm text-gray-500"></p>
           </div>
           <ul role="list" className="mt-2 divide-y divide-gray-200">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                   {t('Other_departments')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-400">
                   {t('Other_departments_description')}
                 </Switch.Description>
               </div>
@@ -966,14 +975,14 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        value ? 'translate-x-5' : 'translate-x-0',
+                        value ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
                         'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                       )}
                     />
@@ -985,10 +994,10 @@ const General: NextPage = () => {
           <ul role="list" className="mt-2 divide-y divide-gray-200">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                   {t('Calendar_view')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-400">
                   {t('Calendar_view_description')}
                 </Switch.Description>
               </div>
@@ -1002,14 +1011,14 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        value ? 'translate-x-5' : 'translate-x-0',
+                        value ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
                         'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                       )}
                     />
@@ -1018,13 +1027,13 @@ const General: NextPage = () => {
               />
             </Switch.Group>
           </ul>
-          <ul role="list" className="mt-2 divide-y divide-gray-200">
+          <ul role="list" className="mt-2 divide-y divide-gray-200 ">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                   {t('absences_in_the_past')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-400">
                   {t('absences_in_the_past_description')}
                 </Switch.Description>
               </div>
@@ -1038,14 +1047,14 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span
                       aria-hidden="true"
                       className={classNames(
-                        value ? 'translate-x-5' : 'translate-x-0',
+                        value ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
                         'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                       )}
                     />
@@ -1056,10 +1065,10 @@ const General: NextPage = () => {
           </ul>
           <Switch.Group as="li" className="flex items-center justify-between py-4">
             <div className="flex flex-col">
-              <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+              <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                 {t('Manager_cancel_request_in_the_past')}
               </Switch.Label>
-              <Switch.Description className="text-sm text-gray-500">
+              <Switch.Description className="text-sm text-gray-500 dark:text-gray-400">
                 {t('Manager_cancel_request_in_the_past_description')}
               </Switch.Description>
             </div>
@@ -1073,14 +1082,14 @@ const General: NextPage = () => {
                     onChange(val);
                   }}
                   className={classNames(
-                    value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                   )}
                 >
                   <span
                     aria-hidden="true"
                     className={classNames(
-                      value ? 'translate-x-5' : 'translate-x-0',
+                      value ? 'translate-x-5 dark:bg-[#242424]' : 'translate-x-0 dark:bg-[#BBBBBB]',
                       'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                     )}
                   />
@@ -1092,7 +1101,7 @@ const General: NextPage = () => {
         <div className="mt-4 flex justify-end p-4 sm:px-6">
           <button
             type="submit"
-            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0"
           >
             {editWorkspace.isLoading && (
               <div className="-ml-1 mr-3">

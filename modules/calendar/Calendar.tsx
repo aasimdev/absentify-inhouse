@@ -254,9 +254,9 @@ const Calendar = (props: {
           {monthName}
         </div>
         <div className="mx-3 mt-4 inline-flex text-center text-xs leading-6 text-gray-500">
-          {showCW && <div className="w-10">{CW}</div>}
+          {showCW && <div className="w-10 dark:text-gray-300">{CW}</div>}
           {shiftedDivDays.map((div, index) => (
-            <div key={div.name + index} className="w-10">
+            <div key={div.name + index} className="w-10 dark:text-gray-100">
               {div.name}
             </div>
           ))}

@@ -16,6 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { getAppInsights } from '~/utils/analytics';
 import UmamiScript from '~/utils/umami_component';
+import { ThemeProvider } from '@components/ThemeContext';
 
 const CrispWithNoSSR = dynamic(() => import('../helper/crisp'), { ssr: false });
 
@@ -86,6 +87,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <>
       <UmamiScript />
+      <ThemeProvider>
       <AbsentifyProvider>
       <LocalizationProvider dateAdapter={AdapterDateFns} >
           <BaseLayout>
@@ -94,6 +96,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
           </LocalizationProvider>
       
       </AbsentifyProvider>
+      </ThemeProvider>
       <ToastContainer />
       <LinkedInInsightTag />
       <GoogleAnalytics trackPageViews />

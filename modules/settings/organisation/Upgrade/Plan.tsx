@@ -32,7 +32,7 @@ const Plan: React.FC<{
 
   return (
     <div className="flex mr-2 mb-2 grow w-full sm:w-52 min-w-52">
-      <div className="flex flex-col rounded-md border grow px-5 lg:px-8 py-10 border-element-10 ">
+      <div className="flex flex-col rounded-md border dark:border-gray-500 grow px-5 lg:px-8 py-10 border-element-10 ">
         {!current_member || !workspace || isLoading ? (
           <div className="w-full mx-auto">
             <div className="pt-2 animate-pulse flex space-x-4">
@@ -68,7 +68,7 @@ const Plan: React.FC<{
           <>
             <div className="flex flex-col space-y-3  grow">
               <div className="flex items-center flex-row space-x-3">
-                <h3 className="text-base font-bold">{props.title}</h3>
+                <h3 className="text-base font-bold dark:text-gray-200">{props.title}</h3>
               </div>
               <div className="flex items-end flex-row space-x-1 ">
                 {paddlePrices && (
@@ -85,8 +85,8 @@ const Plan: React.FC<{
               </div>
               {!props.enterprise && props.toggleEnabled && (
                 <div className="inline-flex">
-                  <p className="text-xs"> {props.saving} </p>
-                  <p className="text-xs">
+                  <p className="text-xs dark:text-gray-400"> {props.saving} </p>
+                  <p className="text-xs dark:text-gray-400">
                     {!props.noCurrencyCode && (' ' + (paddlePrices?.data.currencyCode as 'EUR' | 'USD') ?? 'USD')},{' '}
                     {t('billedYe')}
                   </p>

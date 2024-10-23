@@ -128,7 +128,7 @@ const BaseLayout = (props: { children: any }) => {
   if (current_member && current_member.status === Status.ARCHIVED)
     return <NoAccessAlertDialog text={'Deactivated_account'} description={'Deactivated_account_description'} />;
   return (
-    <div className='dark:bg-[#25253b]'>
+    <div className='bg-white dark:bg-teams_dark_mode_core'>
       <Disclosure as="div" className="relative overflow-visible bg-teams_brand_700 pb-32">
         {({ open, close }) => {
           return (
@@ -143,7 +143,7 @@ const BaseLayout = (props: { children: any }) => {
                   className={classNames(
                     in_teams
                       ? theme == 'dark'
-                        ? 'bg-teams_dark_mode'
+                        ? 'bg-teams_dark_mode_core'
                         : 'bg-teams_light_mode'
                       : ' mx-auto max-w-screen-2xl px-2 sm:px-6 lg:px-32 xl:px-28 1xl:px-4'
                   )}
@@ -203,7 +203,7 @@ const BaseLayout = (props: { children: any }) => {
                           }}
                           className={classNames(
                             in_teams
-                              ? 'text-teams_dark_mode_menu_underline hover:text-teams_brand_500'
+                              ? 'text-teams_dark_mode_core_menu_underline hover:text-teams_brand_500'
                               : 'text-teams_brand_200 hover:bg-teams_brand_800 hover:text-white',
                             'flex-shrink-0 rounded-full p-1 focus:bg-teams_brand_900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teams_brand_900'
                           )}
@@ -240,7 +240,7 @@ const BaseLayout = (props: { children: any }) => {
                               <Menu.Button
                                 className={classNames(
                                   in_teams
-                                    ? 'text-teams_dark_mode_menu_underline hover:text-teams_brand_500'
+                                    ? 'text-teams_dark_mode_core_menu_underline hover:text-teams_brand_500'
                                     : 'text-white',
                                   'flex rounded-full text-sm focus:bg-teams_brand_900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teams_brand_900'
                                 )}
@@ -489,7 +489,7 @@ const BaseLayout = (props: { children: any }) => {
       </Disclosure>
       <main className="relative -mt-32 mb-5">
         <div className={`mx-auto max-w-screen-2xl  px-2 pb-6 sm:px-6 lg:px-32 lg:pb-16 xl:px-28 1xl:px-2`}>
-          <div className="overflow-auto rounded-lg bg-white shadow dark:bg-black dark:shadow-gray-400">
+          <div className="overflow-auto rounded-lg bg-white dark:bg-teams_dark_mode shadow  dark:shadow-gray-400">
             {!current_member && router.route != '/' && (
               <div className="mx-auto w-full rounded-md border p-4">
                 <div className="flex animate-pulse space-x-4">

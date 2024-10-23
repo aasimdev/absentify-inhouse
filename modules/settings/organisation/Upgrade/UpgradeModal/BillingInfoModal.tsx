@@ -42,12 +42,12 @@ function BillingInfoModal({isOpen, continueModal, billingInfoModal}: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded">
-                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+              <div className="inline-block max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-teams_brand_dark_100 shadow-xl rounded">
+                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                   {t('billing_info')}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-md text-gray-500">
+                  <p className="text-md text-gray-500 dark:text-gray-200">
                     {t('billing_info_desc')}
                   </p>
                 </div>
@@ -56,7 +56,7 @@ function BillingInfoModal({isOpen, continueModal, billingInfoModal}: Props) {
                   <button
                     type="button"
                     onClick={continueModal}
-                    className="inline-flex p-2 w-full items-center py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 hover:bg-gray-100"
+                    className="inline-flex p-2 w-full items-center py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 hover:bg-gray-100 dark:hover:bg-transparent"
                   >
                     {t('continue')}
                   </button>
@@ -65,7 +65,7 @@ function BillingInfoModal({isOpen, continueModal, billingInfoModal}: Props) {
                   <button
                     type="button"
                     onClick={billingInfoModal}
-                    className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                    className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_300 dark:border-teams_brand_dark_300"
                   >
                     {t('update_billing_info')}
                   </button>

@@ -39,7 +39,7 @@ export default function ScheduleBox(props: {
   if (props.isLoading) return <CustomLoading />;
   if (!current_member) return <></>;
   return (
-    <div className="bg-white shadow sm:rounded-lg">
+    <div className="bg-white dark:bg-transparent shadow sm:rounded-lg border-0 dark:border dark:border-gray-400">
       <div className="px-4 py-5 sm:p-6">
         {props.showState && (
           <div className="flex justify-between">
@@ -68,19 +68,19 @@ export default function ScheduleBox(props: {
 
         <div className="mt-2 max-w-xl text-sm text-gray-500">
           <div
-            className={`flex items-center justify-between bg-white py-3 sm:px-6 md:px-4${
+            className={`flex items-center justify-between bg-white dark:bg-transparent py-3 sm:px-6 md:px-4${
               props.mode == 'member_schedules' ? ' border-t border-gray-200' : ''
             }`}
           >
             <div className="flex flex-1 items-center justify-between">
               <div>
                 <nav className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.monday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -88,7 +88,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.monday_am_enabled || props.schedule.monday_pm_enabled
-                          ? 'text-teams_brand_600'
+                          ? 'text-teams_brand_600 dark:text-white'
                           : 'text-gray-500'
                       )}
                     >
@@ -98,17 +98,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.monday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.tuesday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -116,8 +116,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.tuesday_am_enabled || props.schedule.tuesday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Tuesday').charAt(0)}
@@ -126,17 +126,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.tuesday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.wednesday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -144,8 +144,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.wednesday_am_enabled || props.schedule.wednesday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Wednesday').charAt(0)}
@@ -154,17 +154,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.wednesday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.thursday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -172,8 +172,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.thursday_am_enabled || props.schedule.thursday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Thursday').charAt(0)}
@@ -182,17 +182,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.thursday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.friday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -200,8 +200,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.friday_am_enabled || props.schedule.friday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Friday').charAt(0)}
@@ -210,17 +210,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.friday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.saturday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -228,8 +228,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.saturday_am_enabled || props.schedule.saturday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Saturday').charAt(0)}
@@ -238,17 +238,17 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.saturday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
                   </div>
-                  <div className=" w-10 border-teams_brand_500 border bg-white flex items-center box-content z-10 relative text-sm font-medium">
+                  <div className=" w-10 border-teams_brand_500 border bg-white dark:bg-transparent dark:border-gray-400 flex items-center box-content z-10 relative text-sm font-medium">
                     <div
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.sunday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -256,8 +256,8 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'absolute left-2/4 -translate-x-2/4 z-20',
                         props.schedule.sunday_am_enabled || props.schedule.sunday_pm_enabled
-                          ? 'text-teams_brand_600'
-                          : 'text-gray-500'
+                          ? 'text-teams_brand_600 dark:text-white'
+                          : 'text-gray-500 dark:text-white'
                       )}
                     >
                       {t('Sunday').charAt(0)}
@@ -266,7 +266,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.sunday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -278,7 +278,7 @@ export default function ScheduleBox(props: {
         </div>
         <div className="mt-3 text-sm">
           <a
-            className="cursor-pointer font-medium text-teams_brand_600 hover:text-teams_brand_500"
+            className="cursor-pointer font-medium text-teams_brand_600 dark:text-white hover:text-teams_brand_500"
             onClick={(e) => {
               e.preventDefault();
               setAddEditMode(true);

@@ -591,8 +591,8 @@ const Timeline: NextPage = () => {
   if (!days) return null;
   return (
     <>
-      <div className="flex min-h-96 grow flex-col border-y bg-white dark:bg-[#2a2a2a] shadow sm:rounded sm:border dark:sm:border-black">
-        <div className="  border-b dark:border-b-gray-600 dark:bg-[#1d1d1d]">
+      <div className="flex min-h-96 grow flex-col border-y bg-white dark:bg-teams_dark_mode shadow sm:rounded sm:border dark:sm:border-teams_dark_mode">
+        <div className="  border-b dark:border-b-gray-600 dark:bg-teams_brand_dark_100">
           <div className="grid grid-cols-1 sm:grid-cols-3">
             <div className="p-4">
               <div className="flex space-x-4 py-2 pr-2 text-lg font-normal sm:border-r dark:border-r-gray-600">
@@ -610,7 +610,7 @@ const Timeline: NextPage = () => {
                         if (containerRef && containerRef.current) setTimelineScrollPos(containerRef.current.scrollTop);
                       }}
                     >
-                      <ArrowLeftIcon className="h-4 mr-1 dark:text-white" />
+                      <ArrowLeftIcon className="h-4 mr-1 dark:text-gray-200" />
                     </a>
                   </span>
                   <ReactTooltip
@@ -633,19 +633,19 @@ const Timeline: NextPage = () => {
                         if (fiscal_year <= new Date().getFullYear() + 1) calcAndSetDateRanges(false);
                       }}
                     >
-                      <ArrowRightIcon className="h-4 ml-1 dark:text-white" />
+                      <ArrowRightIcon className="h-4 ml-1 dark:text-gray-200" />
                     </a>
                   </span>
                   <ReactTooltip id="datenav-tooltip" className="shadow z-50" classNameArrow="shadow-sm" place="top" />
                 </div>
 
-                <div className='dark:text-white'>{dateRangeText}</div>
+                <div className='dark:text-gray-200'>{dateRangeText}</div>
               </div>
             </div>
             <div className="p-4 ">
               {departmentDropDownValues && departmentDropDownValues.length >= 2 && (
                 <div className="grid md:grid md:grid-cols-3 md:items-start md:gap-4">
-                  <label className="block break-normal text-sm font-medium text-gray-700 dark:text-white sm:py-2">
+                  <label className="block break-normal text-sm font-medium text-gray-700 dark:text-gray-200 sm:py-2">
                     {`${t('Department')}: `}
                   </label>
                   <div className="z-20 mt-1 sm:col-span-2 sm:mt-0 ">
@@ -660,7 +660,8 @@ const Timeline: NextPage = () => {
                           })
                         }}
                         value={selectedDepartment}
-                        className="block w-full sm:max-w-xs sm:text-sm "
+                        className="block w-full sm:max-w-xs sm:text-sm my-react-select-container"
+                        classNamePrefix="my-react-select"
                         onChange={async (val) => {
                           if (val) {
                             setSelectedDepartment(val);
@@ -732,7 +733,7 @@ const Timeline: NextPage = () => {
                         });
                       }}
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                      className="relative inline-flex items-center rounded-l-md bg-white dark:bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_dark_400 hover:bg-gray-50 focus:z-10"
                     >
                       <div className="my-auto">
                         <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '}
@@ -740,7 +741,7 @@ const Timeline: NextPage = () => {
                       <p>{t('Create_request')}</p>
                     </button>
                     <Menu as="div" className="relative -ml-px block">
-                      <Menu.Button className="relative inline-flex items-center rounded-r-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10">
+                      <Menu.Button className="relative inline-flex items-center rounded-r-md bg-white dark:bg-transparent px-2 py-2 text-gray-400 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_dark_400 hover:bg-gray-50 focus:z-10">
                         <span className="sr-only">Open options</span>
                         <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                       </Menu.Button>
@@ -794,9 +795,9 @@ const Timeline: NextPage = () => {
         <div className="-mb-px flex  h-[50vh]  justify-end py-2 pl-0 pr-2 lg:h-[70vh] lg:pr-2 lg:pl-1   ">
           <div
             ref={containerRef}
-            className={'flex h-auto w-full flex-col overflow-y-auto overflow-x-hidden bg-white dark:bg-[#2a2a2a] text-sm '}
+            className={'flex h-auto w-full flex-col overflow-y-auto overflow-x-hidden bg-white dark:bg-teams_dark_mode text-sm '}
           >
-            <div className={` sticky top-0 z-[15] inline-flex w-auto justify-end bg-white text-sm dark:bg-[#2a2a2a]`}>
+            <div className={` sticky top-0 z-[15] inline-flex w-auto justify-end bg-white text-sm dark:bg-teams_dark_mode`}>
               {days.map((d, index) => {
                 if (showCW) {
                   const isMonday = d.getDay() === 1;
@@ -820,7 +821,7 @@ const Timeline: NextPage = () => {
                         className={
                           d.toDateString() === TODAY.toDateString()
                             ? 'w-10 border-2 border-blue-500 text-center'
-                            : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-white'
+                            : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-gray-200'
                         }
                       >
                         {d.toLocaleDateString(lang, {
@@ -841,8 +842,8 @@ const Timeline: NextPage = () => {
                     <div
                       className={
                         d.toDateString() === TODAY.toDateString()
-                          ? 'w-10 border-2 border-blue-500 text-center dark:text-white'
-                          : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-white'
+                          ? 'w-10 border-2 border-blue-500 dark:border-teams_brand_dark_300 text-center dark:text-gray-200'
+                          : 'w-8 text-center 1md:w-10 lg:w-10 xl:w-10 dark:text-gray-200'
                       }
                       key={index}
                     >
@@ -954,7 +955,7 @@ const Timeline: NextPage = () => {
                               )}
                             </span>
                             <div
-                              className={`my-auto truncate pl-0 font-bold sm:pl-2 dark:text-white`}
+                              className={`my-auto truncate pl-0 font-bold sm:pl-2 dark:text-gray-200`}
                               data-tooltip-id="name-tooltip"
                               data-tooltip-content={member.name as string}
                               data-tooltip-variant="light"

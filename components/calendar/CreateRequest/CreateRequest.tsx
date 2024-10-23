@@ -104,7 +104,7 @@ export default function CreateRequest(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white dark:bg-[#25253b] rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white dark:bg-teams_brand_dark_100 rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
@@ -842,7 +842,7 @@ const Form: React.FC<{
   return (
     <div>
       {!startBulkRequest && (
-        <form className="bg-white dark:bg-[#3d3e66] p-4 rounded">
+        <form className="bg-white dark:bg-teams_brand_dark_100 p-4 rounded">
           <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
             {props.showUserSelect && (
               <div className="sm:col-span-3">
@@ -854,7 +854,7 @@ const Form: React.FC<{
                   {!(requestMemberIsLoading || isLoading) &&
                     memebersSelectable?.length == 1 &&
                     selectedRequester &&
-                    !searchtext && <div className='dark:text-white'>{selectedRequester.name}</div>}
+                    !searchtext && <div className="dark:text-white">{selectedRequester.name}</div>}
                   {(searchtext || memebersSelectable?.length > 1) && (
                     <Controller
                       rules={{ required: true }}
@@ -922,7 +922,8 @@ const Form: React.FC<{
                           })
                         }}
                         value={selectedDepartment}
-                        className="block w-full sm:max-w-xs sm:text-sm "
+                        className="block w-full sm:max-w-xs sm:text-sm my-react-select-container"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           if (val) setSelectedDepartment(val);
                         }}
@@ -957,7 +958,8 @@ const Form: React.FC<{
                     render={({ field: { onChange, value } }) => (
                       <Select
                         value={value ? leave_types.find((x) => x.id == value) : undefined}
-                        className="w-full"
+                         className="block w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           if (val) setSelectedLeaveType(val);
 
@@ -1004,8 +1006,8 @@ const Form: React.FC<{
                       maxDate={minDateMaxDateStart?.max}
                       className={
                         formState.errors.start
-                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm'
-                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm'
+                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
+                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
                       }
                       selected={field.value}
                       wrapperClassName="w-full"
@@ -1043,7 +1045,8 @@ const Form: React.FC<{
                             }
                           })
                         }}
-                        className="w-full"
+                        className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         value={value ? start_at_values.find((x) => x.value == value) : undefined}
                         onChange={(val) => {
                           onChange(val?.value);
@@ -1071,7 +1074,8 @@ const Form: React.FC<{
                             }
                           })
                         }}
-                        className="w-full"
+                       className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           if (!val) return;
 
@@ -1109,8 +1113,8 @@ const Form: React.FC<{
                       dateFormat={current_member?.date_format}
                       className={
                         formState.errors.end
-                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm'
-                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm'
+                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
+                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
                       }
                       selected={field.value}
                       wrapperClassName="w-full"
@@ -1150,7 +1154,8 @@ const Form: React.FC<{
                             }
                           })
                         }}
-                        className="w-full"
+                       className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         value={value ? end_at_values.find((x) => x.value == value) : undefined}
                         onChange={(val) => {
                           onChange(val?.value);
@@ -1178,7 +1183,8 @@ const Form: React.FC<{
                             }
                           })
                         }}
-                        className="w-full"
+                    className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           if (!val) return;
                           const d = new Date(getValues('end'));
@@ -1210,7 +1216,7 @@ const Form: React.FC<{
                   {...register('reason', { required: false })}
                   type="text"
                   placeholder={selectedLeaveType?.reason_hint_text ? selectedLeaveType?.reason_hint_text : ''}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white"
                 />
               </div>
             </div>
@@ -1218,7 +1224,7 @@ const Form: React.FC<{
           {!props.showDepartmentSelect && (
             <div>
               {selectedLeaveType?.take_from_allowance && isDayUnit(selectedLeaveType.leave_unit) && (
-                <div className="border-y border-gray-200 mt-4">
+                <div className="border-y border-gray-200 mt-4 dark:border-teams_brand_dark_400">
                   <div className="flex justify-center px-4 pt-4 sm:px-6 ">
                     <span className="mr-2 mt-2 dark:text-white">{t('Takes')}</span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-300">
@@ -1263,7 +1269,7 @@ const Form: React.FC<{
               {!selectedLeaveType?.take_from_allowance && (
                 <div className="border-y border-gray-200 mt-4">
                   <div className=" flex  justify-center px-4 pt-4 sm:px-6">
-                    <span className=" mt-2">{t('No_deduction_from_allowance')}</span>
+                    <span className=" mt-2 dark:text-white">{t('No_deduction_from_allowance')}</span>
                   </div>
                   <span className="flex justify-center my-2"></span>
                 </div>
