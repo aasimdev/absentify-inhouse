@@ -373,20 +373,20 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
       <div className="absolute bottom-6 my-auto inline-block text-left">
         <button
           onClick={toggleMenu}
-          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none"
+          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none dark:bg-teams_brand_dark_200 dark:text-gray-900  hover:text-gray-800"
         >
           <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
         </button>
 
         {isOpen && (
-          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full">
+          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full dark:bg-teams_brand_dark_200 dark:text-gray-900 dark:hover:bg-teams_brand_dark_200">
             <div className="py-1.5">
               {dropDownDots
                 .filter((x) => x != null)
                 .map((item) => (
                   <div
                     key={uuidv4()}
-                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
+                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-teams_brand_dark_200 dark:hover:text-gray-600 dark:text-gray-800"
                   >
                     {item}
                   </div>
@@ -593,7 +593,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <div className="z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full sm:p-6">
+              <div className="dark:bg-teams_brand_dark_100 z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full sm:p-6">
                 {(isMemberLoading || requestIsLoading || !request || !current_member) && (
                   <div>
                     <CustomLoading />
@@ -602,21 +602,21 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                 {current_member && request && !isMemberLoading && !requestIsLoading && (
                   <>
                     <div className="">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">
+                      <h3 className="text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
                         {request?.details?.leave_type ? request.details.leave_type.name : t('Absent')}
                       </h3>
-                      <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                      <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">
                         {formatLeaveRequestDetails(request, current_member, t)}
                       </p>
                     </div>
 
                     {members && request?.details && (
                       <div className="border-t border-gray-200 py-5 sm:p-0">
-                        <dl className="sm:divide-y sm:divide-gray-200">
+                        <dl className="sm:divide-y sm:divide-gray-200 dark:text-gray-200">
                           {request.details?.leave_type.needs_approval && (
                             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                              <dt className="text-sm font-medium text-gray-500">{t('Status')}</dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Status')}</dt>
+                              <dd className="mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-2 sm:mt-0">
                                 <span>
                                   {request.details.status == RequestStatus.APPROVED && t('Approved')}
                                   {request.details.status == RequestStatus.PENDING && t('Pending-in-cal')}
@@ -628,8 +628,8 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                           )}
                           {request.details?.leave_type.needs_approval && (
                             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                              <dt className="text-sm font-medium text-gray-500">{t('process-status')}</dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('process-status')}</dt>
+                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-400">
                                 {request.details?.request_approvers.length > 1 && (
                                   <span>
                                     {`${
@@ -663,11 +663,11 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                                           </div>
                                           <div className="ml-3">
                                             <span data-tooltip-id="detailM-tooltip" data-tooltip-variant="light">
-                                              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900 w-[235px] text-ellipsis overflow-hidden">
+                                              <p className="text-sm font-medium text-gray-700 dark:text-gray-400  dark:group-hover:text-gray-500 group-hover:text-gray-900 w-[235px] text-ellipsis overflow-hidden">
                                                 {members.find((x) => x.id == approver.approver_member_id)?.name ??
                                                   t('Deleted_User')}
                                               </p>
-                                              <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                                              <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700 dark:text-gray-500  dark:group-hover:text-gray-600">
                                                 {approver.status == RequestApproverStatus.APPROVED && t('Approved')}
                                                 {approver.status == RequestApproverStatus.PENDING &&
                                                   t('Pending-in-cal')}
@@ -764,9 +764,9 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                           )}
                           {request.details && (
                             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                              <dt className="text-sm font-medium text-gray-500">{t('Take_from_allowance')}</dt>
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Take_from_allowance')}</dt>
 
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-400">
                                 {request.details.leave_type.take_from_allowance
                                   ? formatDuration(
                                       request.details.workday_absence_duration,
@@ -781,23 +781,23 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                           )}
                           {request.details?.reason && (
                             <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                              <dt className="text-sm font-medium text-gray-500">{t('Reason')}</dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 break-words">
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Reason')}</dt>
+                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 break-words dark:text-gray-400">
                                 {request.details?.reason}
                               </dd>
                             </div>
                           )}
 
                           <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                            <dt className="text-sm font-medium text-gray-500">{t('Request_created')}</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Request_created')}</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-400">
                               {format(request.createdAt, current_member.long_datetime_format)}
                             </dd>
                           </div>
 
                           <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                            <dt className="text-sm font-medium text-gray-500">{t('Request_created_by')}</dt>
-                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                            <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Request_created_by')}</dt>
+                            <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-400">
                               <div className="flex items-center">
                                 <div>
                                   <ProfileImage
@@ -807,7 +807,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                                 </div>
                                 <div className="ml-3">
                                   <p
-                                    className="text-sm font-medium text-gray-700 group-hover:text-gray-900 cursor-pointer text-ellipsis overflow-hidden w-64"
+                                    className="text-sm font-medium text-gray-700 group-hover:text-gray-900 cursor-pointer text-ellipsis overflow-hidden w-64 dark:text-gray-400 dark:group-hover:text-gray-500"
                                     data-tooltip-id="user-tooltip"
                                     data-tooltip-variant="light"
                                   >
@@ -873,7 +873,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                             e.preventDefault();
                             props.onClose();
                           }}
-                          className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                          className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_200 dark:text-gray-500"
                         >
                           <p className="my-auto">{t('Close')}</p>
                         </button>

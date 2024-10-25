@@ -498,7 +498,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
   if (!members) return null;
   if (!departments) return null;
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={() => {}}>
+    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_600" onSubmit={() => {}}>
       <UpgradeModal
         open={showModal}
         useInDepartment={false}
@@ -509,15 +509,15 @@ export default function Approver(props: { onClose: Function; currentMember: defa
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className="py-6 px-4 sm:p-6 lg:pb-8 ">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('approver')}</h2>
-            <p className="mt-1 text-sm text-gray-500"></p>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">{t('approver')}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200"></p>
           </div>
           <div className="mt-6 flex flex-col ">
             <RadioGroup value={selected} onChange={setSelected}>
               <RadioGroup.Label className="sr-only">
                 <p>{t('approver')}</p>{' '}
               </RadioGroup.Label>
-              <div className="relative -space-y-px rounded-md bg-white ">
+              <div className="relative -space-y-px rounded-md bg-white">
                 {approverOptions.map((approverOption, planIdx) => (
                   <RadioGroup.Option
                     key={approverOption.department_name}
@@ -528,7 +528,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                         planIdx === approverOptions.length - 1 || planIdx === approverOptions.length - 2
                           ? 'rounded-bl-md rounded-br-md md:grid md:grid-cols-1 '
                           : 'md:grid  md:grid-cols-2 ',
-                        checked ? 'z-10 border-teams_brand_200 bg-teams_brand_50' : 'border-gray-200',
+                        checked ? 'z-10 border-teams_brand_200 bg-teams_brand_50 dark:bg-teams_brand_dark_400 dark:text-gray-700' : 'border-gray-200 dark:bg-teams_brand_dark_200 dark:text-gray-700',
                         'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:pl-4 md:pr-6'
                       )
                     }
@@ -549,7 +549,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                           <RadioGroup.Label
                             as="span"
                             className={classNames(
-                              checked ? 'text-teams_brand_900' : 'text-gray-900',
+                              checked ? 'text-teams_brand_900 dark:text-teams_brand_900' : 'text-gray-900',
                               'ml-3 font-medium'
                             )}
                           >
@@ -557,7 +557,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                             {approverOption.department_id !== '0' &&
                               approverOption.department_id !== '1' &&
                               approverOption.department_id !== '2' && (
-                                <span className="text-xs text-gray-500">
+                                <span className="text-xs text-gray-500 dark:text-teams_brand_800">
                                   ({approvalProcessOptions.find((y) => y.id === approverOption.approval_process)?.title}
                                   )
                                 </span>
@@ -568,7 +568,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                         <RadioGroup.Description
                           as="span"
                           className={classNames(
-                            checked ? 'text-teams_brand_700' : 'text-gray-500',
+                            checked ? 'text-teams_brand_700' : 'text-gray-500 ',
                             'ml-6 pl-1 text-sm md:ml-0 md:pl-0 md:text-right'
                           )}
                         >
@@ -603,7 +603,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
 
                         {checked && approverOption?.department_id === '0' && (
                           <div className="ml-6 mt-5 flex flex-col ">
-                            <div className="w-full bg-white px-2 shadow sm:rounded-lg">
+                            <div className="w-full bg-white px-2 shadow sm:rounded-lg dark:bg-teams_brand_dark_200">
                               <div className="">
                                 <ul role="list" className="mt-2 divide-y divide-gray-200  ">
                                   <SortableContext items={items} strategy={verticalListSortingStrategy}>
@@ -623,12 +623,12 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                       <button
                                         onClick={() => setSelectManager(true)}
                                         type="button"
-                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-teams_brand_dark_200"
                                       >
                                         <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-gray-400">
-                                          <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                                          <PlusIcon className="h-5 w-5 dark:text-gray-900" aria-hidden="true" />
                                         </span>
-                                        <span className="ml-4 text-sm font-medium text-gray-600 group-hover:text-gray-500">
+                                        <span className="ml-4 text-sm font-medium text-gray-600 group-hover:text-gray-500 dark:text-gray-900">
                                           {t('add-approver')}
                                         </span>
                                       </button>
@@ -657,7 +657,8 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                           })
                                         }}
                                         autoFocus
-                                        className="w-full"
+                                         className="w-full my-react-select-container"
+                                        classNamePrefix="my-react-select"
                                         formatOptionLabel={formatOptionLabel}
                                         onInputChange={handleInputChange}
                                         isLoading={!!searchtext && isLoading}
@@ -685,7 +686,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                             </div>
 
                             <div className="mt-2 ">
-                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-900">
                                 {t('approval-process')}
                               </label>
 
@@ -701,12 +702,12 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                       <p>{t('change-approval-process')}</p>{' '}
                                     </Listbox.Label>
                                     <div className="relative w-full">
-                                      <div className="inline-flex w-full rounded-md border-gray-300 ">
-                                        <div className="inline-flex w-full rounded-md border-gray-300">
-                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm ">
+                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_200">
+                                        <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_200">
+                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:bg-teams_brand_dark_200">
                                             <div className="inline-flex">
                                               <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                              <p className="ml-2.5 text-sm font-medium">
+                                              <p className="ml-2.5 text-sm font-medium dark:text-gray-900">
                                                 {
                                                   approvalProcessOptions.find(
                                                     (x) => x.id === getValues('approval_process')
@@ -715,7 +716,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                               </p>
                                             </div>
                                           </Listbox.Button>
-                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">
+                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_dark_200">
                                             <span className="sr-only">{t('change-approval-process')}</span>
                                             <ChevronDownIcon className="h-5 w-5 text-gray-800" aria-hidden="true" />
                                           </Listbox.Button>
@@ -737,10 +738,10 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                 classNames(
                                                   hasValidSubscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800'
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_200'
                                                       : ' text-gray-800 '
                                                     : option.id !== 'Linear_all_have_to_agree'
-                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 '
+                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_200'
                                                     : ' ',
                                                   'cursor-pointer select-none p-4 text-sm'
                                                 )

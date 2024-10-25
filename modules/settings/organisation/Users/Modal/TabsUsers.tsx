@@ -23,7 +23,7 @@ export default function TabsUsers({tabs, handler, showArchived}: Props) {
                 className={classNames(
                   tab.id === showArchivedId
                     ? 'border-[#6264a7] text-[#6264a7]'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-70',
                   'w-1/4 border-b-2 py-4 px-1 text-center text-sm font-medium'
                 )}
                 aria-current={tab.id === showArchivedId ? 'page' : undefined}

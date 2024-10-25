@@ -262,12 +262,12 @@ function getIn10YearsDate(): Date {
     return adminIds.length <= 1;
   };
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmit)}>
+    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_600" onSubmit={handleSubmit(onSubmit)}>
       {/* Profile section */}
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Profile')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('Profile_Description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">{t('Profile')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Profile_Description')}</p>
         </div>
         {props.currentMember.status === Status.INACTIVE && (
           <div className="rounded-md bg-yellow-50 p-4 mt-2">
@@ -288,68 +288,68 @@ function getIn10YearsDate(): Date {
           <div className="grow space-y-2  lg:space-y-6 ">
             <>
               <div className="flex justify-center sm:justify-start ">
-                <div className="pr-2">
-                  <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+                <div className="pr-2 dark:text-gray-200">
+                  <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 dark:text-gray-100">
                     {t('first_name')}
                   </label>
                   {props.currentMember?.email &&
                     props.currentMember.status === 'ACTIVE' &&
                     props.currentMember?.firstName}
                   {(!props.currentMember?.email || props.currentMember.status !== 'ACTIVE') && (
-                    <div className="mt-2 mb-4 mr-0 sm:mr-4">
+                    <div className="mt-2 mb-4 mr-0 sm:mr-4 dark:text-gray-200">
                       <input
                         {...register('first_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
                       />
                     </div>
                   )}
                 </div>
-                <div className="">
-                  <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+                <div className="dark:text-gray-200">
+                  <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 dark:text-gray-100">
                     {t('last_name')}
                   </label>
                   {props.currentMember?.email &&
                     props.currentMember.status === 'ACTIVE' &&
                     props.currentMember?.lastName}
                   {(!props.currentMember?.email || props.currentMember.status !== 'ACTIVE') && (
-                    <div className="mt-2 mr-0 sm:mr-4 mb-4">
+                    <div className="mt-2 mr-0 sm:mr-4 mb-4 dark:text-gray-200">
                       <input
                         {...register('last_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
                       />
                     </div>
                   )}
                 </div>
               </div>
-              <div className=" flex flex-col items-center sm:block">
-                <label htmlFor="display_name" className="block text-sm font-medium text-gray-700">
+              <div className=" flex flex-col items-center sm:block dark:text-gray-200">
+                <label htmlFor="display_name" className="block text-sm font-medium text-gray-700 dark:text-gray-100">
                   {t('display_name')}
                 </label>
                 {props.currentMember?.email && props.currentMember.status === 'ACTIVE' && props.currentMember.name}
                 {(!props.currentMember?.email || props.currentMember.status !== 'ACTIVE') && (
-                  <div className="mt-2 mb-4 w-[184px]">
+                  <div className="mt-2 mb-4 w-[184px] dark:text-gray-200">
                     <input
                       {...register('name', { required: false })}
                       type="text"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
                     />
                   </div>
                 )}
               </div>
             </>
             <div className="">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-100">
                 {t('Email')}
               </label>
-              <div className="mt-1 flex justify-center sm:justify-start">
+              <div className="mt-1 flex justify-center sm:justify-start dark:text-gray-200">
                 {props.currentMember?.email ?? (
                   <p
                     onClick={() => {
                       setShowEmailModal(true);
                     }}
-                    className="cursor-pointer text-sm text-blue-500 underline"
+                    className="cursor-pointer text-sm text-blue-500 underline dark:text-gray-200"
                   >
                     {t('set_email')}
                   </p>
@@ -389,7 +389,7 @@ function getIn10YearsDate(): Date {
 
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
-            <label htmlFor="Custom_id" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="Custom_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Custom_id')}
             </label>
             <input
@@ -397,11 +397,11 @@ function getIn10YearsDate(): Date {
               type="text"
               maxLength={30}
               placeholder={t('Custom_id_placeholder')}
-              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <label htmlFor="Birthday" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="Birthday" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Birthday')}
             </label>
             <Controller
@@ -414,7 +414,7 @@ function getIn10YearsDate(): Date {
                   locale={lang}
                   maxDate={getLastYearDate()} 
                   dateFormat={current_member?.date_format}
-                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
                   selected={field.value}
                   onChange={(date: Date) => field.onChange(date)}
                   wrapperClassName="w-full"
@@ -428,7 +428,7 @@ function getIn10YearsDate(): Date {
               ' self-end'
             )}
           >
-            <label htmlFor="EmploymentStartDate" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="EmploymentStartDate" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('EmploymentStartDate')}
             </label>
             <Controller
@@ -441,7 +441,7 @@ function getIn10YearsDate(): Date {
                   maxDate={getIn10YearsDate()}
                   locale={lang}
                   dateFormat={current_member?.date_format}
-                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
                   selected={field.value}
                   onChange={(date: Date) => field.onChange(date)}
                   wrapperClassName="w-full"
@@ -456,7 +456,7 @@ function getIn10YearsDate(): Date {
                 ' self-end'
               )}
             >
-              <label htmlFor="please_select_endDate" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="please_select_endDate" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('please_select_endDate')}
               </label>
               <Controller
@@ -468,7 +468,7 @@ function getIn10YearsDate(): Date {
                     calendarStartDay={current_member?.week_start ? parseInt(current_member?.week_start) : 0}
                     locale={lang}
                     dateFormat={current_member?.date_format}
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
                     selected={field.value}
                     required
                     onChange={(date: Date) => {
@@ -486,7 +486,7 @@ function getIn10YearsDate(): Date {
               ' self-end'
             )}
           >
-            <label htmlFor="Public_holidays" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="Public_holidays" className="block text-sm font-medium text-gray-700 mb-1 dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white">
               {t('Public_holidays')}
             </label>
             {PUBLIC_HOLIDAYS && (
@@ -505,20 +505,21 @@ function getIn10YearsDate(): Date {
                       })
                     }}
                     value={value ? PUBLIC_HOLIDAYS.find((x) => x.id === value) : null}
-                    className="w-full"
                     onChange={(val) => {
                       onChange(val?.id);
                     }}
                     getOptionLabel={(option) => `${option.name}`}
                     getOptionValue={(option) => option.id}
                     options={PUBLIC_HOLIDAYS}
+                     className="w-full my-react-select-container"
+                    classNamePrefix="my-react-select"
                   />
                 )}
               />
             )}
           </div>
           <div className="col-span-12">
-            <label htmlFor="department" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="department" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('department')}
             </label>
 
@@ -540,13 +541,14 @@ function getIn10YearsDate(): Date {
                     }}
                     isMulti
                     value={value ? departments.filter((x) => value.includes(x.id)) : undefined}
-                    className="w-full"
                     onChange={(val) => {
                       if (val) onChange(val.map((x) => x.id));
                     }}
                     getOptionLabel={(option) => `${option.name}`}
                     getOptionValue={(option) => option.id}
                     options={departments}
+                     className="w-full my-react-select-container"
+                    classNamePrefix="my-react-select"
                   />
                 )}
               />
@@ -558,7 +560,7 @@ function getIn10YearsDate(): Date {
          
          
           <div className='col-span-12 sm:col-span-6'>
-            <label htmlFor="DateFormat" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="DateFormat" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('DateFormat')}
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
@@ -577,7 +579,8 @@ function getIn10YearsDate(): Date {
                       })
                     }}
                     value={value ? dateFormats.find((x) => x.value === value) : undefined}
-                    className="w-full"
+                    className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                     onChange={(val) => {
                       onChange(val?.value);
                     }}
@@ -589,7 +592,7 @@ function getIn10YearsDate(): Date {
             {errors.date_format && <span>{t('This_field_is_required')}</span>}
           </div>
           <div className='col-span-12 sm:col-span-6'>
-            <label htmlFor="TimeFormat" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="TimeFormat" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('TimeFormat')}
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
@@ -608,7 +611,8 @@ function getIn10YearsDate(): Date {
                       })
                     }}
                     value={value ? timeFormats.find((x) => x.value === value) : undefined}
-                    className="w-full"
+                     className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                     onChange={(val) => {
                       onChange(val?.value);
                     }}
@@ -620,7 +624,7 @@ function getIn10YearsDate(): Date {
             {errors.time_format && <span>{t('This_field_is_required')}</span>}
           </div>
           <div className='col-span-12 sm:col-span-6'>
-            <label htmlFor="weekstart" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="weekstart" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('WeekStart')}
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
@@ -639,7 +643,8 @@ function getIn10YearsDate(): Date {
                       })
                     }}
                     value={value ? weekStartData.find((x) => x.value === value) : undefined}
-                    className="w-full"
+                     className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                     onChange={(val) => {
                       onChange(val?.value);
                     }}
@@ -652,7 +657,7 @@ function getIn10YearsDate(): Date {
           </div>
           <div className='col-span-12 sm:col-span-6'>
             {' '}
-            <label htmlFor="timezone" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="timezone" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Time_zone')}
             </label>
             <div className="flex mt-1 rounded-md shadow-sm">
@@ -671,7 +676,8 @@ function getIn10YearsDate(): Date {
                       })
                     }} 
                     value={changedTimezones.find((x) => x.tzCode === value)}
-                    className="w-full"
+                     className="w-full my-react-select-container"
+                    classNamePrefix="my-react-select"
                     onMenuOpen={() => {
                       setValue('timezone', '__SEARCH_FOR__');
                     }}
@@ -688,7 +694,7 @@ function getIn10YearsDate(): Date {
             {errors.timezone && <span>{t('This_field_is_required')}</span>}
           </div>
           <div className="col-span-12 ">
-            <label htmlFor="language" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="language" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Language')}
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
@@ -707,7 +713,8 @@ function getIn10YearsDate(): Date {
                       })
                     }}
                     value={value ? languageOptions.find((x) => x.value === value) : undefined}
-                    className="w-full"
+                     className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                     onChange={async (val) => {
                       onChange(val?.value);
                     }}
@@ -725,10 +732,10 @@ function getIn10YearsDate(): Date {
           <div className="col-span-12">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-100" passive>
                   {t('Display_calendar_weeks')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                   {t('Display_calendar_weeks_description')}
                 </Switch.Description>
               </div>
@@ -743,7 +750,7 @@ function getIn10YearsDate(): Date {
                     }}
                     className={classNames(
                       value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
                     )}
                   >
                     <span
@@ -771,10 +778,10 @@ function getIn10YearsDate(): Date {
                 <div className="mt-1 flex ">
                   <Switch.Group as="li" className="flex items-center justify-between py-4">
                     <div className="flex flex-col">
-                      <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                      <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-100" passive>
                         {t('inactive_user_toggle')}
                       </Switch.Label>
-                      <Switch.Description className="text-sm text-gray-500">
+                      <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                         {t('inactive_user_toggle_desc') + ' '}
                         <a
                           className="underline"
@@ -801,14 +808,14 @@ function getIn10YearsDate(): Date {
                           }}
                           className={classNames(
                             value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 bg-teams_brand_dark_500'
                           )}
                         >
                           <span
                             aria-hidden="true"
                             className={classNames(
                               value ? 'translate-x-5' : 'translate-x-0',
-                              'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                              'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out dark:text-gray-200'
                             )}
                           />
                         </Switch>
@@ -841,14 +848,14 @@ function getIn10YearsDate(): Date {
                       }}
                       className={classNames(
                         value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           value ? 'translate-x-5' : 'translate-x-0',
-                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-ou t'
                         )}
                       />
                     </Switch>
@@ -880,14 +887,14 @@ function getIn10YearsDate(): Date {
                       }}
                       className={classNames(
                         value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           value ? 'translate-x-5' : 'translate-x-0',
-                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out dark:text-gray-200'
                         )}
                       />
                     </Switch>

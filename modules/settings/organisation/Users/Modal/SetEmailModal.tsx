@@ -108,19 +108,19 @@ export default function SetEmailModal(props: {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
                 <form>
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">
                         {t('Set_an_E_Mail_for_the_user')}
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500">{t('Set_an_E_Mail_for_the_user_description')}</p>
-                        <p className="text-sm text-gray-500 mt-2">{t('Set_an_E_Mail_for_the_user_description2')} </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-200">{t('Set_an_E_Mail_for_the_user_description')}</p>
+                        <p className="text-sm text-gray-500 mt-2 dark:text-gray-200">{t('Set_an_E_Mail_for_the_user_description2')} </p>
                       </div>
                       <div className="mt-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('Email')}
                         </label>
                         <div className="flex mt-1 rounded-md shadow-sm">
@@ -132,7 +132,7 @@ export default function SetEmailModal(props: {
                             autoComplete="email"
                             className={`block flex-grow w-full min-w-0 rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm`}
+                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_500 dark:text-gray-200`}
                           />
                         </div>
                       </div>

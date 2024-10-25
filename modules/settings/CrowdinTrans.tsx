@@ -15,12 +15,12 @@ const LangProgressBar: React.FC<{ lang: string }> = (props) => {
 
   return (
     <div className="mx-auto w-1/2 p-2 py-4">
-      <div className=" h-2 rounded-full bg-gray-200 dark:bg-gray-700 ">
+      <div className=" h-2 rounded-full bg-gray-200 dark:bg-gray-700 dark:text-gray-200 ">
         <div
           className="h-2 rounded-full bg-teams_brand_background_2"
           style={{ width: `${percentage ? percentage : 0}%` }}
         ></div>
-        <p className="p-1 text-center text-xs font-medium text-teams_brand_background_2">
+        <p className="p-1 text-center text-xs font-medium text-teams_brand_background_2 dark:text-gray-200">
           {percentage
             ? Math.round(percentage) + "% " + t("validated")
             : "0% " + t("validated")}
@@ -33,8 +33,8 @@ const LangProgressBar: React.FC<{ lang: string }> = (props) => {
 const CrowdinTrans: React.FC<{ lang: string }> = (props) => {
   const { t } = useTranslation("common");
   return (
-    <div className="block">
-      <div className="p-2">
+    <div className="block dark:text-gray-200">
+      <div className="p-2 dark:text-gray-200">
         {t("Community_Description")}
 
         {!(props.lang == "en" || props.lang == "de") && props.lang && (
@@ -43,7 +43,7 @@ const CrowdinTrans: React.FC<{ lang: string }> = (props) => {
       </div>
       {t("Community_Description2")}
       <a
-        className="inline-flex p-2 text-teams_brand_background_2 underline hover:text-teams_brand_foreground_1"
+        className="inline-flex p-2 text-teams_brand_background_2 underline hover:text-teams_brand_foreground_1 dark:text-gray-200"
         href="https://crowdin.com/project/absentify"
         target="_blank"
       >

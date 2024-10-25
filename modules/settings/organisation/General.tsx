@@ -19,9 +19,11 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { hasEnterpriseSubscription } from 'lib/subscriptionHelper';
 import Loader from '@components/calendar/Loader';
 import { dateFormats } from "~/helper/dateFormats";
+import { useDarkSide } from '@components/ThemeContext';
 
 type Combined = { id: string } & RouterInputs['workspace']['edit']['data'];
 const General: NextPage = () => {
+  const [theme] = useDarkSide();
   const { t, lang } = useTranslation('settings_organisation');
   const {
     register,
@@ -290,6 +292,7 @@ const General: NextPage = () => {
     enterprisePlan = hasEnterpriseSubscription(workspace.subscriptions);
   }
 
+
   const logo = createLogo(workspace?.company_logo_url, workspace?.company_logo_ratio_square ? '256x256' : '400x80');
   return (
     <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10 dark:bg-teams_brand_dark_100" onSubmit={handleSubmit(onSubmit)}>
@@ -541,7 +544,7 @@ const General: NextPage = () => {
               <label htmlFor="aria-example-input" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Default_Time_zone')}
               </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
+              <div className="mt-1 flex rounded-md shadow-sm ring-transparent">
                 <Controller
                   control={control}
                   rules={{ required: true }}
@@ -557,7 +560,7 @@ const General: NextPage = () => {
                           }
                         })
                       }}
-                      menuPortalTarget={document.body}
+                      // menuPortalTarget={document.body}
                       value={changedTimezones.find((x) => x.tzCode === value)}
                       className="w-full my-react-select-container"
                         classNamePrefix="my-react-select"
@@ -587,7 +590,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Default_Settings_Description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>
@@ -625,7 +628,7 @@ const General: NextPage = () => {
                   )}
                 />
               </div>{' '}
-              <div className=" text-center text-sm">
+              <div className=" text-center text-sm dark:text-gray-200">
                 {languageOptions.find((x) => x.value === GLOBAL_LANGUAGEVALUE)?.community && (
                   <CrowdinTrans lang={GLOBAL_LANGUAGEVALUE ?? "en"} />
                 )}
@@ -643,7 +646,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Fiscal_year_starts_month_description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>
@@ -694,7 +697,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Default_Settings_Description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>
@@ -745,7 +748,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Default_Settings_Description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>
@@ -796,7 +799,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Default_Settings_Description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>
@@ -847,7 +850,7 @@ const General: NextPage = () => {
                   className="ml-1 flex items-center cursor-pointer"
                   data-tooltip-id="questionM-tooltip"
                   data-tooltip-content={t('Default_Name_Format_Description')}
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                 >
                   <QuestionMarkCircleIcon height={12} />
                 </span>

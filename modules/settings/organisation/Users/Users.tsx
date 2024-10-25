@@ -264,7 +264,7 @@ const Users = () => {
                         }
                       })
                     }}
-                    menuPortalTarget={document.body}
+                    // menuPortalTarget={document.body}
                     placeholder={t('Filter') + '...'}
                     isMulti
                     value={
@@ -377,7 +377,7 @@ const Users = () => {
                       </tr>
                     </thead>
                   ) : (
-                    <thead className="bg-teams_brand_100 w-full">
+                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_100">
                       <tr className="">
                         <th
                           scope="col"
@@ -399,7 +399,7 @@ const Users = () => {
                             {!showArchived && membersData ? (
                               <>
                                 <span
-                                  className="inline-flex hover:text-teams_brand_500"
+                                  className="inline-flex hover:text-teams_brand_500 dark:text-gray-200"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     const members = membersData.members.filter((member) =>
@@ -411,7 +411,7 @@ const Users = () => {
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 mr-2"
+                                    className="h-5 w-5 mr-2 dark:text-gray-200"
                                     viewBox="0 0 20 20"
                                     fill="currentColor"
                                   >
@@ -425,7 +425,7 @@ const Users = () => {
                                   {t('Archive')}
                                 </span>
                                 <span
-                                  className="inline-flex hover:text-teams_brand_500"
+                                  className="inline-flex hover:text-teams_brand_500 dark:text-gray-200"
                                   onClick={(e) => {
                                     e.preventDefault();
                                     const members = membersData.members.filter((member) =>
@@ -439,7 +439,7 @@ const Users = () => {
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     fill="currentColor"
-                                    className="size-5 ml-4 mr-2"
+                                    className="size-5 ml-4 mr-2 dark:text-gray-200"
                                   >
                                     <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
                                     <path
@@ -816,14 +816,14 @@ const Users = () => {
                   />
                 </table>
                 <nav
-                  className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 w-full"
+                  className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 w-full dark:bg-teams_brand_dark_100"
                   aria-label="Pagination"
                 >
-                  <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center justify-between w-full ">
                     <div className="flex  justify-between sm:justify-start items-center">
                       {/* Rows Per Page Section */}
                       <div className="hidden sm:flex items-center justify-center">
-                        <p className="text-sm text-gray-700  pr-4">{t('RowsPerPage')}</p>
+                        <p className="text-sm text-gray-700  pr-4 dark:text-gray-100">{t('RowsPerPage')}</p>
                         <Select
                           menuPlacement="top"
                           value={rowsPerPage.find((x) => x.value === limit)}
@@ -845,11 +845,13 @@ const Users = () => {
                           }}
                           menuPortalTarget={document.body}
                           options={rowsPerPage}
+                          className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                         />
                       </div>
                       {/* Showing Results Section */}
                       <div className="hidden sm:flex pl-4">
-                        <p className="text-sm text-gray-700">
+                        <p className="text-sm text-gray-700 dark:text-gray-200">
                           {t('ShowingOfresults', {
                             start: (page - 1) * limit + 1,
                             end: showingOfresultsEnd,

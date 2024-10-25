@@ -74,10 +74,10 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle">
+            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_brand_dark_600">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
-                  <Dialog.Title as="h3" className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     <p className="inline-flex">
                       {props.currentMember && (
                         <span className="max-w-40 md:w-auto truncate">{props.currentMember.name} </span>
@@ -91,9 +91,9 @@ export default function Modal(props: {
                     </p>
                   </Dialog.Title>
                   <main className="border-t">
-                    <div className="overflow-visible bg-white">
+                    <div className="overflow-visible bg-white dark:divide-gray-500">
                       <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
-                        <aside className="py-6 lg:col-span-3">
+                        <aside className="py-6 lg:col-span-3 dark:bg-teams_dark_mode_core">
                           <nav className="space-y-1">
                             {subNavigation.map((item) => (
                               <a
@@ -103,17 +103,17 @@ export default function Modal(props: {
                                 }}
                                 className={classNames(
                                   currentNavigation == item.id
-                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 hover:bg-teams_brand_50 hover:text-teams_brand_700'
+                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 hover:bg-teams_brand_50 hover:text-teams_brand_700 dark:bg-teams_brand_dark_100 hover:bg-teams_brand_50 hover:text-teams_brand_700 hover:dark:bg-teams_brand_dark_100'
                                     : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium'
+                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium dark:text-gray-200 hover:dark:bg-teams_brand_dark_100'
                                 )}
                                 aria-current={item.current ? 'page' : undefined}
                               >
                                 <item.icon
                                   className={classNames(
                                     currentNavigation == item.id
-                                      ? 'text-teams_brand_500 group-hover:text-teams_brand_500'
-                                      : 'text-gray-400 group-hover:text-gray-500',
+                                      ? 'text-teams_brand_500 group-hover:text-teams_brand_500 dark:text-gray-200'
+                                      : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-200',
                                     '-ml-1 mr-3 h-6 w-6 flex-shrink-0'
                                   )}
                                   aria-hidden="true"

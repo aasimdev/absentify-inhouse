@@ -93,11 +93,11 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -108,11 +108,11 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
               </div>
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">
                     {t('unarchive_User_Title', { count: totalUsers })}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500 mb-2">
+                    <p className="text-sm text-gray-500 mb-2 dark:text-gray-200">
                       {t('unarchive_User_Description', {
                         count: totalUsers,
                         number: totalUsers
@@ -123,7 +123,7 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
                     <div className="mb-4 mt-6 relative">
                       <div className="w-full bg-teams_brand_100 rounded-full h-3 relative">
                         <div className="bg-teams_brand_450 h-3 rounded-full" style={{ width: `${progress}%` }}></div>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold">
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold dark:text-gray-200">
                           {(currentIndex + 1) + '/' + totalUsers}
                         </div>
                       </div>
@@ -252,11 +252,11 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -267,11 +267,11 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
               </div>
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">
                     {t('activate_User_Title', { count: totalUsers })}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500 mb-2">
+                    <p className="text-sm text-gray-500 mb-2 dark:text-gray-200">
                       {t('activate_User_Description', {
                         count: totalUsers,
                         number: totalUsers
@@ -282,7 +282,7 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
                     <div className="mb-4 mt-6 relative">
                       <div className="w-full bg-teams_brand_100 rounded-full h-3 relative">
                         <div className="bg-teams_brand_450 h-3 rounded-full" style={{ width: `${progress}%` }}></div>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold">
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold  dark:text-gray-200">
                           {(currentIndex + 1) + '/' + totalUsers}
                         </div>
                       </div>
@@ -416,11 +416,11 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100 ">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500  dark:bg-teams_brand_dark_500 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -434,25 +434,25 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
                   <ExclamationCircleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                 </div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">
                     {t('Archive_User_Title', { count: totalUsers })}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500 mb-2">{t('Archive_User_Description')}</p>
-                    <p className="text-sm text-gray-500 mb-2">
+                    <p className="text-sm text-gray-500 mb-2 dark:text-gray-200">{t('Archive_User_Description')}</p>
+                    <p className="text-sm text-gray-500 mb-2 dark:text-gray-200">
                       {t('Are_you_sure_you_want_to_archive_this_account', {
                         count: totalUsers,
                         number: totalUsers
                       })}
                     </p>
-                    <p className="text-sm font-medium text-gray-700 mb-2">{t('please_select_endDate')}</p>
+                    <p className="text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">{t('please_select_endDate')}</p>
                     <DatePicker
                       renderCustomHeader={(props) => <CustomHeader {...props} />}
                       calendarStartDay={current_member?.week_start ? parseInt(current_member?.week_start) : 0}
                       locale={lang}
                       dateFormat={current_member?.date_format}
                       className={
-                        'block z-30 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm'
+                        'block z-30 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
                       }
                       required
                       selected={employment_end_date}
@@ -581,11 +581,11 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -599,11 +599,11 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
                   <ExclamationCircleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                 </div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900  dark:text-gray-200">
                     {t('Delete_User', { count: totalUsers })}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500  dark:text-gray-200">
                       {t('Delete_User_Description', {
                         count: totalUsers,
                         number: totalUsers
@@ -614,7 +614,7 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
                     <div className="mb-4 mt-6 relative">
                       <div className="w-full bg-teams_brand_100 rounded-full h-3 relative">
                         <div className="bg-teams_brand_450 h-3 rounded-full" style={{ width: `${progress}%` }}></div>
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold">
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs font-semibold  dark:text-gray-200">
                           {(currentIndex +1) + '/' + totalUsers}
                         </div>
                       </div>
