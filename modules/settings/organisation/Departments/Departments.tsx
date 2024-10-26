@@ -144,7 +144,7 @@ const Departments: NextPage = () => {
                           <ReactTooltip
                             id="sync-tooltip"
                             className="shadow-sm z-50 "
-                            classNameArrow="shadow-sm dark:bg-teams_brand_dark_200 dark:bg-teams_brand_dark_900"
+                            classNameArrow="shadow-sm dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             place="top"
                             style={{
                               boxShadow: '0 0 10px rgba(0,0,0,.1)'
@@ -172,7 +172,7 @@ const Departments: NextPage = () => {
                           </p>
                           <ReactTooltip
                             id="department-tooltip"
-                            className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -200,7 +200,7 @@ const Departments: NextPage = () => {
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
-                            className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -217,7 +217,7 @@ const Departments: NextPage = () => {
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
-                            className="shadow-sm z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
+                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -320,7 +320,7 @@ const Departments: NextPage = () => {
                       )}
                       <ReactTooltip
                         id="depLimit-tooltip"
-                        className="shadow-sm z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
+                        className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                         classNameArrow="shadow-sm"
                         place="top"
                         opacity={1}

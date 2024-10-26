@@ -220,7 +220,7 @@ export default function IntegrationDetails(props: {
             <p className="mt-3 dark:text-gray-200">{integration.description_long_1}</p>
             <p className="mt-3 dark:text-gray-200">{integration.description_long_2}</p>
             {integration.integration === 'api' && (
-              <a className="underline mt-3" href="https://api-doc.absentify.com/">
+              <a className="underline mt-3 dark:text-gray-200" href="https://api-doc.absentify.com/">
                 {t('view_api_doc')}
               </a>
             )}

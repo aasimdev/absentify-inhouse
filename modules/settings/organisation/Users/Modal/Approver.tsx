@@ -592,7 +592,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                           </span>
                           <ReactTooltip
                             id="approv-tooltip"
-                            className="shadow-sm z-50 "
+                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{

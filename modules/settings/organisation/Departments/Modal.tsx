@@ -949,7 +949,7 @@ export default function Modal(props: {
                                 {t('advanced')}
                                 <ChevronUpDownIcon height={17} className="text-gray-800 mt-1 ml-0.5 dark:text-gray-200" />
                               </span>
-                              <ReactTooltip id="lt-tooltip" place="top" className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900" classNameArrow="shadow-sm" style={{ width: '320px' }}/>
+                              <ReactTooltip id="lt-tooltip" place="top" className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core" classNameArrow="shadow-sm" style={{ width: '320px' }}/>
                               </button>
                               {advancedSettings && (
                               <div>

@@ -442,7 +442,7 @@ export default function Modal(props: {
                                 </span>
                                 <ReactTooltip
                                   id="outSync-tooltip"
-                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                                  className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -465,7 +465,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -519,7 +519,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -612,7 +612,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900 "
+                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200 "
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       opacity={1}
@@ -669,7 +669,7 @@ export default function Modal(props: {
                                     <ReactTooltip
                                       id="ical-tooltip"
                                       place="top"
-                                      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                                      className="shadow z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       opacity={1}
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -1079,7 +1079,7 @@ export default function Modal(props: {
                                 </span>
                                 <ReactTooltip
                                   id="reason_hint_text"
-                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                                  className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}

@@ -39,7 +39,7 @@ export default function DepartmentUsers({members, max_members}: Props) {
     </span>
     <ReactTooltip
       id={member.id}
-      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
+      className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
       classNameArrow="shadow-sm"
       place="top"
       style={{ width: '160px' }}
@@ -59,7 +59,7 @@ export default function DepartmentUsers({members, max_members}: Props) {
     </span>
     <ReactTooltip
       id={'more_users'}
-      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
+      className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
       classNameArrow="shadow-sm"
       place="top"
       style={{ width: '160px' }}

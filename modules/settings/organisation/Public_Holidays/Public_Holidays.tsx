@@ -81,7 +81,7 @@ const Departments: NextPage = () => {
                               setValueForEdit(holiday);
                               setModalOpen(true);
                             }}
-                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200"
+                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ const Departments: NextPage = () => {
                             onClick={() => {
                               setValueForDelete(holiday);
                             }}
-                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200"
+                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

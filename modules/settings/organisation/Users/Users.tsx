@@ -801,7 +801,7 @@ const Users = () => {
                   </tbody>
                   <ReactTooltip
                     id="bell-tooltip"
-                    className="shadow-sm "
+                    className="shadow-sm dark:text-gray-200 dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     opacity={1}
@@ -809,7 +809,7 @@ const Users = () => {
                   />
                   <ReactTooltip
                     id="member-tooltip"
-                    className="shadow-sm z-50"
+                    className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     style={{ boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}

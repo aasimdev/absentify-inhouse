@@ -143,7 +143,7 @@ const Integrations: NextPage = () => {
                       className="text-gray-500 truncate w-56 sm:w-auto lg:w-56 1xl:w-auto dark:text-gray-200"
                       data-tooltip-id="cell-tooltip"
                       data-tooltip-content={integration.description}
-                      data-tooltip-variant="light"
+                      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                     >
                       {integration.description}
                     </p>
@@ -155,7 +155,7 @@ const Integrations: NextPage = () => {
           <ReactTooltip
             id="cell-tooltip"
             place="top"
-            className="shadow z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
+            className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
             classNameArrow="shadow-sm"
             opacity={1}
             style={{ width: '300px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}

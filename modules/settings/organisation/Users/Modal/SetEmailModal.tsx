@@ -132,7 +132,7 @@ export default function SetEmailModal(props: {
                             autoComplete="email"
                             className={`block flex-grow w-full min-w-0 rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_500 dark:text-gray-200`}
+                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                           />
                         </div>
                       </div>

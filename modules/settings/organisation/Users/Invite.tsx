@@ -332,8 +332,8 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           </span>
                           <ReactTooltip
                             id="info-tooltip"
-                            className="z-50 shadow-sm dark:bg-teams_brand_dark_200 dark:text-gray-900"
-                            classNameArrow="shadow-sm dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                            className="z-50 shadow-sm dark:bg-teams_dark_mode_core dark:text-gray-200"
+                            classNameArrow="shadow-sm dark:bg-teams_dark_mode_core dark:text-gray-200"
                             place="top"
                             opacity={1}
                             style={{ maxWidth: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}

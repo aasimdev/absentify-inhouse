@@ -314,7 +314,7 @@ const AllowancesPage: NextPage = () => {
                       )}
                       <ReactTooltip
                         id="depLimit-tooltip"
-                        className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
+                        className="shadow-sm z-50 dark:text-gray-200 dark:teams_dark_mode_core"
                         classNameArrow="shadow-sm"
                         place="top"
                         opacity={1}
@@ -324,7 +324,7 @@ const AllowancesPage: NextPage = () => {
                   </tbody>
                   <ReactTooltip
                           id="index-allowance-tooltip"
-                          className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                          className="shadow-sm z-50 dark:text-gray-200 dark:teams_dark_mode_core"
                           classNameArrow="shadow-sm"
                           place="top"
                           style={{

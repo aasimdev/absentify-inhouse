@@ -596,7 +596,7 @@ const General: NextPage = () => {
                 </span>
                 <ReactTooltip
                   id="questionM-tooltip"
-                  className="shadow z-50"
+                  className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   classNameArrow="shadow-sm"
                   place="top"
                   style={{ width: '360px' }}
@@ -651,7 +651,7 @@ const General: NextPage = () => {
                   <QuestionMarkCircleIcon height={12} />
                 </span>
                 <ReactTooltip
-                  id="questionM-tooltip"
+                  id="questionM-tooltip dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   className="shadow z-50"
                   classNameArrow="shadow-sm"
                   place="top"
@@ -703,7 +703,7 @@ const General: NextPage = () => {
                 </span>
                 <ReactTooltip
                   id="questionM-tooltip"
-                  className="shadow z-50"
+                  className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   classNameArrow="shadow-sm"
                   place="top"
                   style={{ width: '360px' }}
@@ -754,7 +754,7 @@ const General: NextPage = () => {
                 </span>
                 <ReactTooltip
                   id="questionM-tooltip"
-                  className="shadow z-50"
+                  className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   classNameArrow="shadow-sm"
                   place="top"
                   style={{ width: '360px' }}
@@ -805,7 +805,7 @@ const General: NextPage = () => {
                 </span>
                 <ReactTooltip
                   id="questionM-tooltip"
-                  className="shadow z-50"
+                  className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   classNameArrow="shadow-sm"
                   place="top"
                   style={{ width: '360px' }}
@@ -856,7 +856,7 @@ const General: NextPage = () => {
                 </span>
                 <ReactTooltip
                   id="questionM-tooltip"
-                  className="shadow z-50"
+                  className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                   classNameArrow="shadow-sm"
                   place="top"
                   style={{ width: '360px' }}
