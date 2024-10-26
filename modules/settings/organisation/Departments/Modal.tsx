@@ -32,6 +32,7 @@ import { debounce } from 'lodash';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import DepartmentUsers from "./DepartmentUsers";
 import { InputPicker } from "@components/duration-select/duration-select";
+import { useDarkSide } from '@components/ThemeContext';
 
 export const allowanceOptions = [
   { value: 0, label: '0' },
@@ -172,24 +173,24 @@ export function UpgradeModal(props: { open: boolean; onClose: Function; useInDep
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
                 <div className="sm:flex sm:items-start">
-                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teams_brand_300 sm:mx-0 sm:h-10 sm:w-10">
-                    <CheckBadgeIcon className="h-6 w-6 text-teams_brand_800" aria-hidden="true" />
+                  <div className="mx-auto flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teams_brand_300 sm:mx-0 sm:h-10 sm:w-10 dark:text-gray-200">
+                    <CheckBadgeIcon className="h-6 w-6 text-teams_brand_800 dark:text-gray-200" aria-hidden="true" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                       {t('you-need-to-upgrade')}
                     </Dialog.Title>
                     <div className="mt-2">
                       {props.useInDepartment && (
-                        <p className="text-sm text-gray-500">{t('you-need-to-upgrade-department-description')}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-200">{t('you-need-to-upgrade-department-description')}</p>
                       )}
                       {!props.useInDepartment && (
-                        <p className="text-sm text-gray-500">{t('you-need-to-upgrade-user-description')}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-200">{t('you-need-to-upgrade-user-description')}</p>
                       )}
 
-                      <p className="mt-2 text-sm text-gray-500">{t('you-need-to-upgrade-description2')}</p>
+                      <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">{t('you-need-to-upgrade-description2')}</p>
                     </div>
                   </div>
                 </div>
@@ -245,21 +246,21 @@ const SortableItem = (props: { member_id: string; removeManager: Function }) => 
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="flex items-center justify-between py-3"
+      className="flex items-center justify-between py-3 "
       onMouseDown={() => setGrabbing(true)}
       onMouseUp={() => setGrabbing(false)}
     >
       <button
         {...listeners}
         type="button"
-        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 "
+        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 dark:text-gray-200"
         style={{ cursor: grabbing ? 'grabbing' : 'grab' }}
       >
-        <ChevronUpDownIcon height={15} /> <span className="sr-only"> {person.name}</span>
+        <ChevronUpDownIcon height={15} /> <span className="sr-only dark:text-gray-200"> {person.name}</span>
       </button>
       <div className="flex grow items-center" {...listeners}>
         <ProfileImage member={person} tailwindSize="8" className="" />
-        <p className="ml-4 text-sm font-medium text-gray-900">{person.name}</p>
+        <p className="ml-4 text-sm font-medium text-gray-900 dark:text-gray-200">{person.name}</p>
       </div>
 
       <button
@@ -279,6 +280,7 @@ export default function Modal(props: {
   value: null | RouterOutputs['department']['all'][0];
 }) {
   const { t } = useTranslation('settings_organisation');
+  const [theme] = useDarkSide();
   const utils = api.useContext();
   const addDepartment = api.department.add.useMutation();
   const editDepartment = api.department.edit.useMutation();
@@ -640,10 +642,10 @@ export default function Modal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
+                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         <>
                           {' '}
                           {props.value && t('departments_edit_a_department')}{' '}
@@ -654,7 +656,7 @@ export default function Modal(props: {
                         <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                           <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                             <div className="sm:col-span-5">
-                              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('departments_Name')}
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
@@ -671,7 +673,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="name"
                                       autoComplete="name"
-                                      className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                      className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                     />
                                   )}
                                 />
@@ -684,17 +686,17 @@ export default function Modal(props: {
                               
                                 {groupSyncSettings?.find(setting => setting.manager_change_option) && (
                                   <>
-                                  <div className="absolute inset-0 bg-gray-400 opacity-20 z-20"></div>
-                                  <span className=" text-xs text-gray-400">{t('cant_manage_managers')}</span>
+                                  <div className="absolute inset-0 bg-gray-400 opacity-20 z-20 dark:text-gray-200"></div>
+                                  <span className=" text-xs text-gray-400 dark:text-gray-200">{t('cant_manage_managers')}</span>
                                   </>
                                 )}
-                              <label htmlFor="username" className="block mt-2 text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="block mt-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('departments_Boss')}
                               </label>
                               <div className="space-y-2">
                               
                                 <div>
-                                <ul role="list" className="mt-2 divide-y divide-gray-200 border-y border-gray-200">
+                                <ul role="list" className="mt-2 divide-y divide-gray-200 border-y border-gray-200 dark:bg-teams_brand_dark_100 dark:text-gray-200 ">
                                   <SortableContext items={items} strategy={verticalListSortingStrategy}>
                                     {items.map((id) => (
                                       <SortableItem
@@ -707,17 +709,17 @@ export default function Modal(props: {
                                     ))}
                                   </SortableContext>
 
-                                  <li className="flex items-center justify-between py-2">
+                                  <li className="flex items-center justify-between py-2 dark:border-gray-100">
                                     {!selectManager && (
                                       <button
                                         onClick={() => setSelectManager(true)}
                                         type="button"
-                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-teams_brand_dark_100 dark:border-gray-100"
                                       >
-                                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-gray-400">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-gray-400 dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:border-gray-100">
                                           <PlusIcon className="h-5 w-5" aria-hidden="true" />
                                         </span>
-                                        <span className="ml-4 text-sm font-medium text-gray-600 group-hover:text-gray-500">
+                                        <span className="ml-4 text-sm font-medium text-gray-600 group-hover:text-gray-500 dark:text-gray-200">
                                           {t('add-manager')}
                                         </span>
                                       </button>
@@ -746,7 +748,9 @@ export default function Modal(props: {
                                           })
                                         }}
                                         autoFocus
-                                        className="w-full"
+                                        
+                                        className="w-full my-react-select-container"
+                                        classNamePrefix="my-react-select"
                                         formatOptionLabel={formatOptionLabel}
                                         onInputChange={handleInputChange}
                                         isLoading={!!searchtext && isLoading}
@@ -777,7 +781,7 @@ export default function Modal(props: {
                             </div>
                             {depMembers && depMembers.length > 0 && (
                               <div className="sm:col-span-5">
-                                <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                                <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                                   {t('dep_members')}
                                 </label>
                                 <DepartmentUsers members={depMembers} max_members={16}/>
@@ -785,7 +789,7 @@ export default function Modal(props: {
                             )}
 
                             <div className="sm:col-span-5">
-                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('approval-process')}
                               </label>
 
@@ -802,12 +806,12 @@ export default function Modal(props: {
                                       <p>{t('change-approval-process')}</p>
                                     </Listbox.Label>
                                     <div className="relative w-full">
-                                      <div className="inline-flex w-full rounded-md border-gray-300 ">
-                                        <div className="inline-flex w-full  rounded-md  border-gray-300">
-                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm">
+                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_100">
+                                        <div className="inline-flex w-full  rounded-md  border-gray-300 dark:bg-teams_brand_dark_100">
+                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:bg-teams_brand_dark_100">
                                             <div className="inline-flex">
-                                              <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                              <p className="ml-2.5 text-sm font-medium">
+                                              <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
+                                              <p className="ml-2.5 text-sm font-medium dark:text-gray-200">
                                                 {
                                                   approvalProcessOptions.find(
                                                     (x) => x.id === getValues('data.approval_process')
@@ -816,9 +820,9 @@ export default function Modal(props: {
                                               </p>
                                             </div>
                                           </Listbox.Button>
-                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">
+                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50  dark:text-gray-200 shadow-sm dark:bg-teams_brand_dark_100">
                                             <span className="sr-only">{t('change-approval-process')}</span>
-                                            <ChevronDownIcon className="h-5 w-5 text-gray-800" aria-hidden="true" />
+                                            <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" aria-hidden="true" />
                                           </Listbox.Button>
                                         </div>
                                       </div>
@@ -830,7 +834,7 @@ export default function Modal(props: {
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                       >
-                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white dark:bg-teams_brand_dark_100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-gray-500">
                                           {approvalProcessOptions.map((option) => (
                                             <Listbox.Option
                                               key={option.title}
@@ -838,12 +842,12 @@ export default function Modal(props: {
                                                 classNames(
                                                   subscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800'
-                                                      : ' text-gray-800 '
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_200'
+                                                      : ' text-gray-800'
                                                     : option.id !== 'Linear_all_have_to_agree'
-                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 '
-                                                    : ' ',
-                                                  'cursor-pointer select-none p-4 text-sm'
+                                                  ? ' cursor-not-allowed bg-gray-100 text-gray-800'
+                                                  : ' ',
+                                                'cursor-pointer select-none p-4 text-sm'
                                                 )
                                               }
                                               disabled={subscription ? false : option.id !== 'Linear_all_have_to_agree'}
@@ -860,10 +864,10 @@ export default function Modal(props: {
                                                   } `}
                                                 >
                                                   <div className="flex justify-between">
-                                                    <p className={selected ? 'font-semibold' : 'font-normal'}>
+                                                    <p className={selected ? 'font-semibold dark:text-gray-900' : 'font-normal dark:text-gray-200'}>
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_200 dark:text-gray-600">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
@@ -882,7 +886,7 @@ export default function Modal(props: {
                                                   </div>
                                                   <p
                                                     className={classNames(
-                                                      active ? ' text-gray-700' : 'text-gray-500',
+                                                      active ? ' text-gray-700 dark:text-gray-600' : 'text-gray-500',
                                                       'mt-2'
                                                     )}
                                                   >
@@ -900,7 +904,7 @@ export default function Modal(props: {
                               </Listbox>
                             </div>
                             <div className="sm:col-span-5">
-                              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('departments_Maximum_absent')}
                               </label>
                               <div className="mt-1 flex rounded-md shadow-sm">
@@ -919,7 +923,9 @@ export default function Modal(props: {
                                         })
                                       }}
                                       value={value ? maximumAbsentoptions.find((x) => x.value === value) : undefined}
-                                      className="w-full"
+                                      
+                                      className="w-full my-react-select-container"
+                                      classNamePrefix="my-react-select"
                                       onChange={(val) => {
                                         onChange(val?.value);
                                       }}
@@ -933,21 +939,21 @@ export default function Modal(props: {
                               )}
                             </div>
                             <div className="sm:col-span-5">
-                              <button type="button" className="" onClick={handleAdvancedSettings}>
+                              <button type="button" className="dark:text-gray-200 " onClick={handleAdvancedSettings}>
                               <span
-                                className=" flex text-sm font-medium text-gray-700"
+                                className=" flex text-sm font-medium text-gray-700 dark:text-gray-200"
                                 data-tooltip-id="lt-tooltip"
                                 data-tooltip-content={t('advanced_tooltip')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {t('advanced')}
-                                <ChevronUpDownIcon height={17} className="text-gray-800 mt-1 ml-0.5" />
+                                <ChevronUpDownIcon height={17} className="text-gray-800 mt-1 ml-0.5 dark:text-gray-200" />
                               </span>
-                              <ReactTooltip id="lt-tooltip" place="top" className="shadow z-50" classNameArrow="shadow-sm" style={{ width: '320px' }}/>
+                              <ReactTooltip id="lt-tooltip" place="top" className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900" classNameArrow="shadow-sm" style={{ width: '320px' }}/>
                               </button>
                               {advancedSettings && (
                               <div>
-                                <div className="text-sm text-gray-700 mt-4">{t('advanced_desc')}</div>
+                                <div className="text-sm text-gray-700 mt-4 dark:text-gray-200">{t('advanced_desc')}</div>
                                 {(allowanceTypes && allowanceTypes.length > 0) && allowanceTypes.map(allowanceType => {
                                   const allowance = defaultAllowances.find(allowance => allowance.id === allowanceType.id) as {
                                     id: string;
@@ -955,7 +961,7 @@ export default function Modal(props: {
                                 }
                                   return(
                                  <div className="mt-4" key={allowanceType.id}>
-                                 <span className="block text-sm font-medium text-gray-700">
+                                 <span className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                                     {allowanceType.name}
                                  </span>
                                   <div className="mt-1 flex rounded-md shadow-sm">
@@ -970,6 +976,7 @@ export default function Modal(props: {
                                           });
                                         }
                                       }}
+                                      className = "dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full"
                                     />}
                                 </div>
                                 </div>

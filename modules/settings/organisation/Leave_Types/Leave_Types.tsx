@@ -70,8 +70,8 @@ const Leave_Types: NextPage = () => {
       {/* Profile section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Leave_types_title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('Leave_types_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Leave_types_title')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Leave_types_description')}</p>
         </div>
         <div className="mt-6 flex flex-col ">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
@@ -79,23 +79,23 @@ const Leave_Types: NextPage = () => {
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                       <tr>
                         <th
                           scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                         >
                           {t('Name')}
                         </th>
                         <th
                           scope="col"
-                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                         >
                           {t('Leave_types_Color')}
                         </th>
                         <th
                           scope="col"
-                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                         >
                           {t('Leave_types_Icon')}
                         </th>
@@ -105,7 +105,7 @@ const Leave_Types: NextPage = () => {
                         <th scope="col" className="relative px-6 py-3"></th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white">
+                    <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                       <SortableContext items={items} strategy={verticalListSortingStrategy}>
                         {items.map((id) => (
                           <SortableItem
@@ -124,7 +124,7 @@ const Leave_Types: NextPage = () => {
 
                       <tr>
                         <td
-                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900"
+                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200"
                           colSpan={8}
                           onClick={(e) => {
                             e.preventDefault();
@@ -247,10 +247,10 @@ const SortableItem = (props: {
   return (
     <>
       <tr key={leave_type.id} ref={setNodeRef} style={style} {...attributes} className="cursor-default">
-        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
           <span className="w-24 truncate">{leave_type.name}</span>
         </td>
-        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell">
+        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200 dark:bg-teams_brand_dark-100">
           <div
             onClick={(e) => {
               e.preventDefault();
@@ -272,7 +272,7 @@ const SortableItem = (props: {
                     await saveLeaveType(leave_type);
                     setOpenColorPicker(null);
                   }}
-                  className="fixed mt-2 -ml-3"
+                  className="fixed mt-2 -ml-3 dark:bg-teams_brand_dark_100"
                   styles={{
                     default: {
                       card: {

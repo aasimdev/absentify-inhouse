@@ -102,8 +102,10 @@ const IconPicker = (props: { value: string; color: string; onChange: Function; l
           width: '95px',
         })
       }}
-      menuPortalTarget={document.body}
+      // menuPortalTarget={document.body}
       options={options}
+      className="w-full my-react-select-container"
+      classNamePrefix="my-react-select"
     ></Select>
   );
 };

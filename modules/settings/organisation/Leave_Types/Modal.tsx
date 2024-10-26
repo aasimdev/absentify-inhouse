@@ -14,12 +14,15 @@ import Loader from '@components/calendar/Loader';
 import { classNames } from '~/lib/classNames';
 import Link from 'next/link';
 import { isDayUnit, isHourUnit } from '~/lib/DateHelper';
+import { useDarkSide } from '@components/ThemeContext';
 
 export default function Modal(props: {
   open: boolean;
   onClose: Function;
   value: null | RouterOutputs['leave_type']['all'][0];
 }) {
+  
+  const [theme] = useDarkSide();
   const { t } = useTranslation('settings_organisation');
   const { current_member, subscription } = useAbsentify();
   const cancelButtonRef = useRef(null);
@@ -345,20 +348,20 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 ">
+            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     <>
                       {props.value && t('Leave_types_Dialog_Edit_title')}{' '}
                       {!props.value && t('Leave_types_Dialog_title')}
                     </>
                   </Dialog.Title>
-                  <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:divide-gray-500 dark:text-gray-200" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 flex flex-col lg:flex-row">
                       <div className="grow space-y-6">
                         <div>
-                          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200 ">
                             {t('Leave_types_Name')}
                           </label>
                           <div className="mt-1">
@@ -374,7 +377,7 @@ export default function Modal(props: {
                               name="name"
                               id="name"
                               autoComplete="name"
-                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                             />
                             {errors.name?.message && (
                               <div className="mt-2 inline-flex">
@@ -386,7 +389,7 @@ export default function Modal(props: {
                         </div>
 
                         <div>
-                          <label htmlFor="minimum_daily_absence" className="block text-sm font-medium text-gray-700">
+                          <label htmlFor="minimum_daily_absence" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                             {t('Outlook_sync_setting')}
                           </label>
                           <div className="mt-1">
@@ -409,9 +412,10 @@ export default function Modal(props: {
                                       }
                                     })
                                   }}
-                                  menuPortalTarget={document.body}
+                                  // menuPortalTarget={document.body}
                                   value={syncEnabledValues.find((x) => x.id === value)}
-                                  className="w-full"
+                                  className="w-full my-react-select-container"
+                                  classNamePrefix="my-react-select"
                                   onChange={(val) => {
                                     if (val) onChange(val.id);
                                   }}
@@ -432,13 +436,13 @@ export default function Modal(props: {
                                   className="ml-1 flex items-center cursor-pointer"
                                   data-tooltip-id="outSync-tooltip"
                                   data-tooltip-content={t('Outlook_Synchronization_Settings_Description')}
-                                  data-tooltip-variant="light"
+                                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
                                   <QuestionMarkCircleIcon height={12} />
                                 </span>
                                 <ReactTooltip
                                   id="outSync-tooltip"
-                                  className="shadow-sm z-50 "
+                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -455,13 +459,13 @@ export default function Modal(props: {
                                       className="ml-1 flex items-center cursor-pointer"
                                       data-tooltip-id="outSync-tooltip"
                                       data-tooltip-content={t('Outlook_Calendar_entry_show_as_Description')}
-                                      data-tooltip-variant="light"
+                                      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                     >
                                       <QuestionMarkCircleIcon height={12} />
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 "
+                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -487,9 +491,10 @@ export default function Modal(props: {
                                               }
                                             })
                                           }}
-                                          menuPortalTarget={document.body}
+                                          // menuPortalTarget={document.body}
                                           value={outlookShowAsSelectValues.find((x) => x.id === value)}
-                                          className="w-full"
+                                          className="w-full my-react-select-container"
+                                          classNamePrefix="my-react-select"
                                           onChange={(val) => {
                                             if (val) onChange(val.id);
                                           }}
@@ -508,13 +513,13 @@ export default function Modal(props: {
                                       className="ml-1 flex items-center cursor-pointer"
                                       data-tooltip-id="outSync-tooltip"
                                       data-tooltip-content={t('Event_Subject_Description_Outlook')}
-                                      data-tooltip-variant="light"
+                                      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                     >
                                       <QuestionMarkCircleIcon height={12} />
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 "
+                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -532,7 +537,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -548,10 +553,10 @@ export default function Modal(props: {
                                   <div>
                                     <Switch.Group as="li" className="flex items-center justify-between py-4">
                                       <div className="flex flex-col">
-                                        <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                                        <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                           {t('Categorize_as_Tracked_To_Dynamics_365_in_Outlook')}
                                         </Switch.Label>
-                                        <Switch.Description className="text-sm text-gray-500">
+                                        <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                           {t('Categorize_as_Tracked_To_Dynamics_365_in_Outlook_description')}
                                         </Switch.Description>
                                       </div>
@@ -566,8 +571,8 @@ export default function Modal(props: {
                                               onChange(val);
                                             }}
                                             className={classNames(
-                                              value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                              'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                              value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                              'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                             )}
                                           >
                                             <span
@@ -588,26 +593,26 @@ export default function Modal(props: {
                           )}
                         {workspace?.microsoft_calendars_read_write !== 'ACTIVATED' &&
                           watch('sync_option') !== 'Disabled' && (
-                            <div className="text-sm block font-medium text-gray-700 mb-2 pl-2">
+                            <div className="text-sm block font-medium text-gray-700 mb-2 pl-2 dark:text-gray-200">
                               {t('iCal_Synchronization_Settings')}{' '}
                               <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2">
                                 <div className="mb-6">
                                   <label
                                     htmlFor="iCal_event_show_as"
-                                    className="inline-flex text-sm font-medium text-gray-700"
+                                    className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200"
                                   >
                                     {t('iCal_synchronization_show_as')}{' '}
                                     <span
                                       className="ml-1 flex items-center cursor-pointer"
                                       data-tooltip-id="outSync-tooltip"
                                       data-tooltip-content={t('iCal_entry_show_as_Description')}
-                                      data-tooltip-variant="light"
+                                      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                     >
                                       <QuestionMarkCircleIcon height={12} />
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 "
+                                      className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900 "
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       opacity={1}
@@ -634,9 +639,11 @@ export default function Modal(props: {
                                               }
                                             })
                                           }}
-                                          menuPortalTarget={document.body}
+                                          // menuPortalTarget={document.body}
                                           value={outlookShowAsSelectValues.find((x) => x.id === value)}
-                                          className="w-full"
+                                          
+                                          className="w-full my-react-select-container"
+                                          classNamePrefix="my-react-select"
                                           onChange={(val) => {
                                             if (val) onChange(val.id);
                                           }}
@@ -649,20 +656,20 @@ export default function Modal(props: {
                                   </div>
                                 </div>
                                 <div className="mb-6">
-                                  <label htmlFor="name" className="inline-flex text-sm font-medium text-gray-700">
+                                  <label htmlFor="name" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                                     {t('EventSubject')}{' '}
                                     <span
                                       className="ml-1 flex items-center cursor-pointer"
                                       data-tooltip-id="ical-tooltip"
                                       data-tooltip-content={t('Event_Subject_Description_iCal')}
-                                      data-tooltip-variant="light"
+                                      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                     >
                                       <QuestionMarkCircleIcon height={12} />
                                     </span>
                                     <ReactTooltip
                                       id="ical-tooltip"
                                       place="top"
-                                      className="shadow z-50"
+                                      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                                       classNameArrow="shadow-sm"
                                       opacity={1}
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -680,7 +687,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-100"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -696,15 +703,15 @@ export default function Modal(props: {
                             </div>
                           )}
                         <ul role="list" className="mt-2">
-                          <div className="text-sm block font-medium text-gray-700 mb-2 pl-2">
+                          <div className="text-sm block font-medium text-gray-700 mb-2 pl-2 dark:text-gray-200">
                             {t('Leave_types_Deduct_from_allowance')}{' '}
                             <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2">
                               <Switch.Group as="li" className="flex items-center justify-between py-4">
                                 <div className="flex flex-col">
-                                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                     {t('Leave_types_Deduct_from_allowance')}
                                   </Switch.Label>
-                                  <Switch.Description className="text-sm text-gray-500">
+                                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                     {t('Leave_types_Deduct_from_allowance_description')}
                                   </Switch.Description>
                                 </div>
@@ -726,8 +733,8 @@ export default function Modal(props: {
                                           setValue('allowance_type_id', allowancesTypes[0]?.id);
                                       }}
                                       className={classNames(
-                                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                       )}
                                     >
                                       <span
@@ -746,10 +753,10 @@ export default function Modal(props: {
                                 <div>
                                   <Switch.Group as="li" className="flex items-center justify-between py-4">
                                     <div className="flex flex-col">
-                                      <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                                      <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                         {t('Leave_types_ignore_public_holidays')}
                                       </Switch.Label>
-                                      <Switch.Description className="text-sm text-gray-500">
+                                      <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                         {t('Leave_types_ignore_public_holidays_description')}
                                       </Switch.Description>
                                     </div>
@@ -764,8 +771,8 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
                                           <span
@@ -781,10 +788,10 @@ export default function Modal(props: {
                                   </Switch.Group>
                                   <Switch.Group as="li" className="flex items-center justify-between py-4">
                                     <div className="flex flex-col">
-                                      <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                                      <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                         {t('Leave_types_ignore_schedule')}
                                       </Switch.Label>
-                                      <Switch.Description className="text-sm text-gray-500">
+                                      <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                         {t('Leave_types_ignore_schedule_description')}
                                       </Switch.Description>
                                     </div>
@@ -799,8 +806,8 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
                                           <span
@@ -822,7 +829,7 @@ export default function Modal(props: {
                                   <div>
                                     <label
                                       htmlFor="allowance_type_id"
-                                      className="block text-sm font-medium text-gray-700"
+                                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                                     >
                                       {t('take_from_allowance_type')}
                                     </label>
@@ -846,9 +853,11 @@ export default function Modal(props: {
                                                 }
                                               })
                                             }}
-                                            menuPortalTarget={document.body}
+                                            // menuPortalTarget={document.body}
                                             value={allowancesTypes.find((x) => x.id === value)}
-                                            className="w-full"
+                                           
+                                            className="w-full my-react-select-container"
+                                            classNamePrefix="my-react-select"
                                             onChange={(val) => {
                                               if (val) onChange(val.id);
                                             }}
@@ -865,11 +874,12 @@ export default function Modal(props: {
                           </div>
 
                           <div className="mt-4">
-                            <label htmlFor="leave_unit" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="leave_unit" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('Leave_types_leave_unit')}
                             </label>
                             <div className="mt-1">
                               <Controller
+                                // className ="dark:bg-teams_brand_dark_100"
                                 rules={{ required: true }}
                                 control={control}
                                 name="leave_unit"
@@ -886,15 +896,15 @@ export default function Modal(props: {
                                   >
                                     {({ open }) => (
                                       <>
-                                        <Listbox.Label className="sr-only">
+                                        <Listbox.Label className="sr-only dark:text-gray-200 dark:bg-teams_brand_dark_100">
                                           <p> {t('Leave_types_leave_unit')}</p>{' '}
                                         </Listbox.Label>
                                         <div className="relative w-full">
                                           <div className="inline-flex w-full rounded-md border-gray-300 ">
                                             <div className="inline-flex w-full rounded-md border-gray-300">
-                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm ">
+                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white dark:bg-teams_brand_dark_100 py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:text-gray-200">
                                                 <div className="inline-flex">
-                                                  <p className=" text-sm font-medium">
+                                                  <p className=" text-sm font-medium dark:text-gray-200">
                                                     {
                                                       leaveUnitSelectValues.find(
                                                         (x) => x.id === getValues('leave_unit')
@@ -903,9 +913,9 @@ export default function Modal(props: {
                                                   </p>
                                                 </div>
                                               </Listbox.Button>
-                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">
-                                                <span className="sr-only"> {t('Leave_types_leave_unit')}</span>
-                                                <ChevronDownIcon className="h-5 w-5 text-gray-800" aria-hidden="true" />
+                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-100">
+                                                <span className="sr-only dark:text-gray-200"> {t('Leave_types_leave_unit')}</span>
+                                                <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" aria-hidden="true" />
                                               </Listbox.Button>
                                             </div>
                                           </div>
@@ -917,7 +927,7 @@ export default function Modal(props: {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                           >
-                                            <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                                               {leaveUnitSelectValues.map((option) => (
                                                 <Listbox.Option
                                                   key={option.name}
@@ -926,8 +936,8 @@ export default function Modal(props: {
                                                       'cursor-pointer select-none p-4 text-sm',
                                                       hasValidSubscription
                                                         ? active
-                                                          ? 'bg-gray-100 text-gray-800'
-                                                          : 'text-gray-800'
+                                                          ? 'bg-gray-100 text-gray-800 dark:text-gray-200'
+                                                          : 'text-gray-800 dark:text-gray-400'
                                                         : option.id !== 'days' && option.id !== 'half_days'
                                                         ? 'cursor-not-allowed bg-gray-100 text-gray-800'
                                                         : ''
@@ -966,8 +976,8 @@ export default function Modal(props: {
                                                           )}
                                                         </span>
                                                         {selected ? (
-                                                          <span className={active ? 'text-black' : 'text-gray-300'}>
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                          <span className={active ? 'text-black dark:text-gray-200' : 'text-gray-300'}>
+                                                            <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
                                                           </span>
                                                         ) : null}
                                                       </div>
@@ -987,10 +997,10 @@ export default function Modal(props: {
                           </div>
                           <Switch.Group as="li" className="flex items-center justify-between py-4">
                             <div className="flex flex-col">
-                              <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                              <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                 {t('Leave_types_Requires_approval')}
                               </Switch.Label>
-                              <Switch.Description className="text-sm text-gray-500">
+                              <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                 {t('Leave_types_Requires_approval_description')}
                               </Switch.Description>
                             </div>
@@ -1005,8 +1015,8 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
@@ -1022,10 +1032,10 @@ export default function Modal(props: {
                           </Switch.Group>
                           <Switch.Group as="li" className="flex items-center justify-between py-4">
                             <div className="flex flex-col">
-                              <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                              <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                 {t('Reason_Mandatory')}
                               </Switch.Label>
-                              <Switch.Description className="text-sm text-gray-500">
+                              <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                 {t('Reason_Mandatory_Description')}
                               </Switch.Description>
                             </div>
@@ -1040,8 +1050,8 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
@@ -1057,19 +1067,19 @@ export default function Modal(props: {
                           </Switch.Group>
                           {watch('reason_mandatory') == true && (
                             <div>
-                              <label htmlFor="name" className=" inline-flex text-sm font-medium text-gray-700">
+                              <label htmlFor="name" className=" inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('reason_hint_text')}{' '}
                                 <span
                                   className=" flex items-center cursor-pointer"
                                   data-tooltip-id="outSync-tooltip"
                                   data-tooltip-content={t('reason_hint_text_description')}
-                                  data-tooltip-variant="light"
+                                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
                                   <QuestionMarkCircleIcon height={12} className="ml-1" />
                                 </span>
                                 <ReactTooltip
                                   id="reason_hint_text"
-                                  className="shadow-sm z-50"
+                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -1087,7 +1097,7 @@ export default function Modal(props: {
                                 type="text"
                                 name="reason_hint_text"
                                 id="reason_hint_text"
-                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                               />
                               {errors.reason_hint_text?.message && (
                                 <div className="mt-2 inline-flex">
@@ -1099,10 +1109,10 @@ export default function Modal(props: {
                           )}
                           <Switch.Group as="li" className="flex items-center justify-between py-4">
                             <div className="flex flex-col">
-                              <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                              <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                 {t('Leave_types_Include_in_maximum_absent')}
                               </Switch.Label>
-                              <Switch.Description className="text-sm text-gray-500">
+                              <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                 {t('Leave_types_Include_in_maximum_absent_description')}
                               </Switch.Description>
                             </div>
@@ -1117,8 +1127,8 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
@@ -1135,10 +1145,10 @@ export default function Modal(props: {
 
                           <Switch.Group as="li" className="flex items-center justify-between py-4">
                             <div className="flex flex-col">
-                              <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                              <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                                 {t('Leave_types_privacy')}
                               </Switch.Label>
-                              <Switch.Description className="text-sm text-gray-500">
+                              <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                                 {t('Leave_types_privacy_description')}
                               </Switch.Description>
                             </div>
@@ -1153,8 +1163,8 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span

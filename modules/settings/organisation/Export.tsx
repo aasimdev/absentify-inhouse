@@ -146,14 +146,14 @@ const Export: NextPage = () => {
     <form className=" divide-y divide-gray-200 lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Export')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('Export_Description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Export')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Export_Description')}</p>
         </div>
         {teamsMobile ? (
           <div className="rounded-md bg-yellow-50 p-4 mt-4">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <svg className="h-5 w-5 text-yellow-400 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path
                     fill-rule="evenodd"
                     d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z"
@@ -161,30 +161,30 @@ const Export: NextPage = () => {
                   />
                 </svg>
               </div>
-              <div className="ml-3">{t('only_on_desktop')}</div>
+              <div className="ml-3 dark:text-gray-200">{t('only_on_desktop')}</div>
             </div>
           </div>
         ) : (
           <div className="mt-6 flex flex-col w-full">
             <div className="mb-4">
-              <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">
                 {watch('year') === 'specific_month' || (watch('year') as string)?.length > 4 ? (
                   <>
                     <span
-                      className="text-gray-500 cursor-pointer"
+                      className="text-gray-500 cursor-pointer dark:text-gray-200"
                       onClick={() => {
                         setValue('year', `${new Date().getFullYear()}`);
                       }}
                     >
                       {t('Year')}
                     </span>{' '}
-                    | <span className="font-bold text-base"> {t('Month')} </span>
+                    | <span className="font-bold text-base dark:text-gray-200"> {t('Month')} </span>
                   </>
                 ) : (
                   <>
-                    <span className="font-bold text-base"> {t('Year')}</span> |{' '}
+                    <span className="font-bold text-base dark:text-gray-200"> {t('Year')}</span> |{' '}
                     <span
-                      className="text-gray-500 cursor-pointer"
+                      className="text-gray-500 cursor-pointer dark:text-gray-200"
                       onClick={() => {
                         if (validSubscription) {
                           setValue('year', 'specific_month');
@@ -217,7 +217,9 @@ const Export: NextPage = () => {
                           })
                         }}
                         value={value ? years.find((x) => x.value === value) : undefined}
-                        className="w-80"
+                         
+                        className="w-full my-react-select-container w-80"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           onChange(val?.value);
                         }}
@@ -243,7 +245,8 @@ const Export: NextPage = () => {
                           })
                         }}
                         value={value ? years.find((x) => x.value === value) : undefined}
-                        className="w-80"
+                        className="w-full my-react-select-container w-80"
+                        classNamePrefix="my-react-select"
                         onChange={(val) => {
                           if (val?.value === 'specific_month' && !validSubscription) {
                             onChange(years[0]?.value);
@@ -262,7 +265,7 @@ const Export: NextPage = () => {
 
             {departments && (
               <div className="mb-4">
-                <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">
                   <span className="font-bold text-base">{t('department')}</span>
                 </label>
                 <div>
@@ -285,7 +288,7 @@ const Export: NextPage = () => {
                             }
                           })
                         }}
-                        menuPortalTarget={document.body}
+                        // menuPortalTarget={document.body}
                         options={[
                           { id: '', name: t('All_departments') },
                           ...departments.map((dept) => ({ id: dept.id, name: dept.name }))
@@ -297,7 +300,8 @@ const Export: NextPage = () => {
                             ? departments.find((dept) => dept.id === value) || { id: '', name: t('All_departments') }
                             : { id: '', name: t('All_departments') }
                         }
-                        className="w-80"
+                        className="w-full my-react-select-container w-80"
+                        classNamePrefix="my-react-select"
                         onChange={(selectedOption) => {
                           if (!validSubscription) {
                             notifyAlert(t('No_plan'));

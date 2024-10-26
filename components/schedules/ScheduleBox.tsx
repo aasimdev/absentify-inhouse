@@ -43,7 +43,7 @@ export default function ScheduleBox(props: {
       <div className="px-4 py-5 sm:p-6">
         {props.showState && (
           <div className="flex justify-between">
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
+            <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
               {t('From')}: {props.mode == 'workspace_schedules' && <>{t('Start_of_employment')}</>}
               {props.schedule && (props.schedule as defaultMemberSelectOutput['schedules'][0])?.from && (
                 <>{format(dateToIsoDate((props.schedule as any).from), current_member.date_format)}</>
@@ -51,15 +51,15 @@ export default function ScheduleBox(props: {
             </h3>
 
             {props.state == 'completed' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
                 {t('Completed')}
               </span>
             ) : props.state == 'future' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
                 {t('In_future')}
               </span>
             ) : (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
                 {t('Current_work_schedule')}
               </span>
             )}

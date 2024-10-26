@@ -14,7 +14,7 @@ export const ModalTextArea = (props: {
       name="reason"
       maxLength={2500}
       rows={props.row}
-      className="block w-full max-w-lg rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+      className="block w-full max-w-lg rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
       defaultValue={''}
     />
   </div>

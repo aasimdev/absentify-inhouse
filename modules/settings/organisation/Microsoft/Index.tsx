@@ -265,17 +265,17 @@ const Microsoft: NextPage = () => {
       <div className="pt-6 divide-y divide-gray-200">
         <div className="px-4 sm:px-6">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Microsoft_Integration')}</h2>
-            <p className="mt-1 text-sm text-gray-500">{t('Microsoft_Integration_Description')} </p>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Microsoft_Integration')}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Microsoft_Integration_Description')} </p>
           </div>
           <ul role="list" className="mt-2 divide-y divide-gray-200">
             {scopes && !loadingSwitch.CalendarsReadWrite ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Outlook_calendar_synchronization')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Outlook_calendar_synchronization_description')}
                   </Switch.Description>
                 </div>
@@ -324,8 +324,8 @@ const Microsoft: NextPage = () => {
                         setLoadingSwitch({ ...loadingSwitch, CalendarsReadWrite: false });
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -345,10 +345,10 @@ const Microsoft: NextPage = () => {
             {scopes && !loadingSwitch.MailboxSettingsReadWrite ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Outlook_Mailbox_settings')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Outlook_Mailbox_settings_description')}
                   </Switch.Description>
                 </div>
@@ -394,8 +394,8 @@ const Microsoft: NextPage = () => {
                         setLoadingSwitch({ ...loadingSwitch, MailboxSettingsReadWrite: false });
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -415,10 +415,10 @@ const Microsoft: NextPage = () => {
             {scopes && !loadingSwitch.UserReadAll ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Users_settings')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Users_settings_description')}
                   </Switch.Description>
                 </div>
@@ -465,8 +465,8 @@ const Microsoft: NextPage = () => {
                         }
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -486,10 +486,10 @@ const Microsoft: NextPage = () => {
             {scopes && !loadingSwitch.GroupReadWriteAll ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Groups_settings')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Groups_settings_description')}
                   </Switch.Description>
                 </div>
@@ -536,8 +536,8 @@ const Microsoft: NextPage = () => {
                         }
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -557,10 +557,10 @@ const Microsoft: NextPage = () => {
             {scopes ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('AI_Bot_enabled_settings')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('AI_Bot_enabled_settings_description')}
                   </Switch.Description>
                 </div>
@@ -592,8 +592,8 @@ const Microsoft: NextPage = () => {
                         );
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span

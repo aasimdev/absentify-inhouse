@@ -9,8 +9,10 @@ import { api, type RouterOutputs } from '~/utils/api';
 import { notifyError, notifySuccess } from '~/helper/notify';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import ConfirmModal from '@components/confirmModal';
+import { useDarkSide } from '@components/ThemeContext';
 
 const Departments: NextPage = () => {
+  const [theme] = useDarkSide();
   const { t } = useTranslation('settings_organisation');
   const { teamsMobile, subscription } = useAbsentify();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -98,51 +100,51 @@ const Departments: NextPage = () => {
       {/* Profile section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('departments_title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('departments_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('departments_title')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('departments_description')}</p>
         </div>
-        <div className="mt-6 flex flex-col ">
-          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
-            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div className="mt-6 flex flex-col shadow rounded-lg">
+        <div className="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-6 min-w-full">
+            <div className="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
                     <tr>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                       >
                         {t('departments_Department')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       >
                         {t('departments_Boss')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       >
                         {t('departments_Maximum_absent')}
                       </th>
 
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       >
                         <div
                             className=""
                             data-tooltip-id="sync-tooltip"
                             data-tooltip-content={t('ad_teams_desc')}
-                            data-tooltip-variant="light"
+                            data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
                             {t('ad_teams_sync_status')}
                           </div>
                           <ReactTooltip
                             id="sync-tooltip"
                             className="shadow-sm z-50 "
-                            classNameArrow="shadow-sm"
+                            classNameArrow="shadow-sm dark:bg-teams_brand_dark_200 dark:bg-teams_brand_dark_900"
                             place="top"
                             style={{
                               boxShadow: '0 0 10px rgba(0,0,0,.1)'
@@ -153,24 +155,24 @@ const Departments: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                     {departments?.map((department) => (
                       <tr key={department.id}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                           {department.name}
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
                           <p
                             className="w-20 truncate"
                             data-tooltip-id="department-tooltip"
                             data-tooltip-content={createManagerString(department)}
-                            data-tooltip-variant="light"
+                            data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
                             {createManagerString(department)}
                           </p>
                           <ReactTooltip
                             id="department-tooltip"
-                            className="shadow-sm z-50 "
+                            className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -178,27 +180,27 @@ const Departments: NextPage = () => {
                             }}
                           />
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
                           {department.maximum_absent == -1 && t('departments_No_limit')}
                           {department.maximum_absent == 1 && '1 ' + t('departments_User')}
                           {department.maximum_absent &&
                             department.maximum_absent > 1 &&
                             department.maximum_absent + ' ' + t('departments_Users')}
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
                           {department.groupSyncSettings.length > 0 && workspace?.microsoft_groups_read_write_all
                           ? 
                           (<><div
                             className="w-20 truncate"
                             data-tooltip-id={`sync-tooltip${department.id}`}
                             data-tooltip-content={t('ad_teams_desc_check')}
-                            data-tooltip-variant="light"
+                            data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
-                            <CheckIcon width={20} className="self-center text-gray-400" />
+                            <CheckIcon width={20} className="self-center text-gray-400 dark:text-gray-200" />
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
-                            className="shadow-sm z-50 "
+                            className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -209,13 +211,13 @@ const Departments: NextPage = () => {
                             className="w-20 truncate"
                             data-tooltip-id={`sync-tooltip${department.id}`}
                             data-tooltip-content={t('ad_teams_desc_cross')}
-                            data-tooltip-variant="light"
+                            data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
-                            <XMarkIcon width={20} className="self-center text-gray-400"/>
+                            <XMarkIcon width={20} className="self-center text-gray-400 dark:text-gray-200"/>
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
-                            className="shadow-sm z-50 "
+                            className="shadow-sm z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -230,11 +232,11 @@ const Departments: NextPage = () => {
                               setValueForEdit(department);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -251,7 +253,7 @@ const Departments: NextPage = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -279,7 +281,7 @@ const Departments: NextPage = () => {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -289,7 +291,7 @@ const Departments: NextPage = () => {
                                 clipRule="evenodd"
                               />
                             </svg>{' '}
-                            <span className="ml-2">{t('departments_new_department')}</span>
+                            <span className="ml-2 dark:text-gray-200">{t('departments_new_department')}</span>
                           </div>
                         </td>
                       )}
@@ -307,7 +309,7 @@ const Departments: NextPage = () => {
                               className="ml-2 flex items-center cursor-pointer"
                               data-tooltip-id="depLimit-tooltip"
                               data-tooltip-content={t('department_limit_go_upgrade_description')}
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >
                               <QuestionMarkCircleIcon width={12} className="self-center" />
                             </span>
@@ -318,7 +320,7 @@ const Departments: NextPage = () => {
                       )}
                       <ReactTooltip
                         id="depLimit-tooltip"
-                        className="shadow-sm z-50 "
+                        className="shadow-sm z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                         classNameArrow="shadow-sm"
                         place="top"
                         opacity={1}

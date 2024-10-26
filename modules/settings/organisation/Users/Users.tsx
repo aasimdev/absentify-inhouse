@@ -588,7 +588,7 @@ const Users = () => {
                               />
                             </span>
                             <span
-                              className=" relative w-8"
+                              className=" relative w-8 dark:text-gray-200"
                               onClick={(e) => {
                                 e.preventDefault();
                                 setValueForEdit(member);
@@ -920,7 +920,7 @@ const Users = () => {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
+                          className="h-5 w-5 dark:text-gray-200"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -930,7 +930,7 @@ const Users = () => {
                             clipRule="evenodd"
                           />
                         </svg>{' '}
-                        <span className="ml-2">{t('add_new_user')}</span>
+                        <span className="ml-2 dark:text-gray-200">{t('add_new_user')}</span>
                       </div>
                       <div
                         className="mt-5 flex"
@@ -940,9 +940,9 @@ const Users = () => {
                           setModalImportOpen(true);
                         }}
                       >
-                        <DocumentPlusIcon height="20" />
+                        <DocumentPlusIcon height="20" className="dark:text-gray-200"/>
 
-                        <span className="ml-2">{t('import_users')}</span>
+                        <span className="ml-2 dark:text-gray-200">{t('import_users')}</span>
                       </div>
                     </td>
                   </tr>

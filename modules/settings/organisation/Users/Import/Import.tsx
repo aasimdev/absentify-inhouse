@@ -13,8 +13,10 @@ import GroupCheckboxList from './GroupCheckboxList';
 import { Tooltip as ReactTooltip, Tooltip } from 'react-tooltip';
 import Loader from '@components/calendar/Loader';
 import { Status } from '@prisma/client';
+import { useDarkSide } from '@components/ThemeContext';
 
 export default function ImportModal(props: { open: boolean; onClose: Function }) {
+  const [theme] = useDarkSide();
   const { t, lang } = useTranslation('users');
   const [loading, setLoading] = useState<boolean>(false);
   const [emptyError, setEmptyError] = useState(false);
@@ -523,7 +525,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block overflow-hidden px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6">
+            <div className="inline-block overflow-hidden px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <nav aria-label="Progress">
                 <ol role="list" className="space-y-4 md:flex md:space-y-0 md:space-x-8">
                   {steps.map((step) => (
@@ -533,7 +535,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           <span className="text-xs text-teams_brand_foreground_bg font-semibold tracking-wide uppercase ">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : step.status === 'current' ? (
                         <span
@@ -543,26 +545,26 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           <span className="text-xs text-teams_brand_foreground_bg font-semibold tracking-wide uppercase">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : (
                         <span className="group pl-4 py-2 flex flex-col border-l-4 border-gray-200  md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4">
                           <span className="text-xs text-gray-500 font-semibold tracking-wide uppercase">{step.id}</span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       )}
                     </li>
                   ))}
                 </ol>
               </nav>
-              <div className="border-t border-gray-200 mt-5"></div>
+              <div className="border-t border-gray-200 mt-5 dark:border-gray-500"></div>
               {steps.find((x) => x.status == 'current')?.key == 'populate_excel' && (
-                <div className="bg-white  mt-5">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="text-lg leading-6 font-medium text-gray-900">{t('import-teams-ad-users')}</h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">{t('import-teams-ad-users')}</h3>
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-100">
                           <p>{t('import-teams-ad-users-description')}</p>
                         </div>
                       </div>
@@ -577,13 +579,13 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         <>
                           <div className="ml-3 mb-3 p-2 pl-0 pb-1 border-b border-gray-200 md:w-9/12 w-11/12">
                             <button onClick={handleSelectAll}>
-                              <span className={`text-base pr-1.5 hover:text-teams_brand_600 ${selectedGroups.length} `}>
+                              <span className={`text-base pr-1.5 hover:text-teams_brand_600 dark:text-gray-200 ${selectedGroups.length} `}>
                                 {' '}
                                 {t('select_all')}
                               </span>{' '}
                             </button>
                             <button onClick={handleUnselectAll}>
-                              <span className={`text-base hover:text-teams_brand_600 `}> | {t('unselect_all')}</span>
+                              <span className={`text-base hover:text-teams_brand_600 dark:text-gray-200 `}> | {t('unselect_all')}</span>
                             </button>
                           </div>
                           <GroupCheckboxList
@@ -641,12 +643,12 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                 </div>
               )}
               {steps.find((x) => x.status == 'current')?.key == 'download_template' && (
-                <div className="bg-white  mt-5">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:rounded">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-center sm:justify-between">
                       <div>
-                        <h3 className="text-lg leading-6 font-medium text-gray-900">{t('Download_Excel_Template')}</h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">{t('Download_Excel_Template')}</h3>
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p>{t('Download_Excel_Template_description')}</p>
                         </div>
                       </div>
@@ -672,12 +674,12 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
               )}
 
               {steps.find((x) => x.status == 'current')?.key == 'upload_excel' && (
-                <div className="bg-white  mt-5">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:rounded">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-center sm:justify-between">
                       <div>
-                        <h3 className="text-lg leading-6 font-medium text-gray-900">{t('Upload_Excel_File')}</h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-gray-200">{t('Upload_Excel_File')}</h3>
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p>{t('Upload_Excel_File_description')}</p>
                         </div>
                       </div>
@@ -689,6 +691,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           ref={hiddenFileInput}
                           style={{ display: 'none' }}
                           onChange={handleUpload}
+                          className='dark:bg-teams_brand_dark_200 dark:text-gray-200'
                         />
                         <button
                           onClick={() => {
@@ -719,8 +722,8 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         </div>
                         <div className="flex">
                           <div className="ml-3 flex flex-col justify-center align-middle">
-                            <h3 className="text-lg font-semibold text-gray-900">{t('no_users_found')}</h3>
-                            <div className="mt-2 text-sm text-gray-900">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">{t('no_users_found')}</h3>
+                            <div className="mt-2 text-sm text-gray-900 dark:text-gray-200">
                               <p className="mb-4">{t('no_users_found_description')}</p>
                             </div>
                           </div>
@@ -740,7 +743,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                     <>
                       <div className="sm:flex sm:items-center">
                         <div className="sm:flex-auto">
-                          <p className="mt-2 text-sm text-gray-700">{t('Upload_Excel_File_description_2')}</p>
+                          <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('Upload_Excel_File_description_2')}</p>
                         </div>
                         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none"></div>
                       </div>
@@ -748,37 +751,37 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                              <table className="min-w-full divide-y divide-gray-300">
-                                <thead className="bg-gray-50">
+                              <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_dark_100">
+                                <thead className="bg-gray-50 dark:bg-teams_brand_dark_200">
                                   <tr>
                                     <th
                                       scope="col"
-                                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-900"
                                     >
                                       {t('Name')}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-900"
                                     >
                                       {t('Email')}
                                     </th>
 
-                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-gray-900">
                                       <span className="sr-only">{t('Status')}</span>
                                     </th>
                                   </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 bg-white">
+                                <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                                   {dataFromExcel.map((person) => (
                                     <tr key={person.email}>
-                                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-gray-900">
                                         {person.name}
                                       </td>
-                                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-900">
                                         {person.email ?? '-'}
                                       </td>
-                                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-gray-900">
                                         {person.validationStatus == 'pending' && (
                                           <div className="-ml-1 mr-3">
                                             <Loader />
@@ -792,7 +795,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                             <span
                                               data-tooltip-id="excel-tooltip"
                                               data-tooltip-content={person.errorMessage}
-                                              data-tooltip-variant="light"
+                                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                             >
                                               <ExclamationCircleIcon height={24} color="blue" />
                                             </span>
@@ -803,7 +806,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                             <span
                                               data-tooltip-id="excel-tooltip"
                                               data-tooltip-content={person.errorMessage}
-                                              data-tooltip-variant="light"
+                                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                             >
                                               <ExclamationCircleIcon height={24} color="red" />
                                             </span>
@@ -815,7 +818,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                 </tbody>
                                 <ReactTooltip
                                   id="excel-tooltip"
-                                  className="shadow-sm z-50 "
+                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900 "
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   opacity={1}
@@ -869,10 +872,10 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                 </div>
               )}
               {steps.find((x) => x.status == 'current')?.key == 'invite_users' && (
-                <div className="px-4 sm:px-6 lg:px-8 mt-5">
+                <div className="px-4 sm:px-6 lg:px-8 mt-5 dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                      <p className="mt-2 text-sm text-gray-700">{t('Upload_Excel_File_description_2')}</p>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('Upload_Excel_File_description_2')}</p>
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none"></div>
                   </div>
@@ -880,43 +883,43 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                          <table className="min-w-full divide-y divide-gray-300">
-                            <thead className="bg-gray-50">
+                          <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_dark_200 dark:divide-gray-500">
+                            <thead className="bg-gray-50 dark:bg-teams_brand_dark_200">
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                                  className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-900"
                                 >
                                   {t('Name')}
                                 </th>
-                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-900">
                                   {t('Email')}
                                 </th>
 
-                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-gray-900">
                                   <span className="sr-only">{t('Invited')}</span>
                                 </th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 bg-white">
+                            <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_200">
                               {dataFromExcel.map((person) => (
                                 <tr key={person.email}>
-                                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-gray-900">
                                     {person.name}
                                   </td>
                                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-gray-900">
                                     {person.invited == false && (
                                       <div className="-ml-1 mr-3">
                                         <Loader />
                                       </div>
                                     )}
                                     {person.invited && person.validationStatus == 'skip' && (
-                                      <span className="cursor-pointer ml-1 flex items-center">
+                                      <span className="cursor-pointer ml-1 flex items-center ">
                                         <span
                                           data-tooltip-id="step-tooltip"
                                           data-tooltip-content={person.errorMessage}
-                                          data-tooltip-variant="light"
+                                          data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                         >
                                           <CheckCircleIcon height={24} color="blue" />
                                         </span>
@@ -930,7 +933,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                         <span
                                           data-tooltip-id="step-tooltip"
                                           data-tooltip-content={person.errorMessage}
-                                          data-tooltip-variant="light"
+                                          data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                         >
                                           <ExclamationCircleIcon height={24} color="red" />
                                         </span>

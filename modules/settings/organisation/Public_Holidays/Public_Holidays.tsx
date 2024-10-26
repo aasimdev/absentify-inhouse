@@ -46,19 +46,19 @@ const Departments: NextPage = () => {
     <div className="divide-y divide-gray-200 lg:col-span-10">
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('public_holidays_title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('public_holidays_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('public_holidays_title')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('public_holidays_description')}</p>
         </div>
         <div className="flex flex-col mt-6 ">
           <div className="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-6 min-w-full">
             <div className="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-gray-200"
                       >
                         {t('Name')}
                       </th>
@@ -67,25 +67,25 @@ const Departments: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-teams_brand_dark_100">
                     {public_holidays.map((holiday) => (
                       <tr key={holiday.id}>
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-gray-200">
                           {holiday.name}
                         </td>
 
-                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap ">
                           <a
                             onClick={async (e) => {
                               e.preventDefault();
                               setValueForEdit(holiday);
                               setModalOpen(true);
                             }}
-                            className="text-gray-300 cursor-pointer hover:text-gray-900"
+                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="w-5 h-5"
+                              className="w-5 h-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -99,11 +99,11 @@ const Departments: NextPage = () => {
                             onClick={() => {
                               setValueForDelete(holiday);
                             }}
-                            className="text-gray-300 cursor-pointer hover:text-gray-900"
+                            className="text-gray-300 cursor-pointer hover:text-gray-900 dark:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="w-5 h-5"
+                              className="w-5 h-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -130,7 +130,7 @@ const Departments: NextPage = () => {
                         <div className="flex">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-5 h-5"
+                            className="w-5 h-5 dark:text-gray-200"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >
@@ -140,7 +140,7 @@ const Departments: NextPage = () => {
                               clipRule="evenodd"
                             />
                           </svg>{' '}
-                          <span className="ml-2">{t('Add_public_holiday')}</span>
+                          <span className="ml-2 dark:text-gray-200">{t('Add_public_holiday')}</span>
                         </div>
                       </td>
                     </tr>

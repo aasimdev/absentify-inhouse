@@ -6,13 +6,13 @@ export const Steps = (props: { page: number }) => {
   ];
   return (
     <nav className="flex items-center justify-center" aria-label="Progress">
-      <p className="text-sm font-medium">{`Step ${props.page + 1} of 3`}</p>
+      <p className="text-sm font-medium dark:text-gray-200">{`Step ${props.page + 1} of 3`}</p>
       <ol role="list" className="ml-8 flex items-center space-x-5">
         {steps.map((step) => (
           <li key={step.name}>
             {step.page < props.page ? (
               <div className="block h-2.5 w-2.5 rounded-full bg-teams_brand_600">
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only dark:text-gray-200">{step.name}</span>
               </div>
             ) : step.page === props.page ? (
               <div className="relative flex items-center justify-center" aria-current="step">
@@ -20,11 +20,11 @@ export const Steps = (props: { page: number }) => {
                   <span className="h-full w-full rounded-full bg-teams_brand_200" />
                 </span>
                 <span className="relative block h-2.5 w-2.5 rounded-full bg-teams_brand_600" aria-hidden="true" />
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only dark:text-gray-200">{step.name}</span>
               </div>
             ) : (
               <div className="block h-2.5 w-2.5 rounded-full bg-gray-200">
-                <span className="sr-only">{step.name}</span>
+                <span className="sr-only dark:text-gray-200">{step.name}</span>
               </div>
             )}
           </li>

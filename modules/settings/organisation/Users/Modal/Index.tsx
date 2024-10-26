@@ -74,9 +74,9 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_brand_dark_600">
+            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_brand_dark_600 dark:divide-gray-500">
               <div className="sm:flex sm:items-start">
-                <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
+                <div className="mt-3 w-full text-center sm:mt-0 sm:text-left dark:divide-gray-500">
                   <Dialog.Title as="h3" className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     <p className="inline-flex">
                       {props.currentMember && (
@@ -91,8 +91,8 @@ export default function Modal(props: {
                     </p>
                   </Dialog.Title>
                   <main className="border-t">
-                    <div className="overflow-visible bg-white dark:divide-gray-500">
-                      <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+                    <div className="overflow-visible bg-white">
+                      <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x dark:divide-gray-500">
                         <aside className="py-6 lg:col-span-3 dark:bg-teams_dark_mode_core">
                           <nav className="space-y-1">
                             {subNavigation.map((item) => (

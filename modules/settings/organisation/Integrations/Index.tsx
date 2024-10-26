@@ -7,8 +7,11 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { useAbsentify } from '@components/AbsentifyContext';
 import { useEffect, useState } from 'react';
 import { api } from '~/utils/api';
+import { useDarkSide } from '@components/ThemeContext';
+
 const Integrations: NextPage = () => {
   const { t } = useTranslation('settings_organisation');
+  const [theme] = useDarkSide();
   const router = useRouter();
   const { subscription } = useAbsentify();
   const { data: calendarSyncSettings } = api.calendar_sync_setting.all.useQuery(
@@ -98,12 +101,12 @@ const Integrations: NextPage = () => {
       <div className="pt-6 divide-y divide-gray-200">
         <div className="p-4 sm:px-6 ">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('absentify_Integrations')}</h2>
-            <p className="mt-1 text-sm text-gray-500">{t('absentify_Integrations_description')} </p>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('absentify_Integrations')}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('absentify_Integrations_description')} </p>
           </div>
           {!subscription.has_valid_subscription && (
-            <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 ">
-              <div className="w-full text-sm ">
+            <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_dark_100">
+              <div className="w-full text-sm dark:text-gray-200">
                 {t('Integrations_description_available_in_plan') + ' '}
                 <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">
                   {t('Integrations_description_available_in_plan_2')}
@@ -115,7 +118,7 @@ const Integrations: NextPage = () => {
             {integrations.map((integration) => (
               <li
                 key={integration.name}
-                className="col-span-1 flex rounded-md shadow-sm"
+                className="col-span-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                 onClick={() => {
                   router.push(`/settings/organisation/integrations/${integration.integration}`);
                 }}
@@ -128,16 +131,16 @@ const Integrations: NextPage = () => {
                 >
                   <img src={integration.imageUrl} alt={integration.name} width="50px" />
                 </div>
-                <div className="flex flex-1 items-center justify-between rounded-r-md border-t border-r border-b border-gray-200 bg-white">
+                <div className="flex flex-1 items-center justify-between rounded-r-md border-t border-r border-b border-gray-200 bg-white dark:text-gray-200 dark:bg-teams_brand_dark_100">
                   <div className="flex-1 lg:px-2 px-4 py-2 text-sm truncate w-56 sm:w-auto lg:w-56 1xl:w-auto">
                     <Link
                       href={`/settings/organisation/integrations/${integration.integration}`}
-                      className="font-medium text-gray-900 hover:text-gray-600"
+                      className="font-medium text-gray-900 hover:text-gray-600 dark:text-gray-200 dark:text-gray-200"
                     >
                       {integration.name}
                     </Link>
                     <p
-                      className="text-gray-500 truncate w-56 sm:w-auto lg:w-56 1xl:w-auto"
+                      className="text-gray-500 truncate w-56 sm:w-auto lg:w-56 1xl:w-auto dark:text-gray-200"
                       data-tooltip-id="cell-tooltip"
                       data-tooltip-content={integration.description}
                       data-tooltip-variant="light"
@@ -152,7 +155,7 @@ const Integrations: NextPage = () => {
           <ReactTooltip
             id="cell-tooltip"
             place="top"
-            className="shadow z-50"
+            className="shadow z-50 dark:text-gray-900 dark:bg-teams_brand_dark_200"
             classNameArrow="shadow-sm"
             opacity={1}
             style={{ width: '300px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}

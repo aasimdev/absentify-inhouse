@@ -158,15 +158,15 @@ export default function IntegrationDetails(props: {
   }, [props.integration]);
   if (!integration) return null;
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-10">
+    <form className="divide-y divide-gray-200 lg:col-span-10 dark:bg-teams_brand_dark_100">
       <div className="pt-6 divide-y divide-gray-200">
         <div className="p-4 sm:px-6">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{integration.name}</h2>
-            <p className="mt-1 text-sm text-gray-500">{integration.description} </p>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{integration.name}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{integration.description} </p>
             <br />
             {integration.integration === 'calendar_sync' && (
-              <p className='mt-1 text-sm text-gray-500'>{integration.calendar_sync_description_note} <a target="_blank" href="https://support.absentify.com/en/article/setting-up-microsoft-integrations-abpgzq/?bust=1686129063445#2-outlook-calendar-synchronization)."><span className='hover:underline cursor-pointer hover:text-gray-400'>Calendar Sync <ArrowTopRightOnSquareIcon className=" mb-1 inline-block" height={15} />  </span></a></p>
+              <p className='mt-1 text-sm text-gray-500 dark:text-gray-200 dark:bg-teams_brand_dark_100'>{integration.calendar_sync_description_note} <a target="_blank" href="https://support.absentify.com/en/article/setting-up-microsoft-integrations-abpgzq/?bust=1686129063445#2-outlook-calendar-synchronization)."><span className='hover:underline cursor-pointer hover:text-gray-400'>Calendar Sync <ArrowTopRightOnSquareIcon className=" mb-1 inline-block" height={15} />  </span></a></p>
             )}
           </div>
           {integration.integration != 'timeghost' &&
@@ -177,7 +177,7 @@ export default function IntegrationDetails(props: {
             integration.integration != 'powerbi' &&
             integration.integration != 'outlook_oof' &&
             integration.integration != 'ad_group_sync' && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 ">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt- dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:rounded dark:border-gray-100">
                 <div className="w-full text-sm ">
                   {t('Integrations_description_available_in_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">
@@ -191,8 +191,8 @@ export default function IntegrationDetails(props: {
             (integration.integration == 'api' ||
               integration.integration == 'powerbi' ||
               integration.integration == 'outlook_oof') && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 ">
-                <div className="w-full text-sm ">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border dark:rounded dark:border-gray-100">
+                <div className="w-full text-sm dark:text-gray-200">
                   {t('Integration_description_available_in_enterprise_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">
                     {t('Integrations_description_available_in_plan_2')}
@@ -202,8 +202,8 @@ export default function IntegrationDetails(props: {
             )}
 
             {integration.integration == 'ad_group_sync' && workspace?.microsoft_groups_read_write_all !== 'ACTIVATED' && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 ">
-                <div className="w-full text-sm ">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:rounded dark:border-gray-100 ">
+                <div className="w-full text-sm dark:text-gray-200">
                   <Link href="/settings/organisation/microsoft" className="transition-color duration-200 underline ">
                   {t('ad_groups_needs_activated') + ' '}
                   </Link>
@@ -214,37 +214,37 @@ export default function IntegrationDetails(props: {
           <div className="flex flex-col py-5 px-6 rounded border mt-10">
             <div className="flex items-center flex-row space-x-4">
               <img src={integration.imageUrl} alt="Integrately" className="w-8 h-8" />
-              <h6 className="">{integration.about}</h6>
+              <h6 className="dark:text-gray-200">{integration.about}</h6>
             </div>
-            <p className="mt-3 ">{integration.description_long}</p>
-            <p className="mt-3 ">{integration.description_long_1}</p>
-            <p className="mt-3 ">{integration.description_long_2}</p>
+            <p className="mt-3 dark:text-gray-200">{integration.description_long}</p>
+            <p className="mt-3 dark:text-gray-200">{integration.description_long_1}</p>
+            <p className="mt-3 dark:text-gray-200">{integration.description_long_2}</p>
             {integration.integration === 'api' && (
               <a className="underline mt-3" href="https://api-doc.absentify.com/">
                 {t('view_api_doc')}
               </a>
             )}
             {integration.integration === 'webhooks' && (
-              <a className="underline mt-3" href="https://support.absentify.com/en/article/webhook-integration-r863or/">
+              <a className="underline mt-3 dark:text-gray-200" href="https://support.absentify.com/en/article/webhook-integration-r863or/">
                 {t('Webhooks_description_2')}
               </a>
             )}
             <p className="mt-3 ">
-              <a className="underline" href={integration.frill_link} target="_blank">
+              <a className="underline dark:text-gray-200" href={integration.frill_link} target="_blank">
                 {integration.additional_frill_info}
               </a>
             </p>
 
             <hr className="flex w-full text-element-0 my-5" />
             <div className="flex items-center justify-between">
-              <h6 className="">{integration.connect_name}</h6>
+              <h6 className="dark:text-gray-200">{integration.connect_name}</h6>
               {integration.integration === 'power_automate' && (
                 <button
                   type="button"
                   onClick={() => {
                     window.open(integration.url, '_blank');
                   }}
-                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:text-gray-200"
                 >
                   {integration.call_to_action_name}
                 </button>

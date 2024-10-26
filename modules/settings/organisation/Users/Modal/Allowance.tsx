@@ -14,7 +14,10 @@ import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { Switch } from '@headlessui/react';
 import { classNames } from '~/lib/classNames';
 import { Translate } from 'next-translate';
+import { useDarkSide } from '@components/ThemeContext';
+
 export default function Allowance(props: { onClose: Function; currentMember: defaultMemberSelectOutput }) {
+  const [theme] = useDarkSide();
   const { t, lang } = useTranslation('allowance');
   const {
     data: userAllowance,
@@ -62,11 +65,11 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   if (!member) return <></>;
   if (!allowanceTypes) return <></>;
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9">
+    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Allowance')}</h2>
-          <p className="mt-1 text-sm text-gray-500"></p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Allowance')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200"></p>
         </div>
         {userAllowance && (
           <div>
@@ -91,60 +94,60 @@ export default function Allowance(props: { onClose: Function; currentMember: def
               if (!allowanceType) return null;
 
               return (
-                <div key={allowanceType.id} className="p-2 mt-2 shadow rounded-lg">
+                <div key={allowanceType.id} className="p-2 mt-2 shadow rounded-lg dark:text-gray-200">
                   <AllowanceTypeHeadline
                     allowance_type_config={config}
                     allowance_type={allowanceType}
                     currentMember={member}
                     t={t}
                   />
-                  <p className="mt-1 text-sm text-gray-500"></p>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-200"></p>
                   {filteredAllowance.length > 0 && (
                     <div
                       key={allowanceType.id}
-                      className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg"
+                      className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:border-gray-500"
                     >
-                      <table className="min-w-full divide-y divide-gray-200 ">
-                        <thead className="bg-gray-50">
+                      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_200 ">
+                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_200">
                           <tr>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               {t('Year')}
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               <p
-                                className="w-6 truncate md:w-16"
+                                className="w-6 truncate md:w-16 dark:text-gray-800"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Brought_forward')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {t('Brought_forward')}
                               </p>
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               <p
-                                className="w-6 truncate md:w-16"
+                                className="w-6 truncate md:w-16 dark:text-gray-800"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Allowance')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {t('Allowance')}
                               </p>
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               <p
-                                className="w-6 truncate md:w-16"
+                                className="w-6 truncate md:w-16 dark:text-gray-800"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('compensatory_time_off')}
                                 data-tooltip-variant="light"
@@ -154,13 +157,13 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               <p
-                                className="w-6 truncate md:w-16"
+                                className="w-6 truncate md:w-16 dark:text-gray-800"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Taken')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {t('Taken')}
                               </p>
@@ -168,28 +171,28 @@ export default function Allowance(props: { onClose: Function; currentMember: def
 
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-900 dark:bg-teams_brand_dark_200"
                             >
                               <p
-                                className="w-6 truncate md:w-16"
+                                className="w-6 truncate md:w-16 dark:text-gray-800"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Remaining')}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               >
                                 {t('Remaining')}
                               </p>
                             </th>
 
-                            <th scope="col" className="relative px-3 py-3"></th>
+                            <th scope="col" className="relative px-3 py-3 "></th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white">
+                        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_200">
                           {filteredAllowance.map((allowance) =>
                             editMode?.id == allowance.id ? (
-                              <tr key={allowance.id}>
+                              <tr key={allowance.id} className='dark:bg-teams_brand_dark_200'>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
                                   {allowance.start.getUTCFullYear() != allowance.end.getUTCFullYear() && (
-                                    <p>{allowance.start.getUTCFullYear() + '-' + allowance.end.getUTCFullYear()} </p>
+                                    <p className='dark:text-gray-800'>{allowance.start.getUTCFullYear() + '-' + allowance.end.getUTCFullYear()} </p>
                                   )}
                                   {allowance.start.getUTCFullYear() == allowance.end.getUTCFullYear() &&
                                     allowance.start.getUTCFullYear()}
@@ -199,7 +202,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                   <div className="divide-y divide-gray-200">
                                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                                       <div className="sm:col-span-5">
-                                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-800">
                                           {t('Brought_forward')}
                                         </label>
                                         <div className="relative mt-1 ">
@@ -254,19 +257,19 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                             filteredAllowance[0].id != allowance.id &&
                                             !allowance.overwrite_brought_forward &&
                                             !editMode.overwrite_brought_forward && (
-                                              <span className="flex">
+                                              <span className="flex dark:text-gray-800">
                                                 {allowancePart(allowance)}{' '}
                                                 <a
                                                   onClick={async (e) => {
                                                     e.preventDefault();
                                                     setShowConfirmModal(true);
                                                   }}
-                                                  className="cursor-pointer text-gray-300 hover:text-gray-900 ml-2"
+                                                  className="cursor-pointer text-gray-300 hover:text-gray-900 ml-2 dark:text-gray-800"
                                                 >
                                                   {/* edit icon */}
                                                   <svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="h-5 w-5"
+                                                    className="h-5 w-5 dark:text-gray-900"
                                                     viewBox="0 0 20 20"
                                                     fill="currentColor"
                                                   >
@@ -278,7 +281,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                         </div>
                                       </div>
                                       <div className="sm:col-span-5">
-                                        <label htmlFor="allowance" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="allowance" className="block text-sm font-medium text-gray-700 dark:text-gray-800">
                                           {t('Allowance')}
                                         </label>
                                         <div className="relative mt-1 ">
@@ -296,7 +299,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                         </div>
                                       </div>
                                       <div className="sm:col-span-5">
-                                        <label htmlFor="compensatory-time-off" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="compensatory-time-off" className="block text-sm font-medium text-gray-700 dark:text-gray-800">
                                           {t('compensatory_time_off')}
                                         </label>
                                         <div className="relative mt-1 ">
@@ -314,7 +317,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                         </div>
                                       </div>
                                       <div className="sm:col-span-5">
-                                        <label htmlFor="taken" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="taken" className="block text-sm font-medium text-gray-700 dark:text-gray-800">
                                           {t('Taken')}
                                         </label>
                                         <div className="relative mt-1 ">
@@ -322,7 +325,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                         </div>
                                       </div>
                                       <div className="sm:col-span-5">
-                                        <label htmlFor="remaining" className="block text-sm font-medium text-gray-700">
+                                        <label htmlFor="remaining" className="block text-sm font-medium text-gray-700 dark:text-gray-800">
                                           {t('Remaining')}
                                         </label>
 
@@ -389,7 +392,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                   {allowance.start.getUTCFullYear() == allowance.end.getUTCFullYear() &&
                                     allowance.start.getUTCFullYear()}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-800">
                                   <span className="flex">
                                     {allowancePart(allowance)}
                                     {allowance.overwrite_brought_forward && (
@@ -404,20 +407,20 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                     )}
                                   </span>
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden overflow-ellipsis">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden dark:text-gray-800 overflow-ellipsis">
                                   {allowanceRounded(allowance, 'allowance')}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden overflow-ellipsis">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden dark:text-gray-800 overflow-ellipsis">
                                   {allowanceRounded(allowance, 'compensatory_time_off')}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden overflow-ellipsis">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden dark:text-gray-800 overflow-ellipsis">
                                   {allowanceRounded(allowance, 'taken')}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden overflow-ellipsis">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 max-w-[100px] overflow-hidden  dark:text-gray-800 overflow-ellipsis">
                                   {allowanceRounded(allowance, 'remaining')}
                                 </td>
                                 {editMode?.id !== allowance.id && !isLoading && (
-                                  <td className="whitespace-nowrap px-3 py-4 text-right text-sm font-medium flex-shrink-0 w-12">
+                                  <td className="whitespace-nowrap px-3 py-4 text-right text-sm font-medium flex-shrink-0 w-12 dark:text-gray-800">
                                     <a
                                       onClick={async (e) => {
                                         e.preventDefault();
@@ -428,7 +431,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                       {/* edit icon */}
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5"
+                                        className="h-5 w-5 dark:text-gray-900"
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
                                       >
@@ -476,24 +479,24 @@ export default function Allowance(props: { onClose: Function; currentMember: def
       {showConfirmModal && (
         <ConfirmModal
           text={
-            <div className="text-left">
-              <h1 className="underline">{t('ManualCarryoverDialog_Title')}</h1>
-              <p className="mt-2">{t('ManualCarryoverDialog_Intro')}</p>
+            <div className="text-left dark:bg-teams_brand_dark_200">
+              <h1 className="underline dark:text-gray-900">{t('ManualCarryoverDialog_Title')}</h1>
+              <p className="mt-2 dark:text-gray-900">{t('ManualCarryoverDialog_Intro')}</p>
               <ol className="mt-2">
-                <li>
+                <li className="dark:text-gray-900">
                   <strong>{t('ManualCarryoverDialog_OverrideSetting')}:</strong>{' '}
                   {t('ManualCarryoverDialog_OverrideSettingDesc')}
                 </li>
-                <li>
+                <li className="dark:text-gray-900">
                   <strong>{t('ManualCarryoverDialog_SettingCarryover')}:</strong>{' '}
                   {t('ManualCarryoverDialog_SettingCarryoverDesc')}
                 </li>
-                <li>
+                <li className="dark:text-gray-900">
                   <strong>{t('ManualCarryoverDialog_NoAutomaticAdjustment')}:</strong>{' '}
                   {t('ManualCarryoverDialog_NoAutomaticAdjustmentDesc')}
                 </li>
               </ol>
-              <p className="mt-2">{t('ManualCarryoverDialog_Confirmation')}</p>
+              <p className="mt-2 dark:text-gray-900">{t('ManualCarryoverDialog_Confirmation')}</p>
             </div>
           }
           handleCallback={() => {
@@ -538,7 +541,7 @@ const AllowanceTypeHeadline = (props: {
 
   return (
     <div className="flex justify-between items-center mt-4">
-      <h2 className="text-lg font-medium leading-6 text-gray-900 mt-4 lg:mt-0">
+      <h2 className="text-lg font-medium leading-6 text-gray-900 mt-4 lg:mt-0 dark:text-gray-200">
         {props.allowance_type.name} ({props.allowance_type.allowance_unit == 'days' && props.t('Days')}
         {props.allowance_type.allowance_unit == 'hours' && props.t('Hours')})
       </h2>
@@ -549,7 +552,7 @@ const AllowanceTypeHeadline = (props: {
           <>
             <Switch.Group as="div" className="flex items-center">
               <Switch.Label as="span" className="mr-3 text-sm">
-                <span className="font-medium text-gray-900">{props.t('Default')}:</span>
+                <span className="font-medium text-gray-900 dark:text-gray-200">{props.t('Default')}:</span>
               </Switch.Label>
               <Switch
                 checked={props.allowance_type_config.default}
@@ -585,8 +588,8 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  props.allowance_type_config.default ? 'bg-teams_brand_600' : 'bg-gray-200',
-                  'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2'
+                  props.allowance_type_config.default ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >
                 <span
@@ -632,7 +635,7 @@ const AllowanceTypeHeadline = (props: {
             </Switch.Group>
             <Switch.Group as="div" className="flex items-center mt-2">
               <Switch.Label as="span" className="mr-3 text-sm">
-                <span className="font-medium text-gray-900">{props.t('Visible')}: </span>
+                <span className="font-medium text-gray-900 dark:text-gray-200">{props.t('Visible')}: </span>
               </Switch.Label>
               <Switch
                 checked={!props.allowance_type_config.disabled}
@@ -668,8 +671,8 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600' : 'bg-gray-200',
-                  'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2'
+                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >
                 <span

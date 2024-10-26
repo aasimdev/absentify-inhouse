@@ -1,6 +1,9 @@
 import ProfileImage from "@components/layout/components/ProfileImage";
 import useTranslation from "next-translate/useTranslation";
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+
+import { useDarkSide } from '@components/ThemeContext';
+
 type Props = {
   members: {
     id: string;
@@ -16,6 +19,7 @@ max_members: number;
 
 export default function DepartmentUsers({members, max_members}: Props) {
   const { t } = useTranslation('settings_organisation');
+  const [theme] = useDarkSide();
   const memberOverflow = members.length > max_members;
   const useMembers = memberOverflow ? members.slice(0, max_members) : members;
   return (
@@ -26,7 +30,7 @@ export default function DepartmentUsers({members, max_members}: Props) {
       className="ml-1 flex items-center self-center cursor-pointer"
       data-tooltip-id={member.id}
       data-tooltip-content={member.member.name ?? ''}
-      data-tooltip-variant="light"
+      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
     >
       <ProfileImage tailwindSize="6" member={{
         has_cdn_image: member.member.has_cdn_image,
@@ -35,7 +39,7 @@ export default function DepartmentUsers({members, max_members}: Props) {
     </span>
     <ReactTooltip
       id={member.id}
-      className="shadow z-50"
+      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
       classNameArrow="shadow-sm"
       place="top"
       style={{ width: '160px' }}
@@ -49,13 +53,13 @@ export default function DepartmentUsers({members, max_members}: Props) {
       className="ml-1 flex items-center self-center cursor-pointer"
       data-tooltip-id={'more_users'}
       data-tooltip-content={t("more_users", {users: members.length - 16})}
-      data-tooltip-variant="light"
+      data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
     >
     ...
     </span>
     <ReactTooltip
       id={'more_users'}
-      className="shadow z-50"
+      className="shadow z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
       classNameArrow="shadow-sm"
       place="top"
       style={{ width: '160px' }}

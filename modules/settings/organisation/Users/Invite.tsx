@@ -19,8 +19,10 @@ import { CustomHeader } from '@components/CustomHeader';
 import { InputPicker } from '@components/duration-select/duration-select';
 import { getFiscalYearStartAndEndDates } from '~/lib/requestUtilities';
 import { getDatesFromNow } from '~/lib/DateHelper';
+import { useDarkSide } from '@components/ThemeContext';
 
 export default function InviteModal(props: { open: boolean; onClose: Function }) {
+  const [theme] = useDarkSide();
   const { t, lang } = useTranslation('users');
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
@@ -291,16 +293,16 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     {t('add_new_user')}
                   </Dialog.Title>
                   <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('name')}
                           <span className="text-red-500">*</span>
                         </label>
@@ -311,14 +313,14 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             name="name"
                             id="name"
                             autoComplete="name"
-                            className={`block w-full min-w-0 grow rounded-md ${
+                            className={`block w-full min-w-0 grow rounded-md  ${
                               errors.name ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                           />
                         </div>
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="email" className="inline-flex text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="inline-flex text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('Email')}
 
                           <span
@@ -330,8 +332,8 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           </span>
                           <ReactTooltip
                             id="info-tooltip"
-                            className="z-50 shadow-sm"
-                            classNameArrow="shadow-sm"
+                            className="z-50 shadow-sm dark:bg-teams_brand_dark_200 dark:text-gray-900"
+                            classNameArrow="shadow-sm dark:bg-teams_brand_dark_200 dark:text-gray-900"
                             place="top"
                             opacity={1}
                             style={{ maxWidth: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -340,18 +342,18 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             {
                               <div className="overflow-auto">
                                 {!subscription.has_valid_subscription ? (
-                                  <h1 className="text-sm font-semibold">
+                                  <h1 className="text-sm font-semibold dark:text-gray-900">
                                     {t('UserWithoutEmailHeadlineWithoutSubscription')}
                                   </h1>
                                 ) : (
-                                  <h1>{t('UserWithoutEmailHeadlineWithSubscription')}</h1>
+                                  <h1 className='dark:text-gray-900'>{t('UserWithoutEmailHeadlineWithSubscription')}</h1>
                                 )}
 
                                 <p className="mt-2 text-sm">{t('UserWithoutEmailDescription')}</p>
 
                                 {!subscription.has_valid_subscription && (
-                                  <p className="mt-2 text-sm hover:text-teams_brand_500 hover:underline">
-                                    <Link href={'/settings/organisation/upgrade'} className="mt-3 font-semibold">
+                                  <p className="mt-2 text-sm hover:text-teams_brand_500 hover:underline dark:text-gray-900">
+                                    <Link href={'/settings/organisation/upgrade'} className="mt-3 font-semibold dark:text-gray-900">
                                       {t('Upgrade')} --{'>'}
                                     </Link>
                                   </p>
@@ -372,12 +374,12 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             autoComplete="email"
                             className={`block w-full min-w-0 grow rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                           />
                         </div>
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="department" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="department" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('department')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -402,10 +404,9 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                       }
                                     })
                                   }}
-                                  menuPortalTarget={document.body}
+                                  // menuPortalTarget={document.body}
                                   value={value ? departments.find((x) => x.id === value[0]) : undefined}
                                   defaultValue={departments[0]}
-                                  className="w-full"
                                   onChange={(val) => {
                                     if (val) {
                                       onChange([val.id]);
@@ -414,6 +415,8 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                   getOptionLabel={(option) => `${option.name}`}
                                   getOptionValue={(option) => option.id}
                                   options={departments}
+                                  className="w-full my-react-select-container"
+                                  classNamePrefix="my-react-select"
                                 />
                               )}
                             />
@@ -421,7 +424,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                         </div>
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="public_holiday_id" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="public_holiday_id" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('Public_holidays')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -446,9 +449,10 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                       }
                                     })
                                   }}
-                                  menuPortalTarget={document.body}
+                                  // menuPortalTarget={document.body}
                                   value={value ? PUBLIC_HOLIDAYS.find((x) => x.id === value) : undefined}
-                                  className="w-full"
+                                  className="w-full my-react-select-container"
+                                  classNamePrefix="my-react-select"
                                   onChange={(val) => {
                                     onChange(val?.id);
                                   }}
@@ -463,7 +467,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                       </div>
 
                       <div className="sm:col-span-5">
-                        <label htmlFor="employmentStartDate" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="employmentStartDate" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('EmploymentStartDate')}
                           <span className="text-red-500">*</span>
                         </label>
@@ -481,7 +485,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                               dateFormat={current_member?.date_format}
                               className={`block w-full min-w-0 grow rounded-md ${
                                 errors.employment_start_date ? 'border-red-400 ' : 'border-gray-300'
-                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                               selected={field.value}
                               onChange={(date: Date) => field.onChange(date)}
                             />
@@ -490,7 +494,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                       </div>
                       <div className="sm:col-span-5">
                         <div>
-                          <div className="block text-sm font-medium text-gray-700">{t('default_allowances')}</div>
+                          <div className="block text-sm font-medium text-gray-700 dark:text-gray-200">{t('default_allowances')}</div>
                           {allowanceTypes &&
                             allowanceTypes.length > 0 &&
                             allowanceTypes.map((allowanceType) => {
@@ -505,11 +509,11 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                 | undefined;
                               return (
                                 <div className="mt-4" key={allowanceType.id}>
-                                  <span className="block text-sm font-medium text-gray-700">{allowanceType.name}</span>
-                                  <span className="block text-sm text-gray-700 mt-2">
+                                  <span className="block text-sm font-medium text-gray-700 dark:text-gray-200">{allowanceType.name}</span>
+                                  <span className="block text-sm text-gray-700 mt-2 dark:text-gray-200">
                                     {t('Annual_allowance_current_year')}
                                   </span>
-                                  <div className="mt-1 flex rounded-md shadow-sm">
+                                  <div className="mt-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_dark_100">
                                     {
                                       <InputPicker
                                         unit={allowanceType.allowance_unit}
@@ -523,10 +527,11 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
+                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                       />
                                     }
                                   </div>
-                                  <span className="block text-sm text-gray-700 mt-2">
+                                  <span className="block text-sm text-gray-700 mt-2 dark:text-gray-200">
                                     {t('Annual_allowance_next_year')}
                                   </span>
                                   <div className="mt-1 flex rounded-md shadow-sm">
@@ -543,6 +548,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
+                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                       />
                                     }
                                   </div>

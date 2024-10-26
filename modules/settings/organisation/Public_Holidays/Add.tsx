@@ -94,17 +94,17 @@ export default function Add(props: { open: boolean; onClose: Function }) {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
+            <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     {t('Add_public_holiday')}
                   </Dialog.Title>
-                  <p className="mt-1 text-sm text-gray-500">{t('Add_public_holiday_description')}</p>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Add_public_holiday_description')}</p>
                   <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('departments_Name')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -114,12 +114,12 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                             name="name"
                             id="name"
                             autoComplete="name"
-                            className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                            className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                           />
                         </div>
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('Country')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -142,9 +142,11 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                                       }
                                     })
                                   }}
-                                  menuPortalTarget={document.body}
+                                  // menuPortalTarget={document.body}/=
                                   value={value ? countries.find((x) => x.code === value) : undefined}
-                                  className="w-full"
+                                  
+                                  className="w-full my-react-select-container"
+                                  classNamePrefix="my-react-select"
                                   getOptionLabel={(option) => `${t(option.code)}`}
                                   getOptionValue={(option) => option.code}
                                   onChange={(val) => {
@@ -162,7 +164,7 @@ export default function Add(props: { open: boolean; onClose: Function }) {
 
                       {counties.length > 0 && (
                         <div className="sm:col-span-5">
-                          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                          <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                             {t('County')}
                           </label>
                           <div className="mt-1 flex rounded-md shadow-sm">
@@ -185,9 +187,11 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                                       }
                                     })
                                   }}
-                                  menuPortalTarget={document.body}
+                                  // menuPortalTarget={document.body}
                                   value={value ? counties.find((x) => x.code === value) : undefined}
-                                  className="w-full"
+                                  
+                                  className="w-full my-react-select-container"
+                                  classNamePrefix="my-react-select"
                                   getOptionLabel={(option) => `${option.name}`}
                                   getOptionValue={(option) => option.code}
                                   onChange={(val) => {

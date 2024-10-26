@@ -12,8 +12,10 @@ import { Switch } from '@headlessui/react';
 import { classNames } from '~/lib/classNames';
 import { Icon } from '@components/Icon';
 import ConfirmModal from '@components/confirmModal';
+import { useDarkSide } from '@components/ThemeContext';
 
 const AllowancesPage: NextPage = () => {
+  const [theme] = useDarkSide();
   const { t } = useTranslation('settings_organisation');
   const { teamsMobile, subscription } = useAbsentify();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -77,63 +79,63 @@ const AllowancesPage: NextPage = () => {
   };
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-10">
+    <div className="divide-y divide-gray-200 lg:col-span-10 dark:divide-gray-500">
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('allowances_title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('allowances_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('allowances_title')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('allowances_description')}</p>
         </div>
         <div className="mt-6 flex flex-col shadow rounded-lg">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
-            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6 " >
+            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6 rounded-lg" >
               <div className=" border-b border-gray-200 shadow rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 dark:rounded-lg">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
                     <tr>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                       >
                         {t('allowances_Name')}
                       </th>{' '}
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                       >
                         {t('allowances_leave_types')}
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                       >
                         {t('allowances_ignore_limit')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       >
                         {t('allowances_allowance_unit_2')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       ></th>
                       <th scope="col" className="relative px-6 py-3"></th>
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white cursor-default ">
+                  <tbody className="divide-y divide-gray-200 bg-white cursor-default dark:bg-teams_brand_dark_100">
                     {allowancesTypes?.map((allowancesType) => (
                       <tr key={allowancesType.id}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                             <p  className="w-20 2xl:w-auto max-w-56  truncate"
                               data-tooltip-id="index-allowance-tooltip"
                               data-tooltip-content={allowancesType.name}
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >{allowancesType.name}
                             </p> 
                          </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                           {allowancesType.leave_types.map((leaveType, index) => (
                             <div
                               key={index}
@@ -143,7 +145,7 @@ const AllowancesPage: NextPage = () => {
                                 <div className="w-4 mr-2"
                                 data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
                                   <Icon className="" width="4" color={leaveType.color} name={leaveType.icon} />
                                 </div>
@@ -154,7 +156,7 @@ const AllowancesPage: NextPage = () => {
                                   className="mr-2 mt-0.5 h-4 w-4 rounded-sm"
                                   data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 ></div>
                               )}
                               <span className="hidden md:table-cell" >{leaveType.name}</span>
@@ -162,12 +164,12 @@ const AllowancesPage: NextPage = () => {
                           ))}
                         </td>
 
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                           <Switch
                             checked={allowancesType.ignore_allowance_limit}
                             className={classNames(
-                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600' : 'bg-gray-200',
-                              'relative inline-flex h-6 w-11 flex-shrink-0  rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-default'
+                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                              'relative inline-flex h-6 w-11 flex-shrink-0  rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-default dark:ring-1 dark:ring-offset-0'
                             )}
                           >
                             <span className="sr-only"> {t('allowances_ignore_limit')}</span>
@@ -212,7 +214,7 @@ const AllowancesPage: NextPage = () => {
                             </span>
                           </Switch>
                         </td>
-                        <td className="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 ">
+                        <td className="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
                           {allowancesType.allowance_unit === 'days' && t('allowances_allowance_unit_days')}
                           {allowancesType.allowance_unit === 'hours' && t('allowances_allowance_unit_hours')}
                         </td>
@@ -224,11 +226,11 @@ const AllowancesPage: NextPage = () => {
                               setValueForEdit(allowancesType);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900"
+                            className="cursor-pointer text-gray-300 hover:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -245,7 +247,7 @@ const AllowancesPage: NextPage = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -273,7 +275,7 @@ const AllowancesPage: NextPage = () => {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -301,7 +303,7 @@ const AllowancesPage: NextPage = () => {
                               className="ml-2 flex items-center cursor-pointer"
                               data-tooltip-id="depLimit-tooltip"
                               data-tooltip-content={t('allowance_limit_go_upgrade_description')}
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >
                               <QuestionMarkCircleIcon width={12} className="self-center" />
                             </span>
@@ -312,7 +314,7 @@ const AllowancesPage: NextPage = () => {
                       )}
                       <ReactTooltip
                         id="depLimit-tooltip"
-                        className="shadow-sm z-50 "
+                        className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-200"
                         classNameArrow="shadow-sm"
                         place="top"
                         opacity={1}
@@ -322,7 +324,7 @@ const AllowancesPage: NextPage = () => {
                   </tbody>
                   <ReactTooltip
                           id="index-allowance-tooltip"
-                          className="shadow-sm z-50 "
+                          className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900"
                           classNameArrow="shadow-sm"
                           place="top"
                           style={{

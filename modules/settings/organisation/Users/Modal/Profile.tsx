@@ -262,7 +262,7 @@ function getIn10YearsDate(): Date {
     return adminIds.length <= 1;
   };
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_600" onSubmit={handleSubmit(onSubmit)}>
+    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_600 dark:divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
       {/* Profile section */}
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
@@ -749,8 +749,8 @@ function getIn10YearsDate(): Date {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span
@@ -768,12 +768,12 @@ function getIn10YearsDate(): Date {
         </div>
       </div>
       {/* Privacy section */}
-      <div className=" divide-y divide-gray-200">
+      <div className=" divide-y divide-gray-200 dark:divide-gray-500">
         {(!isLastAdmin() ||
           props.currentMember.status === Status.ARCHIVED ||
           props.currentMember.status === Status.INACTIVE) && (
           <div className="px-4 sm:px-6">
-            <ul role="list" className="mt-2 divide-y divide-gray-200">
+            <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-gray-500">
               <div className="sm:col-span-5">
                 <div className="mt-1 flex ">
                   <Switch.Group as="li" className="flex items-center justify-between py-4">

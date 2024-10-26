@@ -163,16 +163,16 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
+            <div className="z-30 inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     {t('Update_public_holiday')}
                   </Dialog.Title>
 
                   <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                     <div className="sm:col-span-5">
-                      <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                         {t('departments_Name')}
                       </label>
                       <div className="mt-1 flex rounded-md shadow-sm">
@@ -182,7 +182,7 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                           name="name"
                           id="name"
                           autoComplete="name"
-                          className="block w-full min-w-0 flex-grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                          className="block w-full min-w-0 flex-grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                         />
                       </div>
                     </div>
@@ -200,11 +200,11 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                         }}
                         id="tabs"
                         name="tabs"
-                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                         defaultValue={tabs.find((tab) => tab.current)?.name}
                       >
                         {tabs.map((tab) => (
-                          <option key={tab.name}>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
+                          <option key={tab.name} className='dark:text-gray-200 dark:bg-teams_brand_dark_100'>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
                         ))}
                       </select>
                     </div>
@@ -221,12 +221,12 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                                 tab.current
                                   ? 'border-teams_brand_500 text-teams_brand_600'
                                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                                'cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium'
+                                'cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium dark:text-gray-200 dark:bg-teams_brand_dark_100'
                               )}
                               aria-current={tab.current ? 'page' : undefined}
                             >
                               {tab.add && !addnewYearPublicHoliday.isLoading ? (
-                                <PlusCircleIcon className="mt-1 h-4" />
+                                <PlusCircleIcon className="mt-1 h-4 dark:text-gray-200" />
                               ) : (
                                 tab.name
                               )}

@@ -19,11 +19,11 @@ export default function Schedule(props: {
   const schedules = props.schedules;
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9">
+    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Schedule')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('Schedule_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Schedule')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Schedule_description')}</p>
         </div>
 
         <div className="mt-6 flex flex-col lg:flex-row">
@@ -47,9 +47,9 @@ export default function Schedule(props: {
                 type="button"
                 className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-2 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
               >
-                <PlusCircleIcon className="mx-auto h-6 w-6 text-gray-400" />
+                <PlusCircleIcon className="mx-auto h-6 w-6 text-gray-400 dark:text-gray-200" />
 
-                <span className="mt-2 block text-sm font-medium text-gray-900">{t('New_Schedule')}</span>
+                <span className="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200">{t('New_Schedule')}</span>
               </button>
 
               {schedules &&

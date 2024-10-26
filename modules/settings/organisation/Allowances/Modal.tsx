@@ -150,10 +150,10 @@ export default function Modal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle">
+                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         <>
                           {props.value && t('allowanceType_edit_a_allowancetype')}{' '}
                           {!props.value && t('allowanceType_add_a_allowancetype')}
@@ -162,7 +162,7 @@ export default function Modal(props: {
                       <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
                         <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                           <div className="sm:col-span-5">
-                            <label htmlFor="allowance_name" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="allowance_name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('allowances_Name')}
                             </label>
                             <div className="mt-1 flex rounded-md shadow-sm">
@@ -179,7 +179,7 @@ export default function Modal(props: {
                                     disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                                     type="text"
                                     name="allowance_name"
-                                    className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                    className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                   />
                                 )}
                               />
@@ -190,7 +190,7 @@ export default function Modal(props: {
                             <div className="sm:col-span-5">
                               <label
                                 htmlFor="ignore_allowance_limit"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                               >
                                 {t('allowances_allowance_unit')}
                               </label>
@@ -226,7 +226,7 @@ export default function Modal(props: {
                                     >
                                       {({ open }) => (
                                         <>
-                                          <Listbox.Label className="sr-only">
+                                          <Listbox.Label className="sr-only dark:text-gray-200">
                                             <p> {t('allowances_allowance_unit')}</p>{' '}
                                           </Listbox.Label>
                                           <div className="relative w-full">
@@ -329,10 +329,10 @@ export default function Modal(props: {
                             </div>
                           )}
                           <div className="sm:col-span-5">
-                            <label htmlFor="max_carry_forward" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="max_carry_forward" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('allowances_max_carry_forward')}
                             </label>
-                            <p className="mt-2 text-sm text-gray-500" id="email-description">
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200" id="email-description">
                               {t('allowances_max_carry_forward_description', {
                                 next_carry_over: format(
                                   new Date(new Date().getFullYear() + 1, workspace?.fiscal_year_start_month ?? 0, 0),
@@ -353,6 +353,7 @@ export default function Modal(props: {
                                     onChange={(val) => {
                                       onChange(val);
                                     }}
+                                    className = "w-full dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                   />
                                 )}
                               />
@@ -362,10 +363,10 @@ export default function Modal(props: {
                             )}
                           </div>{' '}
                           <div className="sm:col-span-5">
-                            <label htmlFor="ignore_allowance_limit" className="block text-sm font-medium text-gray-700">
+                            <label htmlFor="ignore_allowance_limit" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('allowances_ignore_limit')}
                             </label>
-                            <p className="mt-2 text-sm text-gray-500" id="email-description">
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200" id="email-description">
                               {t('allowances_ignore_limit_description')}
                             </p>
                             <div className="mt-1 flex ">
@@ -381,8 +382,8 @@ export default function Modal(props: {
                                     }}
                                     disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                                     className={classNames(
-                                      value ? 'bg-teams_brand_600' : 'bg-gray-200',
-                                      'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2'
+                                      value ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                      'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                     )}
                                   >
                                     <span className="sr-only"> {t('allowances_ignore_limit')}</span>
@@ -443,11 +444,11 @@ export default function Modal(props: {
                               <div className="sm:col-span-5">
                                 <label
                                   htmlFor="default_allowance_current_year"
-                                  className="block text-sm font-medium text-gray-700"
+                                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                                 >
                                   {t('allowances_default_allowance_current_year')}
                                 </label>
-                                <p className="mt-2 text-sm text-gray-500" id="email-description">
+                                <p className="mt-2 text-sm text-gray-500 dark:text-gray-200" id="email-description">
                                   {t('allowances_default_allowance_current_year_description')}
                                 </p>
                                 <div className="mt-1 flex rounded-md shadow-sm">
@@ -463,6 +464,7 @@ export default function Modal(props: {
                                         onChange={(val) => {
                                           onChange(val);
                                         }}
+                                        className = "w-full dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                       />
                                     )}
                                   />
@@ -475,12 +477,12 @@ export default function Modal(props: {
                               <div className="sm:col-span-5">
                                 <label
                                   htmlFor="default_allowance_next_year"
-                                  className="block text-sm font-medium text-gray-700"
+                                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                                 >
                                   {' '}
                                   {t('allowances_default_default_allowance_next_year')}
                                 </label>{' '}
-                                <p className="mt-2 text-sm text-gray-500" id="email-description">
+                                <p className="mt-2 text-sm text-gray-500 dark:text-gray-200" id="email-description">
                                   {t('allowances_default_default_allowance_next_year_description')}
                                 </p>
                                 <div className="mt-1 flex rounded-md shadow-sm">
@@ -496,6 +498,7 @@ export default function Modal(props: {
                                         onChange={(val) => {
                                           onChange(val);
                                         }}
+                                        className = "w-full dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                       />
                                     )}
                                   />

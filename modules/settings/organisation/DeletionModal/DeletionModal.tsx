@@ -172,9 +172,9 @@ export const DeletionModal = (props: {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-teams_brand_dark_100">
                   {checkedPage(page)}
-                  <div className="border border-b-gray-300 py-8">
+                  <div className="border border-b-gray-300 py-8 dark:border-0">
                   <div className="mb-6">
                     <Steps page={page}/>
                   </div>

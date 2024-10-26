@@ -35,15 +35,15 @@ export default function AlertModal({text, onClose }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className=" bg-white relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6">
+              <Dialog.Panel className=" bg-white relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6 dark:bg-teams_brand_dark_100">
                 <div className="p-4">
         <div className="flex">
         <div className="flex-shrink-0 pt-1">
           <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
         </div>
         <div className="ml-3 flex flex-col justify-center align-middle">
-          <h3 className="text-lg font-semibold text-gray-900">{t('Attention_needed')}</h3>
-          <div className="mt-2 text-md font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-200">{t('Attention_needed')}</h3>
+          <div className="mt-2 text-md font-semibold text-gray-900 dark:text-gray-200">
             <p className="mb-4">
                {text}
             </p>
