@@ -8,8 +8,10 @@ import Link from 'next/link';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { getDateOnly } from '~/lib/DateHelper';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
+import { useDarkSide } from '@components/ThemeContext';
 
 const Upcoming: React.FC<{ members: defaultMemberSelectOutput[]; subscription: boolean }> = (props) => {
+  const [theme] = useDarkSide();
   const { current_member } = useAbsentify();
   const { subscription } = props;
 
@@ -115,7 +117,7 @@ const Upcoming: React.FC<{ members: defaultMemberSelectOutput[]; subscription: b
       });
     setUpcomingBAndA(array.slice(0, 10));
   }, [props.members]);
-  if (!upcomingBAndA?.length) return <p className="p-2 text-center">{t('noDates')}</p>;
+  if (!upcomingBAndA?.length) return <p className="p-2 text-center dark:text-gray-200">{t('noDates')}</p>;
   return (
     <>
       {upcomingBAndA &&
@@ -137,7 +139,7 @@ const Upcoming: React.FC<{ members: defaultMemberSelectOutput[]; subscription: b
                 <div
                   className="text-slate-70 mt-1 cursor-pointer "
                   data-tooltip-id="upcoming-tooltip"
-                  data-tooltip-variant="light"
+                  data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                   data-tooltip-delay="700"
                   data-tooltip-content={
                     !subscription && i < 2

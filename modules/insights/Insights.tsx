@@ -16,6 +16,7 @@ import { convertLocalDateToUTC, dateFromDatabaseIgnoreTimezone, isDayUnit } from
 import { AllowanceUnit, LeaveUnit } from '@prisma/client';
 import { formatDuration } from '~/helper/formatDuration';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
+import { useDarkSide } from '@components/ThemeContext';
 
 type S = {
   label: string;
@@ -28,6 +29,7 @@ type D = {
 };
 
 const Insights = () => {
+  const [theme] = useDarkSide();
   const { current_member } = useAbsentify();
   const { teamsMobile, subscription } = useAbsentify();
   const { t, lang } = useTranslation('insights');
@@ -373,14 +375,14 @@ const Insights = () => {
   }, [members, current_member, departments]);
 
   return (
-    <div className="grid bg-white grid-cols-1 md:grid-cols-8 pb-5 border-t border-b sm:rounded sm:border drop-shadow-lg ">
-      <div className="md:col-span-10  border-b">
-        <div className="flex bg-white justify-between pl-6 -mb-px ">
+    <div className="grid bg-white grid-cols-1 md:grid-cols-8 pb-5 border-t border-b sm:rounded sm:border drop-shadow-lg dark:bg-teams_brand_dark_100 dark:border-[#595869]">
+      <div className="md:col-span-10  border-b dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+        <div className="flex bg-white justify-between pl-6 -mb-px dark:bg-teams_brand_dark_100">
           <div className="lg:flex hidden"></div>
 
           <div className="">
             <div className="md:grid md:grid-cols-3 md:gap-4 md:items-start p-4 ">
-              <label className="block text-sm font-medium sm:pt-2 text-gray-700 break-normal">
+              <label className="block text-sm font-medium sm:pt-2 text-gray-700 break-normal dark:text-gray-200">
                 {t('department') + ': '}
               </label>
               <div
@@ -407,7 +409,8 @@ const Insights = () => {
                         })
                       }}
                       value={selectedDepartment}
-                      className="block w-full sm:max-w-xs sm:text-sm "
+                      className="block w-full sm:max-w-xs sm:text-sm my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onChange={(val) => {
                         if (val) setSelectedDepartment(val);
                       }}
@@ -420,7 +423,7 @@ const Insights = () => {
                   selectedDepartment &&
                   departmentDropDownValues &&
                   departmentDropDownValues.length == 1 && (
-                    <span className="font-medium sm:pt-2 text-gray-700 text-sm">
+                    <span className="font-medium sm:pt-2 text-gray-700 text-sm dark:text-gray-200">
                       {departmentDropDownValues[0]?.name}
                     </span>
                   )}
@@ -429,9 +432,9 @@ const Insights = () => {
           </div>
         </div>
       </div>
-      <div className="mx-2 sm:col-span-5 md:col-span-10 lg:col-span-10 xl:col-span-2 w-auto xl:w-full ">
-        <div className="mt-4 divide-y divide-slate-400/20 rounded-lg border bg-white text-[0.8125rem] leading-5 text-slate-900 drop-shadow ">
-          <p className="p-2 text-center">{t('upcomming')}</p>
+      <div className="mx-2 sm:col-span-5 md:col-span-10 lg:col-span-10 xl:col-span-2 w-auto xl:w-full dark:bg-teams_brand_dark_100 ">
+        <div className="mt-4 divide-y divide-slate-400/20 rounded-lg border bg-white text-[0.8125rem] leading-5 text-slate-900 drop-shadow dark:bg-teams_brand_dark_100">
+          <p className="p-2 text-center dark:text-gray-200">{t('upcomming')}</p>
           {/* Upcoming loading */}
           {isLoading && (
             <div className="block w-full animate-puls">
@@ -528,7 +531,7 @@ const Insights = () => {
         {isLoading && !chartData && (
           <>
             {/* DayOffChart Loading */}
-            <div className="p-6 px-20 m-2 bg-white drop-shadow overflow-hidden rounded-lg">
+            <div className="p-6 px-20 m-2 bg-white drop-shadow overflow-hidden rounded-lg dark:bg-teams_brand_dark_100">
               <div className="block w-full ">
                 <div className="w-full mx-auto">
                   <div className="pt-2 animate-pulse flex lg:flex-row flex-col space-x-4">
@@ -590,7 +593,7 @@ const Insights = () => {
           </>
         )}
         {doughnutData && !isLoading && (
-          <div className="p-6 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow border overflow-hidden rounded-lg">
+          <div className="p-6 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow border overflow-hidden rounded-lg dark:bg-teams_brand_dark_100">
             {allowancesTypes && allowancesTypes.length > 1 && (
               <div className="flex-none ml-auto right-0 mr-4 w-56 ">
                 <div className={'mt-1 '}>
@@ -623,10 +626,10 @@ const Insights = () => {
           </div>
         )}
         {chartData && !isLoading && (
-          <div className="lg:p-6 p-1 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow overflow-hidden rounded-lg border">
+          <div className="lg:p-6 p-1 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow overflow-hidden rounded-lg border dark:bg-teams_brand_dark_100">
             <div className="flex items-center justify-center">
               <div className="flex justify-center flex-grow">
-                <h1 className="text-base">{t('annualTrend')}</h1>
+                <h1 className="text-base dark:text-gray-200">{t('annualTrend')}</h1>
               </div>
               {selectUnitDropDownValues && selectUnitDropDownValues.length > 1 && (
                 <div className="flex-none mr-4 xl:w-36">
@@ -640,7 +643,9 @@ const Insights = () => {
                       })
                     }}
                     value={selectedUnit}
-                    className="block w-full sm:max-w-xs sm:text-sm mt-4 lg:mt-0"
+                    
+                    className="w-full my-react-select-container block w-full sm:max-w-xs sm:text-sm mt-4 lg:mt-0"
+                    classNamePrefix="my-react-select"
                     onChange={(val) => {
                       if (val) setSelectedUnit(val);
                     }}
@@ -684,8 +689,8 @@ const Insights = () => {
           </div>
         )}
         <div className=" h-auto my-4 ml-2 xl:ml-4  mr-2">
-          <div className="bg-white drop-shadow border overflow-hidden rounded-lg mt-3 w-full h-full lg:p-4 p-0 pt-6">
-            <p className="  text-base text-center block">{t('burnOutBoard')}</p>
+          <div className="bg-white drop-shadow border overflow-hidden rounded-lg mt-3 w-full h-full lg:p-4 p-0 pt-6 dark:bg-teams_brand_dark_100">
+            <p className="  text-base text-center block dark:text-gray-200">{t('burnOutBoard')}</p>
             {/* burnout board loading */}
             {isLoading && (
               <div className="block w-full p-4">
@@ -733,8 +738,8 @@ const Insights = () => {
                 </div>
               </div>
             )}
-            <div className="flex flex-wrap bg-white overflow-hidden lg:p-4 p-0 ">
-              {!burnoutBoardData.length && !isLoading && <p className="text-center mx-auto">{t('allGood')}</p>}
+            <div className="flex flex-wrap bg-white overflow-hidden lg:p-4 p-0 dark:bg-teams_brand_dark_100">
+              {!burnoutBoardData.length && !isLoading && <p className="text-center mx-auto dark:text-gray-200">{t('allGood')}</p>}
               <table cellPadding="0" cellSpacing="0" className=" select-none border-0 w-full">
                 <tbody>
                   {workspaceSchedule &&
@@ -757,29 +762,29 @@ const Insights = () => {
                             <div>
                               <div
                                 className={classNames(
-                                  ' text-left flex lg:ml-0 ml-2 lg:space-x-2 space-x-8 flex-row has-tooltip mt-2'
+                                  ' text-left flex lg:ml-0 ml-2 lg:space-x-2 space-x-8 flex-row has-tooltip mt-2 dark:text-gray-200'
                                 )}
                               >
-                                <div className="relative h-10 w-10">
+                                <div className="relative h-10 w-10 dark:text-gray-200">
                                   <ProfileImage member={member.member} tailwindSize={isXS ? '8' : '10'} className="" />
                                 </div>
 
                                 {isXS && (
                                   <div
-                                    className="truncate lg:w-12 md:w-36 ml-0 mt-2"
+                                    className="truncate lg:w-12 md:w-36 ml-0 mt-2 dark:text-gray-200"
                                     data-tooltip-id="username-tooltip"
                                     data-tooltip-content={member.member.name as string}
-                                    data-tooltip-variant="light"
+                                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                   >
                                     {member.member.name}
                                   </div>
                                 )}
                                 {!isXS && (
                                   <div
-                                    className="truncate w-40 mx-2 mt-2"
+                                    className="truncate w-40 mx-2 mt-2 dark:text-gray-200"
                                     data-tooltip-id="username-tooltip"
                                     data-tooltip-content={member.member.name as string}
-                                    data-tooltip-variant="light"
+                                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                   >
                                     {member.member.name}
                                   </div>
@@ -792,9 +797,9 @@ const Insights = () => {
                             {t('remaining-allowance-days')}
                             {i >= 1 && (
                               <div
-                                className=""
+                                className="dark:text-gray-200"
                                 data-tooltip-id="insight-tooltip"
-                                data-tooltip-variant="light"
+                                data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 data-tooltip-delay-hide={700}
                               >
                                 {formatDuration(
@@ -825,26 +830,26 @@ const Insights = () => {
                             }  px-20 lg:px-4 mt-2 w-full max-w-72`}
                           >
                             <div className="">
-                              <p className="text-sm pb-2 lg:pb-0">
+                              <p className="text-sm pb-2 lg:pb-0 dark:text-gray-200">
                                 {t('lastRequestIndays', { lastRequestinDays: lastRequestinDays })}
                               </p>
 
                               {upcomingRequestInDays > 0 ? (
-                                <p className="text-sm  ">
+                                <p className="text-sm  dark:text-gray-200">
                                   {t('upcomingRequestInDays', { upcomingRequestInDays: upcomingRequestInDays })}
                                 </p>
                               ) : (
                                 <></>
                               )}
                               {upcomingRequestInDays == 0 ? (
-                                <p className="text-sm  ">
+                                <p className="text-sm  dark:text-gray-200">
                                   {t('upcomingRequestInDay', { upcomingRequestInDays: upcomingRequestInDays })}
                                 </p>
                               ) : (
                                 <></>
                               )}
                               {upcomingRequestInDays > 90 ? (
-                                <p className="text-sm  ">
+                                <p className="text-sm  dark:text-gray-200">
                                   {t('upcomingRequestInMonth', { upcomingRequestInDays: upcomingRequestInDays })}
                                 </p>
                               ) : (
@@ -861,7 +866,7 @@ const Insights = () => {
             {!subscription.has_valid_subscription && burnoutBoardData.length >= 1 && (
               <ReactTooltip
                 id="insight-tooltip"
-                className="shadow-sm z-50 "
+                className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                 classNameArrow="shadow-sm"
                 place="top"
                 opacity={1}
@@ -869,9 +874,9 @@ const Insights = () => {
                 clickable
               >
                 <div className="block text-sm text-center">
-                  <p className=" ">{t('upgradeT1')}</p>
+                  <p className="dark:text-gray-200">{t('upgradeT1')}</p>
                   {current_member?.is_admin && !teamsMobile && (
-                    <Link href="/settings/organisation/upgrade" className="underline hover:text-blue-700">
+                    <Link href="/settings/organisation/upgrade" className="underline hover:text-blue-700 dark:text-gray-200">
                       {t('upgradeT2')}
                     </Link>
                   )}
@@ -881,7 +886,7 @@ const Insights = () => {
           </div>
           <ReactTooltip
             id="username-tooltip"
-            className="shadow-sm z-50 "
+            className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
             classNameArrow="shadow-sm"
             place="right"
             opacity={1}
