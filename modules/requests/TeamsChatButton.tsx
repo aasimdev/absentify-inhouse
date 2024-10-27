@@ -23,9 +23,9 @@ const TeamsChatButton = (props: { emails: string[]; topic: string; message: stri
             /*Unsuccessful operation*/
           });
       }}
-      className="ml-5 bg-white py-2 px-3 border border-teams_brand_border_1 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50  flex order-last md:order-none w-32"
+      className="ml-5 bg-white py-2 px-3 border border-teams_brand_border_1 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50  flex order-last md:order-none w-32 dark:bg-teams_brand_dark_600 dark:text-gray-200"
     >
-      <p className="text-center mx-auto">{props.label}</p>
+      <p className="text-center mx-auto dark:text-gray-200">{props.label}</p>
     </button>
   );
 };

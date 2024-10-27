@@ -114,13 +114,13 @@ const General: NextPage = () => {
       {/* Workspace section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Display')}</h2>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Display')}</h2>
         </div>
 
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="grow space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Language')}
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -139,7 +139,9 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? languageOptions.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                      
+                      className="w-full my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onChange={async (val) => {
                         onChange(val?.value);
                       }}
@@ -148,14 +150,14 @@ const General: NextPage = () => {
                   )}
                 />
               </div>
-              <div className=" text-center text-sm">
+              <div className=" text-center text-sm dark:text-gray-200">
                 {languageOptions.find((x) => x.value === lang)?.community && <CrowdinTrans lang={lang ?? 'en'} />}
               </div>
               {errors.language && <span>{t('This_field_is_required')}</span>}
             </div>
             <div>
               {' '}
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('Time_zone')}
               </label>
               <div className="flex mt-1 rounded-md shadow-sm">
@@ -173,9 +175,11 @@ const General: NextPage = () => {
                           }
                         })
                       }}
-                      menuPortalTarget={document.body}
+                      // menuPortalTarget={document.body}
                       value={changedTimezones.find((x) => x.tzCode === value)}
-                      className="w-full"
+                      
+                      className="w-full my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onMenuOpen={() => {
                         setValue('timezone', '__SEARCH_FOR__');
                       }}
@@ -192,7 +196,7 @@ const General: NextPage = () => {
               {errors.timezone && <span>{t('This_field_is_required')}</span>}
             </div>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('DateFormat')}
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -211,7 +215,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? dateFormats.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                      className="w-full my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -223,7 +228,7 @@ const General: NextPage = () => {
               {errors.date_format && <span>{t('This_field_is_required')}</span>}
             </div>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('TimeFormat')}
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -242,7 +247,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? timeFormats.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                      className="w-full my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -254,7 +260,7 @@ const General: NextPage = () => {
               {errors.time_format && <span>{t('This_field_is_required')}</span>}
             </div>
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                 {t('WeekStart')}
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
@@ -273,7 +279,8 @@ const General: NextPage = () => {
                         })
                       }}
                       value={value ? weekStartData.find((x) => x.value === value) : undefined}
-                      className="w-full"
+                      className="w-full my-react-select-container"
+                      classNamePrefix="my-react-select"
                       onChange={(val) => {
                         onChange(val?.value);
                       }}
@@ -286,10 +293,10 @@ const General: NextPage = () => {
             </div>
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                   {t('Display_calendar_weeks')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                   {t('Display_calendar_weeks_description')}
                 </Switch.Description>
               </div>
@@ -303,8 +310,8 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span

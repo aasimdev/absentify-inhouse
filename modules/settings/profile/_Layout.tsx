@@ -47,7 +47,7 @@ const ProfileLayout: React.FC<{children:ReactNode}> = ( props ) => {
     </Head>
     
     <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
-      <aside className="py-6 lg:col-span-3">
+      <aside className="py-6 lg:col-span-3 dark:bg-teams_dark_mode_core">
         <nav className="space-y-1">
           {subNavigation.map((item) => (
             (<Link
@@ -55,9 +55,9 @@ const ProfileLayout: React.FC<{children:ReactNode}> = ( props ) => {
               key={item.name}
               className={classNames(
                 item.current
-                  ? 'bg-teams_brand_50 border-teams_brand_500 text-teams_brand_700 hover:bg-teams_brand_50 hover:text-teams_brand_700'
-                  : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                'group border-l-4 px-3 py-2 flex items-center text-sm font-medium'
+                  ? 'bg-teams_brand_50 dark:bg-teams_brand_dark_100 dark:text-gray-200 border-teams_brand_500 text-teams_brand_700 hover:bg-teams_brand_50 dark:hover:bg-teams_brand_dark_400 hover:text-teams_brand_700'
+                  : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 dark:hover:text-gray-200 dark:hover:bg-teams_brand_dark_100',
+                'group border-l-4 px-3 py-2 flex items-center text-sm font-medium dark:text-gray-200'
               )}
               aria-current={item.current ? 'page' : undefined}>
 

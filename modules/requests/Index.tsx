@@ -165,7 +165,7 @@ const Requests = () => {
     return (
       <div className="grid min-h-64 w-full grid-cols-1 place-items-center gap-4 text-xl">
         <div className="inline-flex">
-          <p className="pb-3">{t('Nothing_todo')}</p>
+          <p className="pb-3 dark:text-gray-200">{t('Nothing_todo')}</p>
           <span className="pl-2">
             <Image src="/broom.png" alt="Broom" width={25} height={25} quality={100} />
             <Image src="/blush.png" alt="Emoji_smile" width={24} height={24} quality={100} />

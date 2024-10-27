@@ -228,7 +228,7 @@ const BaseLayout = (props: { children: any }) => {
 
                         {/* Profile dropdown */}
                         {!current_member && !in_teams && (
-                          <span className="ml-3 inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100">
+                          <span className="ml-3 inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 dark:bg-teams_brand_dark_100">
                             <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                             </svg>
@@ -245,11 +245,11 @@ const BaseLayout = (props: { children: any }) => {
                                   'flex rounded-full text-sm focus:bg-teams_brand_900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teams_brand_900'
                                 )}
                               >
-                                <span className="sr-only">{t('Open_user_menu')}</span>
+                                <span className="sr-only dark:text-gray-200">{t('Open_user_menu')}</span>
                                 {current_member && !in_teams && (
                                   <ProfileImage member={current_member} tailwindSize="8" />
                                 )}
-                                {in_teams && <CogIcon className="h-6 w-6 " aria-hidden="true" />}
+                                {in_teams && <CogIcon className="h-6 w-6  dark:text-gray-200" aria-hidden="true" />}
                               </Menu.Button>
                             </div>
                             <Transition
@@ -261,17 +261,17 @@ const BaseLayout = (props: { children: any }) => {
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_dark_100">
                                 {userNavigation.map((item) => (
                                   <Menu.Item key={item.name}>
                                     {({ active }) => (
                                       <div
-                                        className="inline-flex w-full px-4 py-2 text-sm hover:bg-gray-100 text-gray-700 cursor-pointer"
+                                        className="inline-flex w-full px-4 py-2 text-sm hover:bg-gray-100 text-gray-700 cursor-pointer dark:text-gray-200 dark:hover:bg-teams_brand_dark_600"
                                         onClick={(event) => {
                                           onClickItemHandler(event, item);
                                         }}
                                       >
-                                        <a className={classNames(active ? '  bg-gray-100' : '', 'pr-2')}>{item.name}</a>
+                                        <a className={classNames(active ? '  bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200' : '', 'pr-2')}>{item.name}</a>
                                         {item.name !== t('Your_Preferences') && (
                                           <ArrowTopRightOnSquareIcon height={16} />
                                         )}
@@ -290,7 +290,7 @@ const BaseLayout = (props: { children: any }) => {
                                             '_blank'
                                           );
                                         }}
-                                        className=" flex flex-1 cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 "
+                                        className=" flex flex-1 cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_dark_600"
                                       >
                                         {t('open_in_microsoft_teams')}{' '}
                                         <svg
@@ -354,7 +354,7 @@ const BaseLayout = (props: { children: any }) => {
                                       e.preventDefault();
                                       location.href = location.origin + '/api/auth/signout';
                                     }}
-                                    className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'}
+                                    className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_dark_600'}
                                   >
                                     {t('Sign_out')}
                                   </a>

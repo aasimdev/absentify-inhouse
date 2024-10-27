@@ -78,8 +78,8 @@ const Email_notifications: NextPage = () => {
       <div className="divide-y divide-gray-200 pt-6">
         <div className="px-4 sm:px-6">
           <div className="mb-6">
-            <h2 className="text-lg font-medium leading-6 text-gray-900"> {t('notifications')}</h2>
-            <p className="mt-1 text-sm text-gray-500">
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"> {t('notifications')}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">
               {/*  Ornare eu a volutpat eget vulputate. Fringilla commodo amet. */}
             </p>
           </div>
@@ -87,14 +87,14 @@ const Email_notifications: NextPage = () => {
             {workspace && current_member && workspace.microsoft_calendars_read_write !== 'ACTIVATED' && (
               <Switch.Group as="li" className="flex items-center justify-between py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Calendar_invitations')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     <p>{t('Calendar_invitations_description')}</p>
                     {current_member.is_admin && (
                       <p>
-                        <span className="font-medium text-gray-900">
+                        <span className="font-medium text-gray-900 dark:text-gray-200">
                           💡{t('Calendar_invitations_description_admin_tip')}:{' '}
                         </span>{' '}
                         {t('Calendar_invitations_description_admin')}
@@ -112,8 +112,8 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -128,10 +128,10 @@ const Email_notifications: NextPage = () => {
                 />
               </Switch.Group>
             )}
-            <label htmlFor="notifications_receiving_method" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="notifications_receiving_method" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Notificaions_receving_method')}
             </label>
-            <p className="text-sm text-gray-500 mb-2">{t('Notificaions_receving_method_desc')}</p>
+            <p className="text-sm text-gray-500 mb-2 dark:text-gray-200">{t('Notificaions_receving_method_desc')}</p>
             <Controller
               rules={{ required: true }}
               control={control}
@@ -147,7 +147,8 @@ const Email_notifications: NextPage = () => {
                     })
                   }}
                   value={value ? NotificationsReceivingMethods.find((x) => x.value === value) : undefined}
-                  className="w-full"
+                  className="w-full my-react-select-container"
+                  classNamePrefix="my-react-select"
                   onChange={(val) => {
                     onChange(val?.value);
                   }}
@@ -160,10 +161,10 @@ const Email_notifications: NextPage = () => {
           <ul role="list" className="mt-2 divide-y divide-gray-200">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
-                <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                   absentify {' ' + t('updates')}
                 </Switch.Label>
-                <Switch.Description className="text-sm text-gray-500">{t('absentify_desc')}</Switch.Description>
+                <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">{t('absentify_desc')}</Switch.Description>
               </div>
               <Controller
                 control={control}
@@ -175,8 +176,8 @@ const Email_notifications: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
                     <span
@@ -196,10 +197,10 @@ const Email_notifications: NextPage = () => {
               (current_member?.is_admin ?? false) && (
                 <Switch.Group as="li" className="flex justify-between items-center py-4">
                   <div className="flex flex-col">
-                    <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                    <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                       {t('Birthday_and_anniversary_reminders')}
                     </Switch.Label>
-                    <Switch.Description className="text-sm text-gray-500">
+                    <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                       {t('Birthday_and_anniversary_reminders_description')}
                     </Switch.Description>
                   </div>
@@ -213,8 +214,8 @@ const Email_notifications: NextPage = () => {
                           notifyError(t('This_feature_is_not_available_for_your_plan_birthday_anniversary'));
                         }}
                         className={classNames(
-                          value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                          'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                          'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                         )}
                       >
                         <span
@@ -232,10 +233,10 @@ const Email_notifications: NextPage = () => {
             {(subscription.business || subscription.business_by_user > 0 || subscription.enterprise > 0) && (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Birthday_and_anniversary_reminders')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Birthday_and_anniversary_reminders_description')}
                   </Switch.Description>
                 </div>
@@ -249,8 +250,8 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -272,10 +273,10 @@ const Email_notifications: NextPage = () => {
               (current_member?.is_admin ?? false) && (
                 <Switch.Group as="li" className="flex justify-between items-center py-4">
                   <div className="flex flex-col">
-                    <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                    <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                       {t('Weekly_absence_summary')}
                     </Switch.Label>
-                    <Switch.Description className="text-sm text-gray-500">
+                    <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                       {t('Weekly_absence_summary_description')}
                     </Switch.Description>
                   </div>
@@ -289,8 +290,8 @@ const Email_notifications: NextPage = () => {
                           notifyError(t('This_feature_is_not_available_for_your_plan_weekly_absence_summary'));
                         }}
                         className={classNames(
-                          value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                          'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                          'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                         )}
                       >
                         <span
@@ -308,10 +309,10 @@ const Email_notifications: NextPage = () => {
             {(subscription.business || subscription.business_by_user > 0 || subscription.enterprise > 0) && (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                     {t('Weekly_absence_summary')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Weekly_absence_summary_description')}
                   </Switch.Description>
                 </div>
@@ -325,8 +326,8 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:text-gray-200'
                       )}
                     >
                       <span
@@ -346,7 +347,7 @@ const Email_notifications: NextPage = () => {
         <div className="mt-4 flex justify-end px-4 py-4 sm:px-6">
           <button
             type="submit"
-            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200"
           >
             {editProfile.isLoading && (
               <div className="-ml-1 mr-3">

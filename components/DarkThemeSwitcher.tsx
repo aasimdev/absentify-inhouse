@@ -8,7 +8,7 @@ export default function DarkThemeSwitcher() {
   const isDarkMode = theme === 'dark';
   return (
     <div>
-      <DarkModeSwitch checked={isDarkMode} onChange={toggleTheme} size={26} />
+      <DarkModeSwitch checked={isDarkMode} onChange={toggleTheme} size={26} moonColor="#121212" sunColor="#fff" />
     </div>
   );
 }

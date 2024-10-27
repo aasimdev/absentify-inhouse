@@ -156,12 +156,12 @@ const AutomaticReplies: NextPage = () => {
       <div className="divide-y divide-gray-200 pt-6">
         <div className="px-4 sm:px-6">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Microsoft_AutomaticReplies')}</h2>
-            <p className="mt-1 text-sm text-gray-500">{t('Microsoft_AutomaticReplies_Description')} </p>
-            <p className="mt-1 text-sm text-gray-500">
+            <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Microsoft_AutomaticReplies')}</h2>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Microsoft_AutomaticReplies_Description')} </p>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">
               {t('Microsoft_AutomaticReplies_Description_2') + ' '}
               <a
-                className="cursor-pointer underline"
+                className="cursor-pointer underline dark:text-gray-200"
                 href="https://feedback.absentify.com/roadmap/create-automatic-out-of-office-replies-in-outlook"
                 target="_blank"
               >
@@ -173,22 +173,22 @@ const AutomaticReplies: NextPage = () => {
           <div className="px-4 sm:px-6 md:px-0">
             <hr className="mt-10 mb-5" />
             <div className="mt-10">
-              <div className="flex w-full bg-gray-50 px-4 py-4 sm:px-6">
-                <div className="my-auto w-1/2">{t('LeaveTypeTemplate')}</div>
+              <div className="flex w-full bg-gray-50 px-4 py-4 sm:px-6 dark:bg-teams_brand_dark_100">
+                <div className="my-auto w-1/2 dark:text-gray-200">{t('LeaveTypeTemplate')}</div>
                 <div className="w-1/2">
                   <Combobox as="div" value={selectedLeaveType} onChange={setSelectedLeaveType}>
                     <div className="relative mt-1">
                       <Combobox.Input
-                        className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teams_brand_background_2 focus:outline-none focus:ring-1 focus:ring-teams_brand_foreground_bg sm:text-sm"
+                        className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teams_brand_background_2 focus:outline-none focus:ring-1 focus:ring-teams_brand_foreground_bg sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                         onChange={(event) => setQuery(event.target.value)}
                         displayValue={(person: any) => person?.name}
                       />
-                      <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-                        <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none  ">
+                        <ChevronUpDownIcon className="h-5 w-5 text-gray-400 dark:text-gray-200" aria-hidden="true" />
                       </Combobox.Button>
 
                       {filteredPeople && filteredPeople.length > 0 && (
-                        <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200">
                           {filteredPeople.map((person) => (
                             <Combobox.Option
                               key={person.id}
@@ -196,7 +196,7 @@ const AutomaticReplies: NextPage = () => {
                               className={({ active }) =>
                                 classNames(
                                   'relative cursor-default select-none py-2 pl-3 pr-9',
-                                  active ? 'bg-teams_brand_foreground_bg text-white' : 'text-gray-900'
+                                  active ? 'bg-teams_brand_foreground_bg text-white dark:bg-teams_brand_dark_200 dark:text-gray-900' : 'text-gray-900 dark:text-gray-200'
                                 )
                               }
                             >
@@ -211,7 +211,7 @@ const AutomaticReplies: NextPage = () => {
                                         active ? 'text-white' : 'text-teams_brand_border_1'
                                       )}
                                     >
-                                      <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                      <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
                                     </span>
                                   )}
                                 </>
@@ -234,8 +234,8 @@ const AutomaticReplies: NextPage = () => {
                           <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
                         </div>
                         <div className="ml-3">
-                          <h3 className="text-sm font-medium text-yellow-800">{t('Attention_needed')}</h3>
-                          <div className="mt-2 text-sm text-yellow-700">
+                          <h3 className="text-sm font-medium text-yellow-800 dark:text-gray-200">{t('Attention_needed')}</h3>
+                          <div className="mt-2 text-sm text-yellow-700 dark:text-gray-200">
                             <p>{t('No_access')}</p>
                           </div>
                         </div>
@@ -257,14 +257,14 @@ const AutomaticReplies: NextPage = () => {
                   <div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col space-y-2">
-                        <h3 className="text-lg ">{t('outOfOfficeInsideHeader')}</h3>
-                        <p className="text-sm">{t('outOfOfficeInsideHeaderDescription')}</p>
+                        <h3 className="text-lg dark:text-gray-200">{t('outOfOfficeInsideHeader')}</h3>
+                        <p className="text-sm dark:text-gray-200">{t('outOfOfficeInsideHeaderDescription')}</p>
                       </div>
                     </div>
                     <div className="mt-10 lg:grid lg:grid-cols-12 lg:gap-x-5">
                       <aside className="py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0 lg:pr-3">
                         <div className="space-y-2 ">
-                          <div>{t('Variables')}</div>
+                          <div className = "dark:text-gray-200">{t('Variables')}</div>
                           {variables.map((item) => (
                             <button
                               key={item.name}
@@ -280,7 +280,7 @@ const AutomaticReplies: NextPage = () => {
                                 quill.editor.insertText(selection.index, item.value);
                               }}
                               type="button"
-                              className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                              className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                             >
                               {item.name}
                             </button>
@@ -290,7 +290,7 @@ const AutomaticReplies: NextPage = () => {
 
                       <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                         <div className=" w-full">
-                          <div className="w-full bg-gray-50">
+                          <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-200">
                             <ReactQuill
                               readOnly={
                                 selectedMailboxSetting?.allow_member_edit_out_of_office_message === false &&
@@ -331,7 +331,7 @@ const AutomaticReplies: NextPage = () => {
                           }}
                           disabled={sendTestMailMailboxSetting.isLoading}
                           type="button"
-                          className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                          className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200"
                         >
                           {sendTestMailMailboxSetting.isLoading && (
                             <div className="-ml-1 mr-3">
@@ -347,8 +347,8 @@ const AutomaticReplies: NextPage = () => {
                   <div>
                     <div className="mt-5 flex items-center justify-between">
                       <div className="flex flex-col space-y-2">
-                        <h3 className="text-lg ">{t('outOfOfficeOutsideHeader')}</h3>
-                        <p className="text-sm">{t('outOfOfficeOutsideHeaderDescription')}</p>
+                        <h3 className="text-lg dark:text-gray-200">{t('outOfOfficeOutsideHeader')}</h3>
+                        <p className="text-sm dark:text-gray-200">{t('outOfOfficeOutsideHeaderDescription')}</p>
                       </div>
                     </div>
                     <div className="flex">
@@ -363,11 +363,11 @@ const AutomaticReplies: NextPage = () => {
                               onClick={() => {
                                 setCheckedExternal(!checkedExternal);
                               }}
-                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450"
+                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                             />
                           </div>
                           <div className="ml-3 text-sm">
-                            <label htmlFor="enableOutside" className="font-medium text-gray-700">
+                            <label htmlFor="enableOutside" className="font-medium text-gray-700 dark:text-gray-200">
                               {t('SendRepliesOutsideYourOrganisation')}
                             </label>
                           </div>
@@ -388,11 +388,11 @@ const AutomaticReplies: NextPage = () => {
                                   onClick={() => {
                                     setCheckedOnlyContacts(!checkedOnlyContacts);
                                   }}
-                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450"
+                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                 />
                               </div>
                               <div className="ml-3 text-sm">
-                                <label htmlFor="allAllowed" className="font-medium text-gray-700">
+                                <label htmlFor="allAllowed" className="font-medium text-gray-700 dark:bg-teams_brand_dark_100 dark:text-gray-200">
                                   {t('SendRepliesOnlyToContacts')}
                                 </label>
                               </div>
@@ -406,7 +406,7 @@ const AutomaticReplies: NextPage = () => {
                         <div>
                           <div className="mt-10 lg:grid lg:grid-cols-12 lg:gap-x-5">
                             <aside className="py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0 lg:pr-3">
-                              <div className="space-y-2 ">
+                              <div className="space-y-2 dark:text-gray-200">
                                 <div>{t('Variables')}</div>
                                 {variables.map((item) => (
                                   <button
@@ -423,7 +423,7 @@ const AutomaticReplies: NextPage = () => {
                                       quill.editor.insertText(selection.index, item.value);
                                     }}
                                     type="button"
-                                    className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                                    className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                   >
                                     {item.name}
                                   </button>
@@ -433,7 +433,7 @@ const AutomaticReplies: NextPage = () => {
 
                             <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                               <div className=" w-full">
-                                <div className="w-full bg-gray-50">
+                                <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-200">
                                   <ReactQuill
                                     readOnly={
                                       selectedMailboxSetting?.allow_member_edit_out_of_office_message === false &&
@@ -475,7 +475,7 @@ const AutomaticReplies: NextPage = () => {
                               }}
                               disabled={sendTestMailMailboxSetting.isLoading}
                               type="button"
-                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                             >
                               {sendTestMailMailboxSetting.isLoading && (
                                 <div className="-ml-1 mr-3">
@@ -522,7 +522,7 @@ const AutomaticReplies: NextPage = () => {
                           save();
                         }}
                         type="submit"
-                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200"
                       >
                         {editMailboxSetting.isLoading && (
                           <div className="-ml-1 mr-3">
@@ -542,10 +542,10 @@ const AutomaticReplies: NextPage = () => {
                       <ul role="list" className="mt-2 divide-y divide-gray-200">
                         <Switch.Group as="li" className="flex items-center justify-between py-4">
                           <div className="flex flex-col">
-                            <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                            <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                               {t('EnableOutOfOfficeMessgageForLeaveType')}
                             </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500"></Switch.Description>
+                            <Switch.Description className="text-sm text-gray-500 dark:text-gray-200"></Switch.Description>
                           </div>
 
                           <Switch
@@ -580,8 +580,8 @@ const AutomaticReplies: NextPage = () => {
                               );
                             }}
                             className={classNames(
-                              selectedMailboxSetting ? 'bg-teams_brand_500' : 'bg-gray-200',
-                              'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                              selectedMailboxSetting ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                              'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                             )}
                           >
                             <span
