@@ -459,7 +459,9 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                   getOptionLabel={(option) => `${option.name}`}
                                   getOptionValue={(option) => option.id}
                                   options={PUBLIC_HOLIDAYS}
-                                />
+
+
+                                  />
                               )}
                             />
                           )}
