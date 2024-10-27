@@ -312,7 +312,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                         <div className="">
                           <button
                             type="submit"
-                            className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200 dark:border-teams_brand_dark_300" 
+                            className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_dark_mode_core dark:text-gray-200 dark:ring-0 dark:border-teams_brand_dark_300" 
                           >
                             {editBillingInfo.isLoading && (
                               <div className="mr-2">

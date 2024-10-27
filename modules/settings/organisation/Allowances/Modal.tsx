@@ -526,7 +526,7 @@ export default function Modal(props: {
                           <button
                             disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                             type="submit"
-                            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+                            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200 dark:ring-0"
                           >
                             {(addAllowanceType.isLoading || editAllowanceType.isLoading) && (
                               <svg

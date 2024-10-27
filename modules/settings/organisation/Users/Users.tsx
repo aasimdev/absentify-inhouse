@@ -843,7 +843,7 @@ const Users = () => {
                               width: '95px'
                             })
                           }}
-                          menuPortalTarget={document.body}
+                          // menuPortalTarget={document.div}
                           options={rowsPerPage}
                           className="w-full my-react-select-container"
                         classNamePrefix="my-react-select"

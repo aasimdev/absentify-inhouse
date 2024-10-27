@@ -1010,9 +1010,8 @@ const Upgrade: NextPage = () => {
           }}
           className={classNames(
             toggleEnabled
-              ? 'bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300'
-              : 'bg-gray-400 dark:bg-transparent dark:ring-white',
-            'relative inline-flex flex-shrink-0 h-6 lg:w-11 border-2  w-10  border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none dark:ring-1 dark:ring-offset-0'
+              ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
           )}
         >
           <span className="sr-only">Use setting</span>

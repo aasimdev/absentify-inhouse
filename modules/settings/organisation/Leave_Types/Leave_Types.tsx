@@ -260,7 +260,7 @@ const SortableItem = (props: {
             style={{ backgroundColor: leave_type.color }}
           ></div>
           {openColorPicker == leave_type.id && (
-            <div className="absolute z-10">
+            <div className="absolute z-10 dark:bg-teams_brand_dark_100">
               <OutsideAlerter
                 onClick={() => {
                   setOpenColorPicker(null);
@@ -276,15 +276,17 @@ const SortableItem = (props: {
                   styles={{
                     default: {
                       card: {
-                        width: '272px'
+                        width: '272px',
+                        // background: "#191919"
                       },
                       body: {
-                        padding: '10px'
+                        padding: '10px',
+                        // background: "#191919"
                       },
                       input: {
                         height: '14px',
                         width: '90px'
-                      }
+                      },
                     }
                   }}
                 ></TwitterPicker>

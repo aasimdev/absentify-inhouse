@@ -59,11 +59,11 @@ const Billing: NextPage = () => {
     if (props.url == 'request' && props.transaction_id) {
       return (
         <li className="flex px-2 py-3 justify-between border-b border-surface-10 last:border-b-0">
-          <span className="min-w-20  text-sm">{props.cost}</span>
+          <span className="min-w-20  text-sm dark:text-gray-200">{props.cost}</span>
           <time className=" text-sm" dateTime="2022-06-23 09:46" title="23 Jun, 2022 at 9:46 AM">
             {props.children}
           </time>
-          <p className="text-sm text-blue-400 hover:text-blue-500">
+          <p className="text-sm text-blue-400 hover:text-blue-500 dark:text-gray-200">
             <a
               className="transition-color duration-200 cursor-pointer"
               onClick={async () => {
@@ -93,11 +93,11 @@ const Billing: NextPage = () => {
     return (
       <li className="flex px-2 py-3 justify-between border-b border-surface-10 last:border-b-0">
         <span className="min-w-20  text-sm">{props.cost}</span>
-        <time className=" text-sm" dateTime="2022-06-23 09:46" title="23 Jun, 2022 at 9:46 AM">
+        <time className=" text-sm dark:text-gray-200" dateTime="2022-06-23 09:46" title="23 Jun, 2022 at 9:46 AM">
           {props.children}
         </time>
-        <p className="text-sm text-blue-400 hover:text-blue-500">
-          <a className="transition-color duration-200 " href={props.url} rel="noopener" target="_blank">
+        <p className="text-sm text-blue-400 hover:text-blue-500 dark:text-gray-200">
+          <a className="transition-color duration-200 dark:text-gray-200" href={props.url} rel="noopener" target="_blank">
             {t('Download')}
           </a>
         </p>
@@ -234,9 +234,9 @@ const Billing: NextPage = () => {
                   }}
                 />
               )}
-              {subscription?.status == 'pending' && <p className="text-sm"> {t('selectedPlan_pending')} </p>}
+              {subscription?.status == 'pending' && <p className="text-sm dark:text-gray-200"> {t('selectedPlan_pending')} </p>}
               <Link href="/settings/organisation/upgrade" legacyBehavior>
-                <p className="text-sm text-teams_brand_foreground_bg hover:text-teams_brand_border_1 cursor-pointer dark:text-teams_brand_border_1">
+                <p className="text-sm text-teams_brand_foreground_bg hover:text-teams_brand_border_1 cursor-pointer dark:text-teams_brand_border_1 dark:text-gray-200">
                   {t('upgrade')} --{'>'}
                 </p>
               </Link>
@@ -252,10 +252,10 @@ const Billing: NextPage = () => {
                     <>
                       <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
                       <div className="flex flex-col space-y-3">
-                        <h3 className="text-base font-medium">{t('Payement_details')}</h3>
+                        <h3 className="text-base font-medium dark:text-gray-200">{t('Payement_details')}</h3>
                         {x.next_payment && (
                           <p
-                            className="text-sm"
+                            className="text-sm dark:text-gray-200"
                             dangerouslySetInnerHTML={{
                               __html: t('Your_next_billing_date_is', {
                                 interpolation: { escapeValue: false },
@@ -324,7 +324,7 @@ const Billing: NextPage = () => {
                     setUpdateBillingInfoModalVisible(true);
                     setUpgradeInfo('enterprisePlan');
                   }}
-                  className="inline-flex w-1/3 sm:w-1/5 mt-4 items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="inline-flex w-1/3 sm:w-1/5 mt-4 items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_dark_mode_core dark:text-gray-200 dark:ring-0"
                 >
                   {t('update_billing_info')}
                 </Button>
@@ -362,7 +362,7 @@ const Billing: NextPage = () => {
                             <a
                               target="_blank"
                               href={update_url}
-                              className="ml-4 outline-none cursor-pointer text-blue-400 hover:text-blue-500 text-sm"
+                              className="ml-4 outline-none cursor-pointer text-blue-400 hover:text-blue-500 text-sm dark:text-gray-200"
                               role="button"
                               tabIndex={0}
                               aria-label={t('Update_card')}
