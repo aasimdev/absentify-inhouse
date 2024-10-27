@@ -331,7 +331,7 @@ const AutomaticReplies: NextPage = () => {
                           }}
                           disabled={sendTestMailMailboxSetting.isLoading}
                           type="button"
-                          className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                          className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200"
                         >
                           {sendTestMailMailboxSetting.isLoading && (
                             <div className="-ml-1 mr-3">
@@ -475,7 +475,7 @@ const AutomaticReplies: NextPage = () => {
                               }}
                               disabled={sendTestMailMailboxSetting.isLoading}
                               type="button"
-                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 dark:bg-teams_dark_mode_core"
+                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200 dark:bg-teams_brand_dark_300"
                             >
                               {sendTestMailMailboxSetting.isLoading && (
                                 <div className="-ml-1 mr-3">
@@ -522,7 +522,7 @@ const AutomaticReplies: NextPage = () => {
                           save();
                         }}
                         type="submit"
-                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200"
                       >
                         {editMailboxSetting.isLoading && (
                           <div className="-ml-1 mr-3">
