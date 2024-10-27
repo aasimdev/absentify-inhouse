@@ -374,7 +374,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -384,7 +384,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
@@ -481,7 +481,7 @@ const Upgrade: NextPage = () => {
     return (
       <Button
         disabled={false}
-        className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+        className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
       >
         {t('currentplan')}
       </Button>
@@ -559,7 +559,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -569,7 +569,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
@@ -829,7 +829,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -839,7 +839,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_dark_mode_core dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
