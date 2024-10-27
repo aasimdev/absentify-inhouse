@@ -79,7 +79,7 @@ const Leave_Types: NextPage = () => {
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                   <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
                       <tr>
                         <th
                           scope="col"

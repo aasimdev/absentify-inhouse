@@ -437,7 +437,7 @@ const Insights = () => {
           <p className="p-2 text-center dark:text-gray-200">{t('upcomming')}</p>
           {/* Upcoming loading */}
           {isLoading && (
-            <div className="block w-full animate-puls">
+            <div className="block w-full animate-puls dark:bg-teams_brand_dark_100">
               <div className="mx-auto w-full">
                 <div className="p-4 animate-pulse py-6e flex space-x-4 ">
                   <div className="h-8 w-8 rounded-full bg-gray-700"></div>
@@ -549,7 +549,7 @@ const Insights = () => {
             </div>
             {/* Annual trand loading */}
             <div
-              className="relative  p-8 lg:pb-14 sm:px-6 pt-20  inline-flex space-x-2 sm:space-x-3 lg:space-x-6 justify-center bg-white drop-shadow overflow-hidden rounded-lg m-4"
+              className="relative  p-8 lg:pb-14 sm:px-6 pt-20  inline-flex space-x-2 sm:space-x-3 lg:space-x-6 justify-center bg-white drop-shadow overflow-hidden rounded-lg m-4 dark:bg-teams_brand_dark_100"
               style={{ width: '97.7%' }}
             >
               <h1 className="absolute text-base text-center pb-4 -mt-12">{t('annualTrend')}</h1>

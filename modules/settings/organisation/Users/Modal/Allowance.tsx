@@ -108,7 +108,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                       className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:border-gray-500"
                     >
                       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
-                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
                           <tr>
                             <th
                               scope="col"
@@ -373,7 +373,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           );
                                           setEditMode(null);
                                         }}
-                                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_600 dark:text-gray-200"
                                       >
                                         {loading && (
                                           <div className="-ml-1 mr-3">

@@ -31,7 +31,7 @@ export default function MailLogs(props: { onClose: Function; currentMember: defa
             <div className="inline-block min-w-full py-2 align-middle sm:px-2 lg:px-1 px-2">
               <div className="overflow-hidden border-b border-gray-200 dark:border-gray-900 shadow sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-500 dark:bg-teams_brand_dark_100">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
                     <tr>
                       <th
                         scope="col"

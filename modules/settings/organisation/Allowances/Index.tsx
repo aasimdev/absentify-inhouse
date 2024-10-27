@@ -90,7 +90,7 @@ const AllowancesPage: NextPage = () => {
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6 rounded-lg" >
               <div className=" border-b border-gray-200 shadow rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 dark:rounded-lg">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_500 rounded-lg">
                     <tr>
                       <th
                         scope="col"
@@ -305,10 +305,10 @@ const AllowancesPage: NextPage = () => {
                               data-tooltip-content={t('allowance_limit_go_upgrade_description')}
                               data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >
-                              <QuestionMarkCircleIcon width={12} className="self-center" />
+                              <QuestionMarkCircleIcon width={12} className="self-center dark:text-gray-200" />
                             </span>
 
-                            <span className="ml-2">{t('allowance_limit_go_upgrade') + ' ->'}</span>
+                            <span className="ml-2 dark:text-gray-200">{t('allowance_limit_go_upgrade') + ' ->'}</span>
                           </span>
                         </td>
                       )}

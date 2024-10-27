@@ -377,7 +377,7 @@ const Users = () => {
                       </tr>
                     </thead>
                   ) : (
-                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_100">
+                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_500">
                       <tr className="">
                         <th
                           scope="col"

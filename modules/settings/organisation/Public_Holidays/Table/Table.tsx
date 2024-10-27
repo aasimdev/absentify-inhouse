@@ -77,7 +77,7 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
   return (
     <>
       <table className="min-w-full divide-y divide-gray-200 border z-0">
-        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+        <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
           <tr>
             <th
               scope="col"

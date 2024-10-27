@@ -144,7 +144,7 @@ export default function SetEmailModal(props: {
                       onClick={() => {
                         handleSubmit(onSubmit)();
                       }}
-                      className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                      className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
                     >
                       {loading && (
                         <div className="-ml-1 mr-3">
