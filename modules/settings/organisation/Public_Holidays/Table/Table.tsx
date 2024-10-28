@@ -76,8 +76,8 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
   if (!current_member) return <></>;
   return (
     <>
-      <table className="min-w-full divide-y divide-gray-200 border z-0">
-        <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
+      <table className="min-w-full divide-y divide-gray-200 border dark:divide-gray-500  z-0">
+        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
           <tr>
             <th
               scope="col"
@@ -90,7 +90,7 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
             <th scope="col" className="relative px-6 py-3"></th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
           {publicHolidayDays
             ?.filter((x) => x.year == props.year)
             .map((holiday) => (

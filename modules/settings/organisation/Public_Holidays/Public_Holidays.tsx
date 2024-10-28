@@ -52,9 +52,9 @@ const Departments: NextPage = () => {
         <div className="flex flex-col mt-6 ">
           <div className="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-6 min-w-full">
             <div className="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
+              <div className="overflow-hidden border-b dark:border-0 border-gray-200 shadow sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                     <tr>
                       <th
                         scope="col"
@@ -67,7 +67,7 @@ const Departments: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-teams_brand_dark_100">
+                  <tbody className="bg-white divide-y divide-gray-200 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                     {public_holidays.map((holiday) => (
                       <tr key={holiday.id}>
                         <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-gray-200">

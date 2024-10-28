@@ -316,11 +316,11 @@ const Users = () => {
         <div className="mt-6 flex flex-col  items-center">
           <div className="-my-2 overflow-x-auto  w-full ">
             <div className="inline-block min-w-full py-2 align-middle sm:px-2 lg:px-1 px-2">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
+              <div className="overflow-hidden border-b dark:border-0 border-gray-200 shadow sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
                   {/* depends on selecting several users or not */}
                   {!selectMultiMode && !(selectedMembers.length > 0) ? (
-                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                       <tr>
                         <th
                           scope="col"
@@ -377,7 +377,7 @@ const Users = () => {
                       </tr>
                     </thead>
                   ) : (
-                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_500">
+                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                       <tr className="">
                         <th
                           scope="col"

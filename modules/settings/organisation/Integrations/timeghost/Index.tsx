@@ -229,7 +229,7 @@ const TimeghostSync: NextPage = () => {
           <div className="-my-2 overflow-x-auto  md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle px-0.5 ">
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 ">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 ">
                   <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                     <tr>
                       <th
@@ -262,7 +262,7 @@ const TimeghostSync: NextPage = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                     {!timeghostSyncSettings_loading && timeghostSyncSettings && leave_types && departments ? (
                       timeghostSyncSettings.filter((tgSetting) => !tgSetting.deleted).map((timeghostSyncSetting) => (
                         <tr key={timeghostSyncSetting.id}>

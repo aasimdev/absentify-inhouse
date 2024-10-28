@@ -56,7 +56,7 @@ const config = {
         teams_brand_dark_400: "#757575",
         teams_brand_dark_500: "#3D3D3D",
         teams_brand_dark_600: "#191919",
-        
+        teams_brand_blue : "#5864A6",
 
       },
       minHeight: (theme) => ({

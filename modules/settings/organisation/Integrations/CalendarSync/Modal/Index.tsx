@@ -107,12 +107,12 @@ export default function Modal(props: {
     return (
       <>
         {editMode && watch('calendar_sync_type') === 'ical_email' && (
-          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_500 dark:divide-gray-500 dark:text-gray-200 ">
+          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_100 dark:divide-gray-500 dark:text-gray-200 ">
             <div className="w-full text-sm dark:text-gray-200">{t('calendar_sync_setting_email_sync_message')}</div>
           </div>
         )}
         {addMode && watch('calendar_sync_type') === 'ical_email' && (
-          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_500">
+          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_100">
             <div className="w-full text-sm dark:text-gray-200">{t('calendar_sync_setting_email_sync_add_message')}</div>
           </div>
         )}
@@ -915,8 +915,8 @@ export default function Modal(props: {
                         </div>
                       </div>
                       <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                        <table className="min-w-full divide-y divide-gray-200 ">
-                          <thead className="rounded-sm bg-gray-50 dark:bg-teams_brand_dark_500">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 ">
+                          <thead className="rounded-sm bg-gray-50 dark:bg-teams_brand_dark_100">
                             <tr>
                               <th
                                 scope="col"
@@ -977,7 +977,7 @@ export default function Modal(props: {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                             {leaveTypeSwitches?.map((leave_type, i) => (
                               <tr key={leave_type.id} className='dark:bg-teams_brand_dark_100'>
                                 <td className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200">

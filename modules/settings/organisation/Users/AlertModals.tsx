@@ -97,7 +97,7 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -256,7 +256,7 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -420,7 +420,7 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500  dark:bg-teams_brand_dark_500 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500  dark:bg-teams_brand_dark_100 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -585,7 +585,7 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_500 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}

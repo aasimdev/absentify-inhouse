@@ -315,8 +315,8 @@ const General: NextPage = () => {
                             imageRatioSquare ? 'w-24 h-24' : 'sm:w-96 w-44 h-20',
                             'flex items-center justify-center',
                             'border border-gray-300',
-                            'group',
-                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
+                            'group dark:group-hover:text-white',
+                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_600 dark:hover:text-gray-200'
                           )}
                         >
                           <span className="group-hover:hidden flex items-center justify-center text-sm text-gray-400">
@@ -378,12 +378,12 @@ const General: NextPage = () => {
                 </div>
                 <button type="button" onClick={handleRatioChange} className="flex flex-col ml-6">
                   <div className="flex items-center">
-                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4 ">
+                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4  dark:teams_brand_blue">
                       {imageRatioSquare ? t('switch_landscape_layout') : t('switch_square_layout')}
                     </div>
-                    <ArrowPathIcon color="#1874f0" className=" w-3 h-3 ml-1 sm:mt-0 mt-4" />
+                    <ArrowPathIcon color="#1874f0" className=" w-3 h-3 ml-1 sm:mt-0 mt-4 teams_brand_blue" />
                   </div>
-                  <div className="text-sm font-normal text-gray-500">
+                  <div className="text-sm font-normal text-gray-500  dark:text-gray-200 ">
                     {imageRatioSquare ? t('recomended_size_400x80px') : t('recomended_size_256x256px')}
                   </div>
                 </button>
@@ -458,10 +458,10 @@ const General: NextPage = () => {
                           'flex items-center justify-center',
                           'border border-gray-300 dark:border-gray-500',
                           'group',
-                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
+                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_600 dark:hover:text-gray-200'
                         )}
                       >
-                        <span className="group-hover:flex group-hover:text-black items-center justify-center text-xs text-gray-400 dark:text-gray-200">
+                        <span className="group-hover:flex group-hover:text-black dark:group-hover:text-white items-center justify-center text-xs text-gray-400 dark:text-gray-200">
                           {t('Upload')}
                         </span>
                       </div>

@@ -57,7 +57,7 @@ export default function CancelModal(props: {
               <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                 <button
                   type="button"
-                  className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_500 dark:text-gray-200"
+                  className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:text-gray-200"
                   onClick={() => {
                     props.onClose();
                   }}
@@ -137,7 +137,7 @@ export default function CancelModal(props: {
                 <button
                   disabled={loading}
                   type="button"
-                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_500 dark:text-gray-200 dark:border-gray-700 dark:focus:ring-teams_brand_900 dark:focus:ring-0"
+                  className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:border-gray-700 dark:focus:ring-teams_brand_900 dark:focus:ring-0"
                   onClick={() => {
                     props.onClose();
                   }}

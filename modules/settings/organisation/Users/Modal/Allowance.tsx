@@ -108,7 +108,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                       className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:border-gray-500"
                     >
                       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
-                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
+                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                           <tr>
                             <th
                               scope="col"
@@ -186,7 +186,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             <th scope="col" className="relative px-3 py-3 "></th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+                        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                           {filteredAllowance.map((allowance) =>
                             editMode?.id == allowance.id ? (
                               <tr key={allowance.id} className='dark:bg-teams_brand_dark_100'>

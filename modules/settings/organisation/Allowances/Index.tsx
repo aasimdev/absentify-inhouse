@@ -88,9 +88,9 @@ const AllowancesPage: NextPage = () => {
         <div className="mt-6 flex flex-col shadow rounded-lg">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6 rounded-lg" >
-              <div className=" border-b border-gray-200 shadow rounded-lg">
+              <div className=" border-b border-gray-200 dark:border-0 shadow rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 dark:rounded-lg">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_500 rounded-lg">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
                     <tr>
                       <th
                         scope="col"
@@ -124,7 +124,7 @@ const AllowancesPage: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white cursor-default dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-500  bg-white cursor-default dark:bg-teams_brand_dark_100">
                     {allowancesTypes?.map((allowancesType) => (
                       <tr key={allowancesType.id}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
@@ -285,7 +285,7 @@ const AllowancesPage: NextPage = () => {
                                 clipRule="evenodd"
                               />
                             </svg>{' '}
-                            <span className="ml-2">{t('allowance_new_allowancetype')}</span>
+                            <span className="ml-2  dark:text-gray-200">{t('allowance_new_allowancetype')}</span>
                           </div>
                         </td>
                       )}

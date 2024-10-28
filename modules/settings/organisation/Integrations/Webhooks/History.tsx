@@ -62,8 +62,8 @@ const History: NextPage = () => {
                   <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle">
                       <div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-                        <table className="min-w-full divide-y divide-gray-300">
-                          <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
+                        <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-500">
+                          <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                             <tr>
                               <th
                                 scope="col"
@@ -87,7 +87,7 @@ const History: NextPage = () => {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                             {historyQuery.data.pages[currentPage]?.items.map((historyData) => (
                               <tr key={historyData.id} className = "dark:bg-teams_brand_dark_100">
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8  dark:text-gray-200">

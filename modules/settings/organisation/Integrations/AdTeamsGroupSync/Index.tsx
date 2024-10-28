@@ -140,19 +140,19 @@ export default function AdTeamsGroupSync() {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="-my-2 overflow-x-auto md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-3">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 ">
-                  <thead className="bg-gray-50">
+              <div className="overflow-hidden border-b border-gray-200 dark_border-0 shadow sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500  dark:text-gray-200 "
                       >
                         {t('Name')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell  dark:text-gray-200"
                       >
                         {t('description')}
                       </th>
@@ -160,13 +160,13 @@ export default function AdTeamsGroupSync() {
                       <th scope="col" className="relative px-6 py-3 "></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white ">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
                     {groupSyncSettings?.map((group_sync_setting) => (
                       <tr key={group_sync_setting.id}>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-gray-200">
                           {group_sync_setting.name}
                         </td>
-                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell ">
+                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell  dark:text-gray-200">
                           <div
                             className="w-20 truncate pt-1"
                             data-tooltip-id="cssdes-tooltip"
@@ -176,18 +176,18 @@ export default function AdTeamsGroupSync() {
                             {group_sync_setting.description}
                           </div>
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                        <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium  dark:text-gray-200">
                           <a
                             onClick={async (e) => {
                               e.preventDefault();
                               setValueForEdit(group_sync_setting);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5  dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -203,11 +203,11 @@ export default function AdTeamsGroupSync() {
                               setDeleteModalOpen(true);
                               setValueForDelete(group_sync_setting);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-gray-200"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5  dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -224,7 +224,7 @@ export default function AdTeamsGroupSync() {
                     <tr>
                       {workspace && groupSyncSettings && (
                         <td
-                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900"
+                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-gray-200"
                           colSpan={8}
                           onClick={(e) => {
                             e.preventDefault();
@@ -235,7 +235,7 @@ export default function AdTeamsGroupSync() {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5  dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -245,7 +245,7 @@ export default function AdTeamsGroupSync() {
                                 clipRule="evenodd"
                               />
                             </svg>{' '}
-                            <span className="ml-2">{t('add_new_group_sync')}</span>
+                            <span className="ml-2  dark:text-gray-200">{t('add_new_group_sync')}</span>
                           </div>
                         </td>
                       )}
@@ -253,7 +253,7 @@ export default function AdTeamsGroupSync() {
                   </tbody>
                   <ReactTooltip
                     id="cssdes-tooltip"
-                    className="z-50 shadow-sm"
+                    className="z-50 shadow-sm  dark:text-gray-200 dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     style={{ maxWidth: '300px', opacity: 1, boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
