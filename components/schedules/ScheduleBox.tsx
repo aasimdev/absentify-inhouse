@@ -51,15 +51,15 @@ export default function ScheduleBox(props: {
             </h3>
 
             {props.state == 'completed' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_100">
                 {t('Completed')}
               </span>
             ) : props.state == 'future' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:text-gray-200 dark:bg-teams_brand_dark_100">
                 {t('In_future')}
               </span>
             ) : (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:text-gray-200 dark:bg-teams_brand_dark_400">
                 {t('Current_work_schedule')}
               </span>
             )}
@@ -80,7 +80,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.monday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -98,7 +98,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.monday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -108,7 +108,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.tuesday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -126,7 +126,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.tuesday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -136,7 +136,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.wednesday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -154,7 +154,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.wednesday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -164,7 +164,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.thursday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -182,7 +182,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.thursday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -192,7 +192,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.friday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -210,7 +210,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.friday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -220,7 +220,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.saturday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -238,7 +238,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.saturday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -248,7 +248,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         'w-5 h-9',
                         props.schedule.sunday_am_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -266,7 +266,7 @@ export default function ScheduleBox(props: {
                       className={classNames(
                         ' w-5  h-9',
                         props.schedule.sunday_pm_enabled
-                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-transparent text-teams_brand_600'
+                          ? 'z-10 border-teams_brand_500 bg-teams_brand_50 dark:bg-teams_brand_dark_400 text-teams_brand_600'
                           : ' bg-transparent'
                       )}
                     ></div>
@@ -295,7 +295,7 @@ export default function ScheduleBox(props: {
 const CustomLoading = () => {
   return (
     <>
-      <div className="px-4 w-full max-w-screen-2xl bg-white shadow sm:rounded-lg p-4">
+      <div className="px-4 w-full max-w-screen-2xl bg-white shadow sm:rounded-lg p-4 dark:bg-teams_brand_dark_100">
         <div>
           <div className="mx-auto w-full">
             <div className="flex animate-pulse space-x-4 pt-2">

@@ -13,6 +13,7 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { notifyError, notifySuccess } from '~/helper/notify';
 import Loader from '@components/calendar/Loader';
 import AlertModal from '@components/alertModal';
+import { useDarkSide } from '@components/ThemeContext';
 
 export default function Modal(props: {
   open: boolean;
@@ -93,9 +94,9 @@ export default function Modal(props: {
   const SnycCalendarMessageFreePlan = () => {
     return (
       <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left ">
-        <div className="w-full text-sm ">
+        <div className="w-full text-sm dark:text-gray-200">
           {`${t('calendar_sync_setting_message')} `}
-          <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200 ">
+          <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200 dark:text-gray-200">
             {t('Integrations_description_available_in_plan_2')}
           </Link>
         </div>
@@ -106,13 +107,13 @@ export default function Modal(props: {
     return (
       <>
         {editMode && watch('calendar_sync_type') === 'ical_email' && (
-          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left ">
-            <div className="w-full text-sm ">{t('calendar_sync_setting_email_sync_message')}</div>
+          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_500 dark:divide-gray-500 dark:text-gray-200 ">
+            <div className="w-full text-sm dark:text-gray-200">{t('calendar_sync_setting_email_sync_message')}</div>
           </div>
         )}
         {addMode && watch('calendar_sync_type') === 'ical_email' && (
-          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left ">
-            <div className="w-full text-sm ">{t('calendar_sync_setting_email_sync_add_message')}</div>
+          <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-yellow-100 py-5 px-6 text-left dark:bg-teams_brand_dark_500">
+            <div className="w-full text-sm dark:text-gray-200">{t('calendar_sync_setting_email_sync_add_message')}</div>
           </div>
         )}
       </>
@@ -370,6 +371,8 @@ export default function Modal(props: {
 
     return `${baseUrl}?${params.toString()}`;
   };
+  
+ const [theme] = useDarkSide();
   return (
     <Transition.Root show={props.open} as={Fragment}>
       <Dialog as="div" className="fixed inset-0 z-30 overflow-y-auto" onClose={() => {}}>
@@ -399,8 +402,8 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-4xl sm:p-6 sm:align-middle">
-              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900">
+            <div className="inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-4xl sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
+              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                 {editMode ? t('Edit_calendar_sync') : t('Add_calendar_sync')}
               </Dialog.Title>
               <nav aria-label="Progress ">
@@ -412,22 +415,22 @@ export default function Modal(props: {
                           <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg ">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : step.status === 'current' ? (
                         <span
                           className="flex flex-col border-l-4 border-teams_brand_foreground_bg py-2 pl-4 md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0"
                           aria-current="step"
                         >
-                          <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg">
+                          <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg ">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : (
                         <span className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4  md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
                           <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{step.id}</span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       )}
                     </li>
@@ -436,14 +439,14 @@ export default function Modal(props: {
               </nav>{' '}
               <div className="mt-5 border-t border-gray-200"></div>
               {steps[0] && steps[0].status === 'current' && (
-                <div className="mt-5  bg-white">
+                <div className="mt-5  bg-white dark:bg-teams_brand_dark_100">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                           {t('calendar_sync_setting_modal')}
                         </h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p> {t('calendar_sync_modal_description')}</p>
                         </div>
                       </div>
@@ -453,7 +456,7 @@ export default function Modal(props: {
                   <form className="divide-y divide-gray-200 pl-0 lg:pl-4" onSubmit={() => {}}>
                     <div className="mt-6 mb-10 grid grid-cols-1 content-center gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('calendar_sync_modal_name')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -466,7 +469,7 @@ export default function Modal(props: {
                                 {...register('name', { required: true })}
                                 type="text"
                                 autoComplete="name"
-                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -481,7 +484,7 @@ export default function Modal(props: {
                         )}
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('description')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -494,7 +497,7 @@ export default function Modal(props: {
                                 {...register('description', { required: true })}
                                 type="text"
                                 autoComplete="description"
-                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -511,7 +514,7 @@ export default function Modal(props: {
                     </div>
                     {!subscription.has_valid_subscription && (
                       <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left ">
-                        <div className="w-full text-sm ">
+                        <div className="w-full text-sm dark:text-gray-200">
                           {`${t('calendar_sync_setting_message')} `}
                           <Link
                             href="/settings/organisation/upgrade"
@@ -529,8 +532,8 @@ export default function Modal(props: {
                 <div className="mt-6 mb-10 px-4 sm:px-6 lg:px-8 lg:pr-20">
                   <div className="pb-4 sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">{t('Calendar_choice')}</h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('Calendar_choice_descript')}</p>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Calendar_choice')}</h3>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('Calendar_choice_descript')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -562,6 +565,8 @@ export default function Modal(props: {
                                 onChange(val?.type);
                               }}
                               options={calendarTypes}
+                              className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                             />
                           )}
                         />
@@ -589,6 +594,8 @@ export default function Modal(props: {
                               onChange(val?.type);
                             }}
                             options={calendarTypes}
+                            className="w-full my-react-select-container"
+                            classNamePrefix="my-react-select"
                           />
                         )}
                       />
@@ -605,8 +612,8 @@ export default function Modal(props: {
                             current_member &&
                             editMode.calendar_microsoft_user_id !== current_member.microsoft_user_id && (
                               <div>
-                                <p>{t('Calendar_was_selected_by_another_user_and_cannot_be_changed')}</p>
-                                <p>{watch('calendar_name')}</p>
+                                <p className='dark:text-gray-200'>{t('Calendar_was_selected_by_another_user_and_cannot_be_changed')}</p>
+                                <p className='dark:text-gray-200'>{watch('calendar_name')}</p>
                               </div>
                             )}
                         </p>
@@ -622,7 +629,7 @@ export default function Modal(props: {
                                   }
                                 })
                               }}
-                              className="w-full"
+                              
                               defaultValue={
                                 CALENDAR_SYNC_SETTING?.filter((x) => x.id === editMode?.id)[0]?.calendar_id
                                   ? MICROSOFT_CALENDARS.find((x) => x.id === getValues('calendar_id'))
@@ -639,6 +646,9 @@ export default function Modal(props: {
                                   setValue('calendar_microsoft_tenant_id', current_member.microsoft_tenantId);
                                 }
                               }}
+
+                              className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                             />
                           )}
 
@@ -652,7 +662,6 @@ export default function Modal(props: {
                                 }
                               })
                             }}
-                            className="w-full"
                             defaultValue={MICROSOFT_CALENDARS.find((x) => x.id === getValues('calendar_id'))}
                             options={MICROSOFT_CALENDARS}
                             getOptionLabel={(option) => `${option.name} (${t('Owner')}: ${option.owner.name})`}
@@ -666,6 +675,8 @@ export default function Modal(props: {
                                 setNextButtonState(false);
                               }
                             }}
+                            className="w-full my-react-select-container"
+                            classNamePrefix="my-react-select"
                           />
                         )}
                       </div>
@@ -673,10 +684,10 @@ export default function Modal(props: {
                       MICROSOFT_CALENDARS &&
                       MICROSOFT_CALENDARS.length === 0 &&
                       workspace?.microsoft_calendars_read_write === 'ACTIVATED' ? (
-                      <p className="mt-2 pl-2">{t('You_need_write_permission')}</p>
+                      <p className="mt-2 pl-2 dark:text-gray-200">{t('You_need_write_permission')}</p>
                     ) : getValues('calendar_sync_type') === 'outlook_calendar' &&
                       workspace?.microsoft_calendars_read_write !== 'ACTIVATED' ? (
-                      <p className="mt-2 pl-2">
+                      <p className="mt-2 pl-2 dark:text-gray-200">
                         <Link
                           href={'/settings/organisation/microsoft'}
                           className="text-red-500 underline cursor-pointer"
@@ -709,8 +720,8 @@ export default function Modal(props: {
                             current_member &&
                             editMode.calendar_microsoft_user_id !== current_member.microsoft_user_id && (
                               <div>
-                                <p>{t('Calendar_was_selected_by_another_user_and_cannot_be_changed')}</p>
-                                <p>{watch('calendar_name')}</p>
+                                <p className='dark:text-gray-200'>{t('Calendar_was_selected_by_another_user_and_cannot_be_changed')}</p>
+                                <p className='dark:text-gray-200'>{watch('calendar_name')}</p>
                               </div>
                             )}
                         </p>
@@ -726,7 +737,8 @@ export default function Modal(props: {
                                   }
                                 })
                               }}
-                              className="w-full"
+                              className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                               defaultValue={
                                 CALENDAR_SYNC_SETTING?.filter((x) => x.id === editMode?.id)[0]?.calendar_id
                                   ? microsoft_group_calendars.groups.find((x) => x.id === getValues('calendar_id'))
@@ -756,7 +768,8 @@ export default function Modal(props: {
                                 }
                               })
                             }}
-                            className="w-full"
+                            className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                             defaultValue={microsoft_group_calendars.groups.find(
                               (x) => x.id === getValues('calendar_id')
                             )}
@@ -778,18 +791,18 @@ export default function Modal(props: {
                     ) : getValues('calendar_sync_type') === 'outlook_group_calendar' &&
                       microsoft_group_calendars &&
                       microsoft_group_calendars.valid_token == true ? (
-                      <p className="mt-2 pl-2">{t('You_need_write_permission_group')}</p>
+                      <p className="mt-2 pl-2 dark:text-gray-200">{t('You_need_write_permission_group')}</p>
                     ) : getValues('calendar_sync_type') === 'outlook_group_calendar' &&
                       microsoft_group_calendars &&
                       microsoft_group_calendars.valid_token == false ? (
-                      <p className="mt-2 pl-2">
+                      <p className="mt-2 pl-2 dark:text-gray-200">
                         {in_teams ? (
                           <a
                             onClick={(e) => {
                               e.preventDefault();
                               setAlertModal(true);
                             }}
-                            className="text-red-500 underline cursor-pointer"
+                            className="text-red-500 underline cursor-pointer dark:text-gray-200"
                           >
                             {`${t('no_permission_group')}->`}
                           </a>
@@ -797,7 +810,7 @@ export default function Modal(props: {
                           <a
                             href={generateMicrosoftLoginUrl()}
                             target="_blank"
-                            className="text-red-500 underline cursor-pointer"
+                            className="text-red-500 underline cursor-pointer dark:text-gray-200"
                           >
                             {`${t('no_permission_group')}->`}
                           </a>
@@ -819,7 +832,7 @@ export default function Modal(props: {
                     {/* ical_email */}
                     {watch('calendar_sync_type') === 'ical_email' ? (
                       <div className="mt-6 ">
-                        <label htmlFor="email" className="mb-3 block">
+                        <label htmlFor="email" className="mb-3 block dark:text-gray-200">
                           {t('Email')}
                         </label>
                         <Controller
@@ -831,7 +844,7 @@ export default function Modal(props: {
                               {...register('email')}
                               type="text"
                               onChange={(val) => onChange(val.target.value)}
-                              className="block w-full rounded-md border-gray-300"
+                              className="block w-full rounded-md border-gray-300 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                             />
                           )}
                         />
@@ -854,8 +867,8 @@ export default function Modal(props: {
                 <div className="mt-6 mb-10 w-80 px-4 sm:px-6 lg:w-auto lg:pr-20 lg:pl-8">
                   <div className="pb-4 sm:flex sm:items-center ">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">{t('calendar_sync_Departments')}</h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('calendar_sync_Departments_descrip')}</p>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('calendar_sync_Departments')}</h3>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('calendar_sync_Departments_descrip')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -872,7 +885,8 @@ export default function Modal(props: {
                           }}
                           isMulti
                           value={selectedValues}
-                          className="w-full"
+                          className="w-full my-react-select-container"
+                          classNamePrefix="my-react-select"
                           name="department_ids"
                           onChange={(val) => {
                             if (val) {
@@ -891,46 +905,46 @@ export default function Modal(props: {
                 </div>
               )}
               {steps[3] && steps[3].status === 'current' && (
-                <div className="mt-5  bg-white">
+                <div className="mt-5  bg-white dark:bg-teams_brand_dark_100">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:flex-col ">
                       <div className="py-4">
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">{t('Config_Leave_types')}</h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Config_Leave_types')}</h3>
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p>{t('config_leave_types_description')}</p>
                         </div>
                       </div>
                       <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                         <table className="min-w-full divide-y divide-gray-200 ">
-                          <thead className="rounded-sm bg-gray-50">
+                          <thead className="rounded-sm bg-gray-50 dark:bg-teams_brand_dark_500">
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200"
                               >
                                 {t('leaveType_name')}
                               </th>
-                              <th scope="col" className=" py-3.5 text-left text-sm font-semibold text-gray-900">
+                              <th scope="col" className=" py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">
                                 {t('leaveType_show_as')}
                               </th>
 
                               <th
                                 scope="col"
-                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6"
+                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-gray-200"
                               >
-                                <div className="flex">
+                                <div className="flex dark:text-gray-200">
                                   {t('Activated')}
                                   <span
                                     className="ml-1 flex items-center cursor-pointer"
                                     data-tooltip-id="questionM-tooltip"
                                     data-tooltip-content={t('active_tooltip')}
-                                    data-tooltip-variant="light"
+                                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                   >
                                     <QuestionMarkCircleIcon height={12} />
                                   </span>
                                   <ReactTooltip
                                     id="questionM-tooltip"
-                                    className="shadow z-50"
+                                    className="shadow z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
                                     classNameArrow="shadow-sm"
                                     place="top"
                                     style={{ width: '360px' }}
@@ -940,7 +954,7 @@ export default function Modal(props: {
 
                               <th
                                 scope="col"
-                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6"
+                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-gray-200"
                               >
                                 <div className="flex">
                                   {t('only_approved')}
@@ -948,13 +962,13 @@ export default function Modal(props: {
                                     className="ml-1 flex items-center cursor-pointer"
                                     data-tooltip-id="questionM-tooltip"
                                     data-tooltip-content={t('onlyApproved_tooltip')}
-                                    data-tooltip-variant="light"
+                                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                   >
                                     <QuestionMarkCircleIcon height={12} />
                                   </span>
                                   <ReactTooltip
                                     id="questionM-tooltip"
-                                    className="shadow z-50"
+                                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
                                     classNameArrow="shadow-sm"
                                     place="top"
                                     style={{ width: '360px' }}
@@ -963,24 +977,24 @@ export default function Modal(props: {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200 bg-white">
+                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                             {leaveTypeSwitches?.map((leave_type, i) => (
-                              <tr key={leave_type.id}>
-                                <td className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                              <tr key={leave_type.id} className='dark:bg-teams_brand_dark_100'>
+                                <td className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200">
                                   {' '}
                                   {leave_type.leave_type.name}
-                                  <p className="font-normal text-gray-500">
+                                  <p className="font-normal text-gray-500 dark:text-gray-200">
                                     {' '}
                                     {leave_type.leave_type.outlook_synchronization_subject}
                                   </p>
                                 </td>
-                                <td className="py-3.5 text-left text-sm font-semibold text-gray-900">
+                                <td className="py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">
                                   <input
                                     maxLength={255}
                                     value={leave_type.sync_as_name}
                                     type="text"
                                     className={`w-20 rounded ${
-                                      leave_type.sync_as_name === '' ? 'border-red-500 ' : 'border-gray-300 '
+                                      leave_type.sync_as_name === '' ? 'border-red-500 dark:text-gray-200' : 'border-gray-300 dark:text-gray-200 dark:bg-teams_brand_dark_100'
                                     } text-sm lg:w-40`}
                                     onChange={(e) => {
                                       const x = [...leaveTypeSwitches];
@@ -992,7 +1006,7 @@ export default function Modal(props: {
                                     }}
                                   />{' '}
                                 </td>
-                                <td className="relative py-3.5 pl-0 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6">
+                                <td className="relative py-3.5 pl-0 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-gray-200">
                                   {' '}
                                   <Switch
                                     checked={leave_type.bool}
@@ -1009,8 +1023,8 @@ export default function Modal(props: {
                                       }
                                     }}
                                     className={classNames(
-                                      leave_type.bool ? 'bg-teams_brand_foreground_bg' : 'bg-gray-200',
-                                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                      leave_type.bool ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                      'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                     )}
                                   >
                                     <span
@@ -1037,8 +1051,8 @@ export default function Modal(props: {
                                         }
                                       }}
                                       className={classNames(
-                                        leave_type.only_approved ? 'bg-teams_brand_foreground_bg' : 'bg-gray-200',
-                                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                        leave_type.only_approved  ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                       )}
                                     >
                                       <span
@@ -1167,7 +1181,7 @@ export default function Modal(props: {
                     type="button"
                     className={` ${
                       !saveButtonState
-                        ? ' border-gray-300 bg-gray-200 text-gray-500 hover:bg-gray-300 '
+                        ? ' border-gray-300 bg-teams_brand_foreground_bg text-gray-200 hover:bg-gray-300 '
                         : ' bg-teams_brand_foreground_bg text-white hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2 '
                     }  mx-2 inline-flex items-center rounded-md border border-transparent px-4 py-2 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:text-sm `}
                   >

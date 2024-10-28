@@ -32,7 +32,7 @@ const History: NextPage = () => {
       <div className="divide-y divide-gray-200 lg:col-span-10">
         <div className="px-4 py-6 sm:p-6 lg:pb-8">
           <h2
-            className="py-2 text-base font-semibold inline-flex -ml-2 cursor-pointer"
+            className="py-2 text-base font-semibold inline-flex -ml-2 cursor-pointer  dark:text-gray-200"
             onClick={() => {
               router.push('/settings/organisation/integrations/webhooks');
             }}
@@ -54,7 +54,7 @@ const History: NextPage = () => {
             </span>
             {t('Webhooks')}{' '}
           </h2>
-          <h3 className="p-4 text-base font-semibold"> {t('history')}</h3>
+          <h3 className="p-4 text-base font-semibold  dark:text-gray-200"> {t('history')}</h3>
           {historyQuery.data?.pages && historyQuery.data.pages.length > 0 && (
             <div>
               <div className="px-4 sm:px-6 lg:px-8">
@@ -63,49 +63,49 @@ const History: NextPage = () => {
                     <div className="inline-block min-w-full py-2 align-middle">
                       <div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
                         <table className="min-w-full divide-y divide-gray-300">
-                          <thead className="bg-gray-50">
+                          <thead className="bg-gray-50 dark:bg-teams_brand_dark_500">
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
+                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8  dark:text-gray-200"
                               >
                                 {t('started')}
                               </th>
 
-                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-gray-200">
                                 {t('status')}
                               </th>
-                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-gray-200">
                                 {t('eventname')}
                               </th>
-                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                              <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-gray-200">
                                 {t('attempts')} <span className="sr-only">Details </span>
                               </th>
 
-                              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8">
+                              <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8  dark:text-gray-200">
                                 <span className="sr-only">Retry </span>
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200 bg-white">
+                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                             {historyQuery.data.pages[currentPage]?.items.map((historyData) => (
-                              <tr key={historyData.id}>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
+                              <tr key={historyData.id} className = "dark:bg-teams_brand_dark_100">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8  dark:text-gray-200">
                                   {current_member && format(historyData.createdAt, current_member.long_datetime_format)}
                                 </td>
 
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500  dark:text-gray-200">
                                   {historyData.status}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500  dark:text-gray-200">
                                   {historyData.webhook_setting.event === 'request_created;request_status_changed' &&
                                     t('all')}
                                   {historyData.webhook_setting.event === 'request_created' && t('created')}
                                   {historyData.webhook_setting.event === 'request_status_changed' && t('statusChanged')}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 ">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500  dark:text-gray-200">
                                   <div className="inline-flex space-x-2">
-                                    <p className="pt-1"> {historyData.webhookHistoryAttempts.length}</p>
+                                    <p className="pt-1  dark:text-gray-200"> {historyData.webhookHistoryAttempts.length}</p>
                                     {historyData.webhookHistoryAttempts[0] && (
                                       <button
                                         onClick={() => {
@@ -119,7 +119,7 @@ const History: NextPage = () => {
                                   </div>
                                 </td>
 
-                                <td className=" m-0 whitespace-nowrap  py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8">
+                                <td className=" m-0 whitespace-nowrap  py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8  dark:text-gray-200">
                                   <div className="cursor-pointer text-teams_brand_600 hover:text-teams_brand_900">
                                     <div
                                       onClick={async (e) => {
@@ -207,7 +207,7 @@ const History: NextPage = () => {
                                       )}
                                     </div>
 
-                                    <span className="sr-only">, {historyData.id}</span>
+                                    <span className="sr-only  dark:text-gray-200">, {historyData.id}</span>
                                   </div>
                                 </td>
                                 {historyData.webhookHistoryAttempts[0] && <></>}
@@ -221,11 +221,11 @@ const History: NextPage = () => {
                 </div>
               </div>
               <nav
-                className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+                className="flex items-center justify-between border-t border-gray-200 bg-white dark:bg-teams_brand_dark_100 px-4 py-3 sm:px-6"
                 aria-label="Pagination"
               >
                 <div className="hidden sm:block">
-                  <p className="text-sm text-gray-700"></p>
+                  <p className="text-sm text-gray-700  dark:text-gray-200"></p>
                 </div>
                 <div className="flex flex-1 justify-between sm:justify-end">
                   {currentPage <= (historyQuery.data?.pages.length ? historyQuery.data.pages.length - 1 : 0) &&
@@ -236,7 +236,7 @@ const History: NextPage = () => {
                           e.preventDefault();
                           setCurrentPage(currentPage - 1);
                         }}
-                        className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                        className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50  dark:text-gray-200 dark:bg-teams_brand_dark_100"
                       >
                         {t('previous')}
                       </a>
@@ -250,7 +250,7 @@ const History: NextPage = () => {
                         if (historyQuery.hasNextPage) await historyQuery.fetchNextPage();
                         setCurrentPage(currentPage + 1);
                       }}
-                      className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                      className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50  dark:text-gray-200 dark:bg-teams_brand_dark_100"
                     >
                       {t('next')}
                     </a>

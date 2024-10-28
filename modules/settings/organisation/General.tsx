@@ -304,7 +304,7 @@ const General: NextPage = () => {
         {enterprisePlan ? (
           <>
             <div className="mt-6">
-              <div className="text-md font-medium text-gray-900">{t('Company')}</div>
+              <div className="text-md font-medium text-gray-900 dark:text-white">{t('Company')}</div>
               <div className="shrink-0 flex items-center mt-6 sm:flex-row flex-col">
                 <div className="h-24">
                   {!previewImage && !logo ? (
@@ -316,7 +316,7 @@ const General: NextPage = () => {
                             'flex items-center justify-center',
                             'border border-gray-300',
                             'group',
-                            'hover:bg-gray-300'
+                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
                           )}
                         >
                           <span className="group-hover:hidden flex items-center justify-center text-sm text-gray-400">
@@ -378,7 +378,7 @@ const General: NextPage = () => {
                 </div>
                 <button type="button" onClick={handleRatioChange} className="flex flex-col ml-6">
                   <div className="flex items-center">
-                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4">
+                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4 ">
                       {imageRatioSquare ? t('switch_landscape_layout') : t('switch_square_layout')}
                     </div>
                     <ArrowPathIcon color="#1874f0" className=" w-3 h-3 ml-1 sm:mt-0 mt-4" />
@@ -411,7 +411,10 @@ const General: NextPage = () => {
                             })
                           }}
                           value={default_Show.find((x) => x.value === value)}
-                          className="w-full"
+                          
+                          className="w-full my-react-select-container"
+                          classNamePrefix="my-react-select"
+
                           onChange={(val) => {
                             onChange(val?.value);
                           }}
@@ -436,29 +439,29 @@ const General: NextPage = () => {
                       type="text"
                       name="name"
                       autoComplete="name"
-                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400"
+                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-teams_brand_dark_100 dark:text-gray-200"
                     />
                   </div>{' '}
                   {errors.name && <span>{t('This_field_is_required')}</span>}
                 </div>
               </div>
             </div>
-            <div className="mt-6 text-sm font-medium text-gray-700">
+            <div className="mt-6 text-sm font-medium text-gray-700 dark:text-gray-200">
               {t('Favicon')}
               <div className="h-11 w-11 mt-3">
                 {!workspace?.favicon_url && !previewFavicon ? (
                   <div className="flex items-center">
-                    <label htmlFor="file-upload-favicon" className="cursor cursor-pointer">
+                    <label htmlFor="file-upload-favicon dark:text-gray-200" className="cursor cursor-pointer">
                       <div
                         className={classNames(
                           'w-11 h-11',
                           'flex items-center justify-center',
-                          'border border-gray-300',
+                          'border border-gray-300 dark:border-gray-500',
                           'group',
-                          'hover:bg-gray-300'
+                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
                         )}
                       >
-                        <span className="group-hover:flex group-hover:text-black items-center justify-center text-xs text-gray-400">
+                        <span className="group-hover:flex group-hover:text-black items-center justify-center text-xs text-gray-400 dark:text-gray-200">
                           {t('Upload')}
                         </span>
                       </div>
@@ -512,7 +515,7 @@ const General: NextPage = () => {
                   </div>
                 )}
               </div>
-              <div className="mt-1 text-sm font-normal text-gray-500">{t('recommended_size_96x96')}</div>
+              <div className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-200">{t('recommended_size_96x96')}</div>
             </div>
           </>
         ) : (
@@ -1104,7 +1107,7 @@ const General: NextPage = () => {
         <div className="mt-4 flex justify-end p-4 sm:px-6">
           <button
             type="submit"
-            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-offset-0 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
           >
             {editWorkspace.isLoading && (
               <div className="-ml-1 mr-3">

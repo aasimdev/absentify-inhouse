@@ -49,7 +49,7 @@ export default function HisotryModal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                <div className="z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
                   <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block w-max">
                     <button
                       type="button"
@@ -62,7 +62,7 @@ export default function HisotryModal(props: {
                   </div>
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900  dark:text-gray-200">
                         {t('details')}
                       </Dialog.Title>
                     </div>
@@ -90,11 +90,11 @@ export default function HisotryModal(props: {
 
                       return (
                         <div key={value.url + i}>
-                          <h2 className="py-2 text-base">
+                          <h2 className="py-2 text-base  dark:text-gray-200">
                             <b>{t('date')} </b>
                             {current_member && format(new Date(value.createdAt), current_member.long_datetime_format)}
                           </h2>
-                          <h2 className="py-2 text-base break-all">
+                          <h2 className="py-2 text-base break-all  dark:text-gray-200">
                             <b>{t('url')} </b>
                             {value?.url}
                           </h2>

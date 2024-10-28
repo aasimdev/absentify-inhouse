@@ -22,10 +22,10 @@ const GenerateKey = () => {
     <div className="divide-y divide-gray-200 lg:col-span-10">
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900 mb-1">{t('api_key')}</h2>
-          <p className="py-2 text-sm text-gray-500">{t('api_key_subscription')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 mb-1  dark:text-gray-200">{t('api_key')}</h2>
+          <p className="py-2 text-sm text-gray-500  dark:text-gray-200">{t('api_key_subscription')}</p>
 
-          <a className="underline mt-3" href="https://api-doc.absentify.com/">
+          <a className="underline mt-3  dark:text-gray-200" href="https://api-doc.absentify.com/">
             {t('view_api_doc')}
           </a>
         </div>
@@ -33,7 +33,7 @@ const GenerateKey = () => {
           <div className="flex-initial sm:w-2/5 w-full">
             <input
               type="text"
-              className=" w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm "
+              className=" w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200 dark:bg-teams_brand_dark_100"
               value={apikey}
             />
           </div>

@@ -300,7 +300,7 @@ function getIn10YearsDate(): Date {
                       <input
                         {...register('first_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                       />
                     </div>
                   )}
@@ -317,7 +317,7 @@ function getIn10YearsDate(): Date {
                       <input
                         {...register('last_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                       />
                     </div>
                   )}
@@ -333,7 +333,7 @@ function getIn10YearsDate(): Date {
                     <input
                       {...register('name', { required: false })}
                       type="text"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                     />
                   </div>
                 )}
@@ -397,7 +397,7 @@ function getIn10YearsDate(): Date {
               type="text"
               maxLength={30}
               placeholder={t('Custom_id_placeholder')}
-              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
+              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white dark:bg-teams_brand_dark_100"
             />
           </div>
           <div className="col-span-12 sm:col-span-6">

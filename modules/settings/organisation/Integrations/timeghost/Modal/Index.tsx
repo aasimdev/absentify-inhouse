@@ -620,10 +620,10 @@ export default function CustomModal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full mr-2">
-                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-gray-200">
                         <p
                           dangerouslySetInnerHTML={{
                             __html: t('Edit_timeghost_sync', {
@@ -635,7 +635,7 @@ export default function CustomModal(props: {
                         />
                       </Dialog.Title>
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500 mb-4">{t('timeghost_api_key')}:</p>
+                        <p className="text-sm text-gray-500 mb-4 dark:text-gray-200">{t('timeghost_api_key')}:</p>
                       </div>
 
                       <Controller
@@ -647,8 +647,8 @@ export default function CustomModal(props: {
                           <input
                             type="text"
                             className={` w-full rounded-md ${
-                              apiKeyErrorState ? ' border-red-500 ' : ' border-gray-300 '
-                            }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                              apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                            }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                             onChange={(val) => {
                               if (val) {
                                 onChange(val.target.value);
@@ -728,8 +728,8 @@ export default function CustomModal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className=" inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-5xl sm:p-6 sm:align-middle">
-              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900">
+            <div className=" inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-5xl sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
+              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                 {t('Add_timeghost_sync')}
               </Dialog.Title>
               <nav aria-label="Progress ">
@@ -741,7 +741,7 @@ export default function CustomModal(props: {
                           <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg ">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : step.status === 'current' ? (
                         <span
@@ -751,12 +751,12 @@ export default function CustomModal(props: {
                           <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : (
                         <span className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4  md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
                           <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{step.id}</span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       )}
                     </li>
@@ -765,14 +765,14 @@ export default function CustomModal(props: {
               </nav>
               <div className="mt-5 border-t border-gray-200"></div>
               {steps[0] && steps[0].status === 'current' && (
-                <div className="mt-5  bg-white">
+                <div className="mt-5  bg-white dark:bg-teams_brand_dark_100">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                           {t('timeghost_sync_setting_modal')}
                         </h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p> {t('timeghost_sync_modal_description')}</p>
                         </div>
                       </div>
@@ -782,7 +782,7 @@ export default function CustomModal(props: {
                   <form className="divide-y divide-gray-200 pl-0 lg:pl-4" onSubmit={() => {}}>
                     <div className="mt-6 mb-10 grid grid-cols-1 content-center gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('imeghost_sync_modal_name')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -796,8 +796,8 @@ export default function CustomModal(props: {
                                 type="text"
                                 autoComplete="name"
                                 className={`block w-full min-w-0 grow rounded-md ${
-                                  errors.name ? ' border-red-500 ' : ' border-gray-300 '
-                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  `}
+                                  errors.name ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : 'dark:bg-teams_brand_dark_100 border-gray-300  dark:text-gray-200 '
+                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -812,7 +812,7 @@ export default function CustomModal(props: {
                         )}
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('description')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -825,8 +825,8 @@ export default function CustomModal(props: {
                                 type="text"
                                 autoComplete="description"
                                 className={`block w-full min-w-0 grow rounded-md ${
-                                  errors.description ? ' border-red-500 ' : ' border-gray-300 '
-                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                                  errors.description ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -848,10 +848,10 @@ export default function CustomModal(props: {
                 <div className="mt-6 mb-10 px-4 sm:px-6 w-auto lg:pr-20 lg:pl-8">
                   <div className="pb-4 sm:flex sm:items-center ">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         {t('leaveType_for_timeghost_sync')}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('leaveType_for_timeghost_sync_descrip')}</p>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('leaveType_for_timeghost_sync_descrip')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -869,7 +869,8 @@ export default function CustomModal(props: {
                           }}
                           isMulti
                           value={selectedLTOptions}
-                          className="w-full"
+                          className="w-full my-react-select-container"
+                          classNamePrefix="my-react-select"
                           name="leave_type_ids"
                           onChange={(val) => {
                             if (val) {
@@ -904,10 +905,10 @@ export default function CustomModal(props: {
                   </div>
                   <div className="pb-4 sm:flex sm:items-center ">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900 mt-4">
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 mt-4 dark:text-gray-200">
                         {t('Departments_for_timeghost_sync')}
                       </h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('Departments_for_timeghost_sync_descrip')}</p>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('Departments_for_timeghost_sync_descrip')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -925,7 +926,8 @@ export default function CustomModal(props: {
                           }}
                           isMulti
                           value={selectedDepartmentOptions}
-                          className="w-full"
+                          className="w-full my-react-select-container"
+                          classNamePrefix="my-react-select"
                           name="department_ids"
                           onChange={(val) => {
                             if (val) {
@@ -966,8 +968,8 @@ export default function CustomModal(props: {
                   <div className="mt-6 mb-10 px-4 sm:px-6 lg:px-8 lg:pr-20">
                     <div className="pb-4 sm:flex sm:items-center">
                       <div className="sm:flex-auto">
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">{t('timeghost_api_key')}</h3>
-                        <p className="mt-2 text-sm text-gray-700">{t('timeghost_api_key_descript')}</p>
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('timeghost_api_key')}</h3>
+                        <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('timeghost_api_key_descript')}</p>
                       </div>
                     </div>
                     <div className="sm:col-span-5">
@@ -980,8 +982,8 @@ export default function CustomModal(props: {
                             <input
                               type="text"
                               className={` w-full rounded-md ${
-                                apiKeyErrorState ? ' border-red-500 ' : ' border-gray-300 '
-                              }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm`}
+                                apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                              }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
                               onChange={(val) => {
                                 if (val) {
                                   onChange(val.target.value);
@@ -1001,8 +1003,8 @@ export default function CustomModal(props: {
                   {/* workspaces */}
                   <div className="pt-4 sm:flex sm:items-center ">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">{t('timeghost_workspaces')}</h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('timeghost_workspaces_descrip')}</p>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('timeghost_workspaces')}</h3>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('timeghost_workspaces_descrip')}</p>
                     </div>
                   </div>
                   {isLoadingWorkspace || loadingWorkspaces ? (
@@ -1025,7 +1027,8 @@ export default function CustomModal(props: {
                                     }
                                   })
                                 }}
-                                className="w-full"
+                              className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                                 defaultValue={tgWorkspaces.allUserWorkspaces.find(
                                   (workspace) => workspace.id == tgWorkspaces.userDefaultWorspaceId
                                 )}
@@ -1050,10 +1053,10 @@ export default function CustomModal(props: {
                   )}
                   <Switch.Group as="div" className="flex items-center justify-between my-3">
                     <span className="flex flex-grow flex-col">
-                      <Switch.Label as="span" className="text-sm font-medium leading-6 text-gray-900" passive>
+                      <Switch.Label as="span" className="text-sm font-medium leading-6 text-gray-900 dark:text-gray-200" passive>
                         {t('Sync_past_and_future')}
                       </Switch.Label>
-                      <Switch.Description as="span" className="text-sm text-gray-500">
+                      <Switch.Description as="span" className="text-sm text-gray-500 dark:text-gray-200">
                         {t('Sync_past_and_future_description')}
                       </Switch.Description>
                     </span>
@@ -1061,8 +1064,8 @@ export default function CustomModal(props: {
                       checked={syncPastAndFuture}
                       onChange={setSyncPastAndFuture}
                       className={classNames(
-                        syncPastAndFuture ? 'bg-teams_brand_600' : 'bg-gray-200',
-                        'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2'
+                        syncPastAndFuture ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
@@ -1082,7 +1085,7 @@ export default function CustomModal(props: {
                           <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
                         </div>
                         <div className="ml-3">
-                          <div className="text-sm text-yellow-700 relative">
+                          <div className="text-sm text-yellow-700 relative dark:text-gray-200">
                             <p>{t('users_have_not_yet_logged_and_not_in_tg_workspace_attention_message')}</p>
                           </div>
                         </div>

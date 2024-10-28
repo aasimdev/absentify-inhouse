@@ -236,10 +236,10 @@ export default function Modal(props: {
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                           {t('calendar_sync_setting_modal')}
                         </h3>
-                        <div className="mt-2 max-w-xl text-sm text-gray-500">
+                        <div className="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-200">
                           <p> {t('ad_group_setting_modal')}</p>
                         </div>
                       </div>
@@ -249,7 +249,7 @@ export default function Modal(props: {
                   <form className="divide-y divide-gray-200 pl-0 lg:pl-4" onSubmit={() => {}}>
                     <div className="mt-6 mb-10 grid grid-cols-1 content-center gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('calendar_sync_modal_name')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -262,7 +262,7 @@ export default function Modal(props: {
                                 {...register('name', { required: true })}
                                 type="text"
                                 autoComplete="name"
-                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -290,7 +290,7 @@ export default function Modal(props: {
                                 {...register('description', { required: true })}
                                 type="text"
                                 autoComplete="description"
-                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                                className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -307,11 +307,11 @@ export default function Modal(props: {
                     </div>
                     {!subscription && (
                       <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left ">
-                        <div className="w-full text-sm ">
+                        <div className="w-full text-sm dark:text-gray-200">
                           {`${t('calendar_sync_setting_message')} `}
                           <Link
                             href="/settings/organisation/upgrade"
-                            className="transition-color underline duration-200 "
+                            className="transition-color underline duration-200 dark:text-gray-200"
                           >
                             {t('Integrations_description_available_in_plan_2')}
                           </Link>
@@ -326,8 +326,8 @@ export default function Modal(props: {
                 <div className="mt-6 mb-10 px-4 sm:px-6 lg:px-8 lg:pr-20">
                   <div className="pb-4 sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">{t('select_dep')}</h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('select_dep_desc')}</p>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('select_dep')}</h3>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('select_dep_desc')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -350,7 +350,8 @@ export default function Modal(props: {
                                   }
                                 })
                               }}
-                              className="w-full"
+                              className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                               options={groups}
                               value={groups?.find((group) => group.id === value)}
                               getOptionLabel={(option) => option?.displayName}
@@ -372,7 +373,7 @@ export default function Modal(props: {
                   </div>
                   {group_id && (
                     <div className="mt-4">
-                      <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                      <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                         {t('group_members')}
                       </label>
                       {groupMembers ? (
@@ -403,8 +404,8 @@ export default function Modal(props: {
                 <div className="mt-6 mb-10 w-80 px-4 sm:px-6 lg:w-auto lg:pr-20 lg:pl-8">
                   <div className="pb-4 sm:flex sm:items-center ">
                     <div className="sm:flex-auto">
-                      <h3 className="text-lg font-medium leading-6 text-gray-900">{t('calendar_sync_Departments')}</h3>
-                      <p className="mt-2 text-sm text-gray-700">{t('group_dep_sync_desc')}</p>
+                      <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('calendar_sync_Departments')}</h3>
+                      <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('group_dep_sync_desc')}</p>
                     </div>
                   </div>
                   <div className="sm:col-span-5">
@@ -421,7 +422,8 @@ export default function Modal(props: {
                           }}
                           defaultValue={editMode ? departments.filter((x) => departmentIds.includes(x.id)) : undefined}
                           value={departmentIds ? departments.filter((x) => departmentIds.includes(x.id)) : undefined}
-                          className="w-full"
+                          className="w-full my-react-select-container"
+                          classNamePrefix="my-react-select"
                           name="department_ids"
                           isMulti
                           onChange={(val) => {
@@ -449,14 +451,14 @@ export default function Modal(props: {
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:flex-col ">
                       <div className="py-4">
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">{t('synchronization_settings')}</h3>
-                        <span className="text-sm text-gray-500">{t('default_option')}</span>
+                        <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('synchronization_settings')}</h3>
+                        <span className="text-sm text-gray-500 dark:text-gray-200">{t('default_option')}</span>
                         <Switch.Group as="li" className="flex items-center justify-between py-4">
                           <div className="flex flex-col">
-                            <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                            <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                               {t('automatic_account_create_option')}
                             </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
+                            <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                               {t('automatic_acc_create_desc')}
                             </Switch.Description>
                           </div>
@@ -470,8 +472,8 @@ export default function Modal(props: {
                                   onChange(val);
                                 }}
                                 className={classNames(
-                                  value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                  value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                 )}
                               >
                                 <span
@@ -487,10 +489,10 @@ export default function Modal(props: {
                         </Switch.Group>
                         <Switch.Group as="li" className="flex items-center justify-between py-4">
                           <div className="flex flex-col">
-                            <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                            <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                               {t('response_to_group_changes')}
                             </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
+                            <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                               {t('response_to_group_changes_desc')}
                             </Switch.Description>
                           </div>
@@ -504,8 +506,8 @@ export default function Modal(props: {
                                   onChange(val);
                                 }}
                                 className={classNames(
-                                  value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                  value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                 )}
                               >
                                 <span
@@ -521,10 +523,10 @@ export default function Modal(props: {
                         </Switch.Group>
                         <Switch.Group as="li" className="flex items-center justify-between py-4">
                           <div className="flex flex-col">
-                            <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                            <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
                               {t('automatic_manager_change')}
                             </Switch.Label>
-                            <Switch.Description className="text-sm text-gray-500">
+                            <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                               {t('automatic_manager_change_description')}
                             </Switch.Description>
                           </div>
@@ -538,8 +540,8 @@ export default function Modal(props: {
                                   onChange(val);
                                 }}
                                 className={classNames(
-                                  value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
+                                  value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                  'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                 )}
                               >
                                 <span

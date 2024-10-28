@@ -488,7 +488,7 @@ const OutlookOof: NextPage = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <div className="fixed inset-0 bg-gray-500 dark:bg-teams_brand_dark_100 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -505,12 +505,12 @@ const OutlookOof: NextPage = () => {
                 <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         {t('Remove_oof_title')}
                       </Dialog.Title>
                       <div className="mt-2 py-2">
                         <div className="w-full mb-2">
-                          <span className="text-sm text-gray-500">{t('select_type')}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-200">{t('select_type')}</span>
                           <Select
                             styles={{
                               control: (base) => ({
@@ -522,7 +522,8 @@ const OutlookOof: NextPage = () => {
                             }}
                             isMulti
                             value={selectedLeaveTypes}
-                            className="w-full"
+                            className="w-full my-react-select-container"
+                              classNamePrefix="my-react-select"
                             name="leavetype_ids"
                             onChange={(val) => {
                               if (val) {
@@ -534,7 +535,7 @@ const OutlookOof: NextPage = () => {
                             options={leave_types}
                           />
                         </div>
-                        <p className="text-sm text-gray-500">{t('Remove_oof', { number: chosedIds.length })}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-200">{t('Remove_oof', { number: chosedIds.length })}</p>
                       </div>
                     </div>
                   </div>
@@ -622,7 +623,7 @@ const OutlookOof: NextPage = () => {
         </span>
 
         <div className="inline-block px-4 pt-5 pb-4 text-left sm:w-full sm:p-6">
-          <h3 className="py-6 text-lg font-medium leading-6 text-gray-900">{t('Add_new_oof')}</h3>
+          <h3 className="py-6 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Add_new_oof')}</h3>
           <nav aria-label="Progress ">
             <ol role="list" className="mt-4 space-y-4 md:flex md:space-y-0 md:space-x-8">
               {steps.map((step) => (
@@ -632,7 +633,7 @@ const OutlookOof: NextPage = () => {
                       <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg ">
                         {step.id}
                       </span>
-                      <span className="text-sm font-medium">{step.name}</span>
+                      <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                     </span>
                   ) : step.status === 'current' ? (
                     <span
@@ -642,12 +643,12 @@ const OutlookOof: NextPage = () => {
                       <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg">
                         {step.id}
                       </span>
-                      <span className="text-sm font-medium">{step.name}</span>
+                      <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                     </span>
                   ) : (
                     <span className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4  md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
                       <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{step.id}</span>
-                      <span className="text-sm font-medium">{step.name}</span>
+                      <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                     </span>
                   )}
                 </li>
@@ -658,8 +659,8 @@ const OutlookOof: NextPage = () => {
           {steps[0] && steps[0].status === 'current' && (
             <div>
               <div className="mt-4">
-                <span className="text-lg ">{t('ChooseUsers')}</span>
-                <p className="text-sm mb-4">{t('ChooseUsersDesc')}</p>
+                <span className="text-lg dark:text-gray-200">{t('ChooseUsers')}</span>
+                <p className="text-sm mb-4 dark:text-gray-200">{t('ChooseUsersDesc')}</p>
                 {!filteredMembers || !departaments ? (
                   <div className="w-full flex items-center align-middle justify-center p-10">
                     <Loader height="10" width="10" />
@@ -686,8 +687,8 @@ const OutlookOof: NextPage = () => {
           {steps[1] && steps[1].status === 'current' && (
             <div className="mt-4">
               <div className="flex w-full flex-col mb-64">
-                <div className="my-auto w-full mr-2 mb-2 text-lg">{t('LeaveTypeTemplate')}</div>
-                <div className="my-auto w-full mr-2 mb-2 text-sm">{t('LeaveTypeDesc')}</div>
+                <div className="my-auto w-full mr-2 mb-2 text-lg dark:text-gray-200">{t('LeaveTypeTemplate')}</div>
+                <div className="my-auto w-full mr-2 mb-2 text-sm dark:text-gray-200">{t('LeaveTypeDesc')}</div>
                 <div className="w-full">
                   <Select
                     styles={{
@@ -700,7 +701,8 @@ const OutlookOof: NextPage = () => {
                     }}
                     isMulti
                     value={selectedLeaveTypes}
-                    className="w-full"
+                    className="w-full my-react-select-container"
+                    classNamePrefix="my-react-select"
                     name="leavetype_ids"
                     onChange={(val) => {
                       if (val) {
@@ -719,8 +721,8 @@ const OutlookOof: NextPage = () => {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <div className="flex flex-col space-y-2">
-                  <h3 className="text-lg ">{t('outOfOfficeInsideHeader')}</h3>
-                  <p className="text-sm">{t('outOfOfficeInsideHeaderDescription')}</p>
+                  <h3 className="text-lg dark:text-gray-200">{t('outOfOfficeInsideHeader')}</h3>
+                  <p className="text-sm dark:text-gray-200">{t('outOfOfficeInsideHeaderDescription')}</p>
                 </div>
               </div>
               <OofTabs tabs={tabs} handler={handleTab} selectedTab={selectedTab} />
@@ -729,7 +731,7 @@ const OutlookOof: NextPage = () => {
                   <div className="mt-10 lg:grid lg:grid-cols-12 lg:gap-x-5">
                     <aside className="py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0 lg:pr-3">
                       <div className="space-y-2 ">
-                        <div>{t('Variables')}</div>
+                        <div className='dark:text-gray-200'>{t('Variables')}</div>
                         {variables.map((item) => (
                           <button
                             key={item.name}
@@ -745,7 +747,7 @@ const OutlookOof: NextPage = () => {
                               quill.editor.insertText(selection.index, item.value);
                             }}
                             type="button"
-                            className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                            className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100  dark:text-gray-200"
                           >
                             {item.name}
                           </button>
@@ -755,7 +757,7 @@ const OutlookOof: NextPage = () => {
 
                     <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                       <div className=" w-full">
-                        <div className="w-full bg-gray-50">
+                        <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
                           <ReactQuill
                             theme="snow"
                             placeholder={placeholder}
@@ -774,14 +776,14 @@ const OutlookOof: NextPage = () => {
                 <>
                   {chosedMembers.length !== 1 && (
                     <div className="mt-2 flex sm:flex-row flex-col items-center">
-                      <p className="text-sm sm:mr-4">{t('assign_member')}</p>
+                      <p className="text-sm sm:mr-4 dark:text-gray-200">{t('assign_member')}</p>
                       <DropDownSelectMember members={chosedMembers} handleTestingMember={handleTestingMember} />
                     </div>
                   )}
                   <div className="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-5">
                     <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                       <div className=" w-full">
-                        <div className="w-full bg-gray-50">
+                        <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
                           <ReactQuill
                             theme="snow"
                             placeholder={placeholder}
@@ -871,8 +873,8 @@ const OutlookOof: NextPage = () => {
             <div>
               <div className="mt-5 flex items-center justify-between">
                 <div className="flex flex-col space-y-2">
-                  <h3 className="text-lg ">{t('outOfOfficeOutsideHeader')}</h3>
-                  <p className="text-sm">{t('outOfOfficeOutsideHeaderDescription')}</p>
+                  <h3 className="text-lg  dark:text-gray-200">{t('outOfOfficeOutsideHeader')}</h3>
+                  <p className="text-sm  dark:text-gray-200">{t('outOfOfficeOutsideHeaderDescription')}</p>
                 </div>
               </div>
               <div className="flex">
@@ -887,11 +889,11 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedExternal(!checkedExternal);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100  dark:text-gray-200"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="enableOutside" className="font-medium text-gray-700">
+                      <label htmlFor="enableOutside" className="font-medium text-gray-700  dark:text-gray-200">
                         {t('SendRepliesOutsideYourOrganisation')}
                       </label>
                     </div>
@@ -912,11 +914,11 @@ const OutlookOof: NextPage = () => {
                             onChange={() => {
                               setCheckedOnlyContacts(!checkedOnlyContacts);
                             }}
-                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450"
+                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100"
                           />
                         </div>
                         <div className="ml-3 text-sm">
-                          <label htmlFor="allAllowed" className="font-medium text-gray-700">
+                          <label htmlFor="allAllowed" className="font-medium text-gray-700  dark:text-gray-200">
                             {t('SendRepliesOnlyToContacts')}
                           </label>
                         </div>
@@ -933,7 +935,7 @@ const OutlookOof: NextPage = () => {
                       <div className="mt-10 lg:grid lg:grid-cols-12 lg:gap-x-5">
                         <aside className="py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0 lg:pr-3">
                           <div className="space-y-2 ">
-                            <div>{t('Variables')}</div>
+                            <div className=" dark:text-gray-200">{t('Variables')}</div>
                             {variables.map((item) => (
                               <button
                                 key={item.name}
@@ -949,7 +951,7 @@ const OutlookOof: NextPage = () => {
                                   quill.editor.insertText(selection.index, item.value);
                                 }}
                                 type="button"
-                                className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                                className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2  dark:bg-teams_brand_dark_100  dark:text-gray-200"
                               >
                                 {item.name}
                               </button>
@@ -959,7 +961,7 @@ const OutlookOof: NextPage = () => {
 
                         <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                           <div className=" w-full">
-                            <div className="w-full bg-gray-50">
+                            <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
                               <ReactQuill
                                 theme="snow"
                                 placeholder={placeholder}
@@ -985,7 +987,7 @@ const OutlookOof: NextPage = () => {
                       <div className="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-5">
                         <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                           <div className=" w-full">
-                            <div className="w-full bg-gray-50">
+                            <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
                               <ReactQuill
                                 theme="snow"
                                 placeholder={placeholder}
@@ -1012,7 +1014,7 @@ const OutlookOof: NextPage = () => {
                               type="text"
                               value={current_member?.email + ''}
                               readOnly={true}
-                              className="sm:mb-0 mb-4"
+                              className="sm:mb-0 mb-4 dark:bg-teams_brand_dark_100  dark:text-gray-200"
                             ></input>
                             <button
                               onClick={async () => {
@@ -1077,8 +1079,8 @@ const OutlookOof: NextPage = () => {
             <>
               <div className="mt-5 flex items-center justify-between">
                 <div className="flex flex-col space-y-2">
-                  <h3 className="text-lg ">{t('allow_member_h3')}</h3>
-                  <p className="text-sm">{t('Can_user_edit')}</p>
+                  <h3 className="text-lg  dark:text-gray-200">{t('allow_member_h3')}</h3>
+                  <p className="text-sm  dark:text-gray-200">{t('Can_user_edit')}</p>
                 </div>
               </div>
               <div className="flex">
@@ -1093,11 +1095,11 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedAllowToEdit(!checkedAllowToEdit);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="outOffOfficEdit" className="font-medium text-gray-700">
+                      <label htmlFor="outOffOfficEdit" className="font-medium text-gray-700  dark:text-gray-200">
                         {t('allow_member_checkbox')}
                       </label>
                     </div>

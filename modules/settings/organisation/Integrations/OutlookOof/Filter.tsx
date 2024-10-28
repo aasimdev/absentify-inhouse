@@ -27,14 +27,14 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
             <div>
               <Disclosure.Button className="group flex items-center font-medium text-gray-700">
                 <FunnelIcon
-                  className="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500"
+                  className="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500  dark:text-gray-200"
                   aria-hidden="true"
                 />
-                <span>{t('filters')}</span>
+                <span className=' dark:text-gray-200'>{t('filters')}</span>
               </Disclosure.Button>
             </div>
             <div className="pl-6">
-              <button type="button" className="text-gray-500" 
+              <button type="button" className="text-gray-500  dark:text-gray-200" 
                 onClick={clearDeps}>
                 {t('clear_all')}
               </button>
@@ -58,11 +58,11 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
                         name="departament"
                         defaultValue={dep.id}
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500  dark:text-gray-200 dark:bg-teams_brand_dark_100"
                         onChange={() => {handleSelectDep(dep)}}
                         checked={!!selectedDep(dep)}
                       />
-                      <label htmlFor={dep.id} className="ml-3 min-w-0 flex-1 text-gray-600">
+                      <label htmlFor={dep.id} className="ml-3 min-w-0 flex-1 text-gray-600  dark:text-gray-200">
                         {dep.name}
                       </label>
                     </div>

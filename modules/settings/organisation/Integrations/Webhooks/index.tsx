@@ -104,15 +104,15 @@ const Webhooks: NextPage = () => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
                         {t('WebhookRemove')}
                       </Dialog.Title>
                       <div className="mt-2 py-2">
                         <p
-                          className="text-sm text-gray-500"
+                          className="text-sm text-gray-500  dark:text-gray-200"
                           dangerouslySetInnerHTML={{
                             __html: t('WebhookRemoveSubTitle', {
                               interpolation: { escapeValue: false },
@@ -249,23 +249,23 @@ const Webhooks: NextPage = () => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6  dark:bg-teams_brand_dark_100  dark:text-gray-200">
                   <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900">
+                        <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
                           {t('editW')}
                         </Dialog.Title>
                         <div className="mt-5 sm:flex sm:items-center">
                           <div>
                             {' '}
-                            <label htmlFor="location" className="sr-only">
+                            <label htmlFor="location" className="sr-only  dark:text-gray-200">
                               {t('select_event')}
                             </label>
                             <select
                               {...register('event')}
                               id="event"
-                              className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                              className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200  dark:bg-teams_brand_dark_100  dark:text-gray-200"
                               defaultValue={props.value?.event as string}
                               onChange={(e: any) => setValue('event', e.target.value)}
                             >
@@ -276,7 +276,7 @@ const Webhooks: NextPage = () => {
                           </div>
 
                           <div className="w-full pl-0  pr-0 pt-4 sm:max-w-xs lg:pl-4 lg:pr-1 lg:pt-0">
-                            <label htmlFor="webhook" className="sr-only">
+                            <label htmlFor="webhook" className="sr-only  dark:text-gray-200">
                               {t('Webhook')}
                             </label>
 
@@ -290,7 +290,7 @@ const Webhooks: NextPage = () => {
                               name="url"
                               autoComplete="url"
                               pattern="https://.*"
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200  dark:bg-teams_brand_dark_100  dark:text-gray-200"
                               placeholder="https://"
                             />
                           </div>
@@ -333,20 +333,20 @@ const Webhooks: NextPage = () => {
         {/* Profile section */}
         <div className="px-4 py-6 sm:p-6 lg:pb-8">
           <div>
-            <h2 className="text-lg font-medium leading-6 text-gray-900">{t('Webhooks')}</h2>
-            <p className="mt-1 text-sm text-gray-500">{t('Webhooks_description')}</p>
+            <h2 className="text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">{t('Webhooks')}</h2>
+            <p className="mt-1 text-sm text-gray-500  dark:text-gray-200">{t('Webhooks_description')}</p>
             <a
               href="https://support.absentify.com/en/article/webhook-integration-r863or/"
               target="_blank"
-              className="mt-1 text-sm text-gray-500 underline"
+              className="mt-1 text-sm text-gray-500 underline  dark:text-gray-200"
             >
               {t('Webhooks_description_2')}
             </a>
             {!hasValidSubscription && (
               <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left">
-                <div className="w-full text-sm ">
+                <div className="w-full text-sm  dark:text-gray-200">
                   {t('Webhooks_description_available_in_plan') + ' '}
-                  <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200 ">
+                  <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200  dark:text-gray-200">
                     {t('Webhooks_description_available_in_plan_2')}
                   </Link>
                 </div>
@@ -356,20 +356,20 @@ const Webhooks: NextPage = () => {
           <div className="mt-10 h-5 w-full divide-y divide-gray-200"></div>
 
           <div className="flex flex-col space-y-3 ">
-            <h3 className="text-base font-medium">{t('URLs_for_receiving_webhooks')}</h3>
-            <p className="text-sm">{t('URLs_for_receiving_webhooks_description')}</p>
+            <h3 className="text-base font-medium  dark:text-gray-200">{t('URLs_for_receiving_webhooks')}</h3>
+            <p className="text-sm  dark:text-gray-200">{t('URLs_for_receiving_webhooks_description')}</p>
           </div>
 
           <div className="mt-5 flex sm:items-center sm:space-x-3 space-x-6">
             <div className=" ">
               {' '}
-              <label htmlFor="location" className="sr-only">
+              <label htmlFor="location" className="sr-only  dark:text-gray-200">
                 {t('select_event')}
               </label>
               <select
                 id="event"
                 {...register('event', { required: true })}
-                className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm"
+                className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_brand_dark_100  dark:text-gray-200"
               >
                 <option value="request_created;request_status_changed"> {t('all')} </option>
                 <option value="request_created">{t('created')} </option>
@@ -377,7 +377,7 @@ const Webhooks: NextPage = () => {
               </select>
             </div>
             <div className="w-full pl-0 pr-0  sm:max-w-xs sm:pt-0 lg:pl-4 lg:pr-1 lg:pt-0">
-              <label htmlFor="webhook" className="sr-only">
+              <label htmlFor="webhook" className="sr-only  dark:text-gray-200">
                 {t('Webhook')}
               </label>
               <input
@@ -385,7 +385,7 @@ const Webhooks: NextPage = () => {
                 type="url"
                 name="url"
                 pattern="https://.*"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_brand_dark_100  dark:text-gray-200"
                 placeholder="https://"
               />
             </div>
@@ -412,18 +412,18 @@ const Webhooks: NextPage = () => {
             allWebhookSettings?.map((webhookSetting) => (
               <div key={webhookSetting.id} className="mt-5 sm:flex sm:items-center">
                 <div className="inline-flex w-auto ">
-                  <label htmlFor="webhook" className="sr-only">
+                  <label htmlFor="webhook" className="sr-only  dark:text-gray-200">
                     {t('Webhook')}
                   </label>
 
-                  <div className="w-44 py-2 text-sm">
+                  <div className="w-44 py-2 text-sm  dark:text-gray-200">
                     {webhookSetting.event === 'request_created;request_status_changed' && t('all')}
                     {webhookSetting.event === 'request_created' && t('created')}
                     {webhookSetting.event === 'request_status_changed' && t('statusChanged')}
                   </div>
                   <div className=" px-2.5 ">
                     <p
-                      className="w-20 cursor-pointer truncate py-2 text-sm font-semibold lg:w-72"
+                      className="w-20 cursor-pointer truncate py-2 text-sm font-semibold lg:w-72  dark:text-gray-200"
                       data-tooltip-id="url-tooltip"
                       data-tooltip-variant="light"
                       data-tooltip-content={webhookSetting.url}
@@ -432,12 +432,12 @@ const Webhooks: NextPage = () => {
                     </p>
                     <ReactTooltip
                       id="url-tooltip"
-                      className="z-50 shadow-sm"
+                      className="z-50 shadow-sm  dark:text-gray-200 dark:bg-teams_dark_mode_core"
                       classNameArrow="shadow-sm"
                       place="bottom"
                       style={{ boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
                     />
-                    <span className="stooltip rounded bg-white p-2 text-xs shadow-custom">{}</span>
+                    <span className="stooltip rounded bg-white p-2 text-xs shadow-custom  dark:bg-teams_brand_dark_100  dark:text-gray-200">{}</span>
                   </div>
                   <div className="inline-flex cursor-pointer space-x-2 py-2">
                     <div
@@ -447,7 +447,7 @@ const Webhooks: NextPage = () => {
                         setValueForEdit(webhookSetting);
                       }}
                     >
-                      <label htmlFor="EditIcon" className="sr-only">
+                      <label htmlFor="EditIcon" className="sr-only  dark:text-gray-200">
                         {t('Edit')}
                       </label>
                       <svg
@@ -496,12 +496,12 @@ const Webhooks: NextPage = () => {
           <hr className="mt-4" />
           <div className="mt-4 flex justify-between ">
             <div className="block">
-              <h2 className="text-base font-semibold"> {t('history')} </h2>
-              <h3 className="text-sm">{t('allLog')}</h3>
+              <h2 className="text-base font-semibold  dark:text-gray-200"> {t('history')} </h2>
+              <h3 className="text-sm  dark:text-gray-200">{t('allLog')}</h3>
             </div>
             <div>
               <Link href={'/settings/organisation/integrations/webhooks/history'} legacyBehavior>
-                <p className="mt-2 inline-flex cursor-pointer rounded-lg  border-2  border-teams_brand_foreground_bg p-2 text-sm  text-teams_brand_foreground_bg hover:border-teams_brand_foreground_bg hover:text-teams_brand_background_2">
+                <p className="mt-2 inline-flex cursor-pointer rounded-lg  border-2  border-teams_brand_foreground_bg p-2 text-sm  text-teams_brand_foreground_bg hover:border-teams_brand_foreground_bg hover:text-teams_brand_background_2  dark:text-gray-200">
                   {t('notif')}
                   <span>
                     <svg

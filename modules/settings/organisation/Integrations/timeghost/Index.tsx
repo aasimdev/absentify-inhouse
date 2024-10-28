@@ -12,8 +12,11 @@ import CustomModal from './Modal/Index';
 import ExclamationTriangleIcon from '@heroicons/react/24/solid/ExclamationTriangleIcon';
 import { classNames } from '~/lib/classNames';
 import { TimeghostService } from '~/lib/timeghostService';
+import { useDarkSide } from '@components/ThemeContext';
 
 const TimeghostSync: NextPage = () => {
+  
+  const [theme] = useDarkSide();
   const { t } = useTranslation('settings_organisation');
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [deletemodalOpen, setDeleteModalOpen] = useState<boolean>(false);
@@ -138,13 +141,13 @@ const TimeghostSync: NextPage = () => {
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         {t('timeghostSyncRemoveTitle')}
                       </Dialog.Title>
                       <div className="mt-2 py-2">
                         {props.value && (
                           <p
-                            className="text-sm text-gray-500"
+                            className="text-sm text-gray-500 dark:text-gray-200"
                             dangerouslySetInnerHTML={{
                               __html: t('timeghostSyncRemoveSubtitle', {
                                 interpolation: { escapeValue: false },
@@ -160,8 +163,8 @@ const TimeghostSync: NextPage = () => {
                           checked={deleteSyncInPast}
                           onChange={setDeleteSyncInPast}
                           className={classNames(
-                            deleteSyncInPast ? 'bg-teams_brand_500' : 'bg-gray-200',
-                            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2'
+                            deleteSyncInPast ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                            'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                           )}
                         >
                           <span
@@ -173,7 +176,7 @@ const TimeghostSync: NextPage = () => {
                           />
                         </Switch>
                         <Switch.Label as="span" className="ml-3 text-sm">
-                          <span className="font-medium text-gray-900">{t('delete_timeghost_all_past_syncs')}</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-200">{t('delete_timeghost_all_past_syncs')}</span>
                         </Switch.Label>
                       </Switch.Group>
                     </div>
@@ -219,38 +222,38 @@ const TimeghostSync: NextPage = () => {
       {/* Profile section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
-          <h2 className="text-lg font-medium leading-6 text-gray-900">{t('timeghost_sync_title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('timeghost_sync_description')}</p>
+          <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('timeghost_sync_title')}</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('timeghost_sync_description')}</p>
         </div>
         <div className="mt-6 flex flex-col lg:flex-row ">
           <div className="-my-2 overflow-x-auto  md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle px-0.5 ">
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 ">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
                     <tr>
                       <th
                         scope="col"
-                        className="xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                        className="xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
                       >
                         {t('Name')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell"
+                        className="hidden xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
                       >
                         {t('description')}
                       </th>
 
                       <th
                         scope="col"
-                        className=" xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell"
+                        className=" xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-gray-200"
                       >
                         {t('leave_type')}
                       </th>
                       <th
                         scope="col"
-                        className="xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell"
+                        className="xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-gray-200"
                       >
                         {t('department')}
                       </th>
@@ -259,35 +262,35 @@ const TimeghostSync: NextPage = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="divide-y divide-gray-200 bg-white ">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
                     {!timeghostSyncSettings_loading && timeghostSyncSettings && leave_types && departments ? (
                       timeghostSyncSettings.filter((tgSetting) => !tgSetting.deleted).map((timeghostSyncSetting) => (
                         <tr key={timeghostSyncSetting.id}>
-                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-sm font-medium text-gray-900">
+                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-sm font-medium text-gray-90dark:text-gray-2000">
                           <div
                               className="w-24 2xl:w-auto max-w-36  truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               data-tooltip-content={timeghostSyncSetting.name}
                             >
                               {timeghostSyncSetting.name}
                             </div>
                           </td>
-                          <td className="hidden whitespace-nowrap xl:px-6 px-3 py-4 text-sm text-gray-500 md:table-cell ">
+                          <td className="hidden whitespace-nowrap xl:px-6 px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
                             <div
                               className="w-24  2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               data-tooltip-content={timeghostSyncSetting.description}
                             >
                               {timeghostSyncSetting.description}
                             </div>
                           </td>
-                          <td className="hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 ">
+                          <td className="hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-gray-200">
                             <div
                               className="w-24 2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               data-tooltip-content={TimeghostService.getLeaveTypeNames(
                                 timeghostSyncSetting,
                                 leave_types
@@ -297,11 +300,11 @@ const TimeghostSync: NextPage = () => {
                             </div>
                           </td>
 
-                          <td className=" hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500">
+                          <td className=" hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-gray-200">
                             <div
                               className="w-24 2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                               data-tooltip-content={TimeghostService.getDepartmentNames(
                                 timeghostSyncSetting,
                                 departments
@@ -310,18 +313,18 @@ const TimeghostSync: NextPage = () => {
                               {TimeghostService.getDepartmentNames(timeghostSyncSetting, departments)}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium ">
+                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-gray-200">
                             <a
                               onClick={async (e) => {
                                 e.preventDefault();
                                 setModalOpen(true);
                                 setValueForEdit(timeghostSyncSetting);
                               }}
-                              className="cursor-pointer text-gray-300 hover:text-gray-900"
+                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
+                                className="h-5 w-5 dark:text-gray-200"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -329,7 +332,7 @@ const TimeghostSync: NextPage = () => {
                               </svg>
                             </a>
                           </td>
-                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium">
+                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-gray-200">
                             <a
                               onClick={async (e) => {
                                 e.preventDefault();
@@ -337,11 +340,11 @@ const TimeghostSync: NextPage = () => {
                                 setValueForDelete(timeghostSyncSetting);
                                 setLeaveTypeName(TimeghostService.getLeaveTypeNames(timeghostSyncSetting, leave_types));
                               }}
-                              className="cursor-pointer text-gray-300 hover:text-gray-900"
+                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
+                                className="h-5 w-5 dark:text-gray-200"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -382,7 +385,7 @@ const TimeghostSync: NextPage = () => {
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-gray-200"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -393,7 +396,7 @@ const TimeghostSync: NextPage = () => {
                               />
                             </svg>{' '}
                             <span
-                              className="ml-2"
+                              className="ml-2 dark:text-gray-200"
                             >
                               {t('Add_timeghost_sync')}
                             </span>
@@ -404,7 +407,7 @@ const TimeghostSync: NextPage = () => {
                   </tbody>
                   <ReactTooltip
                     id="cssdes-tooltip"
-                    className="z-50 shadow-sm"
+                    className="z-50 shadow-sm dark:text-gray-200 dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     style={{ maxWidth: '300px', opacity: 1, boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
