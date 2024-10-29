@@ -611,7 +611,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         onClick={() => {
                           props.onClose();
                         }}
-                        className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1"
+                        className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>
@@ -658,7 +658,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                             downloadTemplate();
                           }}
                           type="button"
-                          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:text-sm"
+                          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                         >
                           {loading && (
                             <div className="-ml-1 mr-3">
@@ -691,7 +691,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           ref={hiddenFileInput}
                           style={{ display: 'none' }}
                           onChange={handleUpload}
-                          className='dark:bg-teams_brand_dark_200 dark:text-gray-200'
+                          className='dark:bg-teams_brand_dark_400 dark:text-gray-200'
                         />
                         <button
                           onClick={() => {
@@ -818,7 +818,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                 </tbody>
                                 <ReactTooltip
                                   id="excel-tooltip"
-                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_200 dark:text-gray-900 "
+                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_400 dark:text-gray-900 "
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   opacity={1}
@@ -835,7 +835,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           onClick={() => {
                             props.onClose();
                           }}
-                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1"
+                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                         >
                           {t('Cancel')}
                         </button>
@@ -956,7 +956,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                       }}
                       disabled={loading}
                       className={classNames(
-                        'ml-5 bg-teams_brand_foreground_1 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teams_brand_foreground_bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1',
+                        'ml-5 bg-teams_brand_foreground_1 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teams_brand_foreground_bg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0',
                         loading ? 'opacity-50 cursor-not-allowed' : ''
                       )}
                     >

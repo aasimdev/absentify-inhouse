@@ -65,7 +65,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   if (!member) return <></>;
   if (!allowanceTypes) return <></>;
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100">
+    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Allowance')}</h2>
@@ -347,7 +347,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           e.preventDefault();
                                           setEditMode(null);
                                         }}
-                                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                                       >
                                         {t('Cancel')}
                                       </button>
@@ -373,7 +373,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           );
                                           setEditMode(null);
                                         }}
-                                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+                                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                                       >
                                         {loading && (
                                           <div className="-ml-1 mr-3">
@@ -475,7 +475,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
             utils.member.all.invalidate();
           }}
           type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>
@@ -592,7 +592,7 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  props.allowance_type_config.default ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  props.allowance_type_config.default ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                   'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >
@@ -675,7 +675,7 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                   'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >

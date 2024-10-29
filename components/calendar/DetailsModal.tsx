@@ -373,20 +373,20 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
       <div className="absolute bottom-6 my-auto inline-block text-left">
         <button
           onClick={toggleMenu}
-          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none dark:bg-teams_brand_dark_200 dark:text-gray-900  hover:text-gray-800"
+          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none dark:bg-teams_brand_dark_400 dark:text-gray-900  hover:text-gray-800"
         >
           <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
         </button>
 
         {isOpen && (
-          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full dark:bg-teams_brand_dark_200 dark:text-gray-900 dark:hover:bg-teams_brand_dark_200">
+          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full dark:bg-teams_brand_dark_400 dark:text-gray-900 dark:hover:bg-teams_brand_dark_400">
             <div className="py-1.5">
               {dropDownDots
                 .filter((x) => x != null)
                 .map((item) => (
                   <div
                     key={uuidv4()}
-                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-teams_brand_dark_200 dark:hover:text-gray-600 dark:text-gray-800"
+                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-600 dark:text-gray-800"
                   >
                     {item}
                   </div>
@@ -873,7 +873,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                             e.preventDefault();
                             props.onClose();
                           }}
-                          className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_200 dark:text-gray-500"
+                          className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_400 dark:text-gray-500"
                         >
                           <p className="my-auto">{t('Close')}</p>
                         </button>

@@ -97,8 +97,8 @@ const Integrations: NextPage = () => {
   ,[timeghostSyncSettings])
 
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-10">
-      <div className="pt-6 divide-y divide-gray-200">
+    <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10">
+      <div className="pt-6 divide-y divide-gray-200 dark:divide-gray-500">
         <div className="p-4 sm:px-6 ">
           <div>
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('absentify_Integrations')}</h2>

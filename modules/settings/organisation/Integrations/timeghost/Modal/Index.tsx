@@ -779,7 +779,7 @@ export default function CustomModal(props: {
                       <div className="sEm:ml-6 mt-5 sm:mt-0 sm:flex sm:shrink-0 sm:items-center"></div>
                     </div>
                   </div>
-                  <form className="divide-y divide-gray-200 pl-0 lg:pl-4" onSubmit={() => {}}>
+                  <form className="divide-y divide-gray-200 dark:divide-gray-500 pl-0 lg:pl-4" onSubmit={() => {}}>
                     <div className="mt-6 mb-10 grid grid-cols-1 content-center gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -1064,7 +1064,7 @@ export default function CustomModal(props: {
                       checked={syncPastAndFuture}
                       onChange={setSyncPastAndFuture}
                       className={classNames(
-                        syncPastAndFuture ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        syncPastAndFuture ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -1107,7 +1107,7 @@ export default function CustomModal(props: {
                     e.preventDefault();
                     props.onClose();
                   }}
-                  className="mx-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                  className="mx-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                 >
                   {t('Cancel')}
                 </button>

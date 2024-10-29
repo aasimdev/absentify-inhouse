@@ -324,7 +324,7 @@ const Billing: NextPage = () => {
                     setUpdateBillingInfoModalVisible(true);
                     setUpgradeInfo('enterprisePlan');
                   }}
-                  className="inline-flex w-1/3 sm:w-1/5 mt-4 items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+                  className="inline-flex w-1/3 sm:w-1/5 mt-4 items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                 >
                   {t('update_billing_info')}
                 </Button>

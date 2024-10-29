@@ -51,7 +51,7 @@ export default function ConfirmModal({text, handleCallback, onClose }: Props) {
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-teams_brand_foreground_bg px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus:ring-teams_brand_500 sm:col-start-2"
+                    className="inline-flex w-full justify-center rounded-md bg-teams_brand_foreground_bg px-3 py-2 text-sm font-semibold text-white shadow-sm hover:teams_brand_border_1 sm:col-start-2"
                     onClick={async (e) => {
                       setLoading(true);
                       e.preventDefault();
@@ -69,7 +69,7 @@ export default function ConfirmModal({text, handleCallback, onClose }: Props) {
                   </button>
                   <button
                     type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                     onClick={(e) => {
                       e.preventDefault();
                       onClose();

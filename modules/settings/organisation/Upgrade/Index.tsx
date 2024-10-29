@@ -296,7 +296,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:focus:ring-teams_brand_dark_300 dark:border-teams_brand_dark_300"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:focus:ring-teams_brand_dark_300 dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -307,7 +307,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_300"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg"
           >
             {t('paused')}
           </Button>
@@ -324,7 +324,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
             onClick={() => {
               if (!subscription.status) {
                 setBillingInfoVisible(true);
@@ -344,7 +344,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg  hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg  hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
             onClick={() => {
               setDownGradeButton('business');
             }}
@@ -358,7 +358,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
           >
             {t('past_due')}
           </Button>
@@ -374,7 +374,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -384,7 +384,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
@@ -407,7 +407,7 @@ const Upgrade: NextPage = () => {
             setBillingInfoVisible(true);
             setUpgradeInfo('businessPlan');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+          className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
         >
           {t('upgrade')}
         </Button>
@@ -434,7 +434,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+          className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
         >
           {t('contactSales')}
         </Button>
@@ -447,7 +447,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setDownGradeButton('free');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+          className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
         >
           {t('downgrade') + ' (' + t('Cancel') + ')'}
         </Button>
@@ -460,7 +460,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={true}
-            className="inline-flex cursor-not-allowed w-full items-center px-3 py-2.5 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex cursor-not-allowed w-full items-center px-3 py-2.5 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200"
           >
             {t('plan_active_in_days', {
               days: Math.ceil(
@@ -481,7 +481,7 @@ const Upgrade: NextPage = () => {
     return (
       <Button
         disabled={false}
-        className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+        className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
       >
         {t('currentplan')}
       </Button>
@@ -502,7 +502,7 @@ const Upgrade: NextPage = () => {
             onClick={() => {
               setDownGradeButton('small_team');
             }}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_600 dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
+            className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg   dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none  "
           >
             {t('downgrade')}
           </Button>
@@ -515,7 +515,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_600 dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_foreground_bg dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none   dark:border-teams_brand_dark_300"
         >
           {t('contactSales')}
         </Button>
@@ -526,7 +526,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
           >
             {t('paused')}
           </Button>
@@ -543,7 +543,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
           >
             {t('past_due')}
           </Button>
@@ -559,7 +559,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -569,7 +569,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
@@ -592,7 +592,7 @@ const Upgrade: NextPage = () => {
             setBillingInfoVisible(true);
             setUpgradeInfo('smallTeamPlan');
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_600 dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+          className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg  dark:text-gray-200 hover:bg-teams_brand_border_1 focus:outline-none  "
         >
           {t('upgrade')}
         </Button>
@@ -751,7 +751,7 @@ const Upgrade: NextPage = () => {
           onClick={() => {
             setVisible(true);
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:bg-teams_brand_foreground_bg dark:text-gray-200"
         >
           {t('contactSales')}
         </Button>
@@ -762,7 +762,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none   dark:text-gray-200"
             onClick={() => {
               if (!subscription.status) {
                 setBillingInfoVisible(true);
@@ -781,7 +781,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={true}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
         >
           {t('waiting_for_Microsoft_to_activate_your_subscription')}
         </Button>
@@ -793,7 +793,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
           >
             {t('paused')}
           </Button>
@@ -810,7 +810,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_foreground_bg dark:text-gray-200"
           >
             {t('past_due')}
           </Button>
@@ -829,7 +829,7 @@ const Upgrade: NextPage = () => {
       return (
         <Button
           disabled={false}
-          className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+          className="inline-flex w-full items-center cursor-not-allowed py-2 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
         >
           {t('currentplan')}
         </Button>
@@ -839,7 +839,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={false}
-            className="inline-flex w-full items-center cursor-not-allowed py-2 border border-gray-100 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_200 dark:text-gray-900"
+            className="inline-flex w-full items-center cursor-not-allowed py-2 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-gray-100 dark:bg-teams_brand_dark_400 dark:text-gray-900"
           >
             {t('currentplan')}
           </Button>
@@ -911,7 +911,7 @@ const Upgrade: NextPage = () => {
               }
             });
           }}
-          className="inline-flex w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg dark:bg-teams_brand_dark_300 hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:border-teams_brand_dark_300"
+          className="inline-flex w-full items-center  py-2 text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none  "
         >
           {t('upgrade')}
         </Button>
@@ -1010,7 +1010,7 @@ const Upgrade: NextPage = () => {
           }}
           className={classNames(
             toggleEnabled
-              ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+              ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
           )}
         >

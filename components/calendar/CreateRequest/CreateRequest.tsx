@@ -1287,7 +1287,7 @@ const Form: React.FC<{
                 loading
                   ? ' bg-gray-300 text-gray-500 '
                   : ' border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 '
-              } inline-flex justify-center rounded-md px-4 py-2 text-sm  font-medium  shadow-sm  focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2`}
+              } inline-flex justify-center rounded-md px-4 py-2 text-sm  font-medium  shadow-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white`}
             >
               {t('Cancel')}
             </button>

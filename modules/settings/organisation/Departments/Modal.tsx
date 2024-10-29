@@ -642,7 +642,7 @@ export default function Modal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
+                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100 dark:divide-gray-500">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -842,7 +842,7 @@ export default function Modal(props: {
                                                 classNames(
                                                   subscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_200'
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400'
                                                       : ' text-gray-800'
                                                     : option.id !== 'Linear_all_have_to_agree'
                                                   ? ' cursor-not-allowed bg-gray-100 text-gray-800'
@@ -867,7 +867,7 @@ export default function Modal(props: {
                                                     <p className={selected ? 'font-semibold dark:text-gray-900' : 'font-normal dark:text-gray-200'}>
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_200 dark:text-gray-600">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_400 dark:text-gray-600">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
@@ -991,14 +991,14 @@ export default function Modal(props: {
                                 e.preventDefault();
                                 props.onClose();
                               }}
-                              className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                              className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                             >
                               {t('Cancel')}
                             </button>
                             <button
                               disabled={addDepartment.isLoading || editDepartment.isLoading}
                               type="submit"
-                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+                              className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                             >
                               {(addDepartment.isLoading || editDepartment.isLoading) && (
                                 <div className="-ml-1 mr-3">

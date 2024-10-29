@@ -702,8 +702,8 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                       <p>{t('change-approval-process')}</p>{' '}
                                     </Listbox.Label>
                                     <div className="relative w-full">
-                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_200">
-                                        <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_200">
+                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_400">
+                                        <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_400">
                                           <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 dark:text-gray-200 shadow-sm dark:bg-teams_brand_dark_100">
                                             <div className="inline-flex">
                                               <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
@@ -730,7 +730,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                       >
-                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white dark:bg-teams_brand_dark_200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-gray-500">
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white dark:bg-teams_brand_dark_100 dark:text-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-gray-500">
                                           {approvalProcessOptions.map((option) => (
                                             <Listbox.Option
                                               key={option.title}
@@ -738,10 +738,10 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                 classNames(
                                                   hasValidSubscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
                                                       : ' text-gray-800 '
                                                     : option.id !== 'Linear_all_have_to_agree'
-                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
                                                     : ' ',
                                                   'cursor-pointer select-none p-4 text-sm'
                                                 )
@@ -765,7 +765,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                     <p className={selected ? 'font-semibold dark:text-gray-900' : 'font-normal dark:text-gray-200'}>
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_200 dark:text-gray-600">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_400 dark:text-gray-600">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
@@ -777,7 +777,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                       )}
                                                     </span>
                                                     {selected ? (
-                                                      <span className={active ? 'text-black dark:text-gray-600' : 'text-gray-300'}>
+                                                      <span className={active ? 'text-black dark:text-gray-900' : 'text-gray-300'}>
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                       </span>
                                                     ) : null}
@@ -903,7 +903,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                       >
-                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:divide-gray-500">
                                           {approvalProcessOptions.map((option) => (
                                             <Listbox.Option
                                               key={option.title}
@@ -911,12 +911,12 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                 classNames(
                                                   subscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800'
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
                                                       : ' text-gray-800 '
                                                     : option.id !== 'Linear_all_have_to_agree'
                                                     ? ' cursor-not-allowed bg-gray-100 text-gray-800 '
                                                     : ' ',
-                                                  'cursor-pointer select-none p-4 text-sm'
+                                                  'cursor-pointer select-none p-4 text-sm dark:bg-teams_brand_dark_400 dark:text-gray-900'
                                                 )
                                               }
                                               disabled={subscription ? false : option.id !== 'Linear_all_have_to_agree'}
@@ -936,7 +936,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                     <p className={selected ? 'font-semibold' : 'font-normal'}>
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:text-gray-900">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
@@ -948,7 +948,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                       )}
                                                     </span>
                                                     {selected ? (
-                                                      <span className={active ? 'text-black' : 'text-gray-300'}>
+                                                      <span className={active ? 'text-black dark:text-gray-900' : 'text-gray-300'}>
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                       </span>
                                                     ) : null}
@@ -990,14 +990,14 @@ export default function Approver(props: { onClose: Function; currentMember: defa
               props.onClose(false);
             }}
             type="button"
-            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Cancel')}
           </button>
           <button
             disabled={updateApprover.isLoading}
             type="submit"
-            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
             onClick={(e) => {
               e.preventDefault();
               if (Object.keys(errors).length === 0 && props.currentMember) {

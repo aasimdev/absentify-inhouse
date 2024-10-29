@@ -105,7 +105,7 @@ export const DeletionModal = (props: {
         <div className="flex justify-between mt-4">
         <button
             type="button" onClick={handleBackOption}
-            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2"
+            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Back')}
           </button>
@@ -126,7 +126,7 @@ export const DeletionModal = (props: {
         <div className="flex justify-between align-middle mt-4">
         <button
             type="button" onClick={handleBackOption}
-            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2"
+            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Back')}
         </button>

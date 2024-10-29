@@ -50,7 +50,7 @@ export default function AlertModal({text, onClose }: Props) {
           </div>
           <button
             type="button"
-            className="mr-6 inline-flex w-20 self-center justify-center rounded-md bg-teams_brand_foreground_bg px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus:ring-teams_brand_500 sm:col-start-2"
+            className="mr-6 inline-flex w-20 self-center justify-center rounded-md bg-teams_brand_foreground_bg px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 sm:col-start-2"
             onClick={(e) => {
               e.preventDefault();
               onClose();

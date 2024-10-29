@@ -869,7 +869,7 @@ const Users = () => {
                           if (membersData?.hasPreviousPage) setPage(page - 1);
                         }}
                         disabled={!membersData?.hasPreviousPage}
-                        className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50"
+                        className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('previous')}
                       </button>
@@ -880,7 +880,7 @@ const Users = () => {
                           if (membersData?.hasNextPage) setPage(page + 1);
                         }}
                         disabled={!membersData?.hasNextPage}
-                        className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0  dark:ring-offset-0 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+                        className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0  dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                       >
                         {t('next')}
                       </button>

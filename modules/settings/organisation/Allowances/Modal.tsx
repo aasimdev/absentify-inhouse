@@ -159,7 +159,7 @@ export default function Modal(props: {
                           {!props.value && t('allowanceType_add_a_allowancetype')}
                         </>
                       </Dialog.Title>
-                      <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                      <form className="divide-y divide-gray-200 dark:divide-gray-500" onSubmit={handleSubmit(onSubmit)}>
                         <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                           <div className="sm:col-span-5">
                             <label htmlFor="allowance_name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -230,11 +230,11 @@ export default function Modal(props: {
                                             <p> {t('allowances_allowance_unit')}</p>{' '}
                                           </Listbox.Label>
                                           <div className="relative w-full">
-                                            <div className="inline-flex w-full rounded-md border-gray-300 ">
+                                            <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200">
                                               <div className="inline-flex w-full rounded-md border-gray-300">
-                                                <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm ">
+                                                <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:bg-teams_brand_dark_100 dark:text-gray-200">
                                                   <div className="inline-flex">
-                                                    <p className=" text-sm font-medium">
+                                                    <p className=" text-sm font-medium dark:text-gray-200">
                                                       {
                                                         selectOptions.find(
                                                           (x) => x.value === getValues('data.allowance_unit')
@@ -243,10 +243,10 @@ export default function Modal(props: {
                                                     </p>
                                                   </div>
                                                 </Listbox.Button>
-                                                <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">
-                                                  <span className="sr-only"> {t('allowances_allowance_unit')}</span>
+                                                <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                                                  <span className="sr-only dark:text-gray-200"> {t('allowances_allowance_unit')}</span>
                                                   <ChevronDownIcon
-                                                    className="h-5 w-5 text-gray-800"
+                                                    className="h-5 w-5 text-gray-800 dark:text-gray-200"
                                                     aria-hidden="true"
                                                   />
                                                 </Listbox.Button>
@@ -260,7 +260,7 @@ export default function Modal(props: {
                                               leaveFrom="opacity-100"
                                               leaveTo="opacity-0"
                                             >
-                                              <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                              <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_dark_400 dark:text-gray-900 dark:divide-gray-500">
                                                 {selectOptions.map((option) => (
                                                   <Listbox.Option
                                                     key={option.label}
@@ -268,10 +268,10 @@ export default function Modal(props: {
                                                       classNames(
                                                         hasValidSubscription
                                                           ? active
-                                                            ? 'bg-gray-100 text-gray-800'
-                                                            : ' text-gray-800 '
+                                                            ? 'bg-gray-100 text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:text-gray-200'
+                                                            : ' text-gray-800 dark:text-gray-900'
                                                           : option.value !== 'days'
-                                                          ? ' cursor-not-allowed bg-gray-100 text-gray-800 '
+                                                          ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_100  dark:text-gray-900 '
                                                           : ' ',
                                                         'cursor-pointer select-none p-4 text-sm'
                                                       )
@@ -294,11 +294,11 @@ export default function Modal(props: {
                                                             {option.label}
                                                           </p>
                                                           <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white">
-                                                            <p>{t('upgradeToSelectUnit')}</p>
+                                                            <p className="dark:text-gray-200">{t('upgradeToSelectUnit')}</p>
                                                             {current_member?.is_admin && (
                                                               <Link
                                                                 href="/settings/organisation/upgrade"
-                                                                className="underline hover:text-blue-700"
+                                                                className="underline hover:text-blue-700 dark:text-gray-900"
                                                               >
                                                                 {t('upgradeToSelectUnit2')}
                                                               </Link>
@@ -306,7 +306,7 @@ export default function Modal(props: {
                                                           </span>
                                                           {selected ? (
                                                             <span className={active ? 'text-black' : 'text-gray-300'}>
-                                                              <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                              <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
                                                             </span>
                                                           ) : null}
                                                         </div>
@@ -382,7 +382,7 @@ export default function Modal(props: {
                                     }}
                                     disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                                     className={classNames(
-                                      value ? 'bg-teams_brand_600 dark:bg-teams_brand_dark_300 dark' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                      value ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                     )}
                                   >
@@ -519,14 +519,14 @@ export default function Modal(props: {
                               e.preventDefault();
                               props.onClose();
                             }}
-                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                           >
                             {t('Cancel')}
                           </button>
                           <button
                             disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                             type="submit"
-                            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+                            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                           >
                             {(addAllowanceType.isLoading || editAllowanceType.isLoading) && (
                               <svg

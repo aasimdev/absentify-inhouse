@@ -314,15 +314,15 @@ const General: NextPage = () => {
                           className={classNames(
                             imageRatioSquare ? 'w-24 h-24' : 'sm:w-96 w-44 h-20',
                             'flex items-center justify-center',
-                            'border border-gray-300',
-                            'group dark:group-hover:text-white',
-                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_600 dark:hover:text-gray-200'
+                            'border border-gray-300 dark:border-gray-500',
+                            'group',
+                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200 text-white'
                           )}
                         >
-                          <span className="group-hover:hidden flex items-center justify-center text-sm text-gray-400">
+                          <span className="group-hover:hidden flex items-center justify-center text-sm text-gray-400 dark:text-gray-200">
                             {t('Logo_not_set')}
                           </span>
-                          <span className="hidden group-hover:flex items-center justify-center text-sm text-black">
+                          <span className="hidden group-hover:flex items-center justify-center text-sm ">
                             {t('Upload')}
                           </span>
                         </div>
@@ -351,7 +351,7 @@ const General: NextPage = () => {
                           onClick={handleDelete}
                         >
                           <svg
-                            className=" hidden group-hover:block"
+                            className=" hidden group-hover:block "
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
                             height="24"
@@ -378,10 +378,10 @@ const General: NextPage = () => {
                 </div>
                 <button type="button" onClick={handleRatioChange} className="flex flex-col ml-6">
                   <div className="flex items-center">
-                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4  dark:teams_brand_blue">
+                    <div className="text-sm font-normal text-blue-500 sm:mt-0 mt-4  dark:teams_brand_blue dark:text-teams_brand_foreground_bg">
                       {imageRatioSquare ? t('switch_landscape_layout') : t('switch_square_layout')}
                     </div>
-                    <ArrowPathIcon color="#1874f0" className=" w-3 h-3 ml-1 sm:mt-0 mt-4 teams_brand_blue" />
+                    <ArrowPathIcon color="#1874f0" className=" w-3 h-3 ml-1 sm:mt-0 mt-4 teams_brand_blue dark:text-teams_brand_foreground_bg" />
                   </div>
                   <div className="text-sm font-normal text-gray-500  dark:text-gray-200 ">
                     {imageRatioSquare ? t('recomended_size_400x80px') : t('recomended_size_256x256px')}
@@ -458,7 +458,7 @@ const General: NextPage = () => {
                           'flex items-center justify-center',
                           'border border-gray-300 dark:border-gray-500',
                           'group',
-                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_600 dark:hover:text-gray-200'
+                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
                         )}
                       >
                         <span className="group-hover:flex group-hover:text-black dark:group-hover:text-white items-center justify-center text-xs text-gray-400 dark:text-gray-200">
@@ -917,7 +917,7 @@ const General: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -981,7 +981,7 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                       'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
@@ -1017,7 +1017,7 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                       'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
@@ -1053,7 +1053,7 @@ const General: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                       'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
@@ -1088,7 +1088,7 @@ const General: NextPage = () => {
                     onChange(val);
                   }}
                   className={classNames(
-                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_300 dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                   )}
                 >
@@ -1107,7 +1107,7 @@ const General: NextPage = () => {
         <div className="mt-4 flex justify-end p-4 sm:px-6">
           <button
             type="submit"
-            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-offset-0 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0"
+            className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
           >
             {editWorkspace.isLoading && (
               <div className="-ml-1 mr-3">

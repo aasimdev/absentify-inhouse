@@ -51,11 +51,11 @@ export default function ScheduleBox(props: {
             </h3>
 
             {props.state == 'completed' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_100">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_400">
                 {t('Completed')}
               </span>
             ) : props.state == 'future' ? (
-              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:text-gray-200 dark:bg-teams_brand_dark_100">
+              <span className="inline-block h-5 shrink-0 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800 dark:text-gray-200 dark:bg-teams_brand_dark_400">
                 {t('In_future')}
               </span>
             ) : (
