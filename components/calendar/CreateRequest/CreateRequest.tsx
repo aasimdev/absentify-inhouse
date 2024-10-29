@@ -1306,7 +1306,7 @@ const Form: React.FC<{
               className={classNames(
                 selectedLeaveType?.reason_mandatory && watch('reason')?.trim().length === 0
                   ? 'bg-gray-300 text-black hover:bg-gray-400'
-                  : 'bg-green-600 hover:bg-teams_brand_background_2 text-white',
+                  : 'bg-green-600 hover:bg-teams_brand_background_2 text-white dark:bg-teams_brand_dark_300',
                 'ml-5 inline-flex justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
               )}
             >
