@@ -194,7 +194,7 @@ export default function Modal(props: {
                               >
                                 {t('allowances_allowance_unit')}
                               </label>
-                              <p className="mt-2 text-sm text-gray-500" id="email-description">
+                              <p className="mt-2 text-sm text-gray-500 dark:text-gray-200 " id="email-description">
                                 {t('allowances_allowance_unit_description')}
                               </p>
                               <div className="mt-1 flex ">

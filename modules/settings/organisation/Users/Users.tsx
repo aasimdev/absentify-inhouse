@@ -242,7 +242,7 @@ const Users = () => {
   const [theme] = useDarkSide();
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-10">
+    <div className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10">
       {/* Profile section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <TabsUsers tabs={tabs} handler={handleTabs} showArchived={showArchived} />
@@ -556,7 +556,7 @@ const Users = () => {
                     </thead>
                   )}
 
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-500 bg-white dark:bg-teams_brand_dark_100">
                     {isLoading && <CustomListLoading />}
                     {!isLoading &&
                       members.map((member) => (
