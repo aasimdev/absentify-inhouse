@@ -244,7 +244,7 @@ export default function IntegrationDetails(props: {
                   onClick={() => {
                     window.open(integration.url, '_blank');
                   }}
-                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:text-gray-200"
+                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                 >
                   {integration.call_to_action_name}
                 </button>
@@ -252,7 +252,7 @@ export default function IntegrationDetails(props: {
               {integration.integration === t('timeghost_name') && (
                 <button
                   type="button"
-                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                   onClick={() => {
                     router.push('/settings/organisation/integrations/timeghost/settings');
                   }}
@@ -268,7 +268,7 @@ export default function IntegrationDetails(props: {
                     subscription.enterprise
                       ? ' bg-teams_brand_foreground_bg text-white hover:bg-teams_brand_border_1 '
                       : ' bg-gray-100 text-gray-500 cursor-not-allowed '
-                  }  rounded-md border border-transparent shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                  }  rounded-md border border-transparent shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0`}
                   onClick={() => router.push('/settings/organisation/integrations/api/key')}
                 >
                   <p className="mx-auto">{integration.call_to_action_name}</p>
@@ -278,7 +278,7 @@ export default function IntegrationDetails(props: {
                 <Link href="/settings/organisation/integrations/calendar_sync/settings">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                    className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                   >
                     {integration.call_to_action_name}
                   </button>
@@ -296,7 +296,7 @@ export default function IntegrationDetails(props: {
                       !(subscription.enterprise > 0)
                         ? '  bg-gray-100 text-gray-500'
                         : 'bg-teams_brand_foreground_bg text-white',
-                      'inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500'
+                      'inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0'
                     )}
                   >
                     {integration.call_to_action_name}
@@ -307,7 +307,7 @@ export default function IntegrationDetails(props: {
                 <Link href="/settings/organisation/integrations/webhooks/configure_url">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                    className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                   >
                     {integration.call_to_action_name}
                   </button>
@@ -319,7 +319,7 @@ export default function IntegrationDetails(props: {
                   onClick={() => {
                     window.open(integration.url, '_blank');
                   }}
-                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500"
+                  className="inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium text-white bg-teams_brand_foreground_bg rounded-md border border-transparent shadow-sm hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                 >
                   {integration.call_to_action_name}
                 </button>
@@ -331,7 +331,7 @@ export default function IntegrationDetails(props: {
                     disabled={workspace?.microsoft_groups_read_write_all !== 'ACTIVATED'}
                     className={classNames(
                       (workspace?.microsoft_groups_read_write_all !== 'ACTIVATED') ? "  bg-gray-100 text-gray-500 cursor-default" : "bg-teams_brand_foreground_bg text-white cursor-pointer hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500",
-                      "inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium rounded-md border border-transparent shadow-sm ",
+                      "inline-flex justify-center px-4 py-2 ml-5 text-sm font-medium rounded-md border border-transparent shadow-sm dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0",
                     )}
                   >
                     {integration.call_to_action_name}

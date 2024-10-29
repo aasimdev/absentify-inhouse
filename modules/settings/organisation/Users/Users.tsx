@@ -816,7 +816,7 @@ const Users = () => {
                   />
                 </table>
                 <nav
-                  className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 w-full dark:bg-teams_brand_dark_100"
+                  className="flex items-center justify-between border-t border-gray-200 dark:border-gray-500 bg-white px-4 py-3 sm:px-6 w-full dark:bg-teams_brand_dark_100"
                   aria-label="Pagination"
                 >
                   <div className="flex items-center justify-between w-full ">
