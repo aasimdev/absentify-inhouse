@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Bir önceki yılın ödenek kayıtlarında gelecekte yapılacak değişiklikler artık devri etkilemeyecektir. Diğer bir deyişle, hesaplanan devir, ödenekte sonradan yapılan ayarlamalar nedeniyle artarsa, manuel olarak ayarlanan devir etkilenmeyecektir.",
   "ManualCarryoverDialog_Confirmation": "Devam etmek için lütfen `Onayla` düğmesine tıklayarak manuel ayarlama sonuçlarını anladığınızı onaylayın.",
   "Default": "Varsayılan",
-  "Visible": "Görünür"
+  "Visible": "Görünür",
+  "carryForward_expired_single": "{{count}} {{unit}} {{date}}adresinde sona ermiştir.",
+  "carryForward_expired_multiple": "{{count}} {{unit}} {{date}}adresinde sona ermiştir.",
+  "carryForward_willExpire_single": "{{count}} {{unit}} {{date}}adresinde sona erecektir.",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} {{date}}adresinde sona erecektir.",
+  "units_days": "gün",
+  "units_days_plural": "günler",
+  "units_hours": "saat",
+  "units_hours_plural": "saatler",
+  "Expire": "Son kullanma tarihi"
 }

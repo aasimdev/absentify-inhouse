@@ -233,13 +233,13 @@ const Requests = () => {
                       </div>
                       <div className=" flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                         <div>
-                          <p className="w-24 truncate text-sm font-medium sm:w-full">
+                          <p className="w-24 truncate text-sm font-medium sm:w-full dark:text-gray-200">
                             {members.find((x) => x.id == request.request.requester_member_id)?.name}
                           </p>
-                          <p className="mt-2 flex items-center text-sm text-gray-500">
+                          <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-300">
                             <span className="truncate">{request.request.details?.reason}</span>
                           </p>
-                          <p className="mt-2 hidden items-center  text-sm text-gray-500 md:flex">
+                          <p className="mt-2 hidden items-center  text-sm text-gray-500 md:flex dark:text-gray-300">
                             <span className="truncate">
                               {t('Created')}: {format(request.request.createdAt, current_member.long_datetime_format)}
                             </span>
@@ -247,15 +247,15 @@ const Requests = () => {
                         </div>
                         <div>
                           <div>
-                            <div className="text-sm text-gray-900">
+                            <div className="text-sm text-gray-900 dark:text-gray-200">
                               <LeaveRow leaveType={request.request.details?.leave_type} />
 
-                              <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                              <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-300">
                                 {formatLeaveRequestDetails(request.request, current_member, t)}
                               </p>
                             </div>
                             {request.request.details && (
-                              <p className="mt-2 flex items-center text-sm text-gray-500">
+                              <p className="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-300">
                                 {formatDuration(
                                   request.request.details.workday_absence_duration,
                                   lang,
@@ -284,7 +284,7 @@ const Requests = () => {
                             '/calendar/' + request.request.requester_member_id + '?request_id=' + request.request.id
                           );
                         }}
-                        className=" ml-5 inline-flex w-32 justify-center rounded-md  border border-blue-300 bg-white py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 "
+                        className=" ml-5 inline-flex w-32 justify-center rounded-md  border border-blue-300 bg-white py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                       >
                         {t('Details')}
                       </button>
@@ -295,7 +295,7 @@ const Requests = () => {
                           handleAddRequestId(request.request.id);
                           buttonClick(request, 'APPROVED');
                         }}
-                        className=" ml-5 inline-flex w-32 justify-center rounded-md  border border-green-300 bg-white py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 "
+                        className=" ml-5 inline-flex w-32 justify-center rounded-md  border border-green-300 bg-white py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                       >
                         {iDs.includes(request.request.id) && (
                           <div className="-ml-1 mr-3">
@@ -325,7 +325,7 @@ const Requests = () => {
                         onClick={() => {
                           buttonClick(request, 'DECLINED');
                         }}
-                        className="ml-5 w-32 rounded-md border border-red-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 "
+                        className="ml-5 w-32 rounded-md border border-red-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                       >
                         {t('Decline')}
                       </button>

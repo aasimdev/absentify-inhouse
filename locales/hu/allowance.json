@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Az előző évi kibocsátási egységek nyilvántartásának jövőbeli változásai már nem befolyásolják az átvitelt. Ez azt jelenti, hogy ha a kiszámított átvitel a kibocsátási egységek későbbi kiigazításai miatt növekedne, a manuálisan beállított átvitel változatlan marad.",
   "ManualCarryoverDialog_Confirmation": "A folytatáshoz kérjük, a \"Megerősítés\" gombra kattintva erősítse meg, hogy megértette a kézi beállítás következményeit.",
   "Default": "Alapértelmezett",
-  "Visible": "Látható"
+  "Visible": "Látható",
+  "carryForward_expired_single": "{{count}} {{unit}} lejárt a {{date}}oldalon.",
+  "carryForward_expired_multiple": "{{count}} {{unit}} lejárt a {{date}}oldalon.",
+  "carryForward_willExpire_single": "{{count}} {{unit}} a {{date}}oldalon jár le.",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} a {{date}}oldalon jár le.",
+  "units_days": "nap",
+  "units_days_plural": "napok",
+  "units_hours": "óra",
+  "units_hours_plural": "órák",
+  "Expire": "Lejárat"
 }

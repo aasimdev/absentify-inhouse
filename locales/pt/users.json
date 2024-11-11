@@ -20,7 +20,7 @@
   "read_more": "Lê mais",
   "SendInvitationEmail_many": "Envia e-mails de convite",
   "SendInvitationEmail_description_many": "Os utilizadores receberão uma mensagem de correio eletrónico com uma ligação para se ausentarem. Se não o desejares neste momento, terás de enviar o e-mail a estes utilizadores manualmente mais tarde.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "No plano empresarial, podes convidar utilizadores que não tenham um endereço de correio eletrónico.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "No plano Essentials, podes convidar utilizadores que não tenham um endereço de correio eletrónico.",
   "UserWithoutEmailHeadlineWithSubscription": "Também podes convidar utilizadores sem um endereço de e-mail.",
   "UserWithoutEmailDescription": "Podes introduzir ausências e gerir o calendário para estes empregados. Estes empregados não podem iniciar sessão, ser chefes de departamento ou aprovar ausências para outros empregados.",
   "Upgrade": "Atualização",

@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Sachez que vous demandez un congé en dehors des heures de travail.",
   "TryAgainTextMessage": "Une erreur s'est produite, veuillez réessayer",
   "Group_booking": "Demande de groupe",
-  "group_booking_required_business_plan": "Vous avez besoin d'au moins un Plan Business pour créer des demandes de groupe.",
+  "group_booking_required_business_plan": "Tu as besoin au moins d'un Plan Essentiel pour créer des demandes groupées.",
   "Note": "Note",
   "Name": "Nom",
   "All_departments": "Tous les départements"

@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Ver ajustes en Equipos",
   "notice_managers": "Aviso: se ha aprobado una solicitud de uno de tus empleados",
   "second_line_for_managers": "se ha aprobado la solicitud de un empleado de tu departamento. {{employee_name}}La solicitud de permiso de {{leave_type_name}} ha sido procesada y no se requiere ninguna otra acción. Recibes este e-mail porque eres el jefe del departamento. ",
-  "request_created_by": "<div><strong>Solicitud creada por:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Solicitud creada por:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Razón:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Solicitud de sincronización fallida",
   "sync_request_to_timeghost_failed-subject": "Problema de sincronización de timeghost debido a una API-Key no válida 🚨",

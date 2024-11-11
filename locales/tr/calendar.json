@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Mesai saatleri dışında izin talep ettiğinizi bildiriniz.",
   "TryAgainTextMessage": "Bir hata oluştu, lütfen tekrar deneyin",
   "Group_booking": "Grup talebi",
-  "group_booking_required_business_plan": "Grup talepleri oluşturmak için en azından bir İş Planına ihtiyacınız vardır.",
+  "group_booking_required_business_plan": "Grup talepleri oluşturmak için en az bir Essentials Plan'a ihtiyacınız vardır.",
   "Note": "Not",
   "Name": "İsim",
   "All_departments": "Tüm departmanlar"

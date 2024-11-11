@@ -11,6 +11,7 @@ import {
 } from '~/lib/subscriptionHelper';
 import { defaultWorkspaceSelect } from './workspace';
 import { addDays, addYears } from 'date-fns';
+import { getFiscalYearStartAndEndDatesUTC } from '~/lib/requestUtilities';
 
 /**
  * Default selector for memberAllowance.
@@ -31,7 +32,8 @@ export const defaultAllwoanceTypeSelect = Prisma.validator<Prisma.AllowanceTypeS
   //member_allowance_adjustments: true,
   allowance_unit: true,
   ignore_allowance_limit: true,
-  max_carry_forward: true
+  max_carry_forward: true,
+  carry_forward_months_after_fiscal_year: true
 });
 
 export const allowanceRouter = createTRPCRouter({
@@ -64,7 +66,8 @@ export const allowanceRouter = createTRPCRouter({
           default_allowance_current_year: z.number(),
           default_allowance_next_year: z.number(),
           allowance_unit: z.nativeEnum(AllowanceUnit),
-          max_carry_forward: z.number()
+          max_carry_forward: z.number(),
+          carry_forward_months_after_fiscal_year: z.number()
         })
       })
     )
@@ -128,7 +131,6 @@ export const allowanceRouter = createTRPCRouter({
           message: ctx.t('AllowanceType_max_reached')
         });
       }
-
       const allowanceType = await ctx.prisma.allowanceType.create({
         data: {
           workspace_id: ctx.current_member.workspace_id,
@@ -136,7 +138,8 @@ export const allowanceRouter = createTRPCRouter({
           allowance_unit: data.allowance_unit,
           ignore_allowance_limit: data.ignore_allowance_limit,
           name: data.name,
-          max_carry_forward: data.max_carry_forward
+          max_carry_forward: data.max_carry_forward,
+          carry_forward_months_after_fiscal_year: data.carry_forward_months_after_fiscal_year 
         },
         select: defaultAllwoanceTypeSelect
       });
@@ -267,7 +270,8 @@ export const allowanceRouter = createTRPCRouter({
           ignore_allowance_limit: z.boolean(),
           name: z.string(),
           //   allowance_unit: z.nativeEnum(AllowanceUnit),
-          max_carry_forward: z.number()
+          max_carry_forward: z.number(),
+          carry_forward_months_after_fiscal_year: z.number()
         })
       })
     )
@@ -318,7 +322,8 @@ export const allowanceRouter = createTRPCRouter({
           ignore_allowance_limit: data.ignore_allowance_limit,
           // allowance_unit: data.allowance_unit,
           name: data.name,
-          max_carry_forward: data.max_carry_forward
+          max_carry_forward: data.max_carry_forward,
+          carry_forward_months_after_fiscal_year: data.carry_forward_months_after_fiscal_year
         },
         select: defaultAllwoanceTypeSelect
       });

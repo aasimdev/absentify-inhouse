@@ -30,7 +30,7 @@ const Integrations: NextPage = () => {
       description: t('integration_desc1'),
       integration: 'power_automate',
       imageUrl: '/integrations/powerautomate_400x400.png',
-      bgColor: 'bg-white'
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100'
     },
     {
       name: 'Calendar Sync',
@@ -38,7 +38,7 @@ const Integrations: NextPage = () => {
       integration:isAnyCalSyncSetting ? 'calendar_sync/settings ' :  'calendar_sync',
 
       imageUrl: '/integrations/cal_sync.png',
-      bgColor: 'bg-white'
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100'
     },
     {
       name: 'timeghost',
@@ -46,42 +46,42 @@ const Integrations: NextPage = () => {
       integration: isAnyTgSyncSetting ? 'timeghost/settings': 'timeghost',
 
       imageUrl: '/integrations/timeghost-favicon.png',
-      bgColor: 'bg-black'
+      bgColor: 'bg-black dark:bg-teams_brand_dark_100'
     },
     {
       name: 'API',
       description: t('integration_desc4'),
-      bgColor: 'bg-white',
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
       integration: 'api',
       imageUrl: '/integrations/api_logo.png'
     },
     {
       name: 'Webhooks',
       description: t('integration_desc5'),
-      bgColor: 'bg-white',
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
       integration: 'webhooks',
       imageUrl: '/integrations/webhook.png'
     },
     {
       name: 'Power Bi',
       description: t('integration_desc6'),
-      bgColor: 'bg-white',
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
       integration: 'powerbi',
       imageUrl: '/integrations/powerbi.svg'
     },
     {
       name: 'Outlook out of office',
       description: t('integration_desc7'),
-      bgColor: 'bg-[#e1e1e1]',
+      bgColor: 'bg-[#e1e1e1] dark:bg-teams_brand_dark_100',
       integration: 'outlook_oof',
       imageUrl: '/integrations/outlook_oof.png'
     },
     {
       name: 'Microsoft Entra ID/Teams Group Synchronization',
       description: t('integration_desc8'),
-      bgColor: 'bg-white',
+      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
       integration: 'ad_group_sync',
-      imageUrl: '/integrations/adgroup.jpg'
+      imageUrl: '/integrations/adgroup.png'
     }
   ];
   
@@ -118,7 +118,7 @@ const Integrations: NextPage = () => {
             {integrations.map((integration) => (
               <li
                 key={integration.name}
-                className="col-span-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                className="col-span-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_tbody"
                 onClick={() => {
                   router.push(`/settings/organisation/integrations/${integration.integration}`);
                 }}
@@ -126,16 +126,16 @@ const Integrations: NextPage = () => {
                 <div
                   className={classNames(
                     integration.bgColor,
-                    'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md border'
+                    'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md border dark:border-teams_brand_tbody_border dark:bg-teams_brand_tbody'
                   )}
                 >
                   <img src={integration.imageUrl} alt={integration.name} width="50px" />
                 </div>
-                <div className="flex flex-1 items-center justify-between rounded-r-md border-t border-r border-b border-gray-200 bg-white dark:text-gray-200 dark:bg-teams_brand_dark_100">
+                <div className="flex flex-1 items-center justify-between rounded-r-md border-t border-r border-b border-gray-200 bg-white dark:border-teams_brand_tbody_border dark:text-gray-200 dark:bg-teams_brand_tbody">
                   <div className="flex-1 lg:px-2 px-4 py-2 text-sm truncate w-56 sm:w-auto lg:w-56 1xl:w-auto">
                     <Link
                       href={`/settings/organisation/integrations/${integration.integration}`}
-                      className="font-medium text-gray-900 hover:text-gray-600 dark:text-gray-200 dark:text-gray-200"
+                      className="font-medium text-gray-900 hover:text-gray-600 dark:text-gray-200"
                     >
                       {integration.name}
                     </Link>

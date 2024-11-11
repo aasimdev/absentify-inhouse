@@ -20,7 +20,7 @@
   "read_more": "Leggi tutto",
   "SendInvitationEmail_many": "Inviare e-mail di invito",
   "SendInvitationEmail_description_many": "Gli utenti riceveranno un'e-mail da noi con un link per assentarsi. Se non lo desideri al momento, dovrai inviare manualmente l'e-mail a questi utenti in un secondo momento.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "Nel piano aziendale puoi invitare utenti che non hanno un indirizzo e-mail.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "Nel piano Essentials puoi invitare utenti che non hanno un indirizzo e-mail.",
   "UserWithoutEmailHeadlineWithSubscription": "Puoi invitare anche utenti che non hanno un indirizzo e-mail.",
   "UserWithoutEmailDescription": "Puoi inserire le assenze e gestire il calendario di questi dipendenti. Questi dipendenti non possono accedere, essere responsabili di reparto o approvare le assenze di altri dipendenti.",
   "Upgrade": "Aggiornamento",

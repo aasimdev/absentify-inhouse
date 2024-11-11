@@ -295,7 +295,7 @@ const General: NextPage = () => {
 
   const logo = createLogo(workspace?.company_logo_url, workspace?.company_logo_ratio_square ? '256x256' : '400x80');
   return (
-    <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10 dark:bg-teams_brand_dark_100" onSubmit={handleSubmit(onSubmit)}>
+    <form className="divide-y divide-gray-200 dark:divide-teams_brand_tbody_border lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
       {/* Workspace section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
@@ -314,9 +314,9 @@ const General: NextPage = () => {
                           className={classNames(
                             imageRatioSquare ? 'w-24 h-24' : 'sm:w-96 w-44 h-20',
                             'flex items-center justify-center',
-                            'border border-gray-300 dark:border-gray-500',
+                            'border border-gray-300 dark:border-teams_brand_tbody_border',
                             'group',
-                            'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200 text-white'
+                            'hover:bg-gray-300 dark:hover:bg-teams_brand_tbody dark:hover:text-gray-200 text-white'
                           )}
                         >
                           <span className="group-hover:hidden flex items-center justify-center text-sm text-gray-400 dark:text-gray-200">
@@ -439,7 +439,7 @@ const General: NextPage = () => {
                       type="text"
                       name="name"
                       autoComplete="name"
-                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                      className="block w-full min-w-0 grow  rounded border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_border dark:bg-teams_dark_mode  dark:text-gray-200"
                     />
                   </div>{' '}
                   {errors.name && <span>{t('This_field_is_required')}</span>}
@@ -456,9 +456,9 @@ const General: NextPage = () => {
                         className={classNames(
                           'w-11 h-11',
                           'flex items-center justify-center',
-                          'border border-gray-300 dark:border-gray-500',
+                          'border border-gray-300 dark:border-teams_brand_border',
                           'group',
-                          'hover:bg-gray-300 dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-200'
+                          'hover:bg-gray-300 dark:hover:bg-teams_brand_tbody  dark:hover:text-gray-200'
                         )}
                       >
                         <span className="group-hover:flex group-hover:text-black dark:group-hover:text-white items-center justify-center text-xs text-gray-400 dark:text-gray-200">
@@ -955,7 +955,7 @@ const General: NextPage = () => {
       </div>
 
       {/* Privacy section */}
-      <div className="divide-y divide-gray-200 pt-6 dark:divide-gray-500">
+      <div className="divide-y divide-gray-200 pt-6 dark:divide-teams_brand_tbody_border">
         <div className="px-4 sm:px-6">
           <div>
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-white">{t('Privacy')}</h2>

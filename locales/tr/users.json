@@ -20,7 +20,7 @@
   "read_more": "Daha fazla bilgi edinin",
   "SendInvitationEmail_many": "Davet e-postaları gönderin",
   "SendInvitationEmail_description_many": "Kullanıcılar bizden devamsızlık bağlantısı içeren bir e-posta alacaktır. Şu anda bunu istemiyorsanız, e-postayı bu kullanıcılara daha sonra manuel olarak göndermeniz gerekecektir.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "İş planında e-posta adresi olmayan kullanıcıları davet edebilirsiniz.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "Essentials planında e-posta adresi olmayan kullanıcıları davet edebilirsiniz.",
   "UserWithoutEmailHeadlineWithSubscription": "E-posta adresi olmayan kullanıcıları da davet edebilirsiniz.",
   "UserWithoutEmailDescription": "Bu çalışanlar için devamsızlık girebilir ve takvimi yönetebilirsiniz. Bu çalışanlar oturum açamaz, departman yöneticisi olamaz veya diğer çalışanların devamsızlıklarını onaylayamaz.",
   "Upgrade": "Yükseltme",

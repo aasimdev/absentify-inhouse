@@ -256,8 +256,8 @@ const Webhooks: NextPage = () => {
                         <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
                           {t('editW')}
                         </Dialog.Title>
-                        <div className="mt-5 sm:flex sm:items-center">
-                          <div>
+                        <div className="mt-5 md:flex md:items-center">
+                          <div className='flex items-center gap-1'>
                             {' '}
                             <label htmlFor="location" className="sr-only  dark:text-gray-200">
                               {t('select_event')}
@@ -336,14 +336,14 @@ const Webhooks: NextPage = () => {
             <h2 className="text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">{t('Webhooks')}</h2>
             <p className="mt-1 text-sm text-gray-500  dark:text-gray-200">{t('Webhooks_description')}</p>
             <a
-              href="https://support.absentify.com/en/article/webhook-integration-r863or/"
+              href="https://absentify.com/docs/api-reference/webhooks"
               target="_blank"
               className="mt-1 text-sm text-gray-500 underline  dark:text-gray-200"
             >
               {t('Webhooks_description_2')}
             </a>
             {!hasValidSubscription && (
-              <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left">
+              <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left dark:bg-teams_dark_mode_core">
                 <div className="w-full text-sm  dark:text-gray-200">
                   {t('Webhooks_description_available_in_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200  dark:text-gray-200">
@@ -394,7 +394,7 @@ const Webhooks: NextPage = () => {
               type="submit"
               className={` ${
                 !hasValidSubscription
-                  ? 'border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 '
+                  ? 'border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-teams_brand_foreground_bg dark:text-gray-200'
                   : ' border-transparent  bg-teams_brand_foreground_bg  text-white  hover:bg-teams_brand_background_2 '
               } bordershadow-sm inline-flex w-3/5 items-center justify-center rounded-md px-4 py-2 font-medium  focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0  sm:w-auto sm:text-sm `}
             >

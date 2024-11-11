@@ -195,8 +195,8 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-4xl sm:p-6 sm:align-middle">
-              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900">
+            <div className="inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-4xl sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100 ">
+              <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                 {editMode ? t('edit_ad_teams_Sync') : t('add_ad_teams_sync')}
               </Dialog.Title>
               <nav aria-label="Progress ">
@@ -208,7 +208,7 @@ export default function Modal(props: {
                           <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg ">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : step.status === 'current' ? (
                         <span
@@ -218,12 +218,12 @@ export default function Modal(props: {
                           <span className="text-xs font-semibold uppercase tracking-wide text-teams_brand_foreground_bg">
                             {step.id}
                           </span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : (
                         <span className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4  md:border-l-0 md:border-t-4 md:pl-0 md:pt-4 md:pb-0">
                           <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">{step.id}</span>
-                          <span className="text-sm font-medium">{step.name}</span>
+                          <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       )}
                     </li>
@@ -277,7 +277,7 @@ export default function Modal(props: {
                         )}
                       </div>
                       <div className="sm:col-span-5">
-                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700">
+                        <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                           {t('description')}
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">

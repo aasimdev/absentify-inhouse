@@ -62,7 +62,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         timezone: true,
         language: true,
         email_notifications_updates: true,
-        sendinblue_contact_id: true,
         microsoft_tenantId: true,
         microsoft_user_id: true,
         workspace_id: true

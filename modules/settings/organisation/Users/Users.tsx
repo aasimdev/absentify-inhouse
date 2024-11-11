@@ -301,7 +301,7 @@ const Users = () => {
                   <input
                     id="search"
                     name="search"
-                    className="block w-full rounded-md border border-gray-300 dark:border-teams_brand_dark_400 bg-white dark:bg-transparent py-2 pl-10 pr-3 text-sm placeholder-gray-500 dark:text-white focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm"
+                    className="block w-full rounded-md border border-gray-300 dark:border-teams_brand_border bg-white dark:bg-transparent py-2 pl-10 pr-3 text-sm placeholder-gray-500 dark:text-white focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm"
                     placeholder={t('search')}
                     type="search"
                     ref={searchRef}
@@ -316,15 +316,15 @@ const Users = () => {
         <div className="mt-6 flex flex-col  items-center">
           <div className="-my-2 overflow-x-auto  w-full ">
             <div className="inline-block min-w-full py-2 align-middle sm:px-2 lg:px-1 px-2">
-              <div className="overflow-hidden border-b dark:border-0 border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
+              <div className="overflow-hidden border-b dark:border-0 border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
                   {/* depends on selecting several users or not */}
                   {!selectMultiMode && !(selectedMembers.length > 0) ? (
-                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                       <tr>
                         <th
                           scope="col"
-                          className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 lg:w-40 `}
+                          className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th lg:w-40 `}
                         >
                           <span className="flex h-6 items-center">
                             <input
@@ -332,7 +332,7 @@ const Users = () => {
                               name="name"
                               type="checkbox"
                               aria-describedby="user_name"
-                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3"
+                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 dark:text-teams_brand_th dark:bg-teams_dark_mode  dark:border-teams_brand_border dark:focus:ring-teams_brand_border dark:focus:bg-teams_dark_mode"
                               onChange={(e) => {
                                 setSelectMultiMode(e.target.checked);
                               }}
@@ -342,13 +342,13 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 md:table-cell lg:w-40"
+                          className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th md:table-cell lg:w-40"
                         >
                           {t('department_s')}
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th ${
                             isCustomBP3 ? ' table-cell ' : ' hidden '
                           }`}
                         >
@@ -356,7 +356,7 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200  ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th  ${
                             isCustomBP2 ? ' table-cell ' : ' hidden '
                           } `}
                         >
@@ -364,7 +364,7 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200  ${
+                          className={`px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th  ${
                             isCustomBP1 ? ' table-cell ' : ' hidden '
                           } `}
                         >
@@ -377,11 +377,11 @@ const Users = () => {
                       </tr>
                     </thead>
                   ) : (
-                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                    <thead className="bg-teams_brand_100 w-full dark:bg-teams_brand_thead dark:divide-teams_brand_tbody_border">
                       <tr className="">
                         <th
                           scope="col"
-                          className={`min-w-20 w-32 px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 lg:w-40 `}
+                          className={`min-w-20 w-32 px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 lg:w-40 dark:text-teams_brand_th`}
                         >
                           <span className="flex h-6 items-center cursor-pointer">
                             <input
@@ -390,7 +390,7 @@ const Users = () => {
                               type="checkbox"
                               checked={selectMultiMode}
                               aria-describedby="user_name"
-                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 "
+                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200 dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                               onChange={(e) => {
                                 setSelectMultiMode(e.target.checked);
                                 setSelectedMembers([]);
@@ -507,37 +507,37 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-xs font-medium  tracking-wider text-gray-500`}
+                          className={`px-3 py-3 text-left text-xs font-medium  tracking-wider text-gray-500 dark:text-teams_brand_th`}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 table-cell `}
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 table-cell dark:text-teams_brand_th`}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 table-cell  `}
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 table-cell  dark:text-teams_brand_th`}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 ${
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 dark:text-teams_brand_th ${
                             isCustomBP1 ? ' table-cell ' : ' hidden '
                           } `}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 ${
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 dark:text-teams_brand_th ${
                             isCustomBP3 ? ' table-cell ' : ' hidden '
                           } `}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 ${
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 dark:text-teams_brand_th ${
                             isCustomBP3 ? ' table-cell ' : ' hidden '
                           } `}
                         ></th>
                         <th
                           scope="col"
-                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500 ${
+                          className={`px-3 py-3 text-left text-sm font-medium  tracking-wider text-gray-500  ${
                             isCustomBP3 ? ' table-cell ' : ' hidden '
                           } `}
                         ></th>
@@ -556,7 +556,7 @@ const Users = () => {
                     </thead>
                   )}
 
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-500 bg-white dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 dark:divide-teams_brand_tbody_border bg-white dark:bg-teams_brand_tbody">
                     {isLoading && <CustomListLoading />}
                     {!isLoading &&
                       members.map((member) => (
@@ -565,7 +565,7 @@ const Users = () => {
                             className={`flex w-full flex-row whitespace-nowrap px-3 py-4 text-sm font-medium ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500 dark:text-gray-200'
+                                : 'text-gray-500 dark:text-white'
                             }  `}
                           >
                             <span className="flex h-auto items-center">
@@ -581,7 +581,7 @@ const Users = () => {
                                     : false
                                 }
                                 aria-describedby="user_name"
-                                className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3"
+                                className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border dark:focus:ring-teams_brand_border dark:focus:bg-teams_dark_mode"
                                 onChange={() => {
                                   handleCheckboxChange(member.id);
                                 }}
@@ -629,7 +629,7 @@ const Users = () => {
                             className={`hidden w-80 whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500 dark:text-gray-200'
+                                : 'text-gray-500 dark:text-white'
                             } md:table-cell`}
                           >
                             <span className="min-w-20  ml-2 mt-2 w-32 truncate lg:w-40 cursor-pointer">
@@ -648,7 +648,7 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500 dark:text-gray-200'
+                                : 'text-gray-500 dark:text-white'
                             } ${isCustomBP3 ? ' table-cell w-50' : ' hidden '}`}
                           >
                             <span className="min-w-20  ml-2 mt-2 w-28 truncate lg:w-32 cursor-pointer">
@@ -668,7 +668,7 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500 dark:text-gray-200'
+                                : 'text-gray-500 dark:text-white'
                             } ${isCustomBP2 ? ' table-cell ' : ' hidden '}`}
                           >
                             {allowancePart(member)}
@@ -677,7 +677,7 @@ const Users = () => {
                             className={`whitespace-nowrap px-3 py-4 text-sm ${
                               selectMultiMode && selectedMembers.includes(member.id)
                                 ? 'text-teams_brand_500'
-                                : 'text-gray-500 dark:text-gray-200'
+                                : 'text-gray-500 dark:text-white'
                             }  ${isCustomBP1 ? ' table-cell ' : ' hidden '} `}
                           >
                             {allowancePart(member, 1)}
@@ -693,7 +693,7 @@ const Users = () => {
                                 setValueForEdit(member);
                                 setModalOpen(true);
                               }}
-                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200' : 'hidden'}  `}
+                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-teams_brand_th' : 'hidden'}  `}
                             >
                               <span
                                 className=""
@@ -723,7 +723,7 @@ const Users = () => {
                                 e.preventDefault();
                                 router.push('/calendar/' + member.id);
                               }}
-                              className="cursor-pointer dark:text-gray-200"
+                              className="cursor-pointer dark:text-white"
                             >
                               <span
                                 className=""
@@ -734,7 +734,7 @@ const Users = () => {
                               >
                                 <CalendarDaysIcon
                                   className={`${
-                                    !selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200 h-5 w-5 ' : 'hidden'
+                                    !selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-teams_brand_th h-5 w-5 ' : 'hidden'
                                   }  `}
                                   aria-hidden="true"
                                 />
@@ -744,7 +744,7 @@ const Users = () => {
                           <td
                             className={` ${
                               isCustomBP3 ? ' px-5 lg:px-3 ' : ' '
-                            } whitespace-nowrap py-4 text-right text-sm font-medium dark:text-gray-200`}
+                            } whitespace-nowrap py-4 text-right text-sm font-medium dark:text-white`}
                           >
                             <a
                               onClick={async (e) => {
@@ -757,7 +757,7 @@ const Users = () => {
                                 setArchiveUsersAlert([member]);
                                 setLoading(member.id);
                               }}
-                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-gray-200' : 'hidden'}  `}
+                              className={`${!selectMultiMode ? 'cursor-pointer text-gray-400 dark:text-teams_brand_th' : 'hidden'}  `}
                             >
                               {loading == member.id && (
                                 <div className="-ml-1 mr-3">
@@ -791,7 +791,7 @@ const Users = () => {
                                   data-tooltip-content={t('Delete')}
                                   data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                                 >
-                                  <TrashIcon className="h-5 w-5 text-gray-400 dark:text-gray-200" aria-hidden="true" />
+                                  <TrashIcon className="h-5 w-5 text-gray-400 dark:text-teams_brand_th" aria-hidden="true" />
                                 </span>
                               )}
                             </a>
@@ -801,7 +801,7 @@ const Users = () => {
                   </tbody>
                   <ReactTooltip
                     id="bell-tooltip"
-                    className="shadow-sm dark:text-gray-200 dark:bg-teams_dark_mode_core"
+                    className="shadow-sm dark:text-white dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     opacity={1}
@@ -809,21 +809,21 @@ const Users = () => {
                   />
                   <ReactTooltip
                     id="member-tooltip"
-                    className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
+                    className="shadow-sm z-50 dark:text-white dark:bg-teams_dark_mode_core"
                     classNameArrow="shadow-sm"
                     place="top"
                     style={{ boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
                   />
                 </table>
                 <nav
-                  className="flex items-center justify-between border-t border-gray-200 dark:border-gray-500 bg-white px-4 py-3 sm:px-6 w-full dark:bg-teams_brand_dark_100"
+                  className="flex items-center justify-between border-t border-gray-200 dark:border-teams_brand_tbody_border bg-white px-4 py-3 sm:px-6 w-full dark:bg-teams_brand_tbody"
                   aria-label="Pagination"
                 >
                   <div className="flex items-center justify-between w-full ">
                     <div className="flex  justify-between sm:justify-start items-center">
                       {/* Rows Per Page Section */}
                       <div className="hidden sm:flex items-center justify-center">
-                        <p className="text-sm text-gray-700  pr-4 dark:text-gray-100">{t('RowsPerPage')}</p>
+                        <p className="text-sm text-gray-700  pr-4 dark:text-teams_brand_gray">{t('RowsPerPage')}</p>
                         <Select
                           menuPlacement="top"
                           value={rowsPerPage.find((x) => x.value === limit)}
@@ -845,13 +845,13 @@ const Users = () => {
                           }}
                           // menuPortalTarget={document.div}
                           options={rowsPerPage}
-                          className="w-full my-react-select-container"
+                          className="w-full my-react-select-container dark:text-teams_brand_gray"
                         classNamePrefix="my-react-select"
                         />
                       </div>
                       {/* Showing Results Section */}
                       <div className="hidden sm:flex pl-4">
-                        <p className="text-sm text-gray-700 dark:text-gray-200">
+                        <p className="text-sm text-gray-700 dark:text-teams_brand_gray">
                           {t('ShowingOfresults', {
                             start: (page - 1) * limit + 1,
                             end: showingOfresultsEnd,
@@ -869,7 +869,7 @@ const Users = () => {
                           if (membersData?.hasPreviousPage) setPage(page - 1);
                         }}
                         disabled={!membersData?.hasPreviousPage}
-                        className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                        className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 disabled:opacity-50 dark:bg-transparent dark:disabled:opacity-100 dark:ring-teams_brand_border dark:text-teams_brand_gray"
                       >
                         {t('previous')}
                       </button>
@@ -880,7 +880,7 @@ const Users = () => {
                           if (membersData?.hasNextPage) setPage(page + 1);
                         }}
                         disabled={!membersData?.hasNextPage}
-                        className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0  dark:ring-offset-0 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
+                        className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0  dark:ring-offset-0 dark:bg-transparent dark:text-teams_brand_gray dark:ring-teams_brand_border"
                       >
                         {t('next')}
                       </button>
@@ -920,7 +920,7 @@ const Users = () => {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 dark:text-gray-200"
+                          className="h-5 w-5 dark:text-teams_brand_dark_550"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -930,7 +930,7 @@ const Users = () => {
                             clipRule="evenodd"
                           />
                         </svg>{' '}
-                        <span className="ml-2 dark:text-gray-200">{t('add_new_user')}</span>
+                        <span className="ml-2 dark:text-teams_brand_gray">{t('add_new_user')}</span>
                       </div>
                       <div
                         className="mt-5 flex"
@@ -942,7 +942,7 @@ const Users = () => {
                       >
                         <DocumentPlusIcon height="20" className="dark:text-gray-200"/>
 
-                        <span className="ml-2 dark:text-gray-200">{t('import_users')}</span>
+                        <span className="ml-2 dark:text-teams_brand_gray">{t('import_users')}</span>
                       </div>
                     </td>
                   </tr>

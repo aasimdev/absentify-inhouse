@@ -1,4 +1,4 @@
-import { CardFactory, TaskModuleRequest, TaskModuleResponse, TeamsActivityHandler, TurnContext } from 'botbuilder';
+import { ActionTypes, CardAction, CardFactory, MessageFactory, TaskModuleRequest, TaskModuleResponse, TeamsActivityHandler, TurnContext } from 'botbuilder';
 import { ensureAvailabilityOfGetT } from '~/lib/monkey-patches';
 import { prisma } from '~/server/db';
 import { callAIModel, run as runAI } from './ai/aiAdapter';
@@ -150,12 +150,12 @@ export class TeamsBot extends TeamsActivityHandler {
       await next();
     });
 
-    this.onMembersAdded(async (context: TurnContext, next) => {
-      // Send welcome message when app installed
-      await this.sendWelcomeMessage(context);
+     this.onMembersAdded(async (_context, next) => {
+        // Send welcome message when app installed
+        //   await this.sendWelcomeMessage(context);
 
-      // By calling next() you ensure that the next BotHandler is run.
-      await next();
+       // By calling next() you ensure that the next BotHandler is run.
+       await next();
     });
   }
   async handleTaskModuleSubmit(context: TurnContext, status: 'success' | 'cancel') {
@@ -225,16 +225,11 @@ export class TeamsBot extends TeamsActivityHandler {
     } else {
       response = 'An error occurred while creating the leave request. Please try again later.';
     }
-    const answerFromAI = await callAIModel(
-      'Reformulate to an user friendly text in "' +
-        current_user.language +
-        '" language: The request has been submitted. ' +
-        response +
-        '. Ask for something else'
+
+    await callAIModel(
+      `Please rephrase the following text to be user-friendly and return the result in "${current_user.language}" language: The request has been submitted. ${response}. Ask for something else`,
+      context
     );
-    if (answerFromAI) {
-      await context.sendActivity(answerFromAI);
-    }
 
     return {
       task: {
@@ -291,6 +286,81 @@ export class TeamsBot extends TeamsActivityHandler {
     const t = await getT(lang, 'backend');
 
     await context.sendActivity(t('teams_welcome_message'));
+  }
+
+  async sendSuggestedActions(context: TurnContext, type: string, createLeaveRequestTextForSuggestions?: string) {
+    if (type === 'leave_type') {
+      const member = await prisma.member.findFirst({
+        where: {
+          microsoft_user_id: context.activity.from.aadObjectId
+        },
+        select: {
+          language: true,
+          workspace: { select: { id: true } }
+        }
+      });
+      if (!member) {
+        return 'No absentify user found. Please create an absentify company before.';
+      }
+
+      const leave_types = await prisma.leaveType.findMany({
+        where: {
+          workspace_id: member.workspace.id,
+          deleted: false
+        },
+        select: {
+          id: true,
+          name: true,
+          leave_unit: true,
+          reason_mandatory: true
+        }
+      });
+
+      const cardActions: CardAction[] = leave_types.map((leaveType) => ({
+        type: ActionTypes.ImBack,
+        title: leaveType.name,
+        value: leaveType.name
+      }));
+
+      let reply = MessageFactory.text('');
+      reply.suggestedActions = { actions: cardActions, to: [context.activity.from.id] };
+      await context.sendActivity(reply);
+    }
+
+    if (type === 'start_command') {
+
+      const cardActions: CardAction[] = [
+        {
+          type: ActionTypes.ImBack,
+          title: 'create a new leave request for tomorrow',
+          value: createLeaveRequestTextForSuggestions
+        },
+        {
+          type: ActionTypes.ImBack,
+          title: '/help',
+          value: '/help'
+        }
+      ];
+
+      let reply = MessageFactory.text('');
+      reply.suggestedActions = { actions: cardActions, to: [context.activity.from.id] };
+      await context.sendActivity(reply);
+    }
+
+    if (type === 'help_command') {
+
+      const cardActions: CardAction[] = [
+        {
+          type: ActionTypes.ImBack,
+          title: '/start',
+          value: '/start'
+        }
+      ];
+
+      let reply = MessageFactory.text('');
+      reply.suggestedActions = { actions: cardActions, to: [context.activity.from.id] };
+      await context.sendActivity(reply);
+    }
   }
 }
 

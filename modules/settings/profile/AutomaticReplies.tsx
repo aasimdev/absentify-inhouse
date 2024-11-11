@@ -363,7 +363,7 @@ const AutomaticReplies: NextPage = () => {
                               onClick={() => {
                                 setCheckedExternal(!checkedExternal);
                               }}
-                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -388,7 +388,7 @@ const AutomaticReplies: NextPage = () => {
                                   onClick={() => {
                                     setCheckedOnlyContacts(!checkedOnlyContacts);
                                   }}
-                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                                 />
                               </div>
                               <div className="ml-3 text-sm">

@@ -15,13 +15,363 @@ import { logs } from '@microsoft/teams-js';
 import { PaddleService } from '~/utils/paddleV2Service';
 import fs from 'fs';
 import { result, uniqBy } from 'lodash';
-import { createOrUpdateSendInBlueContact } from '~/lib/sendInBlueContactApi';
 import { defaultMemberSelect } from '~/server/api/routers/member';
 import { summarizeSubscriptions } from '~/lib/subscriptionHelper';
 
+// export default async function handler(_req: NextApiRequest, _res: NextApiResponse<any>) {
+  // const BATCH_SIZE = 50;
+
+  // const workspaces = await prisma.member.findMany({
+  //   select: { id: true },
+  //   where: {
+  //     brevo_contact_id: null
+  //   }
+  // });
+
+  // // Funktion zum Verarbeiten der Batches
+  // const processBatch = async (batch: { id: string }[]) => {
+  //   await inngest.send(
+  //     batch.map((log) => {
+  //       return {
+  //         name: 'brevo/create_or_update_contact',
+  //         data: {
+  //           member_id: log.id
+  //         }
+  //       };
+  //     })
+  //   );
+  // };
+
+  // // Teilung in 100er-Batches und sequenzielles Verarbeiten
+  // for (let i = 0; i < workspaces.length; i += BATCH_SIZE) {
+  //   const batch = workspaces.slice(i, i + BATCH_SIZE);
+  //   await processBatch(batch);
+  // }
+
+  // _res.status(200).json({ message: 'Done', total: workspaces.length });
+  // return;
+
+ // Define the required interfaces
+interface D {
+  microsoft_user_id: string;
+  abs_workspace_id: string;
+  abs_workspace_name: string;
+  tg_workspace_id: string;
+}
+
+interface SyncSetting {
+  name: string;
+  id: string;
+  timeghost_workspace_id: string;
+  requests: string;
+  requestSyncLogs: string;
+  syncedItems:string;
+}
+
+interface Workspace {
+  name: string;
+  id: string;
+  timeghost_sync_settings: SyncSetting[];
+}
+
+interface Logs {
+  workspaces: Workspace[];
+  log: any[];
+  graphtokenNotAvailableData: D;
+}
+
 export default async function handler(_req: NextApiRequest, _res: NextApiResponse<any>) {
-  _res.status(200).json(0);
-  return;
+  // Log requests to logs object
+  function logRequests(requests: any, logs: { log: any[] }) {
+    let index = requests.length;
+    requests.forEach((request: any, i: number) => {
+      if (i <= index) {
+        return logs.log.push({
+          id: request.id,
+          start: request.start.toDateString(),
+          end: request.end.toDateString(),
+          details: {
+            leave_type_id: request.details?.leave_type_id,
+            status: request.details?.status.toString()
+          },
+          requester_member: {
+            microsoft_user_id: request.requester_member?.microsoft_user_id,
+            name: request.requester_member?.name,
+            email: request.requester_member?.email
+          }
+        });
+      }
+    });
+  }
+
+  // Fetch sync logs for specific requests
+  async function fetchSyncLogs(requestIds: string[]) {
+    return await prisma.requestSyncLog.findMany({
+      where: {
+        request_id: {
+          in: requestIds
+        }
+      },
+      select: {
+        id: true,
+        timeghost_item_id: true,
+        timeghost_api_access_authenticated: true,
+        timeghost_workspace_id: true,
+        timeghost_user_id: true,
+        timeghost_time_entry: true,
+        error: true,
+        sync_status: true,
+        request_id: true
+      }
+    });
+  }
+
+  // Log sync logs to logs object
+  function logSyncLogs(syncLogs: any, logs: { log: any[] }) {
+    let index = syncLogs.length;
+    syncLogs.forEach((syncLog: any, i: number) => {
+      if (i <= index) {
+        logs.log.push({
+          id: syncLog.id,
+          timeghost_item_id: syncLog.timeghost_item_id,
+          timeghost_api_access_authenticated: syncLog.timeghost_api_access_authenticated,
+          timeghost_workspace_id: syncLog.timeghost_workspace_id,
+          timeghost_user_id: syncLog.timeghost_user_id,
+          timeghost_time_entry: syncLog.timeghost_time_entry,
+          error: syncLog.error,
+          sync_status: syncLog.sync_status,
+          request_id: syncLog.request_id
+        });
+      }
+    });
+  }
+  try {
+    const today = new Date();
+    let index = 0;
+
+    // Initialize logs structure
+    let logs: Logs = {
+      workspaces: [
+        {
+          name: '',
+          id: '',
+          timeghost_sync_settings: [
+            {
+              name: '',
+              id: '',
+              timeghost_workspace_id: '',
+              requests: '',
+              requestSyncLogs: '',
+              syncedItems: ''
+            },
+            {
+              name: '',
+              id: '',
+              timeghost_workspace_id: '',
+              requests: '',
+              requestSyncLogs: '',
+              syncedItems: ''
+            }
+          ]
+        }
+      ],
+      log: [], // Initialize an empty array to store log messages
+      graphtokenNotAvailableData: {
+        microsoft_user_id: '',
+        abs_workspace_id: '',
+        abs_workspace_name: '',
+        tg_workspace_id: ''
+      }
+    };
+
+    // Placeholder arrays for leave type and department IDs
+    let leave_type_ids: string[] = [];
+    let department_ids: string[] = [];
+
+    // Fetch workspaces with active sync settings
+    const workspacesWithSyncSettings = await prisma.workspace.findMany({
+      where: {
+        timeghost_sync_settings: {
+          some: {} // Fetch only workspaces with active sync settings
+        }
+      }
+    });
+
+    if (!workspacesWithSyncSettings.length) {
+      return _res.status(400).json('No workspaces with active sync settings found');
+    }
+
+    // Process each workspace
+    for (const workspace of workspacesWithSyncSettings) {
+      index++;
+
+      if (workspace.id === '6e10fcc1-482a-409d-9dba-052720595046') { // prochance workspace id
+        //  
+        const startDate = new Date('2024-10-01T00:00:00.000Z'); //      2024-10-07T00:00:00.000Z
+        const endDate = new Date('2024-10-31T23:59:59.999Z'); //     2024-10-18T23:59:59.999Z
+        const member = await prisma.member.findFirst({
+          where: {
+            workspace_id: workspace.id,
+           OR:[
+            { microsoft_user_id: 'aa62d4c2-674e-4dc7-8723-899ff038c6d0'}, // 2604dede-c223-4c42-8b50-acf8e7f9504c
+            { name:'Sarah Macherski' }, //     Max Musterman
+            { email: 'macherski@prochanceasset.de'} //     admin@17dxbm.onmicrosoft.com
+          ] 
+          },
+          select: { id: true }
+        });
+        if(member)  {
+        // Fetch relevant requests
+        const requests = await prisma.request.findMany({
+          where: {
+            workspace_id: workspace.id,
+            start: {
+              gte: startDate,
+              lte: endDate
+            },
+            end: {
+              gte: startDate,
+              lte: endDate
+            },
+            requester_member_id: member.id
+          },
+          select: {
+            id: true,
+            start: true,
+            end: true,
+            details: {
+              select: {
+                status: true,
+                leave_type_id: true
+              }
+            },
+            requester_member: {
+              select: {
+                microsoft_user_id: true,
+                name: true,
+                email: true
+              }
+            }
+          }
+        });
+
+        if (requests.length > 0) {
+          logRequests(requests, logs);
+          const syncLogs = await fetchSyncLogs(requests.map((r) => r.id));
+          if (syncLogs.length > 0) {
+            logSyncLogs(syncLogs, logs);
+          }
+        }
+      }
+      }
+
+      // Fetch active timeghostSyncSettings for each workspace
+      const active_tg_sync_settings = await prisma.timeghostSyncSetting.findMany({
+        where: { workspace_id: workspace.id, deleted: false },
+        select: {
+          id: true,
+          name: true,
+          workspace_id: true,
+          timeghost_workspace_id: true,
+          timeghostSyncSettingLeaveTypes: {
+            select: { leave_type_id: true }
+          },
+          timeghostSyncSettingDepartments: {
+            select: { department_id: true }
+          }
+        }
+      });
+
+      // Add workspace data to logs
+      logs.workspaces.push({
+        name: workspace.name,
+        id: workspace.id,
+        timeghost_sync_settings: []
+      });
+
+      // Process each sync setting
+      for (const timeghostSyncSetting of active_tg_sync_settings) {
+        if (!timeghostSyncSetting) {
+          logs.log.push('No active sync settings found');
+          continue;
+        }
+
+        // Skip a specific workspace ID
+        if (timeghostSyncSetting.workspace_id === '757a02d8-88b0-431b-909c-d23c0183c70b') {
+          continue;
+        }
+
+        leave_type_ids = timeghostSyncSetting.timeghostSyncSettingLeaveTypes.map((leave) => leave.leave_type_id);
+        department_ids = timeghostSyncSetting.timeghostSyncSettingDepartments.map((dept) => dept.department_id);
+
+        // Fetch relevant requests
+        const requests = await prisma.request.findMany({
+          where: {
+            workspace_id: timeghostSyncSetting.workspace_id,
+            OR: [{ year: today.getFullYear() }, { year: today.getFullYear() + 1 }],
+            details: {
+              AND: [
+                { NOT: { status: 'CANCELED' } },
+                { NOT: { status: 'DECLINED' } },
+                {
+                  leave_type_id: { in: leave_type_ids },
+                  requester_member: {
+                    departments: {
+                      some: { department_id: { in: department_ids } }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          select: {
+            id: true,
+            start: true,
+            details: {
+              select: {
+                status: true,
+                leave_type_id: true
+              }
+            }
+          }
+        });
+
+        // Fetch sync logs for the sync setting
+        const syncLogs = await prisma.requestSyncLog.findMany({
+          where: {
+            sync_type: 'timeghost',
+            timeghost_sync_setting_id: timeghostSyncSetting.id
+          },
+          select: { id: true }
+        });
+        const syncedLogs = await prisma.requestSyncLog.findMany({
+          where: {
+            sync_type: 'timeghost',
+            sync_status: 'Synced',
+            timeghost_sync_setting_id: timeghostSyncSetting.id
+          },
+          select: { id: true }
+        });
+
+        // Add sync setting data to the logs
+        logs.workspaces[index]?.timeghost_sync_settings.push({
+          name: timeghostSyncSetting.name,
+          id: timeghostSyncSetting.id,
+          timeghost_workspace_id: timeghostSyncSetting.timeghost_workspace_id,
+          requests: requests.length.toString(),
+          requestSyncLogs: syncLogs.length.toString(),
+          syncedItems: syncedLogs.length.toString()
+        });
+      }
+    }
+
+    // Return the completed logs as a response
+    return _res.status(200).json({ message: 'Sync completed', logs });
+  } catch (error: any) {
+    console.error('Error occurred during the process:', error);
+    return _res.status(500).json({ error: 'An error occurred during the process', details: error.message });
+  }
+}
 
   /* try {
     const members = await prisma.member.findMany({where: {
@@ -585,7 +935,7 @@ for (const user of sortedUsers) {
   /* console.log(x)
   await prisma.requestDetail.delete({where: {id: x[0].id}})
    res.status(200).json({ name: 'John Doe' }); */
-}
+//}
 
 function sleep(ms: number) {
   return new Promise((resolve) => {

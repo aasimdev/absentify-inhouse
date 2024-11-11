@@ -18,6 +18,7 @@ import Loader from './Loader';
 import { formatDuration, formatLeaveRequestDetails } from '~/helper/formatDuration';
 import { uniq } from 'lodash';
 import { uuidv4 } from '~/lib/uuidv4';
+import { useDarkSide } from '@components/ThemeContext';
 
 export default function DetailsModal(props: { request_id: string; onClose: Function; onCancelRequest: Function }) {
   const { in_teams, teamsChatIsSupported, current_member, impersonate } = useAbsentify();
@@ -27,7 +28,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
   const utils = api.useContext();
   const [effectCompleted, setEffectCompleted] = useState<boolean>(false);
   const [declineRequest, setDeclineRequest] = useState<RouterOutputs['request']['toApprove'][0] | null>(null);
-
+  const [theme] = useDarkSide();
   const { data: adminIds } = api.member.adminIds.useQuery(undefined, { staleTime: 60000 });
 
   const { data: departaments } = api.department.all.useQuery(undefined, { staleTime: 60000 });
@@ -373,20 +374,20 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
       <div className="absolute bottom-6 my-auto inline-block text-left">
         <button
           onClick={toggleMenu}
-          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none dark:bg-teams_brand_dark_400 dark:text-gray-900  hover:text-gray-800"
+          className="flex items-center rounded-full bg-gray-100 p-2 text-gray-400 hover:text-gray-600 focus:outline-none dark:bg-teams_brand_dark_100 dark:text-gray-200  hover:text-gray-800 dark:border dark:border-gray-200"
         >
           <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
         </button>
 
         {isOpen && (
-          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full dark:bg-teams_brand_dark_400 dark:text-gray-900 dark:hover:bg-teams_brand_dark_400">
+          <div className="absolute left-0 bottom-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-white px-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform translate-y-full dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:hover:bg-teams_brand_dark_600">
             <div className="py-1.5">
               {dropDownDots
                 .filter((x) => x != null)
                 .map((item) => (
                   <div
                     key={uuidv4()}
-                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-600 dark:text-gray-800"
+                    className="group flex items-center rounded text-sm px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer dark:hover:bg-teams_brand_dark_400 dark:hover:text-gray-600 dark:text-gray-200"
                   >
                     {item}
                   </div>
@@ -457,7 +458,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
   ) : null;
 
   const ApproveButton = request ? (
-    <div className="flex align-middle justify-betwen sm:w-56 h-12 w-32 border border-gray-300 rounded-md px-4 py-2">
+    <div className="flex align-middle justify-betwen sm:w-56 h-12 w-32 border border-gray-300 rounded-md px-4 py-2  dark:text-gray-200 dark:bg-teams_brand_dark_100">
       {loading === 'approved' ? (
         <div className="mt-2">
           <Loader />
@@ -476,6 +477,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
           e.preventDefault();
           buttonClick(request, 'APPROVED');
         }}
+        className = " dark:text-gray-200 dark:bg-teams_brand_dark_100"
       >
         {t('Approve')}
       </button>
@@ -484,7 +486,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
     <></>
   );
   const DeclineButton = request ? (
-    <div className="flex align-middle justify-betwen sm:w-56 h-12 w-32 border border-gray-300 rounded-md px-4 py-2">
+    <div className="flex align-middle justify-betwen sm:w-56 h-12 w-32 border border-gray-300 rounded-md px-4 py-2  dark:text-gray-200 dark:bg-teams_brand_dark_100">
       <XMarkIcon className=" h-5 self-center w-5 text-red-500 group-hover:text-red-400" aria-hidden="true" />
       <button
         style={{ width: '100%', height: '100%' }}
@@ -493,6 +495,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
         onClick={() => {
           buttonClick(request, 'DECLINED');
         }}
+        className = " dark:text-gray-200 dark:bg-teams_brand_dark_100"
       >
         {t('Decline')}
       </button>
@@ -662,8 +665,9 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                                             />
                                           </div>
                                           <div className="ml-3">
-                                            <span data-tooltip-id="detailM-tooltip" data-tooltip-variant="light">
-                                              <p className="text-sm font-medium text-gray-700 dark:text-gray-400  dark:group-hover:text-gray-500 group-hover:text-gray-900 w-[235px] text-ellipsis overflow-hidden">
+                                          <span data-tooltip-id="detailM-tooltip" data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}>
+                                          <p className="text-sm font-medium text-gray-700 dark:text-gray-400  dark:group-hover:text-gray-500 group-hover:text-gray-900 w-[235px] text-ellipsis overflow-hidden dark:bg-teams_brand_dark_100">
+                                                
                                                 {members.find((x) => x.id == approver.approver_member_id)?.name ??
                                                   t('Deleted_User')}
                                               </p>
@@ -757,7 +761,8 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                               className="shadow z-50 "
                               classNameArrow="shadow-sm"
                               opacity={1}
-                              style={{ backgroundColor: '#fff' }}
+                              style={theme === "light" ? { backgroundColor: '#fff' } : undefined }
+                              
                             >
                               {getTooltipText(approver)}
                             </ReactTooltip>
@@ -873,7 +878,7 @@ export default function DetailsModal(props: { request_id: string; onClose: Funct
                             e.preventDefault();
                             props.onClose();
                           }}
-                          className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_400 dark:text-gray-500"
+                        className=" block mt-4 rounded-md border h-10 border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                         >
                           <p className="my-auto">{t('Close')}</p>
                         </button>

@@ -259,7 +259,7 @@ export const FeaturesV1 = () => {
       free: <p className="  text-xs text-gray-600 dark:text-gray-200"> E-Mail</p>,
 
       startup: <p className="  text-xs text-gray-600 dark:text-gray-200"> {t('Pemail')}</p>,
-      enterprise: <p className="  text-xs text-gray-600 dark:text-gray-200">{t('dedicated')} </p>,
+      enterprise: <p className="  text-xs text-gray-600 dark:text-gray-200">{t('Pemail')} </p>,
       tooltip: t('feature26_desc')
     }
   ];
@@ -506,19 +506,11 @@ export const Features = () => {
       tooltip: t('feature29_desc')
     },
     {
-      name: 'feature27',
-      free: <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-      smallteam: <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-      startup: <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-      enterprise: <p className="  text-xs text-gray-600 dark:text-gray-200">{t('individual')} </p>,
-      tooltip: t('feature27_desc')
-    },
-    {
       name: 'feature26',
-      free: <p className="  text-xs text-gray-600 dark:text-gray-200"> E-Mail</p>,
-      smallteam: <p className="  text-xs text-gray-600 dark:text-gray-200"> E-Mail</p>,
-      startup: <p className="  text-xs text-gray-600 dark:text-gray-200"> {t('Pemail')}</p>,
-      enterprise: <p className="  text-xs text-gray-600 dark:text-gray-200">{t('dedicated')} </p>,
+      free: <p className=" text-xs text-gray-600 dark:text-gray-200"> E-Mail</p>,
+      smallteam: <p className=" text-xs text-gray-600 dark:text-gray-200"> E-Mail</p>,
+      startup: <p className=" text-xs text-gray-600 dark:text-gray-200"> {t('Pemail')}</p>,
+      enterprise: <p className=" text-xs text-gray-600 dark:text-gray-200">{t('Pemail')} </p>,
       tooltip: t('feature26_desc')
     }
   ];

@@ -1,13 +1,158 @@
-import { type PrismaClient } from '@prisma/client';
-import { defaultWorkspaceScheduleSelect } from '~/server/api/routers/workspace_schedule';
-import { defaultMemberScheduleSelect } from '~/server/api/routers/member_schedule';
+import { EndAt, LeaveUnit, PublicHolidayDuration, StartAt, type PrismaClient } from '@prisma/client';
 import { getFiscalYearStartAndEndDatesUTC, calcRequestDuration } from './requestUtilities';
 import { addDays, addYears } from 'date-fns';
 import { isDayUnit } from './DateHelper';
 
-export async function updateMemberAllowances(prisma: PrismaClient, workspace_id: string, member_id: string) {
-  await generateMissingAllowances(prisma, workspace_id, member_id);
-  let workspace = await prisma.workspace.findUnique({
+export type workspaceSelect = {
+  id: string;
+  fiscal_year_start_month: number;
+  schedule: {
+    id: string;
+    workspace_id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    monday_am_start: Date;
+    monday_am_end: Date;
+    monday_pm_start: Date;
+    monday_pm_end: Date;
+    monday_am_enabled: boolean;
+    monday_pm_enabled: boolean;
+    monday_deduct_fullday: boolean;
+    tuesday_am_start: Date;
+    tuesday_am_end: Date;
+    tuesday_pm_start: Date;
+    tuesday_pm_end: Date;
+    tuesday_am_enabled: boolean;
+    tuesday_pm_enabled: boolean;
+    tuesday_deduct_fullday: boolean;
+    wednesday_am_start: Date;
+    wednesday_am_end: Date;
+    wednesday_pm_start: Date;
+    wednesday_pm_end: Date;
+    wednesday_am_enabled: boolean;
+    wednesday_pm_enabled: boolean;
+    wednesday_deduct_fullday: boolean;
+    thursday_am_start: Date;
+    thursday_am_end: Date;
+    thursday_pm_start: Date;
+    thursday_pm_end: Date;
+    thursday_am_enabled: boolean;
+    thursday_pm_enabled: boolean;
+    thursday_deduct_fullday: boolean;
+    friday_am_start: Date;
+    friday_am_end: Date;
+    friday_pm_start: Date;
+    friday_pm_end: Date;
+    friday_am_enabled: boolean;
+    friday_pm_enabled: boolean;
+    friday_deduct_fullday: boolean;
+    saturday_am_start: Date;
+    saturday_am_end: Date;
+    saturday_pm_start: Date;
+    saturday_pm_end: Date;
+    saturday_am_enabled: boolean;
+    saturday_pm_enabled: boolean;
+    saturday_deduct_fullday: boolean;
+    sunday_am_start: Date;
+    sunday_am_end: Date;
+    sunday_pm_start: Date;
+    sunday_pm_end: Date;
+    sunday_am_enabled: boolean;
+    sunday_pm_enabled: boolean;
+    sunday_deduct_fullday: boolean;
+  } | null;
+  member_schedules: {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    from: Date | null;
+    member_id: string;
+    workspace_id: string;
+    monday_am_start: Date;
+    monday_am_end: Date;
+    monday_pm_start: Date;
+    monday_pm_end: Date;
+    monday_am_enabled: boolean;
+    monday_pm_enabled: boolean;
+    monday_deduct_fullday: boolean;
+    tuesday_am_start: Date;
+    tuesday_am_end: Date;
+    tuesday_pm_start: Date;
+    tuesday_pm_end: Date;
+    tuesday_am_enabled: boolean;
+    tuesday_pm_enabled: boolean;
+    tuesday_deduct_fullday: boolean;
+    wednesday_am_start: Date;
+    wednesday_am_end: Date;
+    wednesday_pm_start: Date;
+    wednesday_pm_end: Date;
+    wednesday_am_enabled: boolean;
+    wednesday_pm_enabled: boolean;
+    wednesday_deduct_fullday: boolean;
+    thursday_am_start: Date;
+    thursday_am_end: Date;
+    thursday_pm_start: Date;
+    thursday_pm_end: Date;
+    thursday_am_enabled: boolean;
+    thursday_pm_enabled: boolean;
+    thursday_deduct_fullday: boolean;
+    friday_am_start: Date;
+    friday_am_end: Date;
+    friday_pm_start: Date;
+    friday_pm_end: Date;
+    friday_am_enabled: boolean;
+    friday_pm_enabled: boolean;
+    friday_deduct_fullday: boolean;
+    saturday_am_start: Date;
+    saturday_am_end: Date;
+    saturday_pm_start: Date;
+    saturday_pm_end: Date;
+    saturday_am_enabled: boolean;
+    saturday_pm_enabled: boolean;
+    saturday_deduct_fullday: boolean;
+    sunday_am_start: Date;
+    sunday_am_end: Date;
+    sunday_pm_start: Date;
+    sunday_pm_end: Date;
+    sunday_am_enabled: boolean;
+    sunday_pm_enabled: boolean;
+    sunday_deduct_fullday: boolean;
+  }[];
+  leave_types: {
+    id: string;
+    leave_unit: LeaveUnit;
+    take_from_allowance: boolean;
+    ignore_schedule: boolean;
+    ignore_public_holidays: boolean;
+    allowance_type_id: string | null;
+    allowance_type: {
+      ignore_allowance_limit: boolean;
+      carry_forward_months_after_fiscal_year: number;
+      max_carry_forward: number;
+    } | null;
+  }[];
+  member_allowances: {
+    id: string;
+    member_id: string;
+    year: number;
+    remaining: number;
+    allowance_type_id: string;
+    brought_forward: number;
+    compensatory_time_off: number;
+    overwrite_brought_forward: boolean;
+    allowance: number;
+  }[];
+  public_holiday_days: { date: Date; duration: PublicHolidayDuration; public_holiday_id: string }[];
+  members: { id: string; public_holiday_id: string }[];
+  allowance_types: {
+    id: string;
+    max_carry_forward: number;
+    carry_forward_months_after_fiscal_year: number;
+  }[];
+};
+
+async function fetchWorkspace(prisma: PrismaClient, workspace_id: string, member_id: string) {
+  const w = await prisma.workspace.findUnique({
     where: { id: workspace_id },
     select: {
       id: true,
@@ -21,20 +166,143 @@ export async function updateMemberAllowances(prisma: PrismaClient, workspace_id:
           ignore_schedule: true,
           ignore_public_holidays: true,
           allowance_type: {
-            select: { ignore_allowance_limit: true }
+            select: {
+              ignore_allowance_limit: true,
+              carry_forward_months_after_fiscal_year: true,
+              max_carry_forward: true
+            }
           }
         }
       },
-      allowance_types: { select: { id: true, max_carry_forward: true, carry_forward_deadline: true } },
-      schedule: { select: defaultWorkspaceScheduleSelect },
+      allowance_types: {
+        select: {
+          id: true,
+          max_carry_forward: true,
+          carry_forward_months_after_fiscal_year: true
+        }
+      },
+      schedule: {
+        select: {
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          workspace_id: true,
+          monday_am_start: true,
+          monday_am_end: true,
+          monday_pm_start: true,
+          monday_pm_end: true,
+          monday_am_enabled: true,
+          monday_pm_enabled: true,
+          monday_deduct_fullday: true,
+          tuesday_am_start: true,
+          tuesday_am_end: true,
+          tuesday_pm_start: true,
+          tuesday_pm_end: true,
+          tuesday_am_enabled: true,
+          tuesday_pm_enabled: true,
+          tuesday_deduct_fullday: true,
+          wednesday_am_start: true,
+          wednesday_am_end: true,
+          wednesday_pm_start: true,
+          wednesday_pm_end: true,
+          wednesday_am_enabled: true,
+          wednesday_pm_enabled: true,
+          wednesday_deduct_fullday: true,
+          thursday_am_start: true,
+          thursday_am_end: true,
+          thursday_pm_start: true,
+          thursday_pm_end: true,
+          thursday_am_enabled: true,
+          thursday_pm_enabled: true,
+          thursday_deduct_fullday: true,
+          friday_am_start: true,
+          friday_am_end: true,
+          friday_pm_start: true,
+          friday_pm_end: true,
+          friday_am_enabled: true,
+          friday_pm_enabled: true,
+          friday_deduct_fullday: true,
+          saturday_am_start: true,
+          saturday_am_end: true,
+          saturday_pm_start: true,
+          saturday_pm_end: true,
+          saturday_am_enabled: true,
+          saturday_pm_enabled: true,
+          saturday_deduct_fullday: true,
+          sunday_am_start: true,
+          sunday_am_end: true,
+          sunday_pm_start: true,
+          sunday_pm_end: true,
+          sunday_am_enabled: true,
+          sunday_pm_enabled: true,
+          sunday_deduct_fullday: true
+        }
+      },
       member_schedules: {
-        select: defaultMemberScheduleSelect,
+        select: {
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          member_id: true,
+          workspace_id: true,
+          from: true,
+          monday_am_start: true,
+          monday_am_end: true,
+          monday_pm_start: true,
+          monday_pm_end: true,
+          monday_am_enabled: true,
+          monday_pm_enabled: true,
+          monday_deduct_fullday: true,
+          tuesday_am_start: true,
+          tuesday_am_end: true,
+          tuesday_pm_start: true,
+          tuesday_pm_end: true,
+          tuesday_am_enabled: true,
+          tuesday_pm_enabled: true,
+          tuesday_deduct_fullday: true,
+          wednesday_am_start: true,
+          wednesday_am_end: true,
+          wednesday_pm_start: true,
+          wednesday_pm_end: true,
+          wednesday_am_enabled: true,
+          wednesday_pm_enabled: true,
+          wednesday_deduct_fullday: true,
+          thursday_am_start: true,
+          thursday_am_end: true,
+          thursday_pm_start: true,
+          thursday_pm_end: true,
+          thursday_am_enabled: true,
+          thursday_pm_enabled: true,
+          thursday_deduct_fullday: true,
+          friday_am_start: true,
+          friday_am_end: true,
+          friday_pm_start: true,
+          friday_pm_end: true,
+          friday_am_enabled: true,
+          friday_pm_enabled: true,
+          friday_deduct_fullday: true,
+          saturday_am_start: true,
+          saturday_am_end: true,
+          saturday_pm_start: true,
+          saturday_pm_end: true,
+          saturday_am_enabled: true,
+          saturday_pm_enabled: true,
+          saturday_deduct_fullday: true,
+          sunday_am_start: true,
+          sunday_am_end: true,
+          sunday_pm_start: true,
+          sunday_pm_end: true,
+          sunday_am_enabled: true,
+          sunday_pm_enabled: true,
+          sunday_deduct_fullday: true
+        },
         where: { member_id: member_id },
         orderBy: { from: 'desc' }
       },
       members: {
         where: { id: member_id },
         select: {
+          id: true,
           public_holiday_id: true
         }
       },
@@ -65,14 +333,34 @@ export async function updateMemberAllowances(prisma: PrismaClient, workspace_id:
       }
     }
   });
-  if (!workspace) throw new Error('workspace not found');
-  if (!workspace.members[0]) throw new Error('member not found');
+  if (!w) {
+    throw new Error('Workspace not found');
+  }
 
+  let member = w.members.find((x) => x.id == member_id);
+  if (!member) {
+    throw new Error('Member not found');
+  }
+  w.public_holiday_days = w.public_holiday_days.filter((Y) => Y.public_holiday_id == member.public_holiday_id);
+
+  return w;
+}
+export async function updateMemberAllowances(prisma: PrismaClient, workspace_id: string, member_id: string) {
+  await generateMissingAllowances(prisma, workspace_id, member_id);
+
+  // Fetch workspace data
+  const workspace = await fetchWorkspace(prisma, workspace_id, member_id);
+  if (!workspace) throw new Error('Workspace not found');
+  if (!workspace.members[0]) throw new Error('Member not found');
+
+  // Fetch requests
   const requests = await prisma.request.findMany({
     where: {
       workspace_id: workspace_id,
       requester_member_id: member_id,
-      details: { AND: [{ NOT: { status: 'CANCELED' } }, { NOT: { status: 'DECLINED' } }] }
+      details: {
+        AND: [{ NOT: { status: 'CANCELED' } }, { NOT: { status: 'DECLINED' } }]
+      }
     },
     select: {
       details: {
@@ -91,6 +379,7 @@ export async function updateMemberAllowances(prisma: PrismaClient, workspace_id:
       requester_member_id: true,
       requester_member: {
         select: {
+          id: true,
           public_holiday_id: true
         }
       }
@@ -98,146 +387,295 @@ export async function updateMemberAllowances(prisma: PrismaClient, workspace_id:
     orderBy: { start: 'asc' }
   });
 
+  // Calculate member allowances
+  const updatedMemberAllowances = calculateMemberAllowances(workspace, member_id, requests);
+
+  // Save updated allowances to the database as a Prisma transaction
+  await prisma.$transaction(
+    updatedMemberAllowances.map((memberAllowance) =>
+      prisma.memberAllowance.update({
+        where: { id: memberAllowance.id },
+        data: {
+          overwrite_brought_forward: memberAllowance.overwrite_brought_forward,
+          taken: memberAllowance.taken,
+          remaining: memberAllowance.remaining,
+          brought_forward: memberAllowance.brought_forward,
+          expiration: memberAllowance.expiration,
+          leave_types_stats: memberAllowance.leave_types_stats,
+          start: memberAllowance.start,
+          end: memberAllowance.end
+        },
+        select: { id: true }
+      })
+    )
+  );
+}
+
+// Calculation function
+export function hasEnoughAllowanceForRequest(
+  workspace: workspaceSelect,
+  member_id: string,
+  leaveType: {
+    id: string;
+    leave_unit: LeaveUnit;
+    allowance_type_id: string | null;
+    allowance_type: {
+      ignore_allowance_limit: boolean;
+    } | null;
+  },
+  requests: {
+    start: Date;
+    end: Date;
+    start_at?: StartAt;
+    end_at?: EndAt;
+    leave_unit: LeaveUnit;
+    details: { leave_type_id: string } | null;
+  }[],
+  new_request: {
+    start: Date;
+    end: Date;
+    start_at?: StartAt;
+    end_at?: EndAt;
+  }
+) {
+  if (leaveType.allowance_type && leaveType.allowance_type.ignore_allowance_limit) return true;
+
+  // Add the new request to the list
+  requests.push({
+    start: new_request.start,
+    end: new_request.end,
+    start_at: new_request.start_at,
+    end_at: new_request.end_at,
+    leave_unit: leaveType.leave_unit,
+    details: { leave_type_id: leaveType.id }
+  });
+
+  // Perform the calculation
+  const updatedMemberAllowances = calculateMemberAllowances(workspace, member_id, requests);
+  const lowAllowance = updatedMemberAllowances
+    .filter((y) => y.allowance_type_id == leaveType.allowance_type_id)
+    .find((y) => y.remaining < 0);
+  return lowAllowance ? false : true;
+}
+
+export async function isAllowanceSufficient(
+  prisma: PrismaClient,
+  workspace_id: string,
+  new_request: {
+    start: Date;
+    end: Date;
+    start_at?: StartAt;
+    end_at?: EndAt;
+    leave_type_id: string;
+    requester_member_id: string;
+  }
+) {
+  await generateMissingAllowances(prisma, workspace_id, new_request.requester_member_id);
+
+  // Fetch data
+  const workspace = await fetchWorkspace(prisma, workspace_id, new_request.requester_member_id);
+  if (!workspace) throw new Error('Workspace not found');
+
+  // Extract leaveType and member
+  const leaveType = workspace.leave_types.find((x) => x.id == new_request.leave_type_id);
+  if (!leaveType) throw new Error('Leave type not found');
+
+  const member = workspace.members.find((x) => x.id == new_request.requester_member_id);
+  if (!member) throw new Error('Member not found');
+
+  const requests = await prisma.request.findMany({
+    where: {
+      workspace_id: workspace_id,
+      requester_member_id: new_request.requester_member_id,
+      details: {
+        AND: [{ NOT: { status: 'CANCELED' } }, { NOT: { status: 'DECLINED' } }]
+      }
+    },
+    select: {
+      details: {
+        select: {
+          leave_type_id: true
+        }
+      },
+      start: true,
+      end: true,
+      start_at: true,
+      end_at: true,
+      leave_unit: true,
+      requester_member_id: true,
+      requester_member: {
+        select: {
+          id: true,
+          public_holiday_id: true
+        }
+      }
+    },
+    orderBy: { start: 'asc' }
+  });
+
+  // Perform calculation
+  return hasEnoughAllowanceForRequest(workspace, new_request.requester_member_id, leaveType, requests, new_request);
+}
+
+// Function to calculate allowances without saving
+export function calculateMemberAllowances(
+  workspace: workspaceSelect,
+  requester_member_id: string,
+  requests: {
+    start: Date;
+    end: Date;
+    start_at?: StartAt;
+    end_at?: EndAt;
+    leave_unit: LeaveUnit;
+    details: { leave_type_id: string } | null;
+  }[]
+) {
   const leaveTypeStats: {
     year: number;
     leave_type_id: string;
     value: number;
+    carry_forward_period_duration: number;
     take_from_allowance: boolean;
     allowance_type_id: string | null;
   }[] = [];
 
-  const member_schedules = workspace.member_schedules.filter((ms) => ms.member_id === member_id);
-  const member_public_holiday_days = workspace.public_holiday_days.filter(
-    (ph) => ph.public_holiday_id === workspace.members[0]?.public_holiday_id
-  );
+  for (const request of requests) {
+    if (!request?.details || !workspace.schedule) continue;
 
-  for (let i1 = 0; i1 < requests.length; i1++) {
-    const request = requests[i1];
-    if (!request) continue;
-    if (!request.details) continue;
-    if (!workspace.schedule) continue;
-    const leave_type = workspace.leave_types.find((lt) => lt.id === request.details?.leave_type_id);
+    const leave_type = workspace.leave_types.find((lt: any) => lt.id === request.details?.leave_type_id);
     if (!leave_type) continue;
 
-    const d = calcRequestDuration({
+    const durationData = calcRequestDuration({
       start: request.start,
       end: request.end,
       start_at: request.start_at,
       end_at: request.end_at,
-      workspaceSchedule: workspace.schedule,
-      memberSchedules: member_schedules,
-      memberPublicHolidayDays: member_public_holiday_days,
-      leaveType: leave_type,
-      memberAllowances: workspace.member_allowances,
       workspace: workspace,
-      requester_member_id: request.requester_member_id
+      requester_member_id: requester_member_id,
+      leaveType: leave_type,
+      memberSchedules: workspace.member_schedules,
+      memberPublicHolidayDays: workspace.public_holiday_days,
+      workspaceSchedule: workspace.schedule
     });
+    if (!durationData) continue;
 
-    for (let iii = 0; iii < d.per_year.length; iii++) {
-      const y = d.per_year[iii];
-      if (!y) continue;
+    for (const yearData of durationData.per_year) {
+      if (!yearData) continue;
 
-      let duration = y.workday_duration_in_minutes;
+      let duration = yearData.workday_duration_in_minutes;
+      let carryForwardDuration = yearData.carry_over_minutes_used_in_period;
       if (isDayUnit(request.leave_unit)) {
-        duration = y.workday_duration_in_days;
+        duration = yearData.workday_duration_in_days;
+        carryForwardDuration = yearData.carry_over_days_used_in_period;
       }
 
-      const leaveTypeStat = leaveTypeStats.find((x) => x.year === y.fiscal_year && x.leave_type_id === leave_type.id);
+      const leaveTypeStat = leaveTypeStats.find(
+        (x) => x.year === yearData.fiscal_year && x.leave_type_id === leave_type.id
+      );
 
       if (leaveTypeStat) {
         leaveTypeStat.value += duration;
+        leaveTypeStat.carry_forward_period_duration += carryForwardDuration;
       } else {
         leaveTypeStats.push({
           leave_type_id: leave_type.id,
           value: duration,
-          year: y.fiscal_year,
+          year: yearData.fiscal_year,
           take_from_allowance: leave_type.take_from_allowance,
-          allowance_type_id: leave_type.allowance_type_id
+          allowance_type_id: leave_type.allowance_type_id,
+          carry_forward_period_duration: carryForwardDuration
         });
       }
     }
   }
 
-  const allowance_types: string[] = [];
-  for (let i = 0; i < workspace.member_allowances.length; i++) {
-    const member_allowance = workspace.member_allowances[i];
-    if (!member_allowance) continue;
-    if (allowance_types.find((x) => x == member_allowance.allowance_type_id)) continue;
-    allowance_types.push(member_allowance.allowance_type_id);
-  }
+  const allowanceTypes = Array.from(new Set(workspace.member_allowances.map((ma: any) => ma.allowance_type_id)));
 
-  for (let i77 = 0; i77 < allowance_types.length; i77++) {
-    const allowance_type_id = allowance_types[i77];
+  const updatedMemberAllowances = [];
+
+  for (const allowance_type_id of allowanceTypes) {
     if (!allowance_type_id) continue;
+
     const member_allowances = workspace.member_allowances.filter((ma) => ma.allowance_type_id === allowance_type_id);
-    if (member_allowances.length == 0) continue;
+    if (member_allowances.length === 0) continue;
     if (!member_allowances[0]) continue;
     let last_remaining = 0;
-    for (let i88 = 0; i88 < member_allowances.length; i88++) {
-      const member_allowance = member_allowances[i88];
-      if (!member_allowance) continue;
+    for (const member_allowance of member_allowances) {
       const leaveTypeStatsByYear = leaveTypeStats.filter(
         (x) =>
           x.year === member_allowance.year &&
-          (x.allowance_type_id == null || x.allowance_type_id == member_allowance.allowance_type_id)
+          (x.allowance_type_id == null || x.allowance_type_id === member_allowance.allowance_type_id)
       );
       if (!leaveTypeStatsByYear) continue;
       const take_from_allowanceSum = leaveTypeStatsByYear.reduce(
         (acc, x) => acc + (x.take_from_allowance ? x.value : 0),
         0
       );
-      let stats: any = {};
-      for (let iiiiii = 0; iiiiii < leaveTypeStatsByYear.length; iiiiii++) {
-        const element = leaveTypeStatsByYear[iiiiii];
-        if (!element) continue;
-        if (!stats[element.leave_type_id]) {
-          stats[element.leave_type_id] = {
-            amount: 0
-          };
+      const carry_forward_period_duration_sum = leaveTypeStatsByYear.reduce(
+        (acc, x) => acc + x.carry_forward_period_duration,
+        0
+      );
+
+      const stats: Record<string, { amount: number }> = {};
+      for (const stat of leaveTypeStatsByYear) {
+        if (!stats[stat.leave_type_id]) {
+          stats[stat.leave_type_id] = { amount: 0 };
         }
-        stats[element.leave_type_id].amount += element.value;
+        let x = stats[stat.leave_type_id];
+        if (!x) continue;
+        x.amount += stat.value;
       }
       const allowance_type = workspace.allowance_types.find((lt) => lt.id === member_allowance.allowance_type_id);
       const max_carry_forward = allowance_type?.max_carry_forward ?? 0;
       let brought_forward = max_carry_forward <= last_remaining ? max_carry_forward : last_remaining;
-      /* 
-      if (allowance_type?.carry_forward_deadline) {
-        const carry_forward_deadline = new Date(allowance_type.carry_forward_deadline);
-        carry_forward_deadline.setFullYear(member_allowance.year);
-      
-      
-      } */
+      if (allowance_type && allowance_type.carry_forward_months_after_fiscal_year > 0) {
+        // Carryover period exists
+        const total_allowed = max_carry_forward + carry_forward_period_duration_sum;
+        if (last_remaining <= total_allowed) {
+          //All remaining vacation can be used
+          brought_forward = last_remaining;
+        } else {
+          //Days expire
+          brought_forward = total_allowed;
+        }
+      } else {
+        // No carryover period
+        brought_forward = Math.min(last_remaining, max_carry_forward);
+      }
 
-      let expiration = max_carry_forward <= last_remaining ? last_remaining - max_carry_forward : 0;
-      if (member_allowances[0].year == member_allowance.year) {
+      if (member_allowances[0].year === member_allowance.year) {
         brought_forward = member_allowances[0].brought_forward;
       }
       if (member_allowance.overwrite_brought_forward) {
-        if (member_allowance.brought_forward == brought_forward) {
+        if (member_allowance.brought_forward === brought_forward) {
           member_allowance.overwrite_brought_forward = false;
         } else {
           brought_forward = member_allowance.brought_forward;
         }
       }
+      let expiration = last_remaining - brought_forward;
+      if (expiration < 0) expiration = 0;
+
       const remaining =
         member_allowance.allowance + brought_forward + member_allowance.compensatory_time_off - take_from_allowanceSum;
       last_remaining = remaining;
-      await prisma.memberAllowance.update({
-        where: { id: member_allowance.id },
-        data: {
-          overwrite_brought_forward: member_allowance.overwrite_brought_forward,
-          taken: take_from_allowanceSum,
-          remaining: remaining,
-          brought_forward: brought_forward,
-          expiration,
-          leave_types_stats: stats,
-          start: new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)),
-          end: addDays(addYears(new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)), 1), -1)
-        },
-        select: { id: true }
+
+      updatedMemberAllowances.push({
+        id: member_allowance.id,
+        overwrite_brought_forward: member_allowance.overwrite_brought_forward,
+        taken: take_from_allowanceSum,
+        remaining: remaining,
+        brought_forward: brought_forward,
+        expiration,
+        leave_types_stats: stats,
+        start: new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)),
+        end: addDays(addYears(new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)), 1), -1),
+        allowance_type_id: member_allowance.allowance_type_id
       });
     }
   }
+
+  return updatedMemberAllowances;
 }
 
 export async function generateMissingAllowances(prisma: PrismaClient, workspace_id: string, member_id: string) {
@@ -447,57 +885,7 @@ export async function updateMemberRequestDetailsDurations(
   workspace_id: string,
   member_id: string
 ) {
-  let workspace = await prisma.workspace.findUnique({
-    where: { id: workspace_id },
-    select: {
-      id: true,
-      fiscal_year_start_month: true,
-      leave_types: {
-        select: {
-          id: true,
-          take_from_allowance: true,
-          allowance_type_id: true
-        }
-      },
-      members: { select: { public_holiday_id: true }, where: { id: member_id } },
-      allowance_types: { select: { id: true, max_carry_forward: true } },
-      schedule: { select: defaultWorkspaceScheduleSelect },
-      member_schedules: {
-        select: defaultMemberScheduleSelect,
-        where: {
-          member_id: member_id
-        },
-        orderBy: { from: 'desc' }
-      },
-      member_allowances: {
-        select: {
-          id: true,
-          member_id: true,
-          year: true,
-          allowance: true,
-          brought_forward: true,
-          overwrite_brought_forward: true,
-          taken: true,
-          remaining: true,
-          compensatory_time_off: true,
-          allowance_type_id: true
-        },
-        where: {
-          member_id: member_id
-        },
-        orderBy: { year: 'asc' }
-      },
-      public_holiday_days: {
-        select: {
-          id: true,
-          date: true,
-          duration: true,
-          public_holiday_id: true
-        },
-        orderBy: { date: 'asc' }
-      }
-    }
-  });
+  const workspace = await fetchWorkspace(prisma, workspace_id, member_id);
   if (!workspace) return;
 
   let requests = await prisma.request.findMany({
@@ -520,7 +908,11 @@ export async function updateMemberRequestDetailsDurations(
               ignore_public_holidays: true,
               allowance_type_id: true,
               allowance_type: {
-                select: { ignore_allowance_limit: true }
+                select: {
+                  ignore_allowance_limit: true,
+                  carry_forward_months_after_fiscal_year: true,
+                  max_carry_forward: true
+                }
               }
             }
           }
@@ -535,6 +927,7 @@ export async function updateMemberRequestDetailsDurations(
       requester_member_id: true,
       requester_member: {
         select: {
+          id: true,
           public_holiday_id: true
         }
       }
@@ -563,7 +956,6 @@ export async function updateMemberRequestDetailsDurations(
         (x) => x.public_holiday_id == workspace.members[0]?.public_holiday_id
       ),
       leaveType: request.details.leave_type,
-      memberAllowances: workspace.member_allowances.filter((ma) => ma.member_id === request.requester_member_id),
       workspace: workspace,
       requester_member_id: request.requester_member_id
     });

@@ -29,6 +29,7 @@ const timeghostSyncSetting_select = Prisma.validator<Prisma.TimeghostSyncSetting
   timeghost_workspace_id: true,
   timeghost_api_access_token: true,
   invalid_apikey_notification_sent: true,
+  deleted:true,
   timeghostSyncSettingLeaveTypes: {
     select: {
       leave_type_id: true
@@ -202,6 +203,10 @@ export const createTimeghostTimeEntries = inngest.createFunction(
         logger.error('timeghost sync setting not found');
         throw new Error('timeghost sync setting not found');
       }
+
+      if(timeghostSyncSetting.deleted){
+        return {message: "timeghost sync setting not found"}
+      }
       const apiKey = timeghostSyncSetting.timeghost_api_access_token;
       const notification_sent = timeghostSyncSetting.invalid_apikey_notification_sent;
       let schedule =
@@ -275,6 +280,21 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                     const { status, data } = axiosError.response;
 
                     if (status === 500) {
+                      await prisma.requestSyncLog.update({
+                        where: { id: sync_log_id },
+                        data: {
+                          workspace_id: request.workspace_id,
+                          request_id: request.id,
+                          timeghost_sync_setting_id: timeghostSyncSetting.id,
+                          sync_status: SyncStatus.Failed,
+                          error: `${status} ${JSON.stringify(data)}`, //error message from timeghost
+                          sync_type: 'timeghost',
+                          timeghost_workspace_id: timeghostSyncSetting.timeghost_workspace_id,
+                          timeghost_api_access_authenticated: TimeghostAccesStatus.Error,
+                          timeghost_api_access_token: apiKey
+                        },
+                        select: { id: true }
+                      });
                       if(typeof data === 'object' && data != null && 'message' in data && typeof data.message === 'string'){
                         if(data.message.includes('Unable to validate Token')){
                             // Update the notification_sent flag in the database
@@ -295,25 +315,12 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                                 }
                               });
                             }
+                            return `${status} ${JSON.stringify(data)}`;
                           }
                         }
-                        await prisma.requestSyncLog.update({
-                          where: { id: sync_log_id },
-                          data: {
-                            workspace_id: request.workspace_id,
-                            request_id: request.id,
-                            timeghost_sync_setting_id: timeghostSyncSetting.id,
-                            sync_status: SyncStatus.Failed,
-                            error: `${status} ${JSON.stringify(data)}`, //error message from timeghost
-                            sync_type: 'timeghost',
-                            timeghost_workspace_id: timeghostSyncSetting.timeghost_workspace_id,
-                            timeghost_api_access_authenticated: TimeghostAccesStatus.Error,
-                            timeghost_api_access_token: apiKey
-                          },
-                          select: { id: true }
-                        });
-
-                      throw new NonRetriableError(`${status} ${JSON.stringify(data)}`);
+                       
+                        throw new RetryAfterError(`${status} ${JSON.stringify(data)}`, 10 * 60 * 1000);
+                      
                     } else {
                       await prisma.requestSyncLog.update({
                         where: { id: sync_log_id },
@@ -331,7 +338,7 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                         select: { id: true }
                       });
 
-                      throw new NonRetriableError(`${status} ${JSON.stringify(data)}`);
+                      throw new RetryAfterError(status + ':' + JSON.stringify(data), 10 * 60 * 1000); //10 min
                     }
                   } else if (axiosError.request) {
                     // The request was made but no response was received
@@ -350,7 +357,7 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                       },
                       select: { id: true }
                     });
-                    throw new NonRetriableError(`No response received from the timeghost API`);
+                    throw new RetryAfterError(`No response received from the timeghost API`, 10 * 60 * 1000); //10 min
                   } else {
                     await prisma.requestSyncLog.update({
                       where: { id: sync_log_id },
@@ -367,7 +374,7 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                       },
                       select: { id: true }
                     });
-                    throw new NonRetriableError(`Error setting up the request: ${axiosError.message}`);
+                    throw new RetryAfterError(`Error setting up the request: ${axiosError.message}`, 10 * 60 * 1000); //10 min
                   }
                 } else {
                   throw error;
@@ -677,10 +684,10 @@ export const createTimeghostTimeEntries = inngest.createFunction(
                             },
                             select: { id: true }
                           });
-                          throw new NonRetriableError(
+                          throw new RetryAfterError(
                             `Error occurred in step create timeghost time entry via timeghost API: ${status} ${JSON.stringify(
                               responseData
-                            )}`
+                            )}`, 10 * 60 * 1000
                           );
                         }
                       } else if (axiosError.request) {

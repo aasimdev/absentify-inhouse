@@ -269,15 +269,16 @@ function getIn10YearsDate(): Date {
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-100">{t('Profile')}</h2>
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Profile_Description')}</p>
         </div>
+
         {props.currentMember.status === Status.INACTIVE && (
-          <div className="rounded-md bg-yellow-50 p-4 mt-2">
+          <div className="rounded-md bg-yellow-50 p-4 mt-2 dark:bg-teams_brand_dark_500">
             <div className="flex">
               <div className="flex-shrink-0">
                 <ExclamationTriangleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
               </div>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-yellow-800">{t('attention_needed')}</h3>
-                <div className="mt-2 text-sm text-yellow-700">
+                <h3 className="text-sm font-medium text-yellow-800 dark:text-gray-200">{t('attention_needed')}</h3>
+                <div className="mt-2 text-sm text-yellow-700 dark:text-gray-300">
                   <p>{t('attention_needed_desc')}</p>
                 </div>
               </div>
@@ -826,10 +827,10 @@ function getIn10YearsDate(): Date {
               </div>
               <Switch.Group as="li" className="flex items-center justify-between py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-100" passive>
                     {t('Administrator')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Administrator_Description')}
                   </Switch.Description>
                 </div>
@@ -847,15 +848,15 @@ function getIn10YearsDate(): Date {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span
                         aria-hidden="true"
                         className={classNames(
                           value ? 'translate-x-5' : 'translate-x-0',
-                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-ou t'
+                          'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                         )}
                       />
                     </Switch>
@@ -865,10 +866,10 @@ function getIn10YearsDate(): Date {
 
               <Switch.Group as="li" className="flex items-center justify-between py-4">
                 <div className="flex flex-col">
-                  <Switch.Label as="p" className="text-sm font-medium text-gray-900" passive>
+                  <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-100" passive>
                     {t('Archive_User')}
                   </Switch.Label>
-                  <Switch.Description className="text-sm text-gray-500">
+                  <Switch.Description className="text-sm text-gray-500 dark:text-gray-200">
                     {t('Archive_User_Description')}
                   </Switch.Description>
                 </div>
@@ -886,8 +887,8 @@ function getIn10YearsDate(): Date {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500' : 'bg-gray-200',
-                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:text-gray-200'
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
                       <span

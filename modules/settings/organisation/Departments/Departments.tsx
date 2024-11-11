@@ -106,32 +106,32 @@ const Departments: NextPage = () => {
         <div className="mt-6 flex flex-col shadow rounded-lg">
         <div className="overflow-x-auto -my-2 sm:-mx-6 lg:-mx-6 min-w-full">
             <div className="inline-block py-2 min-w-full align-middle sm:px-6 lg:px-8">
-              <div className="overflow-hidden border-b border-gray-200 dark:border-0 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
+              <div className="overflow-hidden border-b border-gray-200 dark:border-0 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_thead rounded-lg">
                     <tr>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('departments_Department')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         {t('departments_Boss')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         {t('departments_Maximum_absent')}
                       </th>
 
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         <div
                             className=""
@@ -155,13 +155,13 @@ const Departments: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-500 bg-white dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 dark:divide-teams_brand_tbody_border bg-white dark:bg-teams_brand_tbody">
                     {departments?.map((department) => (
                       <tr key={department.id}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {department.name}
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-white">
                           <p
                             className="w-20 truncate"
                             data-tooltip-id="department-tooltip"
@@ -180,14 +180,14 @@ const Departments: NextPage = () => {
                             }}
                           />
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-white">
                           {department.maximum_absent == -1 && t('departments_No_limit')}
                           {department.maximum_absent == 1 && '1 ' + t('departments_User')}
                           {department.maximum_absent &&
                             department.maximum_absent > 1 &&
                             department.maximum_absent + ' ' + t('departments_Users')}
                         </td>
-                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
+                        <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-white">
                           {department.groupSyncSettings.length > 0 && workspace?.microsoft_groups_read_write_all
                           ? 
                           (<><div
@@ -196,7 +196,7 @@ const Departments: NextPage = () => {
                             data-tooltip-content={t('ad_teams_desc_check')}
                             data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
-                            <CheckIcon width={20} className="self-center text-gray-400 dark:text-gray-200" />
+                            <CheckIcon width={20} className="self-center text-gray-400 dark:text-teams_brand_th" />
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
@@ -213,7 +213,7 @@ const Departments: NextPage = () => {
                             data-tooltip-content={t('ad_teams_desc_cross')}
                             data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                           >
-                            <XMarkIcon width={20} className="self-center text-gray-400 dark:text-gray-200"/>
+                            <XMarkIcon width={20} className="self-center text-gray-400 dark:text-teams_brand_th"/>
                           </div>
                           <ReactTooltip
                             id={`sync-tooltip${department.id}`}
@@ -232,11 +232,11 @@ const Departments: NextPage = () => {
                               setValueForEdit(department);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_th"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -249,11 +249,11 @@ const Departments: NextPage = () => {
                             onClick={() => {
                               setValueForDelete(department);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_th"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -281,7 +281,7 @@ const Departments: NextPage = () => {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_dark_550"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -291,7 +291,7 @@ const Departments: NextPage = () => {
                                 clipRule="evenodd"
                               />
                             </svg>{' '}
-                            <span className="ml-2 dark:text-gray-200">{t('departments_new_department')}</span>
+                            <span className="ml-2 dark:text-teams_brand_gray">{t('departments_new_department')}</span>
                           </div>
                         </td>
                       )}

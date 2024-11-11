@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Afficher les paramètres dans Teams",
   "notice_managers": "Note : une demande de l'un de tes employés a été approuvée",
   "second_line_for_managers": "une demande d'un employé au sein de ton département a été approuvée. La demande de congé de/d' {{employee_name}} pour le/les {{leave_type_name}} a été traitée et aucune autre action n'est nécessaire. Tu reçois cet e-mail parce que tu es le responsable du département. ",
-  "request_created_by": "<div><strong>Demande créée par :</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Demande créée par :</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Raison :</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Échec de la demande de synchronisation",
   "sync_request_to_timeghost_failed-subject": "Problème de synchronisation timeghost dû à une clé API invalide 🚨",

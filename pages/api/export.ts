@@ -169,7 +169,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             id: true,
             name: true,
             allowance_unit: true,
-            ignore_allowance_limit: true
+            ignore_allowance_limit: true,
+            carry_forward_months_after_fiscal_year: true,
+            max_carry_forward: true
           }
         }
       },
@@ -909,7 +911,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           memberSchedules: member_schedules,
           memberPublicHolidayDays: member_public_holiday_days,
           leaveType: leave_type,
-          memberAllowances: request_member.allowances,
           requester_member_id: request.requester_member_id,
           workspace: workspace
         });

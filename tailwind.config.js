@@ -46,7 +46,7 @@ const config = {
         teams_brand_900: '#3d3e66',
         teams_brand_1000: '#323348',
         teams_brand_1001: '#37385c',
-        teams_dark_mode: '#1f1f1f',
+        teams_dark_mode: '#0C111D',
         teams_light_mode: '#f5f5f5',
         teams_dark_mode_menu_underline: '#666666',
         teams_dark_mode_core: "#141414",
@@ -55,9 +55,18 @@ const config = {
         teams_brand_dark_300: "#5960C3",
         teams_brand_dark_400: "#949494",
         teams_brand_dark_500: "#3D3D3D",
+        teams_brand_dark_550: "#7579D5",
         teams_brand_dark_600: "#191919",
+        teams_brand_dark_700: "#AE9BD4",
+        teams_brand_dark_800: "#4C52B5",
         teams_brand_blue : "#5864A6",
         teams_light_border : "#757575",
+        teams_brand_th: "#94969C",
+        teams_brand_thead: "#1F2534",
+        teams_brand_tbody: "#161B26",
+        teams_brand_tbody_border: "#1F242F",
+        teams_brand_border: "#333741",
+        teams_brand_gray: "#CECFD2"
       },
       minHeight: (theme) => ({
         ...theme('spacing')

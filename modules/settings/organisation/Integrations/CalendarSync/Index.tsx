@@ -167,19 +167,19 @@ const CalendarSync: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="-my-2 overflow-x-auto md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle px-2 lg:px-3">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 ">
-                  <thead className="bg-gray-50 dark:divide-gray-500 dark:bg-teams_brand_dark_100">
+              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:shadow-none dark:border-b-0">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border ">
+                  <thead className="bg-gray-50 dark:divide-teams_brand_tbody_border dark:bg-teams_brand_thead">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('Name')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         {t('description')}
                       </th>
@@ -194,13 +194,13 @@ const CalendarSync: NextPage = () => {
                       <th scope="col" className="relative px-6 py-3 "></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500 ">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border ">
                     {calendarSyncSettings?.map((calendar_sync_setting) => (
                       <tr key={calendar_sync_setting.id}>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {calendar_sync_setting.name}
                         </td>
-                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
+                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell dark:text-white">
                           <div
                             className="w-20 truncate pt-1"
                             data-tooltip-id="cssdes-tooltip"
@@ -229,11 +229,11 @@ const CalendarSync: NextPage = () => {
                               setValueForEdit(calendar_sync_setting);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_th"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -249,11 +249,11 @@ const CalendarSync: NextPage = () => {
                               setDeleteModalOpen(true);
                               setValueForDelete(calendar_sync_setting);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_th"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -270,7 +270,7 @@ const CalendarSync: NextPage = () => {
                     <tr>
                       {workspace && calendarSyncSettings && !limitReached && (
                         <td
-                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200"
+                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-teams_brand_th"
                           colSpan={8}
                           onClick={(e) => {
                             e.preventDefault();
@@ -291,7 +291,7 @@ const CalendarSync: NextPage = () => {
                                 clipRule="evenodd"
                               />
                             </svg>{' '}
-                            <span className="ml-2 dark:text-gray-200">{t('sharedCalendars_new_sharedCalendar')}</span>
+                            <span className="ml-2 dark:text-teams_brand_gray">{t('sharedCalendars_new_sharedCalendar')}</span>
                           </div>
                         </td>
                       )}

@@ -53,7 +53,7 @@ export default function CancelModal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_400">
+            <div className="z-30 inline-block overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
               <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                 <button
                   type="button"
@@ -71,7 +71,7 @@ export default function CancelModal(props: {
                   <ExclamationCircleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                 </div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                  <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-200">
                     {t('Cancel_request')}
                   </Dialog.Title>
                   <div className="mt-2">
@@ -83,10 +83,10 @@ export default function CancelModal(props: {
                       id="reason"
                       name="reason"
                       rows={3}
-                      className="block w-full max-w-lg rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_400 dark:focus:border-gray-800 dark:focus:ring-teams_brand_900"
+                      className="block w-full max-w-lg rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:focus:border-gray-800 dark:text-gray-200 dark:focus:ring-teams_brand_900"
                       defaultValue={''}
                     /> 
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-800">{t('Cancel_request_reason_hint')}</p>
+                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">{t('Cancel_request_reason_hint')}</p>
                   </div>
                 </div>
               </div>

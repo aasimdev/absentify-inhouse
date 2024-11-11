@@ -16,8 +16,9 @@ export const scheduledOutOfOfficeReplies = inngest.createFunction(
   },
   { cron: '*/5 * * * *' },
   async ({}) => {
-    //   if (10 == 10) return { status: 'success', message: 'Scheduled Out Of Office Replies for 0 members sent' };
-
+    if (process.env.NEXT_PUBLIC_RUNMODE == 'Development') {
+      return { status: 'success', message: 'Scheduled Out Of Office Replies for 0 members sent' };
+    }
     const today = new Date();
     today.setDate(today.getDate());
     today.setUTCHours(0, 0, 0, 0);

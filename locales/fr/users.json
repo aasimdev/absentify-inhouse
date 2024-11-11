@@ -20,7 +20,7 @@
   "read_more": "En savoir plus",
   "SendInvitationEmail_many": "Envoyer un email d'invitation",
   "SendInvitationEmail_description_many": "L'utilisateur recevra un email de notre part avec un lien vers absentify. Si vous ne le voulez pas pour le moment, vous devrez envoyer l'email manuellement à cet employé.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "Dans le plan d'affaires, tu peux inviter des utilisateurs qui n'ont pas d'adresse e-mail.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "Dans le plan Essentials, tu peux inviter des utilisateurs qui n'ont pas d'adresse électronique.",
   "UserWithoutEmailHeadlineWithSubscription": "Vous pouvez aussi inviter des utilisateurs sans adresse courriel.",
   "UserWithoutEmailDescription": "Vous pouvez saisir les absences et gérer le calendrier de ces employés. Ces employés ne peuvent pas se connecter, être un chef de service ou approuver les absences d'autres employés.",
   "Upgrade": "Mise à niveau",

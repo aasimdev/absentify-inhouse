@@ -228,32 +228,32 @@ const TimeghostSync: NextPage = () => {
         <div className="mt-6 flex flex-col lg:flex-row ">
           <div className="-my-2 overflow-x-auto  md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle px-0.5 ">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 ">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody dark:border-0">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border ">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                     <tr>
                       <th
                         scope="col"
-                        className="xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('Name')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden xl:px-6 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         {t('description')}
                       </th>
 
                       <th
                         scope="col"
-                        className=" xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-gray-200"
+                        className=" xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-teams_brand_th"
                       >
                         {t('leave_type')}
                       </th>
                       <th
                         scope="col"
-                        className="xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-gray-200"
+                        className="xl:px-6 px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden md:table-cell dark:text-teams_brand_th"
                       >
                         {t('department')}
                       </th>
@@ -262,7 +262,7 @@ const TimeghostSync: NextPage = () => {
                     </tr>
                   </thead>
 
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                     {!timeghostSyncSettings_loading && timeghostSyncSettings && leave_types && departments ? (
                       timeghostSyncSettings.filter((tgSetting) => !tgSetting.deleted).map((timeghostSyncSetting) => (
                         <tr key={timeghostSyncSetting.id}>
@@ -276,7 +276,7 @@ const TimeghostSync: NextPage = () => {
                               {timeghostSyncSetting.name}
                             </div>
                           </td>
-                          <td className="hidden whitespace-nowrap xl:px-6 px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-gray-200">
+                          <td className="hidden whitespace-nowrap xl:px-6 px-3 py-4 text-sm text-gray-500 md:table-cell dark:text-white">
                             <div
                               className="w-24  2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
@@ -286,7 +286,7 @@ const TimeghostSync: NextPage = () => {
                               {timeghostSyncSetting.description}
                             </div>
                           </td>
-                          <td className="hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-gray-200">
+                          <td className="hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-white">
                             <div
                               className="w-24 2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
@@ -300,7 +300,7 @@ const TimeghostSync: NextPage = () => {
                             </div>
                           </td>
 
-                          <td className=" hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-gray-200">
+                          <td className=" hidden md:table-cell whitespace-nowrap xl:px-6 px-3 py-4 text-left text-sm text-gray-500 dark:text-white">
                             <div
                               className="w-24 2xl:w-auto max-w-36 truncate pt-1"
                               data-tooltip-id="cssdes-tooltip"
@@ -313,18 +313,18 @@ const TimeghostSync: NextPage = () => {
                               {TimeghostService.getDepartmentNames(timeghostSyncSetting, departments)}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-gray-200">
+                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-white">
                             <a
                               onClick={async (e) => {
                                 e.preventDefault();
                                 setModalOpen(true);
                                 setValueForEdit(timeghostSyncSetting);
                               }}
-                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 dark:text-gray-200"
+                                className="h-5 w-5 dark:text-teams_brand_th"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -332,7 +332,7 @@ const TimeghostSync: NextPage = () => {
                               </svg>
                             </a>
                           </td>
-                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-gray-200">
+                          <td className="whitespace-nowrap xl:px-6 px-3 py-4 text-right text-sm font-medium dark:text-teams_brand_th">
                             <a
                               onClick={async (e) => {
                                 e.preventDefault();
@@ -340,11 +340,11 @@ const TimeghostSync: NextPage = () => {
                                 setValueForDelete(timeghostSyncSetting);
                                 setLeaveTypeName(TimeghostService.getLeaveTypeNames(timeghostSyncSetting, leave_types));
                               }}
-                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                              className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_th"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 dark:text-gray-200"
+                                className="h-5 w-5 dark:text-teams_brand_th"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
                               >
@@ -396,7 +396,7 @@ const TimeghostSync: NextPage = () => {
                               />
                             </svg>{' '}
                             <span
-                              className="ml-2 dark:text-gray-200"
+                              className="ml-2 dark:text-teams_brand_gray"
                             >
                               {t('Add_timeghost_sync')}
                             </span>

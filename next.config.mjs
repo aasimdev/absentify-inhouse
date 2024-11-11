@@ -1,5 +1,5 @@
 import { withSentryConfig } from '@sentry/nextjs';
-
+import MillionLint from '@million/lint';
 import nextTranslate from 'next-translate-plugin';
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -62,8 +62,11 @@ const sentryWebpackPluginOptions = {
   disableLogger: true
 };
 
-if (process.env.NEXT_PUBLIC_RUNMODE !== 'Development' && process.env.NEXT_PUBLIC_IS_LOCALHOST !== 'true') {
+if (process.env.NEXT_PUBLIC_RUNMODE == 'Production') {
   config = withSentryConfig(config, sentryWebpackPluginOptions);
+}
+if (process.env.NEXT_PUBLIC_IS_LOCALHOST === 'true') {
+  config = MillionLint.next({ rsc: true })(config);
 }
 
 export default config;

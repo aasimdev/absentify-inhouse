@@ -10,6 +10,8 @@ import { getFingerprint } from '~/server/api/trpc';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { inngest } from '~/inngest/inngest_client';
 import { getIronSession } from 'iron-session';
+import { DealStatus } from '@prisma/client';
+import { GeoLocationData } from '~/server/api/routers/register';
 declare module 'iron-session' {
   interface IronSessionData {
     user?: {
@@ -44,6 +46,28 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
   }
 
   if (session.user?.id) {
+    if (req.query.state) {
+      try {
+        await prisma.deal.updateMany({
+          where: {
+            OR: [{ microsoft_login_state: req.query.state + '' }, { email: session.user.email }],
+            status: DealStatus.PENDING_MICROSOFT_LOGIN
+          },
+          data: {
+            microsoft_user_id: session.user.microsoft_user_id,
+            microsoft_tenant_id: session.user.microsoft_tenant_id,
+            email_after_login: session.user.email,
+            status: DealStatus.ACTIVE,
+            set_as_active_at: new Date()
+          }
+        });
+      } catch (error) {
+        console.error('Failed to update deal:', error);
+        Sentry.captureException(error);
+        // Don't fail the sign-in process if deal update fails
+      }
+    }
+
     if (req.query.redirect_after_login) {
       res.redirect(req.query.redirect_after_login + '');
       return;
@@ -166,7 +190,6 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
     select: {
       id: true,
       email_notifications_updates: true,
-      sendinblue_contact_id: true,
       has_cdn_image: true,
       displayName: true,
       microsoft_user_id: true,
@@ -187,7 +210,6 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
       select: {
         id: true,
         email_notifications_updates: true,
-        sendinblue_contact_id: true,
         microsoft_user_id: true,
         has_cdn_image: true,
         displayName: true,
@@ -206,7 +228,6 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
         select: {
           id: true,
           email_notifications_updates: true,
-          sendinblue_contact_id: true,
           microsoft_user_id: true,
           has_cdn_image: true,
           displayName: true,
@@ -233,6 +254,24 @@ export default async function loginRoute(req: NextApiRequest, res: NextApiRespon
     }
   }
 
+  if (req.query.state) {
+    try {
+      await prisma.deal.updateMany({
+        where: { OR: [{ microsoft_login_state: req.query.state + '' }, { email: newEmail }] },
+        data: {
+          microsoft_user_id: result.uniqueId,
+          microsoft_tenant_id: result.tenantId,
+          email_after_login: newEmail,
+          status: DealStatus.ACTIVE,
+          set_as_active_at: new Date()
+        }
+      });
+    } catch (error) {
+      console.error('Failed to update deal:', error);
+      Sentry.captureException(error);
+      // Don't fail the sign-in process if deal update fails
+    }
+  }
   let orgName = null;
   if (!m) {
     try {
@@ -307,7 +346,7 @@ async function createSignInLog(req: NextApiRequest, member_id: string) {
     let ip = getFingerprint(req);
     if (ip == '127.0.0.1') ip = '2a03:80:140:e400:81b:5f6a:fedc:5480';
     if (ip == '::1') ip = '2a03:80:140:e401:b9d4:af4b:216f:60ee';
-    let ipData: { country_name: string; city: string } | null = null;
+    let ipData: GeoLocationData | null = null;
     try {
       const i = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=407d89a261f042fb9e5f87b58220a212&ip=${ip}`);
       if (i.status == 200) {

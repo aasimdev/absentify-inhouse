@@ -33,6 +33,7 @@ import DayScheduleModal from '@components/calendar/DayScheduleModal';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { Menu, Transition } from '@headlessui/react';
 import { notifyError } from '~/helper/notify';
+import { useDarkSide } from '@components/ThemeContext';
 
 export type OpenDialogValuesType = {
   start: Date;
@@ -54,6 +55,7 @@ const Timeline: NextPage = () => {
   const upLG = useMediaQuery({ query: '(min-width: 1441px)' });
   const upXL = useMediaQuery({ query: '(min-width: 1580px)' });
   const router = useRouter();
+  const [theme] = useDarkSide();
   let TODAY = new Date();
   const [screenWidth, setScreenWidth] = useState(0);
   const [switchToday, setSwitchToday] = useState<boolean>(false);
@@ -592,15 +594,15 @@ const Timeline: NextPage = () => {
   return (
     <>
       <div className="flex min-h-96 grow flex-col border-y bg-white dark:bg-teams_dark_mode shadow sm:rounded sm:border dark:sm:border-teams_dark_mode">
-        <div className="  border-b dark:border-b-gray-600 dark:bg-teams_brand_dark_100">
+        <div className="  border-b dark:border-b-teams_brand_tbody_border ">
           <div className="grid grid-cols-1 sm:grid-cols-3">
             <div className="p-4">
-              <div className="flex space-x-4 py-2 pr-2 text-lg font-normal sm:border-r dark:border-r-gray-600">
+              <div className="flex space-x-4 py-2 pr-2 text-lg font-normal sm:border-r dark:border-r-teams_brand_tbody_border">
                 <div className="inline-flex mt-1.5 ">
                   <span
                     data-tooltip-id="datenav-tooltip"
                     data-tooltip-content={upLG ? t('Previous_month') : dateRangeTooltipText.left}
-                    data-tooltip-variant="light"
+                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                   >
                     <a
                       className="mt-1.5 cursor-pointer"
@@ -623,7 +625,7 @@ const Timeline: NextPage = () => {
                   <span
                     data-tooltip-id="datenav-tooltip"
                     data-tooltip-content={upLG ? t('Next_month') : dateRangeTooltipText.right}
-                    data-tooltip-variant="light"
+                    data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                   >
                     <a
                       className="mt-1.5 cursor-pointer "
@@ -642,13 +644,13 @@ const Timeline: NextPage = () => {
                 <div className='dark:text-gray-200'>{dateRangeText}</div>
               </div>
             </div>
-            <div className="p-4 ">
+            <div className="p-4">
               {departmentDropDownValues && departmentDropDownValues.length >= 2 && (
-                <div className="grid md:grid md:grid-cols-3 md:items-start md:gap-4">
-                  <label className="block break-normal text-sm font-medium text-gray-700 dark:text-gray-200 sm:py-2">
+                <div className="grid md:grid sm:grid-cols-2 xl:grid-cols-3 md:items-start md:gap-4">
+                  <label className="block break-normal text-sm font-medium text-gray-700 dark:text-gray-200 sm:py-2 sm:hidden xl:block">
                     {`${t('Department')}: `}
                   </label>
-                  <div className="z-20 mt-1 sm:col-span-2 sm:mt-0 ">
+                  <div className="z-20 mt-1 sm:col-span-2 sm:mt-0">
                     {selectedDepartment && (
                       <Select
                         styles={{
@@ -688,7 +690,7 @@ const Timeline: NextPage = () => {
               )}
             </div>
             <div className="p-4">
-              <div className="mx-4 grid justify-items-end">
+              <div className="mr-4 grid w-full sm:justify-items-end ">
                 {!current_member?.is_admin && !current_member?.is_manager && (
                   <button
                     onClick={(e) => {
@@ -706,12 +708,12 @@ const Timeline: NextPage = () => {
                       });
                     }}
                     type="button"
-                    className="mb-2 flex w-full justify-center rounded border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 md:mb-0 md:w-7/12"
+                    className="mb-2 flex w-full sm:w-auto justify-center rounded border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 md:mb-0"
                   >
-                    <div className="my-auto">
+                    <div className="my-auto ">
                       <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '}
                     </div>
-                    <p>{t('Create_request')}</p>
+                    <p className='truncate w-auto sm:w-20 md:w-auto '>{t('Create_request')}</p>
                   </button>
                 )}
 
@@ -733,15 +735,15 @@ const Timeline: NextPage = () => {
                         });
                       }}
                       type="button"
-                      className="relative inline-flex items-center rounded-l-md bg-white dark:bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_dark_400 hover:bg-gray-50 focus:z-10"
+                      className="relative w-full sm:w-auto inline-flex items-center rounded-l-md bg-white dark:bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 dark:text-teams_brand_gray ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_tbody_border hover:bg-teams_brand_tbody focus:z-10"
                     >
                       <div className="my-auto">
                         <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '}
                       </div>
-                      <p>{t('Create_request')}</p>
+                      <p className='truncate w-auto sm:w-20 md:w-auto '>{t('Create_request')}</p>
                     </button>
                     <Menu as="div" className="relative -ml-px block">
-                      <Menu.Button className="relative inline-flex items-center rounded-r-md bg-white dark:bg-transparent px-2 py-2 text-gray-400 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_dark_400 hover:bg-gray-50 focus:z-10">
+                      <Menu.Button className="relative inline-flex items-center rounded-r-md bg-white dark:bg-transparent px-2 py-2 text-gray-400 dark:text-teams_brand_gray ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_tbody_border hover:bg-teams_brand_tbody focus:z-10">
                         <span className="sr-only">Open options</span>
                         <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
                       </Menu.Button>
@@ -754,7 +756,7 @@ const Timeline: NextPage = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30">
+                        <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30 dark:bg-teams_brand_dark_100 dark:text-gray-200">
                           <div className="py-1">
                             <Menu.Item key="1">
                               <a
@@ -777,7 +779,7 @@ const Timeline: NextPage = () => {
                                     department_id: selectedDepartment?.id ?? null
                                   });
                                 }}
-                                className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'}
+                                className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:teams_brand_dark_100 dark:text-gray-200 dark:hover:bg-teams_brand_dark_100'}
                               >
                                 {t('Group_booking')}
                               </a>
@@ -948,7 +950,7 @@ const Timeline: NextPage = () => {
                               </div>
                               {remaining != null && (
                                 <span
-                                  className={` -translate-y-1/6 absolute top-0 right-1 inline-flex w-[33px] -translate-x-[50%]  justify-center rounded-full px-2 py-0.5 font-bold leading-none text-white dark:text-black bg-[#4a52bb] text-[8px] dark:bg-white`}
+                                  className={` -translate-y-1/6 absolute top-0 right-1 inline-flex w-[33px] -translate-x-[50%]  justify-center rounded-full px-2 py-0.5 font-bold leading-none text-white bg-[#4a52bb] text-[8px] dark:bg-teams_brand_dark_800`}
                                 >
                                   {remainginAllowance}
                                 </span>
@@ -958,7 +960,7 @@ const Timeline: NextPage = () => {
                               className={`my-auto truncate pl-0 font-bold sm:pl-2 dark:text-gray-200`}
                               data-tooltip-id="name-tooltip"
                               data-tooltip-content={member.name as string}
-                              data-tooltip-variant="light"
+                              data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >
                               {member.name}
                             </div>

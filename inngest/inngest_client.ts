@@ -3,6 +3,13 @@ import { EventSchemas, Inngest } from 'inngest';
 
 type Events = {
   'dev/manual-load_holiday-cache': {};
+  'brevo/create_company': { data: { workspace_id: string } };
+  'brevo/delete_company': { data: { brevo_company_id: string } };
+  'brevo/create_or_update_contact': { data: { member_id: string } };
+  'brevo/create_contact_if_not_exists': { data: { email: string; language: string } };
+  'brevo/create_or_update_all_workspace_contacts': { data: { workspace_id: string } };
+  'brevo/delete_contacts': { data: { brevo_contact_ids_or_emails: string[] } };
+  'brevo/delete_contact': { data: { brevo_contact_id_or_email: string } };
   'process.webhook': { data: { id: number } };
   'request/create_calendar_entry': {
     data: { request_id: string; sync_id: number; calendar_sync_setting_id: string | null; microsoft_tenant_id: string };
@@ -13,7 +20,7 @@ type Events = {
       sync_log_id: number;
       timeghost_sync_setting_id: string | null;
       for_update: boolean;
-      first_event: boolean
+      first_event: boolean;
     };
   };
   'request/delete_timeghost_sync_setting': {
@@ -30,7 +37,7 @@ type Events = {
       request_id: string;
       sync_log_id: number;
       timeghost_sync_setting_id: string | null;
-      first_event: boolean
+      first_event: boolean;
     };
   };
   'request/delete_calendar_entry': { data: { request_id: string } };

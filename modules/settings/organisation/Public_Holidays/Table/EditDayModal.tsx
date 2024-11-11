@@ -70,20 +70,20 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-auto sm:p-6">
+              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-auto sm:p-6 dark:bg-teams_brand_dark_100">
                 <div>
                   <div className="mt-1 text-start sm:mt-1 mb-4">
-                    <Dialog.Title as="h1" className=" text-lg font-bold  text-gray-900">
+                    <Dialog.Title as="h1" className=" text-lg font-bold  text-gray-900 dark:text-gray-200">
                       {t('public_holiday_day')}
                     </Dialog.Title>
-                    <span className="text-base font-normal leading-6 text-gray-900">
+                    <span className="text-base font-normal leading-6 text-gray-900 dark:text-gray-200">
                       {t('public_holiday_day_desc')}
                     </span>
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center">
-                    <div className="text-base font-normal leading-6 text-gray-900 w-24">{t('language')}</div>
+                    <div className="text-base font-normal leading-6 text-gray-900 w-24 dark:text-gray-200">{t('language')}</div>
                     <div className="w-60">
                       <Select
                         styles={{
@@ -99,11 +99,14 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
                           if (val && val.value) setLanguage(val.value);
                         }}
                         options={languageOptions}
+                        
+                        className="w-full my-react-select-container"
+                        classNamePrefix="my-react-select"
                       />
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <div className="text-base font-normal leading-6 text-gray-900 w-24">{t('name')}</div>
+                    <div className="text-base font-normal leading-6 text-gray-900 w-24 dark:text-gray-200">{t('name')}</div>
                     <div className="flex mt-1 rounded-md shadow-sm">
                       <input
                         type="text"
@@ -114,13 +117,13 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
                         onChange={(e) => {
                           setCustomName(e.target.value);
                         }}
-                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm"
+                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="flex justify-between mt-12">
+                <div className="flex justify-end mt-12">
                   <button
                     disabled={loading}
                     onClick={(e) => {

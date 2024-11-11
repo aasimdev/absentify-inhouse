@@ -88,61 +88,61 @@ const AllowancesPage: NextPage = () => {
         <div className="mt-6 flex flex-col shadow rounded-lg">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6 rounded-lg" >
-              <div className=" border-b border-gray-200 dark:border-0 shadow rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 dark:rounded-lg">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100 rounded-lg">
+              <div className=" border-b border-gray-200 dark:border-0 shadow rounded-lg dark:bg-teams_brand_tbody dark:overflow-hidden">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_thead rounded-lg">
                     <tr>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('allowances_Name')}
                       </th>{' '}
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('allowances_leave_types')}
                       </th>
                       <th
                         scope="col"
-                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                        className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                       >
                         {t('allowances_ignore_limit')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       >
                         {t('allowances_allowance_unit_2')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                        className="hidden px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                       ></th>
                       <th scope="col" className="relative px-6 py-3"></th>
                       <th scope="col" className="relative px-6 py-3"></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-500  bg-white cursor-default dark:bg-teams_brand_dark_100">
+                  <tbody className="divide-y divide-gray-200 dark:divide-teams_brand_tbody_border  bg-white cursor-default dark:bg-teams_brand_tbody">
                     {allowancesTypes?.map((allowancesType) => (
                       <tr key={allowancesType.id}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
-                            <p  className="w-20 2xl:w-auto max-w-56  truncate"
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-white">
+                            <p  className="w-20 2xl:w-auto max-w-56  truncate  dark:border-0 "
                               data-tooltip-id="index-allowance-tooltip"
                               data-tooltip-content={allowancesType.name}
                               data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
                             >{allowancesType.name}
                             </p> 
                          </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {allowancesType.leave_types.map((leaveType, index) => (
                             <div
                               key={index}
                               className={`flex items-center mb-2 ${leaveType.deleted ? 'line-through' : ''}`}
                             >
                               {leaveType.icon !== 'NoIcon' && (
-                                <div className="w-4 mr-2"
+                                <div className="w-4 mr-2 dark:bg-teams_brand_dark_100  dark:border-0 "
                                 data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -153,7 +153,7 @@ const AllowancesPage: NextPage = () => {
                               {leaveType.icon === 'NoIcon' && (
                                 <div
                                   style={{ backgroundColor: leaveType.color }}
-                                  className="mr-2 mt-0.5 h-4 w-4 rounded-sm"
+                                  className="mr-2 mt-0.5 h-4 w-4 rounded-sm dark:border-0 dark:bg-teams_brand_dark_100"
                                   data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -164,7 +164,7 @@ const AllowancesPage: NextPage = () => {
                           ))}
                         </td>
 
-                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           <Switch
                             checked={allowancesType.ignore_allowance_limit}
                             className={classNames(
@@ -214,7 +214,7 @@ const AllowancesPage: NextPage = () => {
                             </span>
                           </Switch>
                         </td>
-                        <td className="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+                        <td className="hidden md:table-cell whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900 dark:text-white">
                           {allowancesType.allowance_unit === 'days' && t('allowances_allowance_unit_days')}
                           {allowancesType.allowance_unit === 'hours' && t('allowances_allowance_unit_hours')}
                         </td>

@@ -44,6 +44,6 @@
   "minutes_unit": "m",
   "hours_unit": "h",
   "Admin_Console": "Konsola administratora",
-  "past_due_announcement_title_short": "Twój dostęp zostanie cofnięty, jeśli płatność nie zostanie dokonana przez {{endDate}}.",
+  "past_due_announcement_title_short": "Twój dostęp zostanie cofnięty, jeśli płatność nie zostanie dokonana do {{endDate}}.",
   "past_due_announcement_title_long": "Masz zaległą płatność. Jeśli nie zostanie ona uregulowana do {{endDate}}, Twój dostęp zostanie cofnięty. Aby kontynuować korzystanie z usługi, zaktualizuj informacje o płatności."
 }

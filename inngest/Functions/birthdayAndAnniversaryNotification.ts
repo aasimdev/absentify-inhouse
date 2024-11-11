@@ -228,7 +228,7 @@ export const sendWeeklyBirthdayAndAnniversaryEmail = inngest.createFunction(
   {
     id: slugify('Send Weekly Birthday and Anniversary Email'),
     name: 'Send Weekly Birthday and Anniversary Email',
-    rateLimit: {
+    throttle: {
       limit: 5000,
       period: '1h'
     },

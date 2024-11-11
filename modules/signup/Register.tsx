@@ -143,7 +143,7 @@ export default function RegisterModal(props: { onClose: Function }) {
         global_timezone: data.global_timezone,
         fiscal_year_start_month: data.fiscal_year_start_month,
         referrer: in_teams ? 'teams' : localStorage.getItem('absentify_referrer'),
-        gclid: localStorage.getItem('gclid')
+        gclid: localStorage.getItem('absentify_gclid')
       },
       {
         onSuccess: async () => {

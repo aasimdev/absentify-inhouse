@@ -10,6 +10,8 @@ import useTranslation from 'next-translate/useTranslation';
 import { useCalendarView } from '../CalendarViewContext';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { openDialogValuesType } from '../CreateRequest/CreateRequest';
+import { useDarkSide } from '@components/ThemeContext';
+import { useRouter } from 'next/router';
 
 type Props = {
   date: Date;
@@ -71,7 +73,9 @@ const Cell = ({
     else if (holiday.duration == 'Afternoon') return { morning: undefined, afternoon: { tooltip: holiday.name } };
     else return { morning: { tooltip: holiday.name }, afternoon: { tooltip: holiday.name } };
   }, [holiday]);
-
+  const [theme] = useDarkSide();
+  const router = useRouter();
+  const hasCalendarInUrl = router.asPath.includes('calendar');
   const { itsFreeMorning, itsFreeAfternoon } = useMemo(() => {
     let freeMorning = false;
     let freeAfternoon = false;
@@ -372,7 +376,7 @@ const Cell = ({
       return { backgroundColor: hexToRgbA('#494b83', 1) };
     }
 
-    let rgbaColor = hexToRgbA(day.afternoon[0].color, 1);
+    let rgbaColor = theme === "light" ? hexToRgbA(day.afternoon[0].color, 1) : hexToRgbA('#141414', 1);
 
     if (rRequests[0]?.details?.status === RequestStatus.PENDING) {
       rgbaColor = hexToRgbA(day.afternoon[0].color, 0.5);
@@ -390,7 +394,7 @@ const Cell = ({
       return { backgroundColor: hexToRgbA('#494b83', 1) };
     }
 
-    let rgbaColor = hexToRgbA(day.morning[0].color, 1);
+    let rgbaColor = theme === "light" ? hexToRgbA(day.morning[0].color, 1) : hexToRgbA('#141414', 1);
 
     if (lRequests[0]?.details?.status === RequestStatus.PENDING) {
       rgbaColor = hexToRgbA(day.morning[0].color, 0.5);
@@ -487,10 +491,12 @@ const Cell = ({
     if (filteredTimeRanges.length === 0 || filteredTimeRanges.filter((x) => isHourUnit(x.leave_unit)).length === 0) {
       return (
         <>
-          <div style={dynamicMorningBackground()} className="absolute z-10 top-0 left-0 h-10 w-1/2">
+          <div style={dynamicMorningBackground()} className="absolute z-10 top-0 left-0 h-10 dark:h-[39px] w-1/2">
             <div
               className={`${getMorningBackgroundClass()} h-10 ${
-                withBorder ? 'border-b border-gray-300 w-5' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
+              } ${
+                withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
             >
               {schedule.morning && (
@@ -502,11 +508,13 @@ const Cell = ({
             style={dynamicAfternoonBackground()}
             className={`absolute z-10 top-0 ${
               withBorder ? 'left-5' : 'left-4 1md:left-5 lg:left-5 xl:left-5'
-            } h-10 w-1/2`}
+            } h-10 dark:h-[39px] w-1/2`}
           >
             <div
               className={`${getAfternoonBackgroundClass()} h-10 ${
-                withBorder ? 'border-b border-gray-300 w-5' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
+              } ${
+                withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
             >
               {schedule.afternoon && (
@@ -523,7 +531,7 @@ const Cell = ({
         <div style={dynamicMorningBackground()} className="absolute z-10 top-0 left-0 h-10 w-1/2">
           <div
             className={`${getMorningBackgroundClass()} h-10 ${
-              withBorder ? 'border-b border-gray-300 w-5' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
+              withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
             }`}
           >
             {schedule.morning && (
@@ -539,7 +547,7 @@ const Cell = ({
         >
           <div
             className={`${getAfternoonBackgroundClass()} h-10 ${
-              withBorder ? 'border-b border-gray-300 w-5' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
+              withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
             }`}
           >
             {schedule.afternoon && (
@@ -565,8 +573,8 @@ const Cell = ({
     <>
       <div
         className={classNames(
-          'relative h-10 box-content dark:bg-teams_brand_dark_100',
-          withBorder ? 'border-r border-gray-300 bg-transparent w-10' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
+          'relative h-10 box-content dark:bg-teams_brand_border',
+          withBorder ? 'border-r border-gray-300 bg-transparent w-10 dark:border-teams_brand_tbody_border' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
         )}
       >
         {isToday && (
@@ -577,7 +585,7 @@ const Cell = ({
           data-tooltip-id="cell-tooltip"
           data-tooltip-content={combineMorningTooltips()}
           className={`absolute z-20 top-0 left-0 h-10 w-1/2  ${
-            userHasPermissionToCreateRequest && hoverLeft ? 'bg-black' : 'bg-transparent'
+            userHasPermissionToCreateRequest && hoverLeft ? 'bg-black' : 'bg-transparentt'
           } ${(userHasPermissionToCreateRequest || lRequests[0] || publicHoliday?.morning) && 'cursor-pointer'}`}
           onMouseEnter={() => handleMouseEnter('left')}
           onMouseLeave={() => handleMouseLeave('left')}
@@ -673,7 +681,7 @@ const Cell = ({
           data-tooltip-id="cell-tooltip"
           data-tooltip-content={combineAfternoonTooltips()}
           className={`absolute z-20 top-0 right-0 h-10 w-1/2 ${
-            userHasPermissionToCreateRequest && hoverRight ? 'bg-gray-300' : 'bg-transparent'
+            userHasPermissionToCreateRequest && hoverRight ? 'bg-gray-300' : 'bg-transparentt'
           } ${(userHasPermissionToCreateRequest || rRequests[0] || publicHoliday?.afternoon) && 'cursor-pointer'}`}
           onMouseEnter={() => handleMouseEnter('right')}
           onMouseLeave={() => handleMouseLeave('right')}

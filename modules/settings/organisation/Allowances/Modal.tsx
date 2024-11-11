@@ -9,17 +9,20 @@ import { api, type RouterInputs, type RouterOutputs } from '~/utils/api';
 import { notifyError, notifySuccess } from '~/helper/notify';
 import { classNames } from '~/lib/classNames';
 import { AllowanceUnit } from '@prisma/client';
-import { format } from 'date-fns';
+import { add, format } from 'date-fns';
 import { InputPicker } from '@components/duration-select/duration-select';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import Select from 'react-select';
+import { formatDuration } from '~/helper/formatDuration';
+import { getFiscalYearStartAndEndDatesUTC } from '~/lib/requestUtilities';
 
 export default function Modal(props: {
   open: boolean;
   onClose: Function;
   value: null | RouterOutputs['allowance']['allTypes'][0];
 }) {
-  const { t } = useTranslation('settings_organisation');
+  const { t, lang } = useTranslation('settings_organisation');
   const utils = api.useContext();
   const addAllowanceType = api.allowance.addAllowanceType.useMutation();
   const editAllowanceType = api.allowance.editAllowanceType.useMutation();
@@ -38,6 +41,78 @@ export default function Modal(props: {
   const { current_member, subscription } = useAbsentify();
 
   const [hasValidSubscription, setHasValidSubscription] = useState<boolean>(false);
+  const getAbsenceQuotaText = (
+    maxCarryForward: number,
+    allowanceUnit: AllowanceUnit,
+    monthsAfterFiscalYear: number
+  ): string => {
+    if (!workspace) return '';
+
+    const fiscalYear = getFiscalYearStartAndEndDatesUTC(
+      workspace.fiscal_year_start_month,
+      new Date().getUTCFullYear() - 1
+    );
+    fiscalYear.lastDayOfYear.setUTCHours(0, 0, 0, 0);
+
+    let carry_forward_deadline = new Date(
+      Date.UTC(fiscalYear.lastDayOfYear.getUTCFullYear(), fiscalYear.lastDayOfYear.getUTCMonth(), 1, 0, 0, 0)
+    );
+
+    carry_forward_deadline = add(carry_forward_deadline, {
+      months: monthsAfterFiscalYear
+    });
+    carry_forward_deadline.setUTCMonth(carry_forward_deadline.getUTCMonth() + 1, 0);
+
+    const formatDate = (date: Date): string => {
+      if (!current_member) return '';
+
+      return format(
+        date,
+        current_member.date_format
+          .replace('/yyyy', '')
+          .replace('-yyyy', '')
+          .replace('.yyyy', '')
+          .replace(' yyyy', '')
+          .replace('yyyy-', '')
+          .replace('yyyy/', '')
+          .replace('yyyy ', '')
+          .replace('yyyy.', '')
+      );
+    };
+
+    const maxCarryForwardFormatted = formatDuration(maxCarryForward, lang, allowanceUnit, false, t);
+    const unit =
+      allowanceUnit === 'hours'
+        ? maxCarryForward === 1
+          ? t('absencequota_hour')
+          : t('absencequota_hours')
+        : maxCarryForward === 1
+        ? t('absencequota_day')
+        : t('absencequota_days');
+    const formattedCarryForwardDate = formatDate(
+      monthsAfterFiscalYear === 0 ? fiscalYear.lastDayOfYear : carry_forward_deadline
+    );
+
+    if (monthsAfterFiscalYear === 0) {
+      if (maxCarryForward === 0) {
+        return t('no_unused_claims', { date: formattedCarryForwardDate });
+      }
+      return t('max_carry_forward_allowed', {
+        maxCarryForward: maxCarryForwardFormatted,
+        unit,
+        date: formattedCarryForwardDate
+      });
+    } else {
+      if (maxCarryForward === 0) {
+        return t('full_contingent', { date: formattedCarryForwardDate });
+      }
+      return t('use_until', {
+        date: formattedCarryForwardDate,
+        maxCarryForward: maxCarryForwardFormatted,
+        unit
+      });
+    }
+  };
 
   useEffect(() => {
     if (subscription.business) {
@@ -328,40 +403,92 @@ export default function Modal(props: {
                               )}
                             </div>
                           )}
-                          <div className="sm:col-span-5">
+
+                          <div className="sm:col-span-5 bg-white shadow rounded-lg p-4 mb-4 border border-gray-300 dark:bg-transparent">
                             <label htmlFor="max_carry_forward" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('allowances_max_carry_forward')}
                             </label>
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200" id="email-description">
-                              {t('allowances_max_carry_forward_description', {
-                                next_carry_over: format(
-                                  new Date(new Date().getFullYear() + 1, workspace?.fiscal_year_start_month ?? 0, 0),
-                                  current_member.date_format
-                                )
-                              })}
-                            </p>
-                            <div className="mt-1 flex rounded-md shadow-sm">
-                              <Controller
-                                rules={{ required: true }}
-                                control={control}
-                                name="data.max_carry_forward"
-                                defaultValue={0}
-                                render={({ field: { onChange, value } }) => (
-                                  <InputPicker
-                                    unit={watch('data.allowance_unit')}
-                                    value={value}
-                                    onChange={(val) => {
-                                      onChange(val);
-                                    }}
-                                    className = "w-full dark:bg-teams_brand_dark_100 dark:text-gray-200"
-                                  />
-                                )}
-                              />
+
+                            <div className="mt-4">
+                              <label htmlFor="max_carry_forward" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                                {t('max_days_to_carry_over')}
+                              </label>
+                              <div className="mt-1 flex rounded-md shadow-sm">
+                                <Controller
+                                  rules={{ required: true }}
+                                  control={control}
+                                  name="data.max_carry_forward"
+                                  defaultValue={0}
+                                  render={({ field: { onChange, value } }) => (
+                                    <InputPicker
+                                      unit={watch('data.allowance_unit')}
+                                      value={value}
+                                      onChange={(val) => {
+                                        onChange(val);
+                                      }}
+                                      className = "w-full dark:bg-teams_brand_dark_100 dark:text-gray-200 rounded-md"
+                                    />
+                                  )}
+                                />
+                              </div>
                             </div>
+
+                            <div className="mt-4">
+                              <label
+                                htmlFor="carry_forward_months_after_fiscal_year"
+                                className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                              >
+                                {t('months_after_fiscal_year')}
+                              </label>
+                              <div className="mt-1 flex rounded-md shadow-sm">
+                                <Controller
+                                  rules={{ required: true }}
+                                  control={control}
+                                  name="data.carry_forward_months_after_fiscal_year"
+                                  defaultValue={0}
+                                  render={({ field: { onChange, value } }) => (
+                                    <Select
+                                      value={{ value: value, label: `${value}` }}
+                                      styles={{
+                                        control: (base) => ({
+                                          ...base,
+                                          '*': {
+                                            boxShadow: 'none !important'
+                                          }
+                                        })
+                                      }}
+                                      className="w-full my-react-select-container"
+                                        classNamePrefix="my-react-select"
+                                      onChange={(val) => {
+                                        if (!val) return;
+                                        onChange(val.value);
+                                      }}
+                                      options={[...Array(12)].map((_, index) => ({
+                                        value: index,
+                                        label: `${index}`
+                                      }))}
+                                    />
+                                  )}
+                                />
+                              </div>
+                            </div>
+
+                            <div
+                              className="mt-4 text-sm text-gray-700 dark:text-gray-200"
+                              dangerouslySetInnerHTML={{
+                                __html: getAbsenceQuotaText(
+                                  watch('data.max_carry_forward'),
+                                  watch('data.allowance_unit') as AllowanceUnit,
+                                  watch('data.carry_forward_months_after_fiscal_year')
+                                )
+                              }}
+                            />
+
                             {(errors.data as { max_carry_forward?: string })?.max_carry_forward && (
                               <span className="text-sm text-red-400">{t('required')}</span>
                             )}
-                          </div>{' '}
+                          </div>
+
                           <div className="sm:col-span-5">
                             <label htmlFor="ignore_allowance_limit" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                               {t('allowances_ignore_limit')}

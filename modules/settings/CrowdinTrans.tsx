@@ -15,9 +15,9 @@ const LangProgressBar: React.FC<{ lang: string }> = (props) => {
 
   return (
     <div className="mx-auto w-1/2 p-2 py-4">
-      <div className=" h-2 rounded-full bg-gray-200 dark:bg-gray-700 dark:text-gray-200 ">
+      <div className=" h-2 rounded-full bg-gray-200 dark:bg-gray-400 dark:text-gray-200 ">
         <div
-          className="h-2 rounded-full bg-teams_brand_background_2"
+          className="h-2 rounded-full bg-teams_brand_background_2 dark:bg-teams_brand_dark_300"
           style={{ width: `${percentage ? percentage : 0}%` }}
         ></div>
         <p className="p-1 text-center text-xs font-medium text-teams_brand_background_2 dark:text-gray-200">

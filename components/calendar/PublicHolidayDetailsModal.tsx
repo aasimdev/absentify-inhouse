@@ -44,24 +44,24 @@ export default function PublicHolidayDetailsModal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+            <div className="z-30 inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
               <div className="">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">{props.public_holiday_day.name}</h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{props.public_holiday_day.name}</h3>
+                <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
                   {t('Public_Holiday')} - {props.public_holiday_day.name}
                 </p>
               </div>
               <div className="border-t border-gray-200 py-5 sm:p-0">
-                <dl className="sm:divide-y sm:divide-gray-200">
+                <dl className="sm:divide-y sm:divide-gray-200 dark:border-gray-100">
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                    <dt className="text-sm font-medium text-gray-500">{t('Date')}</dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Date')}</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-300">
                       {format(dateToIsoDate(props.public_holiday_day.date), current_member.date_format)}
                     </dd>
                   </div>
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 ">
-                    <dt className="text-sm font-medium text-gray-500">{t('Take_from_allowance')}</dt>
-                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{t('No')}</dd>
+                    <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">{t('Take_from_allowance')}</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0 dark:text-gray-300">{t('No')}</dd>
                   </div>
                 </dl>
               </div>
@@ -72,7 +72,7 @@ export default function PublicHolidayDetailsModal(props: {
                     e.preventDefault();
                     props.onClose();
                   }}
-                  className="inline-flex justify-end rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2"
+                  className="inline-flex justify-end rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                 >
                   {t('Close')}
                 </button>

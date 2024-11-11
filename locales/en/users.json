@@ -20,7 +20,7 @@
   "read_more": "Read more",
   "SendInvitationEmail_many": "Send invitation emails",
   "SendInvitationEmail_description_many": "Users will receive an email from us with a link to absentify. If you do not want this at the current time, you will have to send the email to these users manually later.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "In the business plan you can invite users who do not have an email address.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "In the Essentials plan you can invite users who do not have an email address.",
   "UserWithoutEmailHeadlineWithSubscription": "You can also invite users without an email address.",
   "UserWithoutEmailDescription": "You can enter absences and manage the calendar for these employees. These employees cannot log in, be a department manager or approve absences for other employees.",
   "Upgrade": "Upgrade",

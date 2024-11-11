@@ -41,9 +41,9 @@
   "Inactive_subscription_description_admin": "El pago de tu suscripción no ha sido procesado. Por favor, liquida el importe pendiente para reactivar el servicio absentify.",
   "Attention_needed": "Atención necesaria",
   "OK": "OK",
-  "minutes_unit": "m",
-  "hours_unit": "h",
+  "minutes_unit": "min",
+  "hours_unit": "hrs",
   "Admin_Console": "Consola de Administración",
-  "past_due_announcement_title_short": "Tu acceso será revocado si el pago no se realiza antes de {{endDate}}.",
-  "past_due_announcement_title_long": "Tienes un pago pendiente. Si no se liquida antes de {{endDate}}, se revocará tu acceso. Actualiza tus datos de pago para seguir utilizando el servicio."
+  "past_due_announcement_title_short": "Tu acceso será revocado si el pago no se realiza antes del {{endDate}}.",
+  "past_due_announcement_title_long": "Tienes un pago pendiente. Si no se liquida antes del {{endDate}}, se revocará tu acceso. Por favor actualiza tus datos de pago para seguir utilizando el servicio."
 }

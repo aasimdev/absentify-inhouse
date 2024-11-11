@@ -513,7 +513,7 @@ export default function Modal(props: {
                       </div>
                     </div>
                     {!subscription.has_valid_subscription && (
-                      <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left ">
+                      <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left dark:bg-transparent">
                         <div className="w-full text-sm dark:text-gray-200">
                           {`${t('calendar_sync_setting_message')} `}
                           <Link
@@ -914,25 +914,25 @@ export default function Modal(props: {
                           <p>{t('config_leave_types_description')}</p>
                         </div>
                       </div>
-                      <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 ">
-                          <thead className="rounded-sm bg-gray-50 dark:bg-teams_brand_dark_100">
+                      <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody dark:border-b-0">
+                        <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border ">
+                          <thead className="rounded-sm bg-gray-50 dark:bg-teams_brand_thead">
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200"
+                                className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-teams_brand_th"
                               >
                                 {t('leaveType_name')}
                               </th>
-                              <th scope="col" className=" py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">
+                              <th scope="col" className=" py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-teams_brand_th">
                                 {t('leaveType_show_as')}
                               </th>
 
                               <th
                                 scope="col"
-                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-gray-200"
+                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-teams_brand_th"
                               >
-                                <div className="flex dark:text-gray-200">
+                                <div className="flex dark:text-teams_brand_th">
                                   {t('Activated')}
                                   <span
                                     className="ml-1 flex items-center cursor-pointer"
@@ -954,7 +954,7 @@ export default function Modal(props: {
 
                               <th
                                 scope="col"
-                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-gray-200"
+                                className="relative py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900 sm:pr-6 dark:text-teams_brand_th"
                               >
                                 <div className="flex">
                                   {t('only_approved')}
@@ -977,13 +977,13 @@ export default function Modal(props: {
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                          <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                             {leaveTypeSwitches?.map((leave_type, i) => (
-                              <tr key={leave_type.id} className='dark:bg-teams_brand_dark_100'>
-                                <td className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200">
+                              <tr key={leave_type.id}>
+                                <td className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-white">
                                   {' '}
                                   {leave_type.leave_type.name}
-                                  <p className="font-normal text-gray-500 dark:text-gray-200">
+                                  <p className="font-normal text-gray-500 dark:text-white">
                                     {' '}
                                     {leave_type.leave_type.outlook_synchronization_subject}
                                   </p>
@@ -994,7 +994,7 @@ export default function Modal(props: {
                                     value={leave_type.sync_as_name}
                                     type="text"
                                     className={`w-20 rounded ${
-                                      leave_type.sync_as_name === '' ? 'border-red-500 dark:text-gray-200' : 'border-gray-300 dark:text-gray-200 dark:bg-teams_brand_dark_100'
+                                      leave_type.sync_as_name === '' ? 'border-red-500 dark:text-gray-200' : 'border-gray-300 dark:text-teams_brand_gray dark:bg-teams_brand_tbody dark:border-teams_brand_border'
                                     } text-sm lg:w-40`}
                                     onChange={(e) => {
                                       const x = [...leaveTypeSwitches];

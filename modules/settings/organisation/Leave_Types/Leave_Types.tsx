@@ -76,26 +76,26 @@ const Leave_Types: NextPage = () => {
         <div className="mt-6 flex flex-col ">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <div className="overflow-hidden border-b border-gray-200 dark:border-0 dark-border-0 shadow sm:rounded-lg">
+              <div className="overflow-hidden border-b border-gray-200 dark:border-0 dark-border-0 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
-                    <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                  <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
+                    <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                       <tr>
                         <th
                           scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                         >
                           {t('Name')}
                         </th>
                         <th
                           scope="col"
-                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                         >
                           {t('Leave_types_Color')}
                         </th>
                         <th
                           scope="col"
-                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-gray-200"
+                          className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell dark:text-teams_brand_th"
                         >
                           {t('Leave_types_Icon')}
                         </th>
@@ -105,7 +105,7 @@ const Leave_Types: NextPage = () => {
                         <th scope="col" className="relative px-6 py-3"></th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                    <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                       <SortableContext items={items} strategy={verticalListSortingStrategy}>
                         {items.map((id) => (
                           <SortableItem
@@ -135,7 +135,7 @@ const Leave_Types: NextPage = () => {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5"
+                              className="h-5 w-5 dark:text-teams_brand_dark_550"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -145,7 +145,7 @@ const Leave_Types: NextPage = () => {
                                 clipRule="evenodd"
                               />
                             </svg>
-                            <span className="ml-2"> {t('Leave_types_new')} </span>
+                            <span className="ml-2 dark:text-teams_brand_gray"> {t('Leave_types_new')} </span>
                           </div>
                         </td>
                       </tr>
@@ -277,18 +277,25 @@ const SortableItem = (props: {
                     default: {
                       card: {
                         width: '272px',
-                        // background: "#191919"
+                        backgroundColor: 'transparent'
                       },
                       body: {
                         padding: '10px',
-                        // background: "#191919"
+                       backgroundColor: 'transparent'
                       },
                       input: {
                         height: '14px',
                         width: '90px'
                       },
+                      triangle: {
+                        borderTopColor: 'transparent',  
+                        borderRightColor: 'transparent', 
+                        borderBottomColor: 'transparent', 
+                        borderLeftColor: 'transparent',  
+                      },
                     }
                   }}
+                  
                 ></TwitterPicker>
               </OutsideAlerter>
             </div>

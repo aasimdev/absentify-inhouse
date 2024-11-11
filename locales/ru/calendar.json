@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Предупреди, что ты просишь об отпуске в нерабочее время.",
   "TryAgainTextMessage": "Произошла ошибка, попробуйте еще раз",
   "Group_booking": "Групповой запрос",
-  "group_booking_required_business_plan": "Для создания групповых заявок тебе нужен как минимум бизнес-план.",
+  "group_booking_required_business_plan": "Чтобы создавать групповые запросы, тебе нужен как минимум Essentials Plan.",
   "Note": "Примечание",
   "Name": "Имя",
   "All_departments": "Все отделы"

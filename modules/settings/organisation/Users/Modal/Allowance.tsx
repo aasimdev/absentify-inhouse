@@ -14,7 +14,10 @@ import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { Switch } from '@headlessui/react';
 import { classNames } from '~/lib/classNames';
 import { Translate } from 'next-translate';
+import { add, addDays, format, lastDayOfMonth, startOfMonth } from 'date-fns';
+import { useAbsentify } from '@components/AbsentifyContext';
 import { useDarkSide } from '@components/ThemeContext';
+import { getFiscalYearStartAndEndDatesUTC } from '~/lib/requestUtilities';
 
 export default function Allowance(props: { onClose: Function; currentMember: defaultMemberSelectOutput }) {
   const [theme] = useDarkSide();
@@ -29,6 +32,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
       staleTime: 60000
     }
   );
+  const { current_member } = useAbsentify();
   const [loading, setLoading] = useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const utils = api.useContext();
@@ -38,7 +42,9 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   const { data: allowanceTypes } = api.allowance.allTypes.useQuery(undefined, {
     staleTime: 60000
   });
-
+  const { data: workspace } = api.workspace.current.useQuery(undefined, {
+    staleTime: 60000
+  });
   const { data: memberData } = api.member.all.useQuery(
     { filter: { ids: [props.currentMember.id] }, limit: 1, page: 1 },
     {
@@ -48,6 +54,63 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   const member = useMemo(() => {
     return memberData?.members[0] || null;
   }, [memberData?.members]);
+
+  const formatCarryForwardDeadline = (
+    allowance: RouterOutputs['member_allowance']['byMember'][0] | null,
+    fiscal_year_start_month: number
+  ) => {
+    if (!allowance) return '';
+
+    const fiscalYearRange = getFiscalYearStartAndEndDatesUTC(fiscal_year_start_month, allowance.year - 1);
+    fiscalYearRange.lastDayOfYear.setUTCHours(0, 0, 0, 0);
+    let carry_forward_deadline = fiscalYearRange.lastDayOfYear;
+
+    if (allowance.allowance_type.carry_forward_months_after_fiscal_year > 0) {
+      carry_forward_deadline = new Date(
+        Date.UTC(
+          fiscalYearRange.lastDayOfYear.getUTCFullYear(),
+          fiscalYearRange.lastDayOfYear.getUTCMonth(),
+          1,
+          0,
+          0,
+          0
+        )
+      );
+
+      carry_forward_deadline = add(carry_forward_deadline, {
+        months: allowance.allowance_type.carry_forward_months_after_fiscal_year
+      });
+      //last day of month
+      carry_forward_deadline.setUTCMonth(carry_forward_deadline.getUTCMonth() + 1, 0);
+    }
+
+    let textKey = 'carryForward_expired_multiple'; // Default key
+    let dateString = format(carry_forward_deadline, current_member?.date_format || 'dd.MM.yyyy'); // Adjust your date format accordingly
+    const unit = allowance.allowance_type.allowance_unit;
+    const unitText =
+      unit === 'days'
+        ? allowance.expiration === 1
+          ? t('units_days')
+          : t('units_days_plural')
+        : allowance.expiration === 1
+        ? t('units_hours')
+        : t('units_hours_plural');
+
+    // Adjust the key based on whether the deadline is in the future or past
+    if (carry_forward_deadline > new Date()) {
+      textKey =
+        allowance.expiration > 1 || allowance.expiration === 0
+          ? 'carryForward_willExpire_multiple'
+          : 'carryForward_willExpire_single';
+    } else {
+      textKey =
+        allowance.expiration > 1 || allowance.expiration === 0
+          ? 'carryForward_expired_multiple'
+          : 'carryForward_expired_single';
+    }
+
+    return t(textKey, { count: allowanceRounded(allowance, 'expiration', true), unit: unitText, date: dateString });
+  };
 
   const allowanceRounded = (
     allowance: RouterOutputs['member_allowance']['byMember'][0],
@@ -64,8 +127,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   };
   if (!member) return <></>;
   if (!allowanceTypes) return <></>;
+  if (!current_member) return <></>;
+
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+<div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Allowance')}</h2>
@@ -105,23 +170,23 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                   {filteredAllowance.length > 0 && (
                     <div
                       key={allowanceType.id}
-                      className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:border-gray-500"
+                      className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody dark:border-0"
                     >
-                      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
-                        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                      <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border dark:bg-teams_brand_tbody ">
+                      <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                           <tr>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th "
                             >
                               {t('Year')}
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th "
                             >
                               <p
-                                className="w-6 truncate md:w-16 dark:text-gray-200"
+                                className="w-6 truncate md:w-16 dark:text-teams_brand_th"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Brought_forward')}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -131,10 +196,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th "
                             >
                               <p
-                                className="w-6 truncate md:w-16 dark:text-gray-200"
+                                className="w-6 truncate md:w-16 dark:text-teams_brand_th"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Allowance')}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -144,10 +209,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th "
                             >
                               <p
-                                className="w-6 truncate md:w-16 dark:text-gray-200"
+                                className="w-6 truncate md:w-16 dark:text-teams_brand_th"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('compensatory_time_off')}
                                 data-tooltip-variant="light"
@@ -157,10 +222,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             </th>
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200"
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
                             >
                               <p
-                                className="w-6 truncate md:w-16 dark:text-gray-200"
+                                className="w-6 truncate md:w-16 dark:text-teams_brand_th"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Taken')}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -171,10 +236,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
 
                             <th
                               scope="col"
-                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-200 "
+                              className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-teams_brand_th "
                             >
                               <p
-                                className="w-6 truncate md:w-16 dark:text-gray-200"
+                                className="w-6 truncate md:w-16 dark:text-teams_brand_th"
                                 data-tooltip-id="allowance-tooltip"
                                 data-tooltip-content={t('Remaining')}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -186,10 +251,10 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                             <th scope="col" className="relative px-3 py-3 "></th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                           {filteredAllowance.map((allowance) =>
                             editMode?.id == allowance.id ? (
-                              <tr key={allowance.id} className='dark:bg-teams_brand_dark_100'>
+                              <tr key={allowance.id} >
                                 <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-200">
                                   {allowance.start.getUTCFullYear() != allowance.end.getUTCFullYear() && (
                                     <p className='dark:text-gray-200'>{allowance.start.getUTCFullYear() + '-' + allowance.end.getUTCFullYear()} </p>
@@ -215,9 +280,22 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 y.brought_forward = x;
                                                 y.remaining =
                                                   y.allowance + y.brought_forward + y.compensatory_time_off - y.taken;
+
+                                                const last_remaining =
+                                                  filteredAllowance.find(
+                                                    (x) =>
+                                                      x.year == y.year - 1 && x.allowance_type_id == y.allowance_type_id
+                                                  )?.remaining ?? 0;
+
+                                                let expiration = last_remaining - x;
+
+                                                if (expiration < 0) {
+                                                  expiration = 0;
+                                                }
+                                                y.expiration = expiration;
                                                 setEditMode(y);
                                               }}
-                                                className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full"
+                                                className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                             />
                                           )}
                                           {filteredAllowance[0] &&
@@ -233,7 +311,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 <InputPicker
                                                   unit={allowance.allowance_type.allowance_unit}
                                                   value={editMode.brought_forward}
-                                                  className="block w-full rounded-md border-0 py-1.5 pr-7 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6 dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                                                  className="block w-full rounded-md border-0 py-1.5 pr-7 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                                   onChange={(x) => {
                                                     const y = cloneDeep(editMode);
                                                     y.brought_forward = x;
@@ -242,6 +320,20 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                       y.brought_forward +
                                                       y.compensatory_time_off -
                                                       y.taken;
+
+                                                    const last_remaining =
+                                                      filteredAllowance.find(
+                                                        (x) =>
+                                                          x.year == y.year - 1 &&
+                                                          x.allowance_type_id == y.allowance_type_id
+                                                      )?.remaining ?? 0;
+
+                                                    let expiration = last_remaining - x;
+
+                                                    if (expiration < 0) {
+                                                      expiration = 0;
+                                                    }
+                                                    y.expiration = expiration;
                                                     setEditMode(y);
                                                   }}
                                                 />
@@ -296,7 +388,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 y.allowance + y.brought_forward + y.compensatory_time_off - y.taken;
                                               setEditMode(y);
                                             }}
-                                            className="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full"
+                                            className="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                           />
                                         </div>
                                       </div>
@@ -316,7 +408,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                               setEditMode(y);
                                             }}
                                             
-                                            className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full"
+                                            className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                           />
                                         </div>
                                       </div>
@@ -324,7 +416,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                         <label htmlFor="taken" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                                           {t('Taken')}
                                         </label>
-                                        <div className="relative mt-1 ">
+                                        <div className="relative mt-1  dark:text-gray-200 ">
                                           {allowanceRounded(allowance, 'taken', true)}
                                         </div>
                                       </div>
@@ -333,11 +425,21 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           {t('Remaining')}
                                         </label>
 
-                                        <div className="relative mt-1 ">
-                                        {allowanceRounded(allowance, 'remaining', true).toString() == 'NaN'
+                                        <div className="relative mt-1  dark:text-gray-200">
+                                          {allowanceRounded(allowance, 'remaining', true).toString() == 'NaN'
                                             ? '0'
                                             : allowanceRounded(allowance, 'remaining', true)}
                                         </div>
+                                      </div>
+                                      <div className="sm:col-span-5">
+                                        <label htmlFor="expired" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                                          {t('Expired')}
+                                        </label>
+
+                                        <div className="relative mt-1  dark:text-gray-200">{formatCarryForwardDeadline(
+                                            allowance,
+                                            workspace?.fiscal_year_start_month ?? 0
+                                          )}</div>
                                       </div>
                                     </div>
 
@@ -373,7 +475,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           );
                                           setEditMode(null);
                                         }}
-                                        className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
+                                       className="ml-5 inline-flex justify-center rounded-md border border-transparent bg-teams_brand_foreground_bg px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teams_brand_background_2 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
                                       >
                                         {loading && (
                                           <div className="-ml-1 mr-3">
@@ -475,7 +577,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
             utils.member.all.invalidate();
           }}
           type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+        className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>

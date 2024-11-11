@@ -7,7 +7,7 @@ import axios from 'axios';
 import { createName } from '~/utils/createName';
 import sharp from 'sharp';
 import { BlobServiceClient } from '@azure/storage-blob';
-import { createOrUpdateSendInBlueContact, sendMail } from '~/lib/sendInBlueContactApi';
+import { sendMail } from '~/lib/sendInBlueContactApi';
 import * as Sentry from '@sentry/nextjs';
 import qs from 'qs';
 const blobServiceClient = new BlobServiceClient(process.env.AZURE_BLOB_URL + '');
@@ -28,7 +28,6 @@ export const updateMemberProfile = inngest.createFunction(
           microsoft_user_id: true,
           firstName: true,
           lastName: true,
-          sendinblue_contact_id: true,
           email: true,
           displayName: true,
           language: true,
@@ -45,6 +44,9 @@ export const updateMemberProfile = inngest.createFunction(
         if (token) {
           await checkAndUpdateUserImage(token, existingMember);
           await checkAndUpdateUserMetadata(token, event.data.microsoft_user_id, existingMember);
+        }
+        if (!token) {
+          return { success: true, message: 'No token' };
         }
       }
     });
@@ -176,7 +178,6 @@ async function checkAndUpdateUserMetadata(
     firstName: string | null;
     lastName: string | null;
     displayName: string | null;
-    sendinblue_contact_id: string | null;
     language: string | null;
     is_admin: boolean;
     email_notifications_updates: boolean | null;
@@ -330,7 +331,6 @@ async function updateUserIfNessesery(
     firstName: string | null;
     lastName: string | null;
     displayName: string | null;
-    sendinblue_contact_id: string | null;
     language: string | null;
     mobile_phone: string | null;
     business_phone: string | null;
@@ -349,23 +349,8 @@ async function updateUserIfNessesery(
       m.mobile_phone !== meData.mobilePhone ||
       m.business_phone !== (meData.businessPhones?.length > 0 ? meData.businessPhones[0] : m.business_phone) ||
       m.email !== newEmail.toLowerCase() ||
-      m.name !== newName ||
-      m.sendinblue_contact_id == null)
+      m.name !== newName)
   ) {
-    await createOrUpdateSendInBlueContact(
-      {
-        id: m.id,
-        email: newEmail,
-        firstName: meData.givenName,
-        lastName: meData.surname,
-        language: m.language ?? 'en',
-        email_notifications_updates: m.email_notifications_updates,
-        is_admin: m.is_admin,
-        sendinblue_contact_id: m.sendinblue_contact_id,
-        name: newName
-      },
-      prisma
-    );
     await prisma.member.update({
       where: { id: m.id },
       select: { id: true },
@@ -378,6 +363,11 @@ async function updateUserIfNessesery(
         mobile_phone: meData.mobilePhone,
         business_phone: meData.businessPhones?.length > 0 ? meData.businessPhones[0] : m.business_phone
       }
+    });
+
+    inngest.send({
+      name: 'brevo/create_or_update_contact',
+      data: { member_id: m.id }
     });
   }
 }

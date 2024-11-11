@@ -810,7 +810,7 @@ const OutlookOof: NextPage = () => {
                           type="text"
                           value={current_member?.email + ''}
                           readOnly={true}
-                          className="sm:mb-0 mb-4"
+                          className="sm:mb-0 mb-4 rounded dark:text-gray-200 dark:bg-teams_brand_dark_100"
                         ></input>
                         <button
                           onClick={async () => {
@@ -889,7 +889,7 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedExternal(!checkedExternal);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100  dark:text-gray-200"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100  dark:text-gray-200  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -914,7 +914,7 @@ const OutlookOof: NextPage = () => {
                             onChange={() => {
                               setCheckedOnlyContacts(!checkedOnlyContacts);
                             }}
-                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                           />
                         </div>
                         <div className="ml-3 text-sm">
@@ -1095,7 +1095,7 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedAllowToEdit(!checkedAllowToEdit);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -1108,7 +1108,7 @@ const OutlookOof: NextPage = () => {
               </div>
             </>
           )}
-          <div className="mt-4 flex justify-end border-t p-4 sm:px-6">
+          <div className="mt-4 flex justify-end border-t p-4 sm:px-6 dark:border-t-gray-500">
             {countStep >= 1 && countStep !== steps.length - 1 && (
               <button
                 onClick={() => {

@@ -13,6 +13,9 @@ export const middleware = async (req: NextRequest) => {
   const url = originalUrl ? new URL(originalUrl) : new URL(req.url);
   const host = process.env.HOST || req.headers.get('host') || 'app.absentify.com';
 
+  // Check if host is localhost
+  const protocol = host.includes('localhost') ? 'http' : 'https';
+
   if (user && !user.language) {
     user.language = 'en';
     await session.save();
@@ -20,20 +23,20 @@ export const middleware = async (req: NextRequest) => {
 
   if (user && user.language !== 'en' && req.nextUrl.locale === 'en') {
     return NextResponse.redirect(
-      new URL(`/${user.language}${req.nextUrl.pathname}${req.nextUrl.search}`, `https://${host}`)
+      new URL(`/${user.language}${req.nextUrl.pathname}${req.nextUrl.search}`, `${protocol}://${host}`)
     );
   }
 
   if (!user?.microsoft_user_id && req.nextUrl.pathname !== '/login' && req.nextUrl.pathname !== '/signup') {
     if (req.nextUrl.pathname === '/') {
       const queryString = url.search;
-      return NextResponse.redirect(new URL('/login' + queryString, `https://${host}`));
+      return NextResponse.redirect(new URL('/login' + queryString, `${protocol}://${host}`));
     }
     return NextResponse.redirect(
       new URL(
         '/login?redirect_after_login=' +
-          encodeURIComponent(`https://${host}${req.nextUrl.pathname}${req.nextUrl.search}`),
-        `https://${host}`
+          encodeURIComponent(`${protocol}://${host}${req.nextUrl.pathname}${req.nextUrl.search}`),
+        `${protocol}://${host}`
       )
     );
   }

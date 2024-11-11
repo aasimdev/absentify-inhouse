@@ -17,7 +17,7 @@ import { ensureAvailabilityOfGetT } from '~/lib/monkey-patches';
 import { createPicture, defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { Translate } from 'next-translate';
 import * as Sentry from '@sentry/nextjs';
-import { sendAdaptiveCard, updareAdaptiveCard } from '~/utils/microsoft_teams/sendAdaptiveCard';
+import { sendAdaptiveCard, updateAdaptiveCard } from '~/utils/microsoft_teams/sendAdaptiveCard';
 import { slugify } from 'inngest';
 import { mainLink } from '~/helper/mainLink';
 import { format } from 'date-fns';
@@ -855,7 +855,7 @@ export const notificationRequestApproved = inngest.createFunction(
         }
 
         if (request.requester_adaptive_card_id) {
-          await updareAdaptiveCard(
+          await updateAdaptiveCard(
             prisma,
             {
               h1:
@@ -913,78 +913,76 @@ export const notificationRequestApproved = inngest.createFunction(
                           ? t('for') + ' ' + request.requester_member.name
                           : ''
                     }),
-              thirdLine:
-                tapprovers.length > 1
-                  ? generateRequestStatusHeader(request.requester_member.approval_process, tapprovers, t, 'APPROVED')
-                  : request.start.getDate() === request.end.getDate() || request.details.workday_absence_duration === 1
-                  ? t('third_line_accepted', {
-                      date: fullDate,
-                      number_of_days: formatDuration(
-                        request.details.workday_absence_duration,
-                        receiver.language,
-                        request.leave_unit,
-                        true,
-                        t
-                      ),
-                      additional_html:
-                        request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
-                          ? t('deducted_from', {
-                              allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
-                              value: formatDuration(
-                                request.details.workday_absence_duration,
-                                receiver.language,
-                                request.leave_unit,
-                                true,
-                                t
-                              )
-                            })
-                          : ''
-                    })
-                  : t('third_line_accepted_multiple_days', {
-                      date: fullDate,
-                      number_of_days: formatDuration(
-                        request.details.workday_absence_duration,
-                        receiver.language,
-                        request.leave_unit,
-                        true,
-                        t
-                      ),
-                      additional_html:
-                        request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
-                          ? t('deducted_from', {
-                              allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
-                              value: formatDuration(
-                                request.details.workday_absence_duration,
-                                receiver.language,
-                                request.leave_unit,
-                                true,
-                                t
-                              )
-                            })
-                          : ''
-                    }),
-              fourthLine: '',
-              fifthLine:
-                tapprovers.length > 1
-                  ? request.createdBy_member_id !== request.requester_member.id &&
-                    request.createdBy_member_id === receiver.id
-                    ? t('forth_line_accepted_creator_not_requester', { date: fullDate })
-                    : t('forth_line_accepted_multiple_approvers', {
-                        date: fullDate,
-                        additional_html_div:
-                          request.details.workday_absence_duration > 0
-                            ? t('forth_additional_html_2')
-                            : t('forth_additional_html')
-                      })
-                  : request.createdBy_member_id !== request.requester_member.id &&
-                    request.createdBy_member_id === receiver.id
-                  ? t('forth_line_creator_not_requester')
-                  : t('forth_line_accepted', {
-                      additional_html_div:
-                        request.details.workday_absence_duration > 0
-                          ? t('forth_additional_html_2')
-                          : t('forth_additional_html')
-                    }),
+              thirdLine:  tapprovers.length > 1
+              ? request.createdBy_member_id !== request.requester_member.id &&
+                request.createdBy_member_id === receiver.id
+                ? t('forth_line_accepted_creator_not_requester', { date: fullDate })
+                : t('forth_line_accepted_multiple_approvers', {
+                    date: fullDate,
+                    additional_html_div:
+                      request.details.workday_absence_duration > 0
+                        ? t('forth_additional_html_2')
+                        : t('forth_additional_html')
+                  })
+              : request.createdBy_member_id !== request.requester_member.id &&
+                request.createdBy_member_id === receiver.id
+              ? t('forth_line_creator_not_requester')
+              : t('forth_line_accepted', {
+                  additional_html_div:
+                    request.details.workday_absence_duration > 0
+                      ? t('forth_additional_html_2')
+                      : t('forth_additional_html')
+                }),
+              fourthLine:  tapprovers.length > 1
+              ? generateRequestStatusHeader(request.requester_member.approval_process, tapprovers, t, 'APPROVED')
+              : request.start.getDate() === request.end.getDate() || request.details.workday_absence_duration === 1
+              ? t('third_line_accepted', {
+                  date: fullDate,
+                  number_of_days: formatDuration(
+                    request.details.workday_absence_duration,
+                    receiver.language,
+                    request.leave_unit,
+                    true,
+                    t
+                  ),
+                  additional_html:
+                    request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
+                      ? t('deducted_from', {
+                          allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
+                          value: formatDuration(
+                            request.details.workday_absence_duration,
+                            receiver.language,
+                            request.leave_unit,
+                            true,
+                            t
+                          )
+                        })
+                      : ''
+                })
+              : t('third_line_accepted_multiple_days', {
+                  date: fullDate,
+                  number_of_days: formatDuration(
+                    request.details.workday_absence_duration,
+                    receiver.language,
+                    request.leave_unit,
+                    true,
+                    t
+                  ),
+                  additional_html:
+                    request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
+                      ? t('deducted_from', {
+                          allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
+                          value: formatDuration(
+                            request.details.workday_absence_duration,
+                            receiver.language,
+                            request.leave_unit,
+                            true,
+                            t
+                          )
+                        })
+                      : ''
+                }),  
+              fifthLine:'',
               buttonText: t('view-request'),
               buttonLink: createTeamsDeepLinkIntoRequestDetail({
                 member_id: request.requester_member.id,
@@ -998,6 +996,7 @@ export const notificationRequestApproved = inngest.createFunction(
             request.requester_adaptive_card_id
           );
         }
+        if (!request.requester_adaptive_card_id) {
 
         const activityId = await sendAdaptiveCard(
           prisma,
@@ -1055,77 +1054,76 @@ export const notificationRequestApproved = inngest.createFunction(
                         ? t('for') + ' ' + request.requester_member.name
                         : ''
                   }),
-            thirdLine:
-              tapprovers.length > 1
-                ? generateRequestStatusHeader(request.requester_member.approval_process, tapprovers, t, 'APPROVED')
-                : request.start.getDate() === request.end.getDate() || request.details.workday_absence_duration === 1
-                ? t('third_line_accepted', {
-                    date: fullDate,
-                    number_of_days: formatDuration(
-                      request.details.workday_absence_duration,
-                      receiver.language,
-                      request.leave_unit,
-                      true,
-                      t
-                    ),
-                    additional_html:
-                      request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
-                        ? t('deducted_from', {
-                            allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
-                            value: formatDuration(
-                              request.details.workday_absence_duration,
-                              receiver.language,
-                              request.leave_unit,
-                              true,
-                              t
-                            )
-                          })
-                        : ''
-                  })
-                : t('third_line_accepted_multiple_days', {
-                    date: fullDate,
-                    number_of_days: formatDuration(
-                      request.details.workday_absence_duration,
-                      receiver.language,
-                      request.leave_unit,
-                      true,
-                      t
-                    ),
-                    additional_html:
-                      request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
-                        ? t('deducted_from', {
-                            allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
-                            value: formatDuration(
-                              request.details.workday_absence_duration,
-                              receiver.language,
-                              request.leave_unit,
-                              true,
-                              t
-                            )
-                          })
-                        : ''
-                  }),
-            fourthLine:
-              tapprovers.length > 1
-                ? request.createdBy_member_id !== request.requester_member.id &&
-                  request.createdBy_member_id === receiver.id
-                  ? t('forth_line_accepted_creator_not_requester')
-                  : t('forth_line_accepted_multiple_approvers', {
-                      date: fullDate,
-                      additional_html_div:
-                        request.details.workday_absence_duration > 0
-                          ? t('forth_additional_html_2')
-                          : t('forth_additional_html')
-                    })
-                : request.createdBy_member_id !== request.requester_member.id &&
-                  request.createdBy_member_id === receiver.id
-                ? t('forth_line_creator_not_requester')
-                : t('forth_line_accepted', {
-                    additional_html_div:
-                      request.details.workday_absence_duration > 0
-                        ? t('forth_additional_html_2')
-                        : t('forth_additional_html')
-                  }),
+            thirdLine: tapprovers.length > 1
+            ? request.createdBy_member_id !== request.requester_member.id &&
+              request.createdBy_member_id === receiver.id
+              ? t('forth_line_accepted_creator_not_requester', { date: fullDate })
+              : t('forth_line_accepted_multiple_approvers', {
+                  date: fullDate,
+                  additional_html_div:
+                    request.details.workday_absence_duration > 0
+                      ? t('forth_additional_html_2')
+                      : t('forth_additional_html')
+                })
+            : request.createdBy_member_id !== request.requester_member.id &&
+              request.createdBy_member_id === receiver.id
+            ? t('forth_line_creator_not_requester')
+            : t('forth_line_accepted', {
+                additional_html_div:
+                  request.details.workday_absence_duration > 0
+                    ? t('forth_additional_html_2')
+                    : t('forth_additional_html')
+              }),
+            fourthLine: tapprovers.length > 1
+            ? generateRequestStatusHeader(request.requester_member.approval_process, tapprovers, t, 'APPROVED')
+            : request.start.getDate() === request.end.getDate() || request.details.workday_absence_duration === 1
+            ? t('third_line_accepted', {
+                date: fullDate,
+                number_of_days: formatDuration(
+                  request.details.workday_absence_duration,
+                  receiver.language,
+                  request.leave_unit,
+                  true,
+                  t
+                ),
+                additional_html:
+                  request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
+                    ? t('deducted_from', {
+                        allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
+                        value: formatDuration(
+                          request.details.workday_absence_duration,
+                          receiver.language,
+                          request.leave_unit,
+                          true,
+                          t
+                        )
+                      })
+                    : ''
+              })
+            : t('third_line_accepted_multiple_days', {
+                date: fullDate,
+                number_of_days: formatDuration(
+                  request.details.workday_absence_duration,
+                  receiver.language,
+                  request.leave_unit,
+                  true,
+                  t
+                ),
+                additional_html:
+                  request.details.workday_absence_duration > 0 && request.details.leave_type.allowance_type
+                    ? t('deducted_from', {
+                        allowance_name: request.details.leave_type.allowance_type?.name ?? t('allowance'),
+                        value: formatDuration(
+                          request.details.workday_absence_duration,
+                          receiver.language,
+                          request.leave_unit,
+                          true,
+                          t
+                        )
+                      })
+                    : ''
+              }),
+             
             fifthLine: '',
             buttonText: t('view-request'),
             buttonLink: createTeamsDeepLinkIntoRequestDetail({
@@ -1143,6 +1141,7 @@ export const notificationRequestApproved = inngest.createFunction(
             where: { id: data.request_id },
             data: { requester_adaptive_card_id: activityId }
           });
+        }
       }
     });
   }
@@ -1712,7 +1711,7 @@ export const notificationRequestDeclined = inngest.createFunction(
           });
         }
         if (request.requester_adaptive_card_id) {
-          await updareAdaptiveCard(
+          await updateAdaptiveCard(
             prisma,
             {
               pageTitle: t('your-leave_type_name-request-was-declined', {
@@ -2191,7 +2190,7 @@ export const notificationRequestCancledBySomeone = inngest.createFunction(
       }
 
       if (request.requester_adaptive_card_id) {
-        await updareAdaptiveCard(
+        await updateAdaptiveCard(
           prisma,
           {
             pageTitle: t('your-leave_type_name-request-was-canceled', {
@@ -3058,7 +3057,7 @@ export const notificationRequestUpdateRequester = inngest.createFunction(
       }
 
       if (request.requester_adaptive_card_id) {
-        await updareAdaptiveCard(
+        await updateAdaptiveCard(
           prisma,
           {
             pageTitle: t('there-is-an-update-to-your-out-of-office-request'),

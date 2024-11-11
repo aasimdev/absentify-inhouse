@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Будущие изменения в записях о припусках за предыдущий год больше не будут влиять на перенос. То есть если рассчитанный перенос увеличится из-за последующих корректировок припусков, то установленный вручную перенос останется незатронутым.",
   "ManualCarryoverDialog_Confirmation": "Чтобы продолжить, подтверди свое понимание последствий ручной настройки, нажав `Confirm`.",
   "Default": "По умолчанию",
-  "Visible": "Видимый"
+  "Visible": "Видимый",
+  "carryForward_expired_single": "{{count}} {{unit}} Истек срок действия на {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} Истек срок действия на {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} Срок действия истекает на {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} Срок действия истекает на {{date}}",
+  "units_days": "День",
+  "units_days_plural": "дней",
+  "units_hours": "час",
+  "units_hours_plural": "Часы",
+  "Expire": "Expire"
 }

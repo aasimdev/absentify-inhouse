@@ -97,7 +97,8 @@ const BaseLayout = (props: { children: any }) => {
     router.route == '/teams/auth-start' ||
     router.route == '/teams/auth-end' ||
     router.route == '/microsoft/ms-teams/tab/config' ||
-    router.route == '/microsoft/ms-teams/bot/taskmodule'
+    router.route == '/microsoft/ms-teams/bot/taskmodule' ||
+    router.route == '/create-account'
   ) {
     return props.children;
   }
@@ -136,7 +137,7 @@ const BaseLayout = (props: { children: any }) => {
               <nav
                 className={classNames(
                   open ? 'bg-teams_brand_900' : 'bg-transparent',
-                  'relative z-20 border-b border-teams_brand_500 border-opacity-25 lg:border-none lg:bg-transparent'
+                  'relative z-30 border-b border-teams_brand_500 border-opacity-25 lg:border-none lg:bg-transparent '
                 )}
               >
                 <div
@@ -489,7 +490,7 @@ const BaseLayout = (props: { children: any }) => {
       </Disclosure>
       <main className="relative -mt-32 mb-5">
         <div className={`mx-auto max-w-screen-2xl  px-2 pb-6 sm:px-6 lg:px-32 lg:pb-16 xl:px-28 1xl:px-2`}>
-          <div className="overflow-auto rounded-lg bg-white dark:bg-teams_dark_mode shadow  dark:shadow-gray-400">
+          <div className="overflow-auto rounded-lg bg-white dark:bg-teams_dark_mode shadow  dark:shadow-none dark:border dark:border-teams_brand_tbody_border">
             {!current_member && router.route != '/' && (
               <div className="mx-auto w-full rounded-md border p-4">
                 <div className="flex animate-pulse space-x-4">

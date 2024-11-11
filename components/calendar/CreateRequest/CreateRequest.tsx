@@ -104,7 +104,7 @@ export default function CreateRequest(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white dark:bg-teams_brand_dark_100 rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white dark:bg-teams_brand_tbody rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
@@ -688,13 +688,13 @@ const Form: React.FC<{
     if (!duration) return;
 
     if (isDayUnit(selectedLeaveType?.leave_unit)) {
-      setDurationSum(duration.total.workday_duration_in_days);
+      setDurationSum(duration.duration.total.workday_duration_in_days);
     } else {
-      setDurationSum(duration.total.workday_duration_in_minutes);
-      setOutsideOfSchedule(duration.total.outside_of_schedule);
+      setDurationSum(duration.duration.total.workday_duration_in_minutes);
+      setOutsideOfSchedule(duration.duration.total.outside_of_schedule);
     }
 
-    if (duration.total.allowanceEnough == false) {
+    if (!duration.isAllowanceSufficient) {
       setError('end', {
         type: 'validate',
         message: t('The_contingent_is_not_enough_for_the_request')
@@ -842,7 +842,7 @@ const Form: React.FC<{
   return (
     <div>
       {!startBulkRequest && (
-        <form className="bg-white dark:bg-teams_brand_dark_100 p-4 rounded">
+        <form className="bg-white dark:bg-teams_brand_tbody p-4 rounded">
           <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
             {props.showUserSelect && (
               <div className="sm:col-span-3">
@@ -883,7 +883,8 @@ const Form: React.FC<{
                               right: 0
                             })
                           }}
-                          className="w-full"
+                          className="w-full my-react-select-container dark:bg-teams_brand_dark_700 dark:text-teams_dark_mode_core"
+                        classNamePrefix="my-react-select"
                           formatOptionLabel={formatOptionLabel}
                           onInputChange={handleInputChange}
                           isLoading={isLoading || requestMemberIsLoading}
@@ -1006,8 +1007,8 @@ const Form: React.FC<{
                       maxDate={minDateMaxDateStart?.max}
                       className={
                         formState.errors.start
-                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
-                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
+                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_border dark:text-white'
+                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_border dark:text-white'
                       }
                       selected={field.value}
                       wrapperClassName="w-full"
@@ -1113,8 +1114,8 @@ const Form: React.FC<{
                       dateFormat={current_member?.date_format}
                       className={
                         formState.errors.end
-                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
-                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
+                          ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder:text-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_border dark:text-white'
+                          : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_border dark:text-white'
                       }
                       selected={field.value}
                       wrapperClassName="w-full"
@@ -1216,7 +1217,7 @@ const Form: React.FC<{
                   {...register('reason', { required: false })}
                   type="text"
                   placeholder={selectedLeaveType?.reason_hint_text ? selectedLeaveType?.reason_hint_text : ''}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white"
+                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm bg-white dark:bg-transparent dark:border-teams_brand_border dark:text-white"
                 />
               </div>
             </div>
@@ -1224,7 +1225,7 @@ const Form: React.FC<{
           {!props.showDepartmentSelect && (
             <div>
               {selectedLeaveType?.take_from_allowance && isDayUnit(selectedLeaveType.leave_unit) && (
-                <div className="border-y border-gray-200 mt-4 dark:border-teams_brand_dark_400">
+                <div className="border-y border-gray-200 mt-4 dark:border-teams_brand_border">
                   <div className="flex justify-center px-4 pt-4 sm:px-6 ">
                     <span className="mr-2 mt-2 dark:text-white">{t('Takes')}</span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-300">
@@ -1245,7 +1246,7 @@ const Form: React.FC<{
                 </div>
               )}
               {selectedLeaveType?.take_from_allowance && isHourUnit(selectedLeaveType.leave_unit) && (
-                <div className="border-y border-gray-200 mt-4">
+                <div className="border-y border-gray-200 mt-4 dark:border-teams_brand_border">
                   <div className=" flex justify-center px-4 pt-4 sm:px-6 ">
                     <span className="mr-2 mt-2">{t('Takes')}</span>
                     <span className="flex h-10 w-20 items-center justify-center rounded-full bg-blue-300">
@@ -1267,7 +1268,7 @@ const Form: React.FC<{
                 </div>
               )}
               {!selectedLeaveType?.take_from_allowance && (
-                <div className="border-y border-gray-200 mt-4">
+                <div className="border-y border-gray-200 mt-4 dark:border-teams_brand_border">
                   <div className=" flex  justify-center px-4 pt-4 sm:px-6">
                     <span className=" mt-2 dark:text-white">{t('No_deduction_from_allowance')}</span>
                   </div>
@@ -1287,7 +1288,7 @@ const Form: React.FC<{
                 loading
                   ? ' bg-gray-300 text-gray-500 '
                   : ' border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 '
-              } inline-flex justify-center rounded-md px-4 py-2 text-sm  font-medium  shadow-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white`}
+              } inline-flex justify-center rounded-md px-4 py-2 text-sm  font-medium  shadow-sm dark:bg-transparent dark:border dark:border-gray-200 dark:text-white`}
             >
               {t('Cancel')}
             </button>
@@ -1305,7 +1306,7 @@ const Form: React.FC<{
               }}
               className={classNames(
                 selectedLeaveType?.reason_mandatory && watch('reason')?.trim().length === 0
-                  ? 'bg-gray-300 text-black hover:bg-gray-400'
+                  ? 'bg-gray-300 text-black hover:bg-gray-400 dark:bg-teams_brand_dark_300 dark:text-white'
                   : 'bg-green-600 hover:bg-teams_brand_background_2 text-white dark:bg-teams_brand_dark_300',
                 'ml-5 inline-flex justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2'
               )}

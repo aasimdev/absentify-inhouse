@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
-import { createTRPCRouter, registerProcedure, getFingerprint } from '../trpc';
+import { createTRPCRouter, registerProcedure, getFingerprint, publicProcedure } from '../trpc';
 import { ensureAvailabilityOfGetT } from 'lib/monkey-patches';
 import { AllowanceUnit, DisplayNameFormat, LeaveUnit, OutlookShowAs, Prisma, Status, TimeFormat } from '@prisma/client';
-import { createOrUpdateSendInBlueContact, sendUniversalTransactionalMail } from 'lib/sendInBlueContactApi';
+import { sendUniversalTransactionalMail } from 'lib/sendInBlueContactApi';
 import { countries } from 'lib/countries';
 import { createPicture } from './member';
 import { addDays, addYears } from 'date-fns';
@@ -13,7 +13,181 @@ import * as Sentry from '@sentry/nextjs';
 import { inngest } from '~/inngest/inngest_client';
 import { updateSmiirl } from '~/helper/smiirl';
 import { createPublicHolidayForCountryCode } from './public_holiday';
+import Redis from 'ioredis';
+const redis = new Redis(process.env.REDIS_URL + '');
+export interface GeoLocationData {
+  ip: string;
+  continent_code: string;
+  continent_name: string;
+  country_code2: string;
+  country_code3: string;
+  country_name: string;
+  country_name_official: string;
+  country_capital: string;
+  state_prov: string;
+  state_code: string;
+  district: string;
+  city: string;
+  zipcode: string;
+  latitude: string;
+  longitude: string;
+  is_eu: boolean;
+  calling_code: string;
+  country_tld: string;
+  languages: string;
+  country_flag: string;
+  geoname_id: string;
+  isp: string;
+  connection_type: string;
+  organization: string;
+  country_emoji: string;
+  asn: string;
+  currency: {
+    code: string;
+    name: string;
+    symbol: string;
+  };
+  time_zone: {
+    name: string;
+    offset: number;
+    offset_with_dst: number;
+    current_time: string;
+    current_time_unix: number;
+    is_dst: boolean;
+    dst_savings: number;
+    dst_exists: boolean;
+    dst_start: {
+      utc_time: string;
+      duration: string;
+      gap: boolean;
+      dateTimeAfter: string;
+      dateTimeBefore: string;
+      overlap: boolean;
+    };
+    dst_end: {
+      utc_time: string;
+      duration: string;
+      gap: boolean;
+      dateTimeAfter: string;
+      dateTimeBefore: string;
+      overlap: boolean;
+    };
+  };
+}
+
 export const registerRouter = createTRPCRouter({
+  create_account_step_1: publicProcedure
+    .input(
+      z.object({
+        email: z.string(),
+        referrer: z.string().optional(), // Referrer-Link
+        utmSource: z.string().optional(), // UTM-Quelle
+        utmMedium: z.string().optional(), // UTM-Medium
+        utmCampaign: z.string().optional(), // UTM-Kampagne
+        utmContent: z.string().optional(), // UTM-Content
+        deviceType: z.string().optional(), // Gerätetyp (Mobile, Desktop, Tablet)
+        browser: z.string().optional(), // Browser-Informationen
+        os: z.string().optional(), // Betriebssystem
+        pageSource: z.string().optional(), // Ursprüngliche Seite
+        microsoft_login_state: z.string().optional(), // Microsoft-Login-State
+        gclid: z.string().optional() // GCLID
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const member = await ctx.prisma.member.findFirst({
+        where: { email: input.email },
+        select: { id: true }
+      });
+      if (member) {
+        return { redirect: '/login' };
+      }
+
+      let deal = await ctx.prisma.deal.findFirst({
+        where: { email: input.email },
+        select: { id: true }
+      });
+
+      let ip = getFingerprint(ctx.req);
+      let ipData: GeoLocationData | null = null;
+      let app = 'Unknown';
+      let device = 'Unknown';
+      let userAgent = 'Unknown';
+      if (ctx.req) {
+        if (ip == '127.0.0.1') ip = '2a03:80:140:e401:b9d4:af4b:216f:60ee';
+        if (ip == '::1') ip = '2a03:80:140:e401:b9d4:af4b:216f:60ee';
+
+        try {
+          const i = await axios.get(
+            `https://api.ipgeolocation.io/ipgeo?apiKey=407d89a261f042fb9e5f87b58220a212&ip=${ip}`
+          );
+          if (i.status == 200) {
+            ipData = { ...i.data };
+          }
+        } catch (_e: any) {
+          console.log('error:', _e.message);
+          Sentry.captureException(_e);
+        }
+
+        // Host, User-Agent und App-Informationen ermitteln
+        const host = ctx.req.headers.host || 'unknown';
+        userAgent = ctx.req.headers['user-agent'] || 'unknown';
+        app = host === 'teams.absentify.com' ? 'Teams' : 'Web';
+        device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
+          ? 'Mobile'
+          : 'Browser';
+      }
+      let pageviews: string[] = [];
+      const pageview_user_id = ctx.req?.cookies.pageview_user_id;
+      console.log('pageview_user_id', pageview_user_id);
+      if (pageview_user_id) {
+        try {
+          // Seitenaufrufe für die gegebene userId als Array abrufen
+          const redisKey = `pageviews:${pageview_user_id}`;
+          pageviews = await redis.lrange(redisKey, 0, -1); // Alle Einträge abrufen
+        } catch (error) {
+          console.error('Error fetching pageviews:', error);
+        }
+      }
+
+      if (!deal) {
+        deal = await ctx.prisma.deal.create({
+          data: {
+            email: input.email,
+            referrer: input.referrer || null,
+            utmSource: input.utmSource || null,
+            utmMedium: input.utmMedium || null,
+            utmCampaign: input.utmCampaign || null,
+            utmContent: input.utmContent || null,
+            deviceType: input.deviceType || device,
+            browser: input.browser || userAgent,
+            os: input.os || null,
+            pageSource: input.pageSource || null,
+            visitedPages: JSON.stringify(pageviews),
+            ip: ip, // Erfassung der IP-Adresse
+            country: ipData?.country_name || null, // Erfassung des Landes
+            city: ipData?.city || null, // Erfassung der Stadt
+            microsoft_login_state: input.microsoft_login_state || null,
+            gclid: input.gclid || null
+          },
+          select: { id: true }
+        });
+
+        inngest.send({
+          name: 'brevo/create_contact_if_not_exists',
+          data: { email: input.email, language: ipData ? ipData.languages : 'en' }
+        });
+      } else {
+        await ctx.prisma.deal.update({
+          where: { id: deal.id },
+          data: { microsoft_login_state: input.microsoft_login_state || null }
+        });
+      }
+
+      if (deal) {
+        return { redirect: 'next_step' };
+      }
+      return { redirect: '/login' };
+    }),
   findWorkspaceByMicrosoftTenantId: registerProcedure.query(async ({ ctx }) => {
     if (!ctx.current_member?.microsoft_tenantId) return null;
     const currentMember = await ctx.prisma.member.findFirst({
@@ -118,7 +292,7 @@ export const registerRouter = createTRPCRouter({
     let ip = getFingerprint(ctx.req);
     if (ip == '127.0.0.1') ip = '2a03:80:140:e401:b9d4:af4b:216f:60ee';
     if (ip == '::1') ip = '2a03:80:140:e401:b9d4:af4b:216f:60ee';
-    let ipData = null;
+    let ipData: GeoLocationData | null = null;
     try {
       const i = await axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=407d89a261f042fb9e5f87b58220a212&ip=${ip}`);
       if (i.status == 200) {
@@ -179,7 +353,6 @@ export const registerRouter = createTRPCRouter({
         },
         select: { id: true, fiscal_year_start_month: true }
       });
-
       const allowanceType = await ctx.prisma.allowanceType.create({
         data: {
           workspace_id: workspace.id,
@@ -376,7 +549,6 @@ export const registerRouter = createTRPCRouter({
           },
           select: {
             id: true,
-            sendinblue_contact_id: true,
             language: true,
             email_notifications_updates: true,
             firstName: true,
@@ -386,8 +558,6 @@ export const registerRouter = createTRPCRouter({
         });
 
         await updateSmiirl(ctx.prisma);
-
-        await createOrUpdateSendInBlueContact(member, ctx.prisma);
 
         if (new Date(Date.UTC(new Date().getFullYear(), workspace.fiscal_year_start_month, 1)) > new Date()) {
           await ctx.prisma.memberAllowance.create({
@@ -483,6 +653,18 @@ export const registerRouter = createTRPCRouter({
           data: {
             member_id: member.id
           }
+        });
+        await inngest.send({
+          // The event name
+          name: 'brevo/create_company',
+          // The event's data
+          data: {
+            workspace_id: workspace.id
+          }
+        });
+        await inngest.send({
+          name: 'brevo/create_or_update_contact',
+          data: { member_id: member.id }
         });
       } catch (e: any) {
         await ctx.prisma.workspace.delete({ where: { id: workspace.id } });

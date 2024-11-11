@@ -3,6 +3,7 @@ import { SubscriptionProvider } from '@prisma/client';
 import { createVerify } from 'crypto';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { serialize } from 'php-serialize';
+import { inngest } from '~/inngest/inngest_client';
 
 import { prisma } from '~/server/db';
 
@@ -90,6 +91,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       where: { id: passthrough.workspace_id },
       data: { old_pricing: true },
       select: { id: true }
+    });
+    await inngest.send({
+      name: 'brevo/create_or_update_all_workspace_contacts',
+      data: { workspace_id: passthrough.workspace_id }
     });
   }
   res.status(200).json({ success: true });

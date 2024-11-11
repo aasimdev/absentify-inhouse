@@ -1,5 +1,13 @@
 {
   "no_credit_card_slogan": "No se requiere tarjeta de crédito - Date de baja en cualquier momento",
   "Sign_in_to_your_account": "Accede a tu cuenta",
-  "login": "Continúa con Microsoft - ¡es gratis!"
+  "login": "Continúa con Microsoft - ¡es gratis!",
+  "Register_for_free": "Regístrate gratis",
+  "No_credit_card_required": "No necesitas tarjeta de crédito - Disfruta de acceso ilimitado con nuestro plan gratuito. Puedes ampliarlo o cancelarlo en cualquier momento.",
+  "Email_address": "Dirección de correo electrónico",
+  "Microsoft_email_example": "Tu correo electrónico de trabajo de Microsoft (por ejemplo, user@company.com)",
+  "Agree_to_policy": "Al registrarme, acepto la <0>Política de privacidad</0> y <1>las Condiciones del servicio</1>.",
+  "Already_have_account": "¿Ya tienes una cuenta?",
+  "Sign_in": "Inicia sesión",
+  "Continue": "Continúa en"
 }

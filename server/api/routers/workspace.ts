@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { TRPCError } from '@trpc/server';
 import { Display, DisplayNameFormat, MicrosoftAppStatus, Prisma, TimeFormat } from '@prisma/client';
 import { protectedProcedure, createTRPCRouter } from '../trpc';
-import { deleteSendInBlueContact, sendMail } from 'lib/sendInBlueContactApi';
+import { sendMail } from 'lib/sendInBlueContactApi';
 import axios from 'axios';
 import { paddle_config } from 'helper/paddle_config';
 import {
@@ -17,11 +17,9 @@ import { BlobServiceClient } from '@azure/storage-blob';
 import * as Sentry from '@sentry/nextjs';
 import getFileNames from '~/lib/getFileNames';
 import { inngest } from '~/inngest/inngest_client';
-import Redis from 'ioredis';
 import { PaddleService } from '~/utils/paddleV2Service';
 import { defaultAllwoanceTypeSelect } from './allowance';
 import { updateSmiirl } from '~/helper/smiirl';
-const redis = new Redis(process.env.REDIS_URL + '');
 
 type Group = {
   id: string;
@@ -266,14 +264,11 @@ export const workspaceRouter = createTRPCRouter({
             clientState: 'SecretClientState'
           };
 
-          console.log(formData);
-
           const config = {
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
           };
 
           const response = await axios.post(`https://graph.microsoft.com/v1.0/subscriptions`, formData, config);
-          console.log(response.status);
 
           await ctx.prisma.microsoftGraphSubscription.create({
             data: {
@@ -284,6 +279,66 @@ export const workspaceRouter = createTRPCRouter({
               tenant_id: ctx.session.user.microsoft_tenant_id
             }
           });
+
+          const membersWithoutMicrosoft = await ctx.prisma.member.findMany({
+            where: {
+              workspace_id: ctx.current_member.workspace_id,
+              microsoft_user_id: null,
+              microsoft_tenantId: null,
+              email: { not: null }
+            },
+            select: { id: true, email: true }
+          });
+
+          for (let i5 = 0; i5 < membersWithoutMicrosoft.length; i5++) {
+            const member = membersWithoutMicrosoft[i5];
+            if (!member) continue;
+            if (!member.email) continue;
+
+            const graphUser = await fetch(
+              `https://graph.microsoft.com/v1.0/users?$filter=UserPrincipalName eq '${member.email.toLowerCase()}'&$select=id,displayName`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              }
+            );
+
+            if (graphUser.ok) {
+              const x = await graphUser.json();
+              if (x.value[0].id) {
+                await ctx.prisma.member.update({
+                  where: { id: member.id },
+                  data: {
+                    microsoft_user_id: x.value[0].id,
+                    microsoft_tenantId: ctx.session.user.microsoft_tenant_id
+                  }
+                });
+              }
+            }
+          }
+
+          const members = await ctx.prisma.member.findMany({
+            where: {
+              workspace_id: ctx.current_member.workspace_id,
+              microsoft_user_id: { not: null },
+              microsoft_tenantId: { not: null }
+            },
+            select: { id: true, microsoft_user_id: true, microsoft_tenantId: true }
+          });
+          for (let i5 = 0; i5 < members.length; i5++) {
+            const member = members[i5];
+            if (!member) continue;
+            if (!member.microsoft_user_id || !member.microsoft_tenantId) continue;
+            await inngest.send({
+              name: 'member/update.member.profile',
+              data: {
+                microsoft_user_id: member.microsoft_user_id,
+                microsoft_tenant_id: member.microsoft_tenantId,
+                token: token
+              }
+            });
+          }
         } catch (e) {
           Sentry.captureException(e);
         }
@@ -403,7 +458,10 @@ export const workspaceRouter = createTRPCRouter({
         );
       }
 
-      if (old_workspace.fiscal_year_start_month != data.fiscal_year_start_month) {
+      if (
+        data.fiscal_year_start_month != undefined &&
+        old_workspace.fiscal_year_start_month != data.fiscal_year_start_month
+      ) {
         await inngest.send({
           // The event name
           name: 'workspace/update.member.allowance',
@@ -523,13 +581,13 @@ export const workspaceRouter = createTRPCRouter({
       const [workspace, members] = await ctx.prisma.$transaction([
         ctx.prisma.workspace.findUnique({
           where: { id },
-          select: defaultWorkspaceSelect
+          select: { ...defaultWorkspaceSelect, brevo_company_id: true }
         }),
         ctx.prisma.member.findMany({
           where: { workspace_id: id },
           select: {
             id: true,
-            sendinblue_contact_id: true,
+            brevo_contact_id: true,
             has_cdn_image: true,
             microsoft_user_id: true,
             email: true
@@ -592,8 +650,18 @@ export const workspaceRouter = createTRPCRouter({
           );
         }
       }
+      await inngest.send({
+        name: 'brevo/delete_contacts',
+        data: {
+          brevo_contact_ids_or_emails: members.map((x) => x.brevo_contact_id || x.email).filter(Boolean) as string[]
+        }
+      });
 
-      await deleteSendInBlueContact(members.map((x) => x.sendinblue_contact_id || x.email));
+      if (workspace.brevo_company_id)
+        await inngest.send({
+          name: 'brevo/delete_company',
+          data: { brevo_company_id: workspace.brevo_company_id }
+        });
 
       await ctx.prisma.$transaction([ctx.prisma.workspace.delete({ where: { id: workspace.id } })]);
 
@@ -1085,7 +1153,10 @@ export const workspaceRouter = createTRPCRouter({
           message: ctx.t('no_ms_auth_token_found')
         });
       }
-
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       //in DB speichern unter Subscriptions
       //bei Eroflg aktivate url aufrufen
     })

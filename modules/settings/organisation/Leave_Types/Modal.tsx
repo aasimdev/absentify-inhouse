@@ -936,7 +936,7 @@ export default function Modal(props: {
                                                       'cursor-pointer select-none p-4 text-sm',
                                                       hasValidSubscription
                                                         ? active
-                                                          ? 'bg-gray-100 text-gray-800 dark:text-gray-200'
+                                                          ? 'bg-gray-100 text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_500'
                                                           : 'text-gray-800 dark:text-gray-400'
                                                         : option.id !== 'days' && option.id !== 'half_days'
                                                         ? 'cursor-not-allowed bg-gray-100 text-gray-800'

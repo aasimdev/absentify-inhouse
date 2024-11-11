@@ -48,8 +48,8 @@ const Calendar = (props: {
   for (let i = 0; i < 7; i++) {
     defaultWeek.push(
       <React.Fragment key={i + '1'}>
-        <div className=" z-0 w-10 text-center h-10 box-content border-r border-gray-300">
-          <div className="border-b border-gray-300 h-10"></div>
+        <div className=" z-0 w-10 text-center h-10 box-content border-r border-gray-300 dark:border-teams_brand_border">
+          <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
         </div>
       </React.Fragment>
     );
@@ -91,8 +91,8 @@ const Calendar = (props: {
       if (i === 1) {
         arrayOfDays.push(
           <React.Fragment key={i + '1'}>
-            <div className=" z-0 w-10 text-center h-10 box-content border-gray-300 border-r">
-              <div className="border-b border-gray-300 h-10"></div>
+            <div className=" z-0 w-10 text-center h-10 box-content border-gray-300 border-r dark:border-teams_brand_border">
+              <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
             </div>
           </React.Fragment>
         );
@@ -100,8 +100,8 @@ const Calendar = (props: {
       if (i !== 1)
         arrayOfDays.push(
           <React.Fragment key={i + '1'}>
-            <div className=" z-0 w-10 text-center h-10 border-r border-gray-300 box-content">
-              <div className="border-b border-gray-300 h-10"></div>
+            <div className=" z-0 w-10 text-center h-10 border-r border-gray-300 box-content dark:border-teams_brand_border">
+              <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
             </div>
           </React.Fragment>
         );
@@ -177,8 +177,8 @@ const Calendar = (props: {
         case index === numberOfRemainingBoxes - 1 && startOfTheWeek === 0: {
           arrayOfDays.push(
             <React.Fragment key={i + '1'}>
-              <div className=" w-10 h-10 border-r border-gray-300 bg-transparent box-content rounded-br-lg">
-                <div className="border-b border-gray-300 h-10"></div>
+              <div className=" w-10 h-10 border-r border-gray-300 bg-transparent box-content rounded-br-lg dark:border-teams_brand_border">
+                <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
               </div>
             </React.Fragment>
           );
@@ -187,8 +187,8 @@ const Calendar = (props: {
         case index === numberOfRemainingBoxes - 7: {
           arrayOfDays.push(
             <React.Fragment key={i + '1'}>
-              <div className=" w-10 h-10 border-r border-gra-300 bg-transparent box-content">
-                <div className="border-b border-gray-300 h-10"></div>
+              <div className=" w-10 h-10 border-r border-gra-300 bg-transparent box-content dark:border-teams_brand_border">
+                <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
               </div>
             </React.Fragment>
           );
@@ -197,8 +197,8 @@ const Calendar = (props: {
         default: {
           arrayOfDays.push(
             <React.Fragment key={i + '1'}>
-              <div className=" w-10 h-10 border-r border-gray-300 bg-transparent box-content">
-                <div className="border-b border-gray-300 h-10"></div>
+              <div className=" w-10 h-10 border-r border-gray-300 bg-transparent box-content dark:border-teams_brand_border">
+                <div className="border-b border-gray-300 h-10 dark:border-teams_brand_border"></div>
               </div>
             </React.Fragment>
           );
@@ -262,7 +262,7 @@ const Calendar = (props: {
           ))}
         </div>
 
-        <div className="mx-2 w-auto overflow-hidden  rounded-xl border shadow ">
+        <div className="mx-2 w-auto overflow-hidden  rounded-xl border shadow dark:border-transparent dark:bg-teams_brand_tbody">
           {shiftedWeeks.map((x: any, y: number) => {
             if (showCW) {
               const firstDayWeek = x[0].props.date;

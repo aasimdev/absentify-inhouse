@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Be advised that you are requesting leave outside of the working hours.",
   "TryAgainTextMessage": "An error has occurred, please try again",
   "Group_booking": "Group request",
-  "group_booking_required_business_plan": "You need at least a Business Plan to create group requests.",
+  "group_booking_required_business_plan": "You need at least a Essentials Plan to create group requests.",
   "Note": "Note",
   "Name": "Name",
   "All_departments": "All departments"

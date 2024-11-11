@@ -27,10 +27,9 @@ import {
   getFiscalYear,
   setRequestStartEndTimesBasedOnScheduleOnDate,
   getDayStartAndEndTimeFromschedule,
-  findscheduleOnDate,
-  uniqueByRequestId
+  findscheduleOnDate
 } from 'lib/requestUtilities';
-import { generateMissingAllowances, updateMemberAllowances } from '~/lib/updateMemberAllowances';
+import { generateMissingAllowances, isAllowanceSufficient, updateMemberAllowances } from '~/lib/updateMemberAllowances';
 import { defaultMemberScheduleSelect } from './member_schedule';
 import { type Translate } from 'next-translate';
 import {
@@ -93,7 +92,9 @@ export const defaultRequestSelect = Prisma.validator<Prisma.RequestSelect>()({
             select: {
               name: true,
               id: true,
-              ignore_allowance_limit: true
+              ignore_allowance_limit: true,
+              carry_forward_months_after_fiscal_year: true,
+              max_carry_forward: true
             }
           },
           outlook_synchronization_show_as: true
@@ -717,7 +718,6 @@ export const requestRouter = createTRPCRouter({
         memberSchedules,
         public_holiday_days,
         members,
-        worpskpace_member_allowances,
         workspace
       ] = await ctx.prisma.$transaction([
         ctx.prisma.workspaceSchedule.findUnique({
@@ -751,18 +751,6 @@ export const requestRouter = createTRPCRouter({
         ctx.prisma.member.findMany({
           where: { workspace_id: ctx.current_member.workspace_id },
           select: { id: true, public_holiday_id: true }
-        }),
-        ctx.prisma.memberAllowance.findMany({
-          where: { workspace_id: ctx.current_member.workspace_id },
-          select: {
-            id: true,
-            allowance_type_id: true,
-            allowance: true,
-            year: true,
-            member_id: true,
-            remaining: true,
-            brought_forward: true
-          }
         }),
         ctx.prisma.workspace.findUnique({
           where: { id: ctx.current_member.workspace_id },
@@ -829,9 +817,6 @@ export const requestRouter = createTRPCRouter({
           if (request.details.status == 'APPROVED' || request.details.status == 'PENDING') {
             if (department.department.members.find((x) => x.member_id == request.requester_member_id)) {
               const member_schedules = memberSchedules.filter((y) => y.member_id == request.requester_member_id);
-              const member_allowances = worpskpace_member_allowances.filter(
-                (y) => y.member_id == request.requester_member_id
-              );
               const request_member = members.find((Y) => Y.id == request.requester_member.id);
               if (!request_member) continue;
               let member_public_holiday_days = public_holiday_days.filter(
@@ -855,7 +840,6 @@ export const requestRouter = createTRPCRouter({
                     memberSchedules: member_schedules,
                     memberPublicHolidayDays: member_public_holiday_days,
                     leaveType: request.details.leave_type,
-                    memberAllowances: member_allowances,
                     requester_member_id: request.requester_member_id,
                     workspace
                   });
@@ -973,7 +957,11 @@ export const requestRouter = createTRPCRouter({
               ignore_schedule: true,
               ignore_public_holidays: true,
               allowance_type: {
-                select: { ignore_allowance_limit: true }
+                select: {
+                  ignore_allowance_limit: true,
+                  carry_forward_months_after_fiscal_year: true,
+                  max_carry_forward: true
+                }
               }
             },
             where: { id: input.leave_type_id }
@@ -1010,7 +998,7 @@ export const requestRouter = createTRPCRouter({
         });
       }
 
-      return calcRequestDuration({
+      const duration = calcRequestDuration({
         start: input.duration.start,
         end: input.duration.end,
         start_at: input.duration.start_at,
@@ -1021,10 +1009,20 @@ export const requestRouter = createTRPCRouter({
           (x) => x.public_holiday_id == input.requester_member_public_holiday_id
         ),
         leaveType: leave_type,
-        memberAllowances: member_allowances,
         requester_member_id: input.requester_member_id,
         workspace: workspace
       });
+      return {
+        duration,
+        isAllowanceSufficient: await isAllowanceSufficient(ctx.prisma, ctx.current_member.workspace_id, {
+          start: input.duration.start,
+          end: input.duration.end,
+          start_at: input.duration.start_at,
+          end_at: input.duration.end_at,
+          leave_type_id: input.leave_type_id,
+          requester_member_id: input.requester_member_id
+        })
+      };
     }),
   findRangeOverlap: protectedProcedure
     .input(
@@ -1229,7 +1227,11 @@ export const requestRouter = createTRPCRouter({
             ignore_schedule: true,
             ignore_public_holidays: true,
             allowance_type: {
-              select: { ignore_allowance_limit: true }
+              select: {
+                ignore_allowance_limit: true,
+                carry_forward_months_after_fiscal_year: true,
+                max_carry_forward: true
+              }
             }
           }
         }),
@@ -1494,12 +1496,20 @@ export const requestRouter = createTRPCRouter({
         memberSchedules: member_schedules,
         memberPublicHolidayDays: public_holiday_days,
         leaveType: leave_type,
-        memberAllowances: member_allowances,
         requester_member_id: input.requester_member_id,
         workspace
       });
 
-      if (leave_type.take_from_allowance && d.total.allowanceEnough == false) {
+      const allowanceSufficient = isAllowanceSufficient(ctx.prisma, ctx.current_member.workspace_id, {
+        start: input.start,
+        end: input.end,
+        start_at: input.start_at,
+        end_at: input.end_at,
+        leave_type_id: input.leave_type_id,
+        requester_member_id: input.requester_member_id
+      });
+
+      if (leave_type.take_from_allowance && !allowanceSufficient) {
         throw new TRPCError({
           code: 'BAD_REQUEST',
           message: ctx.t('Not_enough_remaining_days_on_contingent')

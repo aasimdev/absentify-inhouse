@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Зверніть увагу, що ви просите про відпустку в неробочий час.",
   "TryAgainTextMessage": "Сталася помилка, будь ласка, спробуйте ще раз",
   "Group_booking": "Запит групи",
-  "group_booking_required_business_plan": "Для створення групових запитів вам потрібен щонайменше бізнес-план.",
+  "group_booking_required_business_plan": "Для створення групових запитів вам потрібен щонайменше Essentials Plan.",
   "Note": "Примітка",
   "Name": "Назва",
   "All_departments": "Всі відділи"

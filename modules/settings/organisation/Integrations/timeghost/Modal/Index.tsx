@@ -1126,9 +1126,9 @@ export default function CustomModal(props: {
                     type="button"
                     className={` ${
                       nextButtonState
-                        ? 'bg-teams_brand_foreground_bg text-white hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2 '
-                        : '  border-gray-300 bg-gray-200 text-gray-500 hover:bg-gray-300 '
-                    } mx-2 inline-flex items-center rounded-md border border-transparent px-4 py-2 font-medium   shadow-sm focus:ring-teams_brand_500 focus:ring-offset-2 sm:text-sm `}
+                        ? 'bg-teams_brand_foreground_bg text-white hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2'
+                        : '  border-gray-300 bg-gray-200 text-gray-500 hover:bg-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:border-gray-200 '
+                    } mx-2 inline-flex items-center rounded-md border border-transparent px-4 py-2 font-medium   shadow-sm focus:ring-teams_brand_500 focus:ring-offset-2 sm:text-sm`}
                   >
                     {loading && (
                       <div className="-ml-1 mr-3">

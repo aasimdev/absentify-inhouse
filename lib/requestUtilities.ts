@@ -10,7 +10,7 @@ import {
 } from '@prisma/client';
 import { type RouterOutputs } from '~/utils/api';
 import { dateFromDatabaseIgnoreTimezone, dateToIsoDate, getDates, isDayUnit, isHourUnit } from './DateHelper';
-import { areIntervalsOverlapping, differenceInMinutes } from 'date-fns';
+import { add, areIntervalsOverlapping, differenceInMinutes } from 'date-fns';
 import { cloneDeep } from 'lodash';
 import { defaultMemberSelectOutput } from '~/server/api/routers/member';
 import { defaultWorkspaceScheduleSelectOutput } from '~/server/api/routers/workspace_schedule';
@@ -39,6 +39,16 @@ export const requestSyncLog_select = Prisma.validator<Prisma.RequestSyncLogSelec
   }
 });
 
+interface YearData {
+  fiscal_year: number;
+  workday_duration_in_days: number;
+  workday_duration_in_minutes: number;
+  carry_over_days_used_in_period: number;
+  carry_over_minutes_used_in_period: number;
+  outside_of_schedule: boolean;
+  duration: number;
+}
+
 export type requestSyncLog_selectOutput = Prisma.RequestSyncLogGetPayload<{
   select: typeof requestSyncLog_select;
 }>;
@@ -51,7 +61,6 @@ export function calcRequestDuration(input: {
   requester_member_id: string;
   workspaceSchedule: WorkspaceSchedule;
   memberSchedules: MemberSchedule[];
-  memberAllowances: { year: number; remaining: number; allowance_type_id: string; brought_forward: number }[];
   memberPublicHolidayDays: { date: Date; duration: PublicHolidayDuration }[];
   leaveType: {
     leave_unit: LeaveUnit;
@@ -61,11 +70,12 @@ export function calcRequestDuration(input: {
     allowance_type_id: string | null;
     allowance_type: {
       ignore_allowance_limit: boolean;
+      carry_forward_months_after_fiscal_year: number;
+      max_carry_forward: number;
     } | null;
   };
   workspace: { id: string; fiscal_year_start_month: number };
 }) {
-  const memberAllowances = cloneDeep(input.memberAllowances);
   const splitDurationsByFiscalYearResult = splitDurationByFiscalYear(
     {
       end: input.end,
@@ -73,17 +83,11 @@ export function calcRequestDuration(input: {
       end_at: input.end_at,
       start_at: input.start_at
     },
-    input.workspace
+    input.workspace,
+    input.leaveType.allowance_type
   );
 
-  const years: {
-    fiscal_year: number;
-    workday_duration_in_days: number;
-    workday_duration_in_minutes: number;
-    allowanceEnough: boolean;
-    outside_of_schedule: boolean;
-    duration: number;
-  }[] = [];
+  const years: YearData[] = [];
   for (let index = 0; index < splitDurationsByFiscalYearResult.length; index++) {
     const duration = splitDurationsByFiscalYearResult[index];
     if (!duration) continue;
@@ -98,76 +102,46 @@ export function calcRequestDuration(input: {
       memberPublicHolidayDays: input.memberPublicHolidayDays,
       leaveType: input.leaveType
     });
+
     let yearData = years.find((x) => x.fiscal_year == duration.fiscalYear);
     if (yearData) {
-      yearData.workday_duration_in_days = (yearData.workday_duration_in_days || 0) + dur.workday_days;
-      yearData.workday_duration_in_minutes = (yearData.workday_duration_in_minutes || 0) + dur.workday_minutes;
+      if (duration.type_of_range == 'fiscal_year') {
+        yearData.workday_duration_in_days = (yearData.workday_duration_in_days || 0) + dur.workday_days;
+        yearData.workday_duration_in_minutes = (yearData.workday_duration_in_minutes || 0) + dur.workday_minutes;
+      } else if (duration.type_of_range == 'carry_forward') {
+        yearData.carry_over_days_used_in_period = (yearData.carry_over_days_used_in_period || 0) + dur.workday_days;
+        yearData.carry_over_minutes_used_in_period =
+          (yearData.carry_over_minutes_used_in_period || 0) + dur.workday_minutes;
+      }
     } else {
       years.push({
         fiscal_year: duration.fiscalYear,
-        workday_duration_in_days: dur.workday_days,
-        workday_duration_in_minutes: dur.workday_minutes,
-        allowanceEnough: true,
+        workday_duration_in_days: duration.type_of_range == 'fiscal_year' ? dur.workday_days : 0,
+        workday_duration_in_minutes: duration.type_of_range == 'fiscal_year' ? dur.workday_minutes : 0,
+        carry_over_days_used_in_period: duration.type_of_range == 'carry_forward' ? dur.workday_days : 0,
+        carry_over_minutes_used_in_period: duration.type_of_range == 'carry_forward' ? dur.workday_minutes : 0,
+
         outside_of_schedule: dur.outSideOfSchedule,
         duration: dur.duration
       });
     }
   }
-  //check if allowance is enough
-  for (let i = 0; i < years.length; i++) {
-    const entry = years[i];
-    if (!entry) continue;
 
-    let member_allowance = memberAllowances.find(
-      (x) => x.year == entry.fiscal_year && input.leaveType.allowance_type_id == x.allowance_type_id
-    );
-    let member_allowance_next_year = memberAllowances.find(
-      (x) => x.year == entry.fiscal_year + 1 && input.leaveType.allowance_type_id == x.allowance_type_id
-    );
-    let allowanceEnough = true;
-
-    if (input.leaveType.allowance_type?.ignore_allowance_limit) {
-      allowanceEnough = true;
-    } else if (
-      input.leaveType.take_from_allowance &&
-      isDayUnit(input.leaveType.leave_unit) &&
-      member_allowance &&
-      member_allowance.remaining < entry.workday_duration_in_days
-    ) {
-      allowanceEnough = false;
-    } else if (
-      input.leaveType.take_from_allowance &&
-      isHourUnit(input.leaveType.leave_unit) &&
-      member_allowance &&
-      member_allowance.remaining < entry.workday_duration_in_minutes
-    ) {
-      allowanceEnough = false;
-    }
-    if (member_allowance && member_allowance_next_year && member_allowance_next_year.brought_forward > 0) {
-      const old_brought_forward_value = member_allowance_next_year.brought_forward + 0;
-      member_allowance_next_year.brought_forward =
-        member_allowance.remaining - entry.workday_duration_in_days <= 0
-          ? 0
-          : member_allowance.remaining - entry.workday_duration_in_days;
-      if (old_brought_forward_value != member_allowance_next_year.brought_forward) {
-        member_allowance_next_year.remaining = member_allowance_next_year.remaining - old_brought_forward_value;
-      }
-    }
-
-    entry.allowanceEnough = allowanceEnough;
-  }
+  const total = {
+    workday_duration_in_days: years.reduce((prev, curr) => prev + curr.workday_duration_in_days, 0),
+    workday_duration_in_minutes: years.reduce((prev, curr) => prev + curr.workday_duration_in_minutes, 0),
+    carry_over_days_used_in_period: years.reduce((prev, curr) => prev + curr.carry_over_days_used_in_period, 0),
+    carry_over_minutes_used_in_period: years.reduce((prev, curr) => prev + curr.carry_over_minutes_used_in_period, 0),
+    outside_of_schedule: years.some((x) => x.outside_of_schedule),
+    duration: years.reduce((prev, curr) => prev + curr.duration, 0)
+  };
 
   return {
     per_year: years,
-    total: {
-      workday_duration_in_days: years.reduce((prev, curr) => prev + curr.workday_duration_in_days, 0),
-      workday_duration_in_minutes: years.reduce((prev, curr) => prev + curr.workday_duration_in_minutes, 0),
-      allowanceEnough: years.every((x) => x.allowanceEnough),
-      outside_of_schedule: years.some((x) => x.outside_of_schedule),
-      duration: years.reduce((prev, curr) => prev + curr.duration, 0)
-    }
+    total
   };
 }
+
 //must be internal function
 function calcRequestDurationPerFiscalYear(input: {
   start: Date;
@@ -1812,7 +1786,10 @@ export function splitDurationByFiscalYear(
   },
   workspace: {
     fiscal_year_start_month: number;
-  }
+  },
+  allowance_type: {
+    carry_forward_months_after_fiscal_year: number;
+  } | null
 ) {
   const { start, end, start_at, end_at } = duration;
 
@@ -1822,6 +1799,7 @@ export function splitDurationByFiscalYear(
     start_at?: StartAt;
     end_at?: EndAt;
     fiscalYear: number;
+    type_of_range: 'fiscal_year' | 'carry_forward';
   }[] = [];
 
   let currentStart = new Date(start);
@@ -1849,8 +1827,38 @@ export function splitDurationByFiscalYear(
         end: new Date(rangeEnd),
         start_at: start_at === undefined ? undefined : isSameDayCustom(currentStart, start) ? start_at : 'morning',
         end_at: end_at === undefined ? undefined : isSameDayCustom(rangeEnd, end) ? end_at : 'end_of_day',
-        fiscalYear: getFiscalYear(currentStart, workspace.fiscal_year_start_month)
+        fiscalYear: getFiscalYear(currentStart, workspace.fiscal_year_start_month),
+        type_of_range: 'fiscal_year'
       });
+
+      if (allowance_type && allowance_type.carry_forward_months_after_fiscal_year > 0) {
+        const fiscalYear = getFiscalYearStartAndEndDatesUTC(
+          workspace.fiscal_year_start_month,
+          currentStart.getUTCFullYear() - 1
+        );
+        fiscalYear.lastDayOfYear.setUTCHours(0, 0, 0, 0);
+
+        let carry_forward_deadline = new Date(
+          Date.UTC(fiscalYear.lastDayOfYear.getUTCFullYear(), fiscalYear.lastDayOfYear.getUTCMonth(), 1, 0, 0, 0)
+        );
+
+        carry_forward_deadline = add(carry_forward_deadline, {
+          months: allowance_type.carry_forward_months_after_fiscal_year
+        });
+        //last day of month
+        carry_forward_deadline.setUTCMonth(carry_forward_deadline.getUTCMonth() + 1, 0);
+
+        if (currentStart <= carry_forward_deadline) {
+          ranges.push({
+            start: currentStart,
+            end: currentEnd >= carry_forward_deadline ? carry_forward_deadline : currentEnd,
+            start_at: start_at === undefined ? undefined : isSameDayCustom(currentStart, start) ? start_at : 'morning',
+            end_at: end_at === undefined ? undefined : isSameDayCustom(rangeEnd, end) ? end_at : 'end_of_day',
+            fiscalYear: getFiscalYear(currentStart, workspace.fiscal_year_start_month),
+            type_of_range: 'carry_forward'
+          });
+        }
+      }
 
       // Keep the time here
       const newStart = new Date(fiscalYearEnd);

@@ -77,7 +77,10 @@ export default function Modal(props: {
             <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_brand_dark_600 dark:divide-gray-500">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:text-left dark:divide-gray-500">
-                  <Dialog.Title as="h3" className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
+                  <Dialog.Title
+                    as="h3"
+                    className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"
+                  >
                     <p className="inline-flex">
                       {props.currentMember && (
                         <span className="max-w-40 md:w-auto truncate">{props.currentMember.name} </span>
@@ -103,17 +106,17 @@ export default function Modal(props: {
                                 }}
                                 className={classNames(
                                   currentNavigation == item.id
-                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 hover:bg-teams_brand_50 hover:text-teams_brand_700 dark:bg-teams_brand_dark_100 hover:bg-teams_brand_50 hover:text-teams_brand_700 hover:dark:bg-teams_brand_dark_100'
+                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 dark:bg-teams_brand_dark_100 hover:bg-teams_brand_50 hover:text-teams_brand_700 hover:dark:bg-teams_brand_dark_100'
                                     : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium dark:text-gray-200 hover:dark:bg-teams_brand_dark_100'
+                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium dark:text-gray-200 hover:dark:bg-teams_brand_dark_100 dark:hover:text-gray-200'
                                 )}
                                 aria-current={item.current ? 'page' : undefined}
                               >
                                 <item.icon
                                   className={classNames(
                                     currentNavigation == item.id
-                                      ? 'text-teams_brand_500 group-hover:text-teams_brand_500 dark:text-gray-200'
-                                      : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-200',
+                                      ? 'text-teams_brand_500 group-hover:text-teams_brand_500 dark:text-gray-200 dark:group-hover:text-gray-200'
+                                      : 'text-gray-400 group-hover:text-gray-500 dark:text-gray-200 dark:group-hover:text-gray-200',
                                     '-ml-1 mr-3 h-6 w-6 flex-shrink-0'
                                   )}
                                   aria-hidden="true"

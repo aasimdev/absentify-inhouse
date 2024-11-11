@@ -253,7 +253,7 @@ const SortableItem = (props: { member_id: string; removeManager: Function }) => 
       <button
         {...listeners}
         type="button"
-        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 dark:text-gray-200"
+        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 dark:text-gray-200 dark:bg-teams_dark_mode_core "
         style={{ cursor: grabbing ? 'grabbing' : 'grab' }}
       >
         <ChevronUpDownIcon height={15} /> <span className="sr-only dark:text-gray-200"> {person.name}</span>
@@ -864,7 +864,7 @@ export default function Modal(props: {
                                                   } `}
                                                 >
                                                   <div className="flex justify-between">
-                                                    <p className={selected ? 'font-semibold dark:text-gray-900' : 'font-normal dark:text-gray-200'}>
+                                                    <p className={selected ? 'font-semibold dark:text-gray-200' : 'font-normal dark:text-gray-200'}>
                                                       {option.title}
                                                     </p>
                                                     <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_400 dark:text-gray-600">
@@ -976,7 +976,7 @@ export default function Modal(props: {
                                           });
                                         }
                                       }}
-                                      className = "dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full"
+                                      className = "dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded border border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                     />}
                                 </div>
                                 </div>

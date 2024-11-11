@@ -779,7 +779,7 @@ const V1Upgrade: NextPage = () => {
                           subscriptionStatus.enterprisePlan.status == 'past_due' ||
                           subscriptionStatus.enterprisePlan.status == 'deleted' ||
                           subscriptionStatus.enterprisePlan.status == 'pending'
-                        ? subscription.enterprise + ' x Enterprise'
+                        ? subscription.enterprise + ' x Plus'
                         : 'Free'
                   })}
                   <span className="block text-sm mt-2">{t('vat_description_1')}</span>
@@ -798,7 +798,7 @@ const V1Upgrade: NextPage = () => {
                 <div className="flex flex-wrap -mr-2 ">
                   <Plan
                     enterprise={false}
-                    title={t('free')}
+                    title={'Free'}
                     price={0}
                     button={getFreeButton()}
                     onClick={() => {}}
@@ -810,7 +810,7 @@ const V1Upgrade: NextPage = () => {
                   <Plan
                     enterprise={false}
                     onClick={() => {}}
-                    title={t('startup')}
+                    title={'Business'}
                     noCurrencyCode={true}
                     saving={
                       currencies[(paddlePrices?.data.currencyCode as 'USD' | 'EUR') ?? 'USD']?.symbol +
@@ -832,7 +832,7 @@ const V1Upgrade: NextPage = () => {
                   <Plan
                     enterprise={true}
                     onClick={() => {}}
-                    title={t('enterprise')}
+                    title={'Plus'}
                     noCurrencyCode={true}
                     saving={
                       currencies[(paddlePrices?.data.currencyCode as 'USD' | 'EUR') ?? 'USD']?.symbol +
@@ -1120,14 +1120,14 @@ const V1Upgrade: NextPage = () => {
                         {' '}
                       </div>
                       <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
-                        {t('free')}
+                        Free
                       </div>
 
                       <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
-                        {t('startup')}
+                        Business
                       </div>
                       <div className="flex justify-center text-sm font-medium py-3 shrink-0" style={{ width: '210px' }}>
-                        {t('enterprise')}
+                        Plus
                       </div>
                     </div>
                     {features.map((feature, i) => (

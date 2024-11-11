@@ -643,7 +643,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                 </div>
               )}
               {steps.find((x) => x.status == 'current')?.key == 'download_template' && (
-                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:rounded">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-500 dark:rounded">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-center sm:justify-between">
                       <div>
@@ -751,37 +751,37 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                              <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
-                                <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                              <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-gray-500">
+                                <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                                   <tr>
                                     <th
                                       scope="col"
-                                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-900"
+                                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-teams_brand_th"
                                     >
                                       {t('Name')}
                                     </th>
                                     <th
                                       scope="col"
-                                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-900"
+                                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-teams_brand_th"
                                     >
                                       {t('Email')}
                                     </th>
 
-                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-gray-900">
+                                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-teams_brand_th">
                                       <span className="sr-only">{t('Status')}</span>
                                     </th>
                                   </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                                <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                                   {dataFromExcel.map((person) => (
                                     <tr key={person.email}>
-                                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-gray-900">
+                                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-white">
                                         {person.name}
                                       </td>
-                                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-900">
+                                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-white">
                                         {person.email ?? '-'}
                                       </td>
-                                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-gray-900">
+                                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-white">
                                         {person.validationStatus == 'pending' && (
                                           <div className="-ml-1 mr-3">
                                             <Loader />
@@ -818,7 +818,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                                 </tbody>
                                 <ReactTooltip
                                   id="excel-tooltip"
-                                  className="shadow-sm z-50 dark:bg-teams_brand_dark_400 dark:text-gray-900 "
+                                  className="shadow-sm z-50"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   opacity={1}
@@ -835,7 +835,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           onClick={() => {
                             props.onClose();
                           }}
-                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_foreground_bg dark:text-gray-200 dark:ring-0"
+                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
                         >
                           {t('Cancel')}
                         </button>
@@ -882,33 +882,33 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                   <div className="mt-8 flex flex-col">
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                          <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
-                            <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+                        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg ">
+                          <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-gray-500">
+                            <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-gray-200"
+                                  className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 dark:text-teams_brand_th"
                                 >
                                   {t('Name')}
                                 </th>
-                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-200">
+                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-teams_brand_th">
                                   {t('Email')}
                                 </th>
 
-                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-gray-200">
+                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6 dark:text-teams_brand_th">
                                   <span className="sr-only">{t('Invited')}</span>
                                 </th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                            <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                               {dataFromExcel.map((person) => (
                                 <tr key={person.email}>
-                                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-gray-200">
+                                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 dark:text-white">
                                     {person.name}
                                   </td>
-                                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-200">{person.email}</td>
-                                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-gray-200">
+                                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-white">{person.email}</td>
+                                  <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 dark:text-white">
                                     {person.invited == false && (
                                       <div className="-ml-1 mr-3">
                                         <Loader />

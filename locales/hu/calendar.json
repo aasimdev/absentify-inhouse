@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Tájékoztassa, hogy a szabadságot munkaidőn kívül kéri.",
   "TryAgainTextMessage": "Hiba történt, kérem próbálja újra",
   "Group_booking": "Csoportos kérés",
-  "group_booking_required_business_plan": "Legalább egy üzleti tervre van szükséged ahhoz, hogy csoportos kérelmeket hozz létre.",
+  "group_booking_required_business_plan": "Legalább egy Essentials tervre van szükséged a csoportos kérelmek létrehozásához.",
   "Note": "Megjegyzés:",
   "Name": "Név",
   "All_departments": "Minden részleg"

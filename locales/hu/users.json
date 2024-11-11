@@ -20,7 +20,7 @@
   "read_more": "Bővebben",
   "SendInvitationEmail_many": "Meghívó e-mailek küldése",
   "SendInvitationEmail_description_many": "A felhasználók kapnak tőlünk egy e-mailt, amelyben egy linket találnak a távolmaradáshoz. Ha ezt jelenleg nem szeretné, akkor később manuálisan kell elküldenie az e-mailt ezeknek a felhasználóknak.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "Az üzleti tervben olyan felhasználókat is meghívhat, akik nem rendelkeznek e-mail címmel.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "Az Essentials csomagban olyan felhasználókat is meghívhat, akik nem rendelkeznek e-mail címmel.",
   "UserWithoutEmailHeadlineWithSubscription": "E-mail cím nélküli felhasználókat is meghívhat.",
   "UserWithoutEmailDescription": "Ezeknek az alkalmazottaknak a távolléteit beírhatja és kezelheti a naptárát. Ezek az alkalmazottak nem jelentkezhetnek be, nem lehetnek osztályvezetők, és nem hagyhatják jóvá más alkalmazottak távollétét.",
   "Upgrade": "Frissítés",

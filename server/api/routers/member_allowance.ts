@@ -24,8 +24,11 @@ const defaultMemberAllowanceSelect = Prisma.validator<Prisma.MemberAllowanceSele
   taken: true,
   remaining: true,
   leave_types_stats: true,
+  expiration: true,
   allowance_type_id: true,
-  allowance_type: { select: { name: true, id: true, allowance_unit: true } }
+  allowance_type: {
+    select: { name: true, id: true, allowance_unit: true, carry_forward_months_after_fiscal_year: true }
+  }
 });
 
 export const memberAllowanceRouter = createTRPCRouter({

@@ -104,13 +104,13 @@ export default function DropDownUsers({members, handleSelect, selectedMembers, d
         <div className="mt-6 flex flex-col ">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-6 ">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-6">
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody dark:border-0">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                     <tr>
                     <th
                         scope="col"
-                        className={`min-w-20 w-32 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:w-40   dark:text-gray-200`}
+                        className={`min-w-20 w-32 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:w-40   dark:text-teams_brand_th`}
                       >
                       <input
                             id="outOffOfficEdit"
@@ -118,24 +118,24 @@ export default function DropDownUsers({members, handleSelect, selectedMembers, d
                             type="checkbox"
                             checked={membersSelected}
                             onChange={handleSelectOrClearAll}
-                            className="ml-3 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                            className="ml-3 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border dark:focus:ring-teams_brand_border dark:focus:bg-teams_dark_mode"
                           />
                       </th>
                       <th
                         scope="col"
-                        className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:w-40  dark:text-gray-200 `}
+                        className={`min-w-20 w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 lg:w-40  dark:text-teams_brand_th `}
                       >
                         {t('name')}
                       </th>
                       <th
                         scope="col"
-                        className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell lg:w-40  dark:text-gray-200"
+                        className="min-w-20 hidden w-32 px-3 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell lg:w-40  dark:text-teams_brand_th"
                       >
                         {t('department')}
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                     {filteredMembers.map((member) => (
                           <tr key={member.id}>
                             <td className=" w-1/12">
@@ -147,7 +147,7 @@ export default function DropDownUsers({members, handleSelect, selectedMembers, d
                             onChange={() => {
                               handleSelect(member);
                             }}
-                            className="ml-3 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200"
+                            className="ml-3 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border  dark:focus:ring-teams_brand_border dark:focus:bg-teams_dark_mode"
                           />
                             </td>
 

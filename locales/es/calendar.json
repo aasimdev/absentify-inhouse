@@ -19,7 +19,7 @@
   "anniversary": "Aniversario",
   "Ending": "Hasta",
   "Starting": "Desde",
-  "Leave_type": "Tipo de Permiso",
+  "Leave_type": "Tipo de permiso",
   "Book_time_off": "Solicitar días libres",
   "Reason_placeholder": "Motivo del tiempo de baja...",
   "Who_for": "¿Para quién?",
@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Ten en cuenta que estás solicitando una ausencia fuera del horario laboral.",
   "TryAgainTextMessage": "Ha ocurrido un error, por favor inténtelo de nuevo",
   "Group_booking": "Solicitud de grupo",
-  "group_booking_required_business_plan": "Necesitas al menos un Plan Empresarial para crear solicitudes de grupo.",
+  "group_booking_required_business_plan": "Necesitas al menos un Plan Esencial para crear solicitudes de grupo.",
   "Note": "Nota",
   "Name": "Nombre",
   "All_departments": "Todos los departamentos"

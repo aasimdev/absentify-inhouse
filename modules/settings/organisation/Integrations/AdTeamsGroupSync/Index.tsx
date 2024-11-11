@@ -57,10 +57,10 @@ export default function AdTeamsGroupSync() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900">
+                      <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                         {t('CalSyncRemove')}
                       </Dialog.Title>
                       <div className="mt-2 py-2">
@@ -140,19 +140,19 @@ export default function AdTeamsGroupSync() {
         <div className="mt-6 flex flex-col lg:flex-row">
           <div className="-my-2 overflow-x-auto md:w-full w-auto">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-3">
-              <div className="overflow-hidden border-b border-gray-200 dark_border-0 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+              <div className="overflow-hidden border-b border-gray-200 dark_border-0 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border ">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500  dark:text-gray-200 "
+                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500  dark:text-teams_brand_th "
                       >
                         {t('Name')}
                       </th>
                       <th
                         scope="col"
-                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell  dark:text-gray-200"
+                        className="hidden px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell  dark:teams_brand_th"
                       >
                         {t('description')}
                       </th>
@@ -160,13 +160,13 @@ export default function AdTeamsGroupSync() {
                       <th scope="col" className="relative px-6 py-3 "></th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-500 dark:bg-teams_brand_dark_100 ">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:divide-teams_brand_tbody_border dark:bg-teams_brand_tbody ">
                     {groupSyncSettings?.map((group_sync_setting) => (
                       <tr key={group_sync_setting.id}>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-gray-200">
+                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-white">
                           {group_sync_setting.name}
                         </td>
-                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell  dark:text-gray-200">
+                        <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:table-cell  dark:text-white">
                           <div
                             className="w-20 truncate pt-1"
                             data-tooltip-id="cssdes-tooltip"
@@ -176,14 +176,14 @@ export default function AdTeamsGroupSync() {
                             {group_sync_setting.description}
                           </div>
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium  dark:text-gray-200">
+                        <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium  dark:text-white">
                           <a
                             onClick={async (e) => {
                               e.preventDefault();
                               setValueForEdit(group_sync_setting);
                               setModalOpen(true);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-gray-200"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-white"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +203,7 @@ export default function AdTeamsGroupSync() {
                               setDeleteModalOpen(true);
                               setValueForDelete(group_sync_setting);
                             }}
-                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-gray-200"
+                            className="cursor-pointer text-gray-300 hover:text-gray-900  dark:text-white"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -224,7 +224,7 @@ export default function AdTeamsGroupSync() {
                     <tr>
                       {workspace && groupSyncSettings && (
                         <td
-                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-gray-200"
+                          className="cursor-pointer whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900  dark:text-white"
                           colSpan={8}
                           onClick={(e) => {
                             e.preventDefault();

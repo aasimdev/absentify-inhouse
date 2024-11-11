@@ -62,8 +62,8 @@ const OrganisationLayout: React.FC<{ children: ReactNode }> = (props) => {
         <meta name="description" content={t('Settings') + ' - absentify'} />
         <link rel="icon" href={workspace?.favicon_url ? workspace?.favicon_url : '/favicon.ico'} />
       </Head>
-      <div className="divide-y divide-gray-200 dark:divide-gray-500 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
-        <aside className="py-6 lg:col-span-2 dark:bg-teams_dark_mode_core">
+      <div className="divide-y divide-gray-200 dark:divide-teams_brand_tbody_border lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x ">
+        <aside className="py-6 lg:col-span-2">
           <nav className="space-y-1 grid grid-cols-2 lg:grid-cols-1">
             {subNavigation.map((item) => (
               <Link

@@ -22,6 +22,7 @@ import {
 } from '~/lib/subscriptionHelper';
 import { ensureAvailabilityOfGetT } from '~/lib/monkey-patches';
 import * as Sentry from '@sentry/nextjs';
+import { inngest } from '~/inngest/inngest_client';
 export const subscriptionRouter = createTRPCRouter({
   getUpdateUrl: protectedProcedure.query(async ({ ctx }) => {
     if (!ctx.current_member.is_admin) {
@@ -588,6 +589,10 @@ export const subscriptionRouter = createTRPCRouter({
           await PaddleService.cancelSubscription(subscription.subscription_id);
         }
       }
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       return workspace;
     }),
   downgrade: protectedProcedure
@@ -841,7 +846,10 @@ export const subscriptionRouter = createTRPCRouter({
           });
         }
       }
-
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       return workspace;
     }),
   upgrade: protectedProcedure
@@ -963,7 +971,10 @@ export const subscriptionRouter = createTRPCRouter({
           });
         }
       }
-
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       return workspace;
     }),
   change_department_subscription: protectedProcedure
@@ -1189,6 +1200,11 @@ export const subscriptionRouter = createTRPCRouter({
           }
         }
       }
+
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       return;
     }),
   requestInvoice: protectedProcedure
@@ -1446,6 +1462,10 @@ export const subscriptionRouter = createTRPCRouter({
           }
         }
       }
+      await inngest.send({
+        name: 'brevo/create_or_update_all_workspace_contacts',
+        data: { workspace_id: ctx.current_member.workspace_id }
+      });
       return;
     }),
   change_manager_adon_subscription: protectedProcedure.mutation(async ({ ctx }) => {
@@ -1657,6 +1677,10 @@ export const subscriptionRouter = createTRPCRouter({
         }
       }
     }
+    await inngest.send({
+      name: 'brevo/create_or_update_all_workspace_contacts',
+      data: { workspace_id: ctx.current_member.workspace_id }
+    });
     return;
   })
 });

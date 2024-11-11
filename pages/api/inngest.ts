@@ -74,6 +74,7 @@ import {
   weeklyAbsenceSummaryNotification,
   sendWeeklyAbsenceSummaryNotification
 } from '~/inngest/Functions/weeklyAbsenceSummaryNotification';
+import { brevoCreateCompany, brevoCreateContactIfNotExists, brevoCreateOrUpdateAllWorkspaceContacts, brevoCreateOrUpdateContact, brevoDeleteCompany, brevoDeleteContact, brevoDeleteContacts } from '~/inngest/Functions/brevoSync';
 
 export default serve({
   client: inngest,
@@ -132,6 +133,13 @@ export default serve({
     birthdayAndAnniversaryNotification,
     sendWeeklyBirthdayAndAnniversaryEmail,
     weeklyAbsenceSummaryNotification,
-    sendWeeklyAbsenceSummaryNotification
+    sendWeeklyAbsenceSummaryNotification,
+    brevoCreateCompany,
+    brevoDeleteCompany,
+    brevoCreateOrUpdateContact,
+    brevoDeleteContacts,
+    brevoDeleteContact,
+    brevoCreateOrUpdateAllWorkspaceContacts,
+    brevoCreateContactIfNotExists
   ]
 });

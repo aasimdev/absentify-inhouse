@@ -145,7 +145,7 @@ export default function IntegrationDetails(props: {
       description: t('integration_desc8'),
       description_long: t('ad_group_sync_desc'),
       url: '/integrations/ad_group_sync',
-      imageUrl: '/integrations/adgroup.jpg',
+      imageUrl: '/integrations/adgroup.png',
       connect_name: '',
       call_to_action_name: t('configuration'),
       additional_frill_info: '',
@@ -220,12 +220,12 @@ export default function IntegrationDetails(props: {
             <p className="mt-3 dark:text-gray-200">{integration.description_long_1}</p>
             <p className="mt-3 dark:text-gray-200">{integration.description_long_2}</p>
             {integration.integration === 'api' && (
-              <a className="underline mt-3 dark:text-gray-200" href="https://api-doc.absentify.com/">
+              <a className="underline mt-3 dark:text-gray-200" href="https://absentify.com/docs/api-reference">
                 {t('view_api_doc')}
               </a>
             )}
             {integration.integration === 'webhooks' && (
-              <a className="underline mt-3 dark:text-gray-200" href="https://support.absentify.com/en/article/webhook-integration-r863or/">
+              <a className="underline mt-3 dark:text-gray-200" href="https://absentify.com/docs/api-reference/webhooks">
                 {t('Webhooks_description_2')}
               </a>
             )}

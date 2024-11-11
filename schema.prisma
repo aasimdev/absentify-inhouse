@@ -11,6 +11,40 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Deal {
+  id                    Int        @id @default(autoincrement())
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+  email                 String     @unique
+  referrer              String?    @db.VarChar(2500) // Optional für längere Referrer-Links
+  utmSource             String? // UTM-Quelle, normalerweise kurz
+  utmMedium             String? // UTM-Medium, normalerweise kurz
+  utmCampaign           String? // UTM-Kampagne, normalerweise kurz
+  utmContent            String? // UTM-Content, normalerweise kurz
+  gclid                 String? // GCLID
+  deviceType            String? // Gerätetyp (Mobile, Desktop, Tablet), normalerweise kurz
+  browser               String?    @db.VarChar(2500) // Browser-Informationen könnten länger sein
+  os                    String?    @db.VarChar(2500) // Betriebssystem könnte länger sein
+  pageSource            String? // Ursprüngliche Seite, normalerweise nur eine URL
+  visitedPages          String?    @db.Text
+  ip                    String?
+  country               String?
+  city                  String?
+  microsoft_login_state String?
+  email_after_login     String?
+  microsoft_tenant_id   String?
+  microsoft_user_id     String?
+  status                DealStatus @default(PENDING_MICROSOFT_LOGIN)
+  set_as_active_at      DateTime?
+
+  @@index([microsoft_login_state])
+}
+
+enum DealStatus {
+  PENDING_MICROSOFT_LOGIN
+  ACTIVE
+}
+
 model AccountDeletionReason {
   id                  Int      @id @default(autoincrement())
   createdAt           DateTime @default(now())
@@ -37,7 +71,7 @@ model Member {
   approver_config_department_id                  String?
   approver_config_microsoft_profile_manager_sync Int?
   approval_process                               ApprovalProcess                     @default(Linear_all_have_to_agree)
-  sendinblue_contact_id                          String?                             @unique
+  brevo_contact_id                               Int?                                @unique
   firstName                                      String?
   lastName                                       String?
   displayName                                    String?
@@ -122,6 +156,7 @@ model Workspace {
   privacy_show_calendarview               Boolean                            @default(true)
   privacy_show_otherdepartments           Boolean                            @default(false)
   privacy_show_absences_in_past           Boolean                            @default(true)
+  brevo_company_id                        String?
   referrer                                String?
   gclid                                   String?
   enabled_to_purchase_enterprise          Boolean                            @default(false)
@@ -237,23 +272,23 @@ model ApiKey {
 }
 
 model AllowanceType {
-  id                                    String                              @id @default(uuid())
-  createdAt                             DateTime                            @default(now())
-  updatedAt                             DateTime                            @updatedAt
-  workspace_id                          String
-  name                                  String
-  active                                Boolean                             @default(true)
-  default                               Boolean                             @default(true)
-  allowance_unit                        AllowanceUnit                       @default(days)
-  ignore_allowance_limit                Boolean                             @default(false)
-  max_carry_forward                     Float                               @default(0)
-  carry_forward_deadline                DateTime?                           @default("1970-12-31T00:00:00.000Z")
-  allowance_policies                    AllowancePolicy[]
-  member_allowance_policy_subscriptions MemberAllowancePolicySubscription[]
-  leave_types                           LeaveType[]
-  member_allowance_adjustments          MemberAllowanceAdjustment[]
-  member_allowances                     MemberAllowance[]
-  member_allowance_typ_configurtaions   MemberAllowanceTypeConfigurtaion[]
+  id                                     String                              @id @default(uuid())
+  createdAt                              DateTime                            @default(now())
+  updatedAt                              DateTime                            @updatedAt
+  workspace_id                           String
+  name                                   String
+  active                                 Boolean                             @default(true)
+  default                                Boolean                             @default(true)
+  allowance_unit                         AllowanceUnit                       @default(days)
+  ignore_allowance_limit                 Boolean                             @default(false)
+  max_carry_forward                      Float                               @default(0)
+  carry_forward_months_after_fiscal_year Int                                 @default(0)
+  allowance_policies                     AllowancePolicy[]
+  member_allowance_policy_subscriptions  MemberAllowancePolicySubscription[]
+  leave_types                            LeaveType[]
+  member_allowance_adjustments           MemberAllowanceAdjustment[]
+  member_allowances                      MemberAllowance[]
+  member_allowance_typ_configurtaions    MemberAllowanceTypeConfigurtaion[]
 
   workspace Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
 
@@ -356,20 +391,20 @@ model CalendarSyncSetting {
 }
 
 model TimeghostSyncSetting {
-  id                              String                           @id @default(uuid())
-  createdAt                       DateTime                         @default(now())
-  updatedAt                       DateTime                         @updatedAt
-  workspace_id                    String
-  name                            String
-  description                     String                           @db.VarChar(2500)
-  timeghost_workspace_id          String
-  timeghost_api_access_token      String
-  invalid_apikey_notification_sent Boolean?                        @default(false) // New field to track notification status
-  deleted                         Boolean                          @default(false)
-  workspace                       Workspace                        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
-  timeghostSyncSettingLeaveTypes  TimeghostSyncSettingLeaveType[]
-  timeghostSyncSettingDepartments TimeghostSyncSettingDepartment[]
-  requestSyncLogs                 RequestSyncLog[]
+  id                               String                           @id @default(uuid())
+  createdAt                        DateTime                         @default(now())
+  updatedAt                        DateTime                         @updatedAt
+  workspace_id                     String
+  name                             String
+  description                      String                           @db.VarChar(2500)
+  timeghost_workspace_id           String
+  timeghost_api_access_token       String
+  invalid_apikey_notification_sent Boolean?                         @default(false) // New field to track notification status
+  deleted                          Boolean                          @default(false)
+  workspace                        Workspace                        @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  timeghostSyncSettingLeaveTypes   TimeghostSyncSettingLeaveType[]
+  timeghostSyncSettingDepartments  TimeghostSyncSettingDepartment[]
+  requestSyncLogs                  RequestSyncLog[]
 
   @@index([workspace_id])
 }
@@ -660,8 +695,8 @@ model LeaveType {
   sync_option                             SyncEnabled                     @default(All)
   sync_to_outlook_as_dynamics_365_tracked Boolean                         @default(false)
   leave_unit                              LeaveUnit                       @default(days)
-  ignore_schedule                       Boolean                             @default(false)
-  ignore_public_holidays                Boolean                             @default(false)
+  ignore_schedule                         Boolean                         @default(false)
+  ignore_public_holidays                  Boolean                         @default(false)
 
   workspace  Workspace @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
   deleted_by Member?   @relation(fields: [deleted_by_member_id], references: [id], onDelete: SetNull)
@@ -692,11 +727,8 @@ model MemberAllowance {
   expiration                Float    @default(0)
   taken                     Float
   remaining                 Float
-  //todo delete
   allowance                 Float
-  //todo delete
   brought_forward           Float
-  //todo delete
   compensatory_time_off     Float
   leave_types_stats         Json?
   allowance_type_id         String
@@ -1015,7 +1047,7 @@ model RequestSyncLog {
   timeghost_sync_setting_id          String?
   timeghost_workspace_id             String?
   timeghost_user_id                  String?
-  timeghost_time_entry               String?                 @db.VarChar(2500)
+  timeghost_time_entry               String?               @db.VarChar(2500)
   email                              String?
   error                              String?               @db.VarChar(2500)
   sync_type                          SyncType?

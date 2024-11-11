@@ -73,7 +73,8 @@ export async function sendAdaptiveCard(
   if (!ac) return;
   return ac.id;
 }
-export async function updareAdaptiveCard(
+
+export async function updateAdaptiveCard(
   prisma: PrismaClient,
   cardData: CardData,
   receiver_member_id: string,
@@ -84,29 +85,41 @@ export async function updareAdaptiveCard(
     select: { notifications_receiving_method: true, microsoft_user_id: true }
   });
   if (!user) return;
-  //if (user.notifications_receiving_method == 'Email') return;
   if (!user.microsoft_user_id) return;
-  let x = await prisma.teamsBotConversationReferences.findFirst({
+
+  const x = await prisma.teamsBotConversationReferences.findFirst({
     where: { user_aad_id: user.microsoft_user_id },
     select: { ref_data: true }
   });
-
   if (!x) return;
-  let ac;
+
+  // Initialize TurndownService for HTML to Markdown conversion
+  const turndownService = new TurndownService();
+
+  // Convert HTML content to Markdown for each relevant field in cardData
+  cardData.firstLine = turndownService.turndown(cardData.firstLine || "");
+  cardData.secondLine = turndownService.turndown(cardData.secondLine || "");
+  cardData.thirdLine = turndownService.turndown(cardData.thirdLine || "");
+  cardData.fourthLine = turndownService.turndown(cardData.fourthLine || "");
+  cardData.fifthLine = turndownService.turndown(cardData.fifthLine || "");
+  cardData.pageTitle = turndownService.turndown(cardData.pageTitle || "");
+
   const adaptor = notificationApp.adapter;
-  let adaptiveCard = AdaptiveCards.declare<CardData>(notificationTemplate).render(cardData);
+  const adaptiveCard = AdaptiveCards.declare<CardData>(notificationTemplate).render(cardData);
+
   try {
     await adaptor.continueConversationAsync(
       process.env.NEXT_PUBLIC_MSAL_CLIENTID + '',
       x.ref_data as Partial<ConversationReference>,
       async (context) => {
-        var activity = MessageFactory.attachment(CardFactory.adaptiveCard(adaptiveCard));
-        activity.id = activityId;
+        const activity = MessageFactory.attachment(CardFactory.adaptiveCard(adaptiveCard));
         activity.summary = cardData.pageTitle;
-        await context.updateActivity(activity);
+        await context.updateActivity({ id: activityId, ...activity });
       }
     );
   } catch (e) {
     console.log(e);
   }
 }
+
+

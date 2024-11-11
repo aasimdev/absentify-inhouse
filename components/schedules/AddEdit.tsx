@@ -61,14 +61,16 @@ const CustomTimeField = ({ value, useAmPm, onChange, disabled, calcFields }: Pro
         },
         '& .MuiInputBase-input': {
           borderRadius: '4px',
-          border: '1px solid #c4c4c4',
+          border: '1px solid #333741',
           color: theme === 'dark' ? '#fff' : '#000', 
           '&:hover': {
-            border: '1px solid #a0a0a0'
+            border: '1px solid #333741'
           },
           '&:focus': {
-            border: '1px solid #3d3e66',
-            outline: 'none'
+            border:  theme === 'dark' ? '1px solid #7479dc' : '1px solid #3d3e66',
+            outline: 'none',
+            boxShadow: theme === 'dark' ? "none" : '',
+            borderColor: theme === 'dark' ? "#7479dc" : ''
           },
           '&.Mui-disabled':{
             WebkitTextFillColor: theme === 'dark' ? 'rgba(255,255,255, 0.38)' : 'rgba(0,0,0, 0.38)'
@@ -403,7 +405,7 @@ export default function AddEditSchedule(props: {
     }
   };
   return (
-    <form className="w-full border lg:col-span-9 dark:border-gray-500" onSubmit={handleSubmit(onSubmit)}>
+    <form className="w-full border lg:col-span-9 dark:border-teams_brand_tbody_border" onSubmit={handleSubmit(onSubmit)}>
       <div className="py-6 px-4 sm:p-6 lg:pb-8 ">
         {props.mode == 'member_schedules' && (
           <div className="mt-6 flex flex-row space-x-8 lg:justify-between">
@@ -604,7 +606,7 @@ export default function AddEditSchedule(props: {
             props.onClose(false);
           }}
           type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>
@@ -793,13 +795,13 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
           {props.enableEdit ? (
             <input
               {...register('am_enabled', { required: true })}
-              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450"
+              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_dark_mode dark:border-teams_brand_border focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_dark_mode dark:hover:bg-teams_dark_mode dark:hover:border-teams_brand_border dark:focus:outline-0 dark:focus:ring-0"
               type="checkbox"
             />
           ) : (
             <input
               {...register('am_enabled', { required: true })}
-              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg  focus:ring-teams_brand_450"
+              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg  focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_dark_mode dark:hover:bg-teams_dark_mode dark:hover:border-teams_brand_border dark:focus:outline-0 dark:focus:ring-0"
               type="checkbox"
               style={{ backgroundColor: amEnabled ? 'gray' : 'transparent' }}
               disabled={true}
@@ -844,13 +846,13 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
           {props.enableEdit ? (
             <input
               {...register('pm_enabled', { required: true })}
-              className="my-auto  mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450"
+              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg  focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_dark_mode dark:hover:bg-teams_dark_mode dark:hover:border-teams_brand_border dark:focus:outline-0 dark:focus:ring-0"
               type="checkbox"
             />
           ) : (
             <input
               {...register('pm_enabled', { required: true })}
-              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450"
+              className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg  focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_dark_mode dark:hover:bg-teams_dark_mode dark:hover:border-teams_brand_border dark:focus:outline-0 dark:focus:ring-0"
               type="checkbox"
               disabled={true}
               style={{ backgroundColor: pmEnabled ? 'gray' : 'transparent' }}
@@ -899,7 +901,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
             <div className=" mb-6 inline-flex">
               <input
                 {...register('deduct_fullday', { required: true })}
-                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:text-gray-200"
+                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_dark_100"
                 type="checkbox"
               />{' '}
               <label htmlFor="deduct_fullday" className='dark:text-gray-200'>{t('deductFullday')}</label>
@@ -932,7 +934,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
             <div className=" mb-6 inline-flex">
               <input
                 {...register('deduct_fullday', { required: true })}
-                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100 dark:text-gray-200  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_dark_100"
                 type="checkbox"
                 disabled={true}
                 style={{

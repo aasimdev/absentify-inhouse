@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Beállítások megtekintése a csapatokban",
   "notice_managers": "Értesítés: az egyik alkalmazottja kérelmét jóváhagyták.",
   "second_line_for_managers": "az Ön osztályán belül egy alkalmazott kérését jóváhagyták. {{employee_name}}A {{leave_type_name}} címre benyújtott szabadságkérelmét feldolgozták, és további intézkedés nem szükséges. Ezt az e-mailt azért kapja, mert Ön az osztály vezetője. ",
-  "request_created_by": "<div><strong>A kérelmet létrehozta:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>A kérelmet létrehozta:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Indoklás:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Sikertelen szinkronizálási kérelem",
   "sync_request_to_timeghost_failed-subject": "timeghost szinkronizációs probléma az érvénytelen API-kulcs miatt 🚨",

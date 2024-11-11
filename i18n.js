@@ -12,6 +12,7 @@ module.exports = {
     '/microsoft/ms-teams/tab/config': ['microsoft_tab_config'],
     '/signup': ['signup'],
     '/login': ['login'],
+    '/create-account': ['login'],
     '/api/*': ['backend', 'mails'],
     'rgx:/settings/organisation': [
       'settings_organisation',

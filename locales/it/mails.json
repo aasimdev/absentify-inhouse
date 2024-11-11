@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Visualizza le impostazioni in Teams",
   "notice_managers": "Avviso: è stata approvata una richiesta da parte di uno dei tuoi dipendenti",
   "second_line_for_managers": "è stata approvata la richiesta di un dipendente del tuo dipartimento. {{employee_name}}La richiesta di congedo di {{leave_type_name}} è stata elaborata e non sono necessarie ulteriori azioni. Ricevi questa e-mail perché sei il capo del dipartimento. ",
-  "request_created_by": "<div><strong>Richiesta creata da:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Richiesta creata da:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Motivo:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Richiesta di sincronizzazione fallita",
   "sync_request_to_timeghost_failed-subject": "Problema di sincronizzazione di timeghost a causa di API-Key non valide 🚨",

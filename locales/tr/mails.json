@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Teams'de Ayarları Görüntüleme",
   "notice_managers": "Bildirim: Çalışanlarınızdan birinin talebi onaylandı",
   "second_line_for_managers": "departmanınız bünyesindeki bir çalışanın talebi onaylanmıştır. {{employee_name}}'nin {{leave_type_name}} için izin talebi işleme konmuştur ve başka bir işlem yapılmasına gerek yoktur. Bölüm başkanı olduğunuz için bu e-postayı alıyorsunuz. ",
-  "request_created_by": "<div><strong>İstek tarafından oluşturuldu:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>İstek tarafından oluşturuldu:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Sebep:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Senkronizasyon İsteği Başarısız",
   "sync_request_to_timeghost_failed-subject": "geçersiz API Anahtarı nedeniyle timeghost senkronizasyon sorunu 🚨",

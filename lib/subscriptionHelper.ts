@@ -17,6 +17,7 @@ export type SubscriptionSummary = {
   provider: SubscriptionProvider | null;
   billing_cycle_interval: BillingCycleInterval;
   cancellation_effective_date: Date | null;
+  has_business_V1_subscription?: boolean;
   small_team: number;
   business: boolean;
   business_by_user: number;
@@ -193,6 +194,7 @@ export const summarizeSubscriptions = (
   }[]
 ): SubscriptionSummary => {
   let has_valid_subscription = false;
+  let has_business_V1_subscription = false;
   let business = false;
   let business_by_user = 0;
   let small_team = 0;
@@ -297,6 +299,7 @@ export const summarizeSubscriptions = (
     }
   }
   has_valid_subscription = hasValidSubscription(subscriptions);
+  has_business_V1_subscription = hasBusinessV1Subscription(subscriptions);
   if (departments == 0) departments = 2;
   if (allowance_types == 0) allowance_types = 1;
   return {
@@ -310,6 +313,7 @@ export const summarizeSubscriptions = (
     business_by_user,
     enterprise,
     subscription_id,
+    has_business_V1_subscription,
     addons: {
       multi_manager,
       calendar_sync,

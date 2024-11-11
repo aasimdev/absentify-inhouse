@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Майбутні зміни в облікових записах резерву за попередній рік більше не впливатимуть на перенесення. Це означає, що якщо розрахований перехідний залишок збільшиться внаслідок подальших коригувань резерву, встановлений вручну перехідний залишок залишиться незмінним.",
   "ManualCarryoverDialog_Confirmation": "Щоб продовжити, будь ласка, підтвердіть, що ви розумієте наслідки ручного налаштування, натиснувши \"Підтвердити\".",
   "Default": "За замовчуванням",
-  "Visible": "Видимий"
+  "Visible": "Видимий",
+  "carryForward_expired_single": "{{count}} {{unit}} закінчився на {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} закінчився на {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} закінчується на {{date}}.",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} закінчується на {{date}}.",
+  "units_days": "день",
+  "units_days_plural": "днів",
+  "units_hours": "година",
+  "units_hours_plural": "годин",
+  "Expire": "Закінчується"
 }

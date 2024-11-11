@@ -742,13 +742,14 @@ async function createICalEvent(
       attachments: [
         {
           name: 'invite.ics',
-          contentType: 'text/calendar; method=REQUEST',
+          contentType: 'text/calendar; method=REQUEST; charset="UTF-8"',
           contentInBase64: base64CalString
         }
       ],
       headers: {
         'Content-Class': 'urn:content-classes:calendarmessage',
-        'Content-Type': 'text/calendar; method=REQUEST'
+        'Content-Type': 'text/calendar; method=REQUEST; charset="UTF-8"',
+        'Content-Disposition': 'inline'
       }
     });
 

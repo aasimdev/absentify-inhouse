@@ -7,7 +7,7 @@ import {
   TurnState,
   AI
 } from '@microsoft/teams-ai';
-import { MemoryStorage, MessageFactory, TurnContext } from 'botbuilder';
+import { ConversationAccount, MemoryStorage, MessageFactory, ResourceResponse, TurnContext } from 'botbuilder';
 import { EndAt, LeaveUnit, StartAt } from '@prisma/client';
 import { prisma } from '~/server/db';
 import { current_member_Select, current_member_SelectOutput } from '~/server/api/trpc';
@@ -51,20 +51,76 @@ const storage = new MemoryStorage();
 const app = new Application<TurnState<CustomConversationState, DefaultUserState, DefaultTempState>>({
   storage,
   ai: {
-    planner
+    planner,
+    enable_feedback_loop: true
   }
 });
 
 export const run = (context: TurnContext) => app.run(context);
 
-export async function callAIModel(content: string) {
-  const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [{ role: 'user', content }]
+function getTextInsideQuotes(inputString: string): string | null {
+  // Use regular expression to find the first substring inside double quotes
+  const match = inputString.match(/"(.*?)"/);
+
+  // If a match is found, return the first group without the quotes, otherwise return null
+  return match && match[1]? match[1] : null;
+}
+
+function getTomorrowDate(): string {
+  const today = new Date();
+  
+  // Add one day to the current date
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  // Extract the day, month, and year
+  const day = tomorrow.getDate();
+  const month = tomorrow.getMonth() + 1;  // getMonth() is zero-based
+  const year = tomorrow.getFullYear();
+
+  // Return the formatted date as "DD.MM.YYYY"
+  return `${day}.${month}.${year}`;
+}
+
+export async function callAIModel(content: string, context: TurnContext) {
+  const stream = await openai.chat.completions.create({
+    model: 'gpt-4o-mini',
+    messages: [{ role: 'user', content }],
+    stream: true
   });
 
-  if (response.choices && response.choices[0] && response.choices.length > 0 && response.choices[0].message.content) {
-    return response.choices[0].message.content.trim() || '';
+  let fullResponse = '';
+  const initialMessage = (await context.sendActivity('...')) as ResourceResponse; // Placeholder message
+
+  if (stream) {
+    try {
+      for await (const part of stream) {
+        const contentPart = part.choices[0]?.delta?.content || '';
+
+        if (contentPart) {
+          fullResponse += contentPart;
+
+          // Update the existing message with the new content
+          const updatedMessage = {
+            type: 'message',
+            id: initialMessage.id, // The ID of the message to update
+            text: fullResponse // The updated full content so far
+          };
+
+          await context.updateActivity(updatedMessage); // Update the same message
+        }
+      }
+    } catch (error) {
+      console.error('Error during streaming or updating the activity:', error);
+      // Send a message to the user informing them of the error
+      const errorMessage = {
+        type: 'message',
+        text: 'Oops! Something went wrong while processing your request. Please try again later.',
+        id: initialMessage.id
+      };
+      await context.sendActivity(errorMessage); // Send an error message to the user
+    }
+    return fullResponse;
   }
 }
 
@@ -168,6 +224,10 @@ app.ai.action<LeaveRequest>('create_leave_request', async (context, state, leave
     reason: leaveRequest.reason ? leaveRequest.reason : '',
     leave_type: leaveType as { id: string; leave_unit: LeaveUnit }
   };
+  //show leave type suggested actions
+  if (state.conversation.request_parameters.leave_type || state.conversation.request_parameters.leave_type_name) {
+    bot.sendSuggestedActions(context, 'leave_type');
+  }
 
   const getT = ensureAvailabilityOfGetT();
   const t = await getT(current_user.language, 'backend');
@@ -191,34 +251,36 @@ app.ai.action<LeaveRequest>('create_leave_request', async (context, state, leave
 });
 
 app.message(/\/help/, async (context: TurnContext, state) => {
+  const tomorrowDate = getTomorrowDate();
   await app.ai.doAction(context, state, 'get_init_data');
   const commandsText =
     `Here are the available commands:\n` +
     `/help - Get a list of available commands and their usage.\n` +
     `/start - Start a new session with the bot.\n` +
-    `You can also create a new absence by typing something like: "Create a vacation absence on 20.6.2024 from morning till the end of the day".`;
-  const answerFromAI = await callAIModel(
-    'Reformulate to an user friendly and only return the result text in "' +
-      state.conversation.current_member.language +
-      '" language:' +
-      commandsText
+    `You can also create a new absence by typing something like: "Create a vacation absence on ${tomorrowDate} from morning till the end of the day".`;
+    //get and display the response from the AI model
+  const fullResponse = await callAIModel(
+    `Please rephrase the following text to be user-friendly and return the result in "${state.conversation.current_member.language}" language: ${commandsText}`,
+    context
   );
-  if (answerFromAI) {
-    await context.sendActivity(answerFromAI);
+  if (fullResponse) {
+    let bot = new TeamsBot();
+    //get the translated text inside the quotes to set as value for create request suggested action
+    const result = getTextInsideQuotes(fullResponse);
+    //sent the suggested actions to user
+    bot.sendSuggestedActions(context, 'help_command', result ? result : '');
   }
 });
 
 // Define the start command
 app.message(/\/start/, async (context: TurnContext, state) => {
   await app.ai.doAction(context, state, 'get_init_data');
-  const welcomeText = 'Welcome! How can I assist you today? You can type /help to see what I can do.';
-  const answerFromAI = await callAIModel(
-    'Reformulate to an user friendly and only return the result text in "' +
-      state.conversation.current_member.language +
-      '" language:' +
-      welcomeText
+  const welcomeText = 'Welcome! How can I assist you today? You can type or select /help to see what I can do.';
+  await callAIModel(
+    `Please rephrase the following text to be user-friendly and return the result in "${state.conversation.current_member.language}" language: ${welcomeText}`,
+    context
   );
-  if (answerFromAI) {
-    await context.sendActivity(answerFromAI);
-  }
+  let bot = new TeamsBot();
+   //sent the suggested actions to user
+  bot.sendSuggestedActions(context, 'start_command');
 });

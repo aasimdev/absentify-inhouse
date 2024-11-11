@@ -25,7 +25,7 @@ const GenerateKey = () => {
           <h2 className="text-lg font-medium leading-6 text-gray-900 mb-1  dark:text-gray-200">{t('api_key')}</h2>
           <p className="py-2 text-sm text-gray-500  dark:text-gray-200">{t('api_key_subscription')}</p>
 
-          <a className="underline mt-3  dark:text-gray-200" href="https://api-doc.absentify.com/">
+          <a className="underline mt-3 dark:text-gray-200" href="https://absentify.com/docs/api-reference">
             {t('view_api_doc')}
           </a>
         </div>

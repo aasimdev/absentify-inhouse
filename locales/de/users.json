@@ -20,7 +20,7 @@
   "read_more": "Mehr erfahren",
   "SendInvitationEmail_many": "Einladungs-E-Mails versenden",
   "SendInvitationEmail_description_many": "Die Nutzer/innen erhalten von uns eine E-Mail mit einem Link zu absentify. Wenn du das zum jetzigen Zeitpunkt nicht möchtest, musst du die E-Mail später manuell an diese Nutzer senden.",
-  "UserWithoutEmailHeadlineWithoutSubscription": "Im Businessplan kannst du auch Nutzer einladen, die keine E-Mail-Adresse haben.",
+  "UserWithoutEmailHeadlineWithoutSubscription": "Im Essentials-Plan kannst du auch Nutzer einladen, die keine E-Mail-Adresse haben.",
   "UserWithoutEmailHeadlineWithSubscription": "Du kannst auch Nutzer ohne E-Mail-Adresse einladen.",
   "UserWithoutEmailDescription": "Du kannst für diese Mitarbeiter Abwesenheiten eintragen und den Kalender verwalten. Diese Mitarbeiter können sich nicht anmelden, Abteilungsleiter sein oder Abwesenheiten für andere Mitarbeiter genehmigen.",
   "Upgrade": "Upgrade",

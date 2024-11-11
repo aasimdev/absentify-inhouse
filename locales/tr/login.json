@@ -1,5 +1,13 @@
 {
   "no_credit_card_slogan": "Kredi kartı gerekmez - İstediğiniz zaman abonelikten çıkın",
   "Sign_in_to_your_account": "Hesabınızda oturum açın",
-  "login": "Microsoft ile devam edin - ücretsiz!"
+  "login": "Microsoft ile devam edin - ücretsiz!",
+  "Register_for_free": "Ücretsiz kayıt olun",
+  "No_credit_card_required": "Kredi kartı gerekmez - Ücretsiz planımızla sınırsız erişimin keyfini çıkarın. İstediğiniz zaman yükseltebilir veya iptal edebilirsiniz.",
+  "Email_address": "E-posta adresi",
+  "Microsoft_email_example": "Microsoft iş e-postanız (örn. user@company.com)",
+  "Agree_to_policy": "Kaydolarak <0>Gizlilik Politikasını</0> ve <1>Hizmet Şartlarını</1> kabul ediyorum.",
+  "Already_have_account": "Zaten bir hesabınız var mı?",
+  "Sign_in": "Oturum aç",
+  "Continue": "Devam et"
 }

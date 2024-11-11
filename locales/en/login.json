@@ -1,5 +1,13 @@
 {
   "no_credit_card_slogan": "No credit card required - Unsubscribe at any time",
   "Sign_in_to_your_account": "Sign in to your account",
-  "login": "Continue with Microsoft - it's free!"
+  "login": "Continue with Microsoft - it's free!",
+  "Register_for_free": "Register for free",
+  "No_credit_card_required": "No credit card required – Enjoy unlimited access with our free plan. You can upgrade or cancel anytime.",
+  "Email_address": "Email address",
+  "Microsoft_email_example": "Your Microsoft work email (e.g., user@company.com)",
+  "Agree_to_policy": "By signing up, I agree to the <0>Privacy Policy</0> and <1>Terms of Service</1>.",
+  "Already_have_account": "Already have an account?",
+  "Sign_in": "Sign in",
+  "Continue": "Continue"
 }

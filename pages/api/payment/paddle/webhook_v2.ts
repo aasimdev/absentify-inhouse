@@ -169,6 +169,10 @@ async function updateSubscriptionData(body: EventNotification) {
       select: { id: true }
     });
   await Promise.all([...deletePromises, ...updatePromises]);
+  await inngest.send({
+    name: 'brevo/create_or_update_all_workspace_contacts',
+    data: { workspace_id: body.data.custom_data.workspace_id }
+  });
 }
 
 async function createSubscriptionData(body: EventNotification) {
@@ -193,6 +197,7 @@ async function createSubscriptionData(body: EventNotification) {
       }
     });
 
+    await Promise.all(createPromises);
     await inngest.send(
       workspace.members.map((m) => {
         return {
@@ -204,7 +209,10 @@ async function createSubscriptionData(body: EventNotification) {
       })
     );
   }
-  await Promise.all(createPromises);
+  await inngest.send({
+    name: 'brevo/create_or_update_all_workspace_contacts',
+    data: { workspace_id: body.data.custom_data.workspace_id }
+  });
 }
 
 function prepareSubscriptionItemData(

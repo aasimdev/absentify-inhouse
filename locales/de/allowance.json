@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Künftige Änderungen in den Abwesenheitssätzen des Vorjahres haben keinen Einfluss mehr auf den Übertrag. Das bedeutet, dass selbst wenn sich der berechnete Übertragsbetrag aufgrund von nachträglichen Anpassungen der Abwesenheiten erhöhen würde, der manuell eingestellte Übertrag davon unberührt bleibt.",
   "ManualCarryoverDialog_Confirmation": "Um fortzufahren, bestätige bitte, dass du die Auswirkungen der manuellen Anpassung verstanden hast, indem du auf \"Bestätigen\" klickst.",
   "Default": "Standard",
-  "Visible": "Sichtbar"
+  "Visible": "Sichtbar",
+  "carryForward_expired_single": "{{count}} {{unit}} ist am {{date}} verfallen",
+  "carryForward_expired_multiple": "{{count}} {{unit}} sind am {{date}} verfallen",
+  "carryForward_willExpire_single": "{{count}} {{unit}} wird am {{date}} verfallen",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} werden am {{date}} verfallen",
+  "units_days": "Tag",
+  "units_days_plural": "Tage",
+  "units_hours": "Stunde",
+  "units_hours_plural": "Stunden",
+  "Expire": "Verfallen"
 }

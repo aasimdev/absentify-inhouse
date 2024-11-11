@@ -93,6 +93,8 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/schema.prisma ./
+COPY --from=builder /app/migrations ./migrations
 
 # Set the correct permission for prerender cache
 RUN mkdir .next
@@ -111,4 +113,4 @@ ENV PORT 3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD npx prisma migrate deploy && HOSTNAME="0.0.0.0" node server.js

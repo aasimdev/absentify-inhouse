@@ -118,8 +118,8 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
   if (!current_member) return null;
   return (
     <>
-      <div className="grid grid-cols-1 border-t dark:border-[#595869] border-b bg-white dark:bg-teams_dark_mode shadow sm:rounded sm:border md:grid-cols-10">
-        <div className="border-b dark:border-[#595869] md:col-span-10 dark:bg-teams_brand_dark_100">
+      <div className="grid grid-cols-1 border-t dark:border-teams_brand_tbody_border border-b bg-white dark:bg-teams_dark_mode shadow sm:rounded sm:border md:grid-cols-10">
+        <div className="border-b dark:border-teams_brand_tbody_border md:col-span-10">
           <div className="-mb-px flex justify-between pl-6">
             <div className="flex ">
               <div className="flex py-6 text-lg  font-normal ">
@@ -142,7 +142,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                   <ReactTooltip
                     id="yearnav-tooltip"
                     place="top"
-                    className="shadow z-50"
+                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                     classNameArrow="shadow-sm"
                     style={{
                       boxShadow: '0 0 10px rgba(0,0,0,.1)'
@@ -167,7 +167,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                   <ReactTooltip
                     id="yearnav-tooltip"
                     place="top"
-                    className="shadow z-50"
+                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_dark_100"
                     classNameArrow="shadow-sm"
                     style={{
                       boxShadow: '0 0 10px rgba(0,0,0,.1)'
@@ -199,6 +199,9 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
               </div>
             </div>
 
+           {member &&
+          (isCurrentUserHasPermissionToCreateRequest ||
+            member.has_approvers.find((x) => x.approver_member_id == current_member.id)) && ( 
             <div className="flex">
               <a
                 href=""
@@ -220,14 +223,14 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
               >
                 <button
                   type="button"
-                  className=" mx-6 inline-flex items-center rounded border border-gray-300 bg-white dark:bg-transparent px-6 py-1.5 text-sm font-medium text-gray-700 dark:text-white shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 dark:ring-teams_brand_dark_400 focus:ring-offset-2"
+                  className=" mx-6 inline-flex items-center rounded border border-gray-300 bg-white dark:bg-transparent px-6 py-1.5 text-sm font-medium text-gray-700 dark:text-teams_brand_gray shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 dark:ring-teams_brand_tbody_border focus:ring-offset-2"
                 >
                   <PlusCircleIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
                   {t('Create_request')}
                 </button>
               </a>
               <p></p>
-            </div>
+            </div>)}
           </div>
         </div>
 

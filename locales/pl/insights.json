@@ -24,8 +24,8 @@
   "lessThanOneYear": "Mniej niż jeden rok",
   "day": "dzień",
   "first-working-day": "Pierwszy dzień roboczy",
-  "1-year-anniversary": "1 rocznica",
+  "1-year-anniversary": "1. rocznica",
   "multiple-years-anniversary": "{{years}}-rocznica",
   "multiple-years-old": "{{age}} lat",
-  "remaining-allowance-days": "Pozostały dodatek wynosi"
+  "remaining-allowance-days": "Pozostały wymiar urlopu to"
 }

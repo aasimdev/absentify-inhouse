@@ -7,7 +7,10 @@
 @layer components {
 
   .my-react-select-container .my-react-select__control {
-    @apply bg-white dark:bg-transparent border border-neutral-300 dark:border-teams_brand_dark_400 hover:border-neutral-400 dark:hover:border-teams_brand_dark_400;
+    @apply bg-white dark:bg-transparent border border-neutral-300 dark:border-teams_brand_border hover:border-neutral-400 dark:hover:border-teams_brand_border;
+  }
+  .my-react-select-container .my-react-select__placeholder{
+    @apply dark:!text-[#667085]
   }
 
   .my-react-select-container .my-react-select__control--is-focused {
@@ -15,27 +18,37 @@
   }
 
   .my-react-select-container .my-react-select__menu {
-    @apply bg-neutral-100 dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600;
+    @apply bg-neutral-100 dark:bg-teams_brand_thead border border-neutral-300 dark:border-teams_brand_thead;
   }
 
   .my-react-select-container .my-react-select__option {
-    @apply text-neutral-600 dark:text-white bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-800;
+    @apply text-teams_brand_thead dark:text-white bg-neutral-100 hover:bg-neutral-200 dark:bg-teams_brand_thead dark:hover:bg-teams_brand_tbody;
   }
   /* .my-react-select-container .my-react-select__option--is-focused {
     @apply bg-neutral-200 dark:bg-neutral-800;
   } */
 
   .my-react-select-container .my-react-select__indicator-separator {
-    @apply bg-neutral-400 dark:bg-teams_brand_dark_400;
+    @apply bg-neutral-400 dark:bg-teams_brand_border;
   }
   .my-react-select-container .my-react-select__dropdown-indicator {
-    @apply text-neutral-600 dark:text-white;
+    @apply text-neutral-600 dark:text-teams_brand_border;
   }
 
   .my-react-select-container .my-react-select__input-container,
   .my-react-select-container .my-react-select__placeholder,
   .my-react-select-container .my-react-select__single-value {
-    @apply text-neutral-600 dark:text-white;
+    @apply text-neutral-600 dark:text-teams_brand_gray;
+  }
+  .dark .my-react-select__value-container--is-multi .my-react-select__multi-value{
+    @apply bg-teams_brand_dark_800 text-white
+  }
+  .dark .my-react-select__value-container--is-multi .my-react-select__multi-value .my-react-select__multi-value__label{
+    @apply text-white
+  }
+  .dark .my-react-select__value-container--is-multi .my-react-select__multi-value__remove:hover{
+    background: transparent;
+    color: #fff;
   }
 }
 
@@ -100,4 +113,53 @@
   height: 250px;
   max-height: 250px;
   overflow: auto;
+}
+
+
+/* Date Picker */
+.dark .react-datepicker__header, .dark .react-datepicker__month {
+ @apply bg-teams_brand_thead text-white
+
+}
+.dark .react-datepicker__header{
+  @apply border-b-0
+}
+.dark .react-datepicker__day-name{
+  @apply text-gray-100
+}
+.dark .react-datepicker__day{
+  @apply text-gray-200
+}
+.dark .react-datepicker__day--today{
+  background: #919AF2;
+  color: #000;
+}
+.dark .react-datepicker{
+  @apply bg-teams_brand_thead border-0
+}
+
+.dark .react-datepicker__day:hover, .dark .react-datepicker__month-text:hover, .dark .react-datepicker__quarter-text:hover, .dark .react-datepicker__year-text:hover{
+  @apply bg-teams_dark_mode_core text-white
+}
+.dark .react-datepicker__day--selected, .dark .react-datepicker__day--in-selecting-range, .dark .react-datepicker__day--in-range, .dark .react-datepicker__month-text--selected, .dark .react-datepicker__month-text--in-selecting-range, .dark .react-datepicker__month-text--in-range, .dark .react-datepicker__quarter-text--selected, .dark .react-datepicker__quarter-text--in-selecting-range, .dark .react-datepicker__quarter-text--in-range, .dark .react-datepicker__year-text--selected, .dark .react-datepicker__year-text--in-selecting-range, .dark .react-datepicker__year-text--in-range{
+  background: #373964;
+}
+.dark .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle::after{
+  @apply border-t-teams_brand_dark_100
+}
+
+
+/* fields autofill */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill,
+.dark textarea:-webkit-autofill:hover,
+.dark textarea:-webkit-autofill:focus,
+.dark select:-webkit-autofill,
+.dark select:-webkit-autofill:hover,
+.dark select:-webkit-autofill:focus {
+  @apply border-gray-300 !bg-black text-white;
+  -webkit-box-shadow: 0 0 0 30px #292929 inset !important;
+  -webkit-text-fill-color: #e5e7eb !important;
 }

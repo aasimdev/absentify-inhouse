@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Einstellungen in Teams anzeigen",
   "notice_managers": "Hinweis: Ein Antrag eines deiner Mitarbeiter wurde genehmigt",
   "second_line_for_managers": "ein Antrag eines Mitarbeiters deiner Abteilung wurde genehmigt. {{employee_name}} Urlaubsantrag des Mitarbeiters für {{leave_type_name}} wurde bearbeitet und es sind keine weiteren Maßnahmen erforderlich. Du erhältst diese E-Mail, weil du der Leiter der Abteilung bist. ",
-  "request_created_by": "<div><strong>Antrag erstellt von:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Antrag erstellt von:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Grund:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Sync-Anfrage fehlgeschlagen",
   "sync_request_to_timeghost_failed-subject": "timeghost-Synchronisationsproblem aufgrund eines ungültigen API-Keys 🚨",

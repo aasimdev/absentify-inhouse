@@ -333,7 +333,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           <ReactTooltip
                             id="info-tooltip"
                             className="z-50 shadow-sm dark:bg-teams_dark_mode_core dark:text-gray-200"
-                            classNameArrow="shadow-sm dark:bg-teams_dark_mode_core dark:text-gray-200"
+                            classNameArrow="shadow-sm"
                             place="top"
                             opacity={1}
                             style={{ maxWidth: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -342,18 +342,18 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             {
                               <div className="overflow-auto">
                                 {!subscription.has_valid_subscription ? (
-                                  <h1 className="text-sm font-semibold dark:text-gray-900">
+                                  <h1 className="text-sm font-semibold dark:text-gray-200">
                                     {t('UserWithoutEmailHeadlineWithoutSubscription')}
                                   </h1>
                                 ) : (
-                                  <h1 className='dark:text-gray-900'>{t('UserWithoutEmailHeadlineWithSubscription')}</h1>
+                                  <h1 className='dark:text-gray-200'>{t('UserWithoutEmailHeadlineWithSubscription')}</h1>
                                 )}
 
                                 <p className="mt-2 text-sm">{t('UserWithoutEmailDescription')}</p>
 
                                 {!subscription.has_valid_subscription && (
-                                  <p className="mt-2 text-sm hover:text-teams_brand_500 hover:underline dark:text-gray-900">
-                                    <Link href={'/settings/organisation/upgrade'} className="mt-3 font-semibold dark:text-gray-900">
+                                  <p className="mt-2 text-sm hover:text-teams_brand_500 hover:underline dark:text-gray-200">
+                                    <Link href={'/settings/organisation/upgrade'} className="mt-3 font-semibold dark:text-gray-200">
                                       {t('Upgrade')} --{'>'}
                                     </Link>
                                   </p>
@@ -529,7 +529,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>
@@ -550,7 +550,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                                       className ="dark:bg-teams_brand_dark_100 dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>

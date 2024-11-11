@@ -147,7 +147,7 @@
   "view-settings-in-teams": "Ver definições no Teams",
   "notice_managers": "Aviso: um pedido de um dos teus empregados foi aprovado",
   "second_line_for_managers": "um pedido de um funcionário do teu departamento foi aprovado. {{employee_name}}O pedido de férias de {{leave_type_name}} foi processado e não é necessária mais nenhuma ação. Estás a receber este e-mail porque és o chefe do departamento. ",
-  "request_created_by": "<div><strong>Pedido criado por:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Pedido criado por:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Razão:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Falha no pedido de sincronização",
   "sync_request_to_timeghost_failed-subject": "Problema de sincronização do timeghost devido a uma chave API inválida 🚨",

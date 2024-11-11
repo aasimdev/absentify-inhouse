@@ -20,7 +20,6 @@ import Loader from '@components/calendar/Loader';
 import AlertModal from '@components/alertModal';
 import { getPrice, getPriceByName } from '~/lib/getPrice';
 import { PricePreviewResponse } from '@paddle/paddle-js';
-import ConfirmModal from '@components/confirmModal';
 import BillingInfoModal from './UpgradeModal/BillingInfoModal';
 import UpdateBillingInfoModal from './UpgradeModal/UpdateBillingInfoModal';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
@@ -28,6 +27,9 @@ import { useRouter } from 'next/router';
 import { Features } from './Features';
 import { summarizeSubscriptions } from '~/lib/subscriptionHelper';
 import { useDarkSide } from '@components/ThemeContext';
+import { Faqs } from './Faqs';
+import ConfirmModal from '@components/confirmModal';
+
 const Upgrade: NextPage = () => {
   const { t } = useTranslation('upgrade');
   const [visible, setVisible] = useState(false);
@@ -1066,7 +1068,7 @@ const Upgrade: NextPage = () => {
                 <div className="flex flex-wrap -mr-2 ">
                   <Plan
                     enterprise={false}
-                    title={t('free')}
+                    title={'Free'}
                     price={0}
                     button={getFreeButton()}
                     onClick={() => {}}
@@ -1077,7 +1079,7 @@ const Upgrade: NextPage = () => {
                   <Plan
                     enterprise={false}
                     onClick={() => {}}
-                    title={t('smallTeam')}
+                    title={'Mini'}
                     noCurrencyCode={true}
                     saving={
                       currencies[(paddlePrices?.data.currencyCode as 'USD' | 'EUR') ?? 'USD']?.symbol +
@@ -1099,7 +1101,7 @@ const Upgrade: NextPage = () => {
                   <Plan
                     enterprise={false}
                     onClick={() => {}}
-                    title={t('startup')}
+                    title={'Essentials'}
                     noCurrencyCode={true}
                     saving={
                       currencies[(paddlePrices?.data.currencyCode as 'USD' | 'EUR') ?? 'USD']?.symbol +
@@ -1121,7 +1123,7 @@ const Upgrade: NextPage = () => {
                   <Plan
                     enterprise={false}
                     onClick={() => {}}
-                    title={t('enterprise')}
+                    title={'Plus'}
                     noCurrencyCode={true}
                     saving={
                       currencies[(paddlePrices?.data.currencyCode as 'USD' | 'EUR') ?? 'USD']?.symbol +
@@ -1214,29 +1216,17 @@ const Upgrade: NextPage = () => {
                       >
                         {' '}
                       </div>
-                      <div
-                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
-                        style={{ width: '210px' }}
-                      >
-                        {t('free')}
+                      <div className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200" style={{ width: '210px' }}>
+                        Free
                       </div>
-                      <div
-                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
-                        style={{ width: '210px' }}
-                      >
-                        {t('smallTeam')}
+                      <div className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200" style={{ width: '210px' }}>
+                        Mini
                       </div>
-                      <div
-                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
-                        style={{ width: '210px' }}
-                      >
-                        {t('startup')}
+                      <div className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200" style={{ width: '210px' }}>
+                        Essentials
                       </div>
-                      <div
-                        className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200"
-                        style={{ width: '210px' }}
-                      >
-                        {t('enterprise')}
+                      <div className="flex justify-center text-sm font-medium py-3 shrink-0 dark:text-gray-200" style={{ width: '210px' }}>
+                        Plus
                       </div>
                     </div>
                     {features.map((feature, i) => (
@@ -1316,6 +1306,7 @@ const Upgrade: NextPage = () => {
             </div>
           </div>
         </div>
+        <Faqs />
       </div>
       {showAlert && (
         <AlertModal

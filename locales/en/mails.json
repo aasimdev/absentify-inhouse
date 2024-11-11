@@ -147,7 +147,7 @@
   "view-settings-in-teams": "View Settings in Teams",
   "notice_managers": "Notice: a request from one of your employees has been approved",
   "second_line_for_managers": "a request from an employee within your department was approved. {{employee_name}}'s leave request for {{leave_type_name}} has been processed and no further action is required. You are receiving this E-mail because you are the head of the department. ",
-  "request_created_by": "<div><strong>Request created by:</strong>{{created_by_name}}</div>",
+  "request_created_by": "<div><strong>Request created by:</strong> {{created_by_name}}</div>",
   "leave_request_reason": "<div><strong>Reason:</strong> {{reason}}</div>",
   "sync_request_to_timeghost_failed-pageTitle": "Sync Request Failed",
   "sync_request_to_timeghost_failed-subject": "timeghost synchronization issue due to invalid API-Key 🚨",

@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Przyszłe zmiany w zapisach uprawnień z poprzedniego roku nie będą już miały wpływu na przeniesienie. Oznacza to, że jeśli obliczone przeniesienie wzrosłoby z powodu późniejszych korekt przydziału, ręcznie ustawione przeniesienie pozostanie bez zmian.",
   "ManualCarryoverDialog_Confirmation": "Aby kontynuować, potwierdź zrozumienie konsekwencji ręcznej regulacji, klikając przycisk \"Potwierdź\".",
   "Default": "Domyślnie",
-  "Visible": "Widoczny"
+  "Visible": "Widoczny",
+  "carryForward_expired_single": "{{count}} {{unit}} wygasło {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} wygasło {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} wygaśnie {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} wygaśnie na {{date}}",
+  "units_days": "dzień",
+  "units_days_plural": "dni",
+  "units_hours": "godzina",
+  "units_hours_plural": "godziny",
+  "Expire": "Wygaśnięcie"
 }

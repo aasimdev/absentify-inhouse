@@ -1,5 +1,13 @@
 {
   "no_credit_card_slogan": "Karta kredytowa nie jest wymagana - zrezygnuj z subskrypcji w dowolnym momencie",
   "Sign_in_to_your_account": "Zaloguj się do swojego konta",
-  "login": "Kontynuuj z Microsoftem - to jest darmowe!"
+  "login": "Kontynuuj z Microsoftem - to jest darmowe!",
+  "Register_for_free": "Zarejestruj się za darmo",
+  "No_credit_card_required": "Karta kredytowa nie jest wymagana - ciesz się nieograniczonym dostępem dzięki naszemu bezpłatnemu planowi. Możesz go uaktualnić lub anulować w dowolnym momencie.",
+  "Email_address": "Adres e-mail",
+  "Microsoft_email_example": "Twoja służbowa poczta e-mail Microsoft (np. user@company.com)",
+  "Agree_to_policy": "Rejestrując się, wyrażam zgodę na <0>Politykę prywatności</0> i <1>Warunki korzystania z usługi</1>.",
+  "Already_have_account": "Masz już konto?",
+  "Sign_in": "Zaloguj się",
+  "Continue": "Kontynuuj"
 }

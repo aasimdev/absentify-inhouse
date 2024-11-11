@@ -607,7 +607,8 @@ const Insights = () => {
                       })
                     }}
                     value={selectedAllowanceType}
-                    className="block w-full sm:max-w-xs sm:text-sm"
+                    className="block w-full sm:max-w-xs sm:text-sm w-full my-react-select-container"
+                    classNamePrefix="my-react-select"
                     onChange={(val) => {
                       if (val) setSelectedAllowanceType(val);
                     }}
@@ -793,7 +794,7 @@ const Insights = () => {
                             </div>
                           </td>
 
-                          <td className="text-sm pt-2 px-16 lg:px-0 mt-2 ml-4 xl:w-[150px] cursor-pointer ">
+                          <td className="text-sm pt-2 px-16 lg:px-0 mt-2 ml-4 xl:w-[150px] cursor-pointer dark:text-gray-200">
                             {t('remaining-allowance-days')}
                             {i >= 1 && (
                               <div

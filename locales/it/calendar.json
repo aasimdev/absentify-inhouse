@@ -110,7 +110,7 @@
   "Outside_of_schedule": "Ti informiamo che stai richiedendo il congedo al di fuori dell'orario di lavoro.",
   "TryAgainTextMessage": "Si è verificato un errore, riprova",
   "Group_booking": "Richiesta di gruppo",
-  "group_booking_required_business_plan": "Per creare richieste di gruppo è necessario almeno un Business Plan.",
+  "group_booking_required_business_plan": "Per creare richieste di gruppo devi avere almeno un Piano Essenziale.",
   "Note": "Nota",
   "Name": "Nome",
   "All_departments": "Tutti i dipartimenti"

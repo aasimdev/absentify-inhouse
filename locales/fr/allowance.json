@@ -13,7 +13,7 @@
   "invalid_field": "Champ invalide {{field}}",
   "Brought_forward_overwritten": "Report ajusté manuellement. Mises à jour automatiques désactivées.",
   "ManualCarryoverDialog_Title": "Ajustement manuel du report",
-  "ManualCarryoverDialog_Intro": "Tu es sur le point d'ajuster le report calculé standard des droits d'absence :",
+  "ManualCarryoverDialog_Intro": "Tu es sur le point d'ajuster le report calculé standard du contingent d'allocations. Prends garde aux points suivants :",
   "ManualCarryoverDialog_OverrideSetting": "Remplacer le réglage global",
   "ManualCarryoverDialog_OverrideSettingDesc": "En saisissant manuellement une valeur, le calcul automatique du report d'allocation basé sur le paramètre global de ce type d'allocation sera désactivé pour cette personne.",
   "ManualCarryoverDialog_SettingCarryover": "Réglage du report",
@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Les modifications futures des enregistrements d'allocations de l'année précédente n'auront plus d'influence sur le report. En d'autres termes, si le report calculé devait augmenter en raison d'ajustements ultérieurs de l'allocation, le report fixé manuellement n'en serait pas affecté.",
   "ManualCarryoverDialog_Confirmation": "Pour continuer, confirme ta compréhension des implications de l'ajustement manuel en cliquant sur `Confirmer`.",
   "Default": "Défaut",
-  "Visible": "Visible"
+  "Visible": "Visible",
+  "carryForward_expired_single": "{{count}} {{unit}} expiré sur {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} expiré sur {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} expirera sur {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} expirera sur {{date}}",
+  "units_days": "jour",
+  "units_days_plural": "jours",
+  "units_hours": "heure",
+  "units_hours_plural": "heures",
+  "Expire": "Expirer"
 }

@@ -187,7 +187,7 @@ export const sendWeeklyAbsenceSummaryNotification = inngest.createFunction(
   {
     id: slugify('Send Weekly Absence Summary Notification'),
     name: 'Send Weekly Absence Summary Notification',
-    rateLimit: {
+    throttle: {
       limit: 10000,
       period: '1h'
     },

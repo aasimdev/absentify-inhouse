@@ -12,11 +12,7 @@ import {
 } from '@prisma/client';
 import { protectedProcedure, createTRPCRouter } from '../trpc';
 import { ensureAvailabilityOfGetT } from 'lib/monkey-patches';
-import {
-  deleteSendInBlueContact,
-  sendUniversalTransactionalMail,
-  createOrUpdateSendInBlueContact
-} from 'lib/sendInBlueContactApi';
+import { sendUniversalTransactionalMail } from 'lib/sendInBlueContactApi';
 import { summarizeSubscriptions } from 'lib/subscriptionHelper';
 import { defaultWorkspaceSelect } from './workspace';
 import { type Translate } from 'next-translate';
@@ -64,7 +60,6 @@ export const defaultMemberSelect = Prisma.validator<Prisma.MemberSelect>()({
   firstName: true,
   lastName: true,
   display_calendar_weeks: true,
-  sendinblue_contact_id: true,
   email_notifications_updates: true,
   email_notif_bday_anniv_remind: true,
   email_notif_weekly_absence_summary: true,
@@ -607,9 +602,12 @@ export const memberRouter = createTRPCRouter({
         });
       }
       try {
-        await axios.get(`http://api.smiirl.com/e08e3c392c28/add-number/f792bdd8a7f4deef6cb2909296537275/1`);
+        await updateSmiirl(ctx.prisma);
       } catch (e) {}
-      await createOrUpdateSendInBlueContact(member, ctx.prisma);
+      inngest.send({
+        name: 'brevo/create_or_update_contact',
+        data: { member_id: member.id }
+      });
       return member;
     }),
   updateMemberEmail: protectedProcedure
@@ -1315,7 +1313,10 @@ export const memberRouter = createTRPCRouter({
         select: defaultMemberSelect
       });
 
-      await createOrUpdateSendInBlueContact(member, ctx.prisma);
+      inngest.send({
+        name: 'brevo/create_or_update_contact',
+        data: { member_id: member.id }
+      });
 
       return member;
     }),
@@ -1711,7 +1712,7 @@ export const memberRouter = createTRPCRouter({
         where: { id },
         select: {
           workspace_id: true,
-          sendinblue_contact_id: true,
+          brevo_contact_id: true,
           has_cdn_image: true,
           microsoft_user_id: true,
           email: true
@@ -1740,7 +1741,10 @@ export const memberRouter = createTRPCRouter({
         }
       }
 
-      await deleteSendInBlueContact([member.sendinblue_contact_id || member.email]);
+      inngest.send({
+        name: 'brevo/delete_contact',
+        data: { brevo_contact_id_or_email: member.brevo_contact_id + '' || member.email || '' }
+      });
 
       await ctx.prisma.memberApprover.updateMany({
         where: { approver_member_id: id },

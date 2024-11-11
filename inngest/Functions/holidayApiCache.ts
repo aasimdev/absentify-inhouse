@@ -8,6 +8,21 @@ interface Task {
   country_code: string;
   lang: string;
 }
+
+const sendBatch = async (batch: Task[]) => {
+  await inngest.send(
+    batch.map((log) => {
+      return {
+        name: 'holidayapi/fetch',
+        data: {
+          country_code: log.country_code,
+          year: log.year,
+          lang: log.lang
+        }
+      };
+    })
+  );
+};
 export const updateHolidayApiCache = inngest.createFunction(
   {
     id: slugify('Update holiday cache'),
@@ -29,32 +44,18 @@ export const updateHolidayApiCache = inngest.createFunction(
       }
     }
 
-    const sendBatch = async (batch: Task[]) => {
-      await inngest.send(
-        batch.map((log) => {
-          return {
-            name: 'holidayapi/fetch',
-            data: {
-              country_code: log.country_code,
-              year: log.year,
-              lang: log.lang
-            }
-          };
-        })
-      );
-    };
-
     let i = 0;
     while (i < tasks.length) {
-      const batch = tasks.slice(i, i + batchSize);
-      await sendBatch(batch);
+      const batch = tasks.slice(i, Math.min(i + batchSize, tasks.length));
+      if (batch.length > 0) {
+        await sendBatch(batch);
+      }
       i += batchSize;
     }
 
     return { status: 'Tasks dispatched', taskCount: tasks.length };
   }
 );
-
 
 export const updateHolidayApiCacheLocalDev = inngest.createFunction(
   {
@@ -80,6 +81,7 @@ export const updateHolidayApiCacheLocalDev = inngest.createFunction(
         }
       }
     }
+
     const sendBatch = async (batch: Task[]) => {
       await inngest.send(
         batch.map((log) => {
@@ -97,8 +99,10 @@ export const updateHolidayApiCacheLocalDev = inngest.createFunction(
 
     let i = 0;
     while (i < tasks.length) {
-      const batch = tasks.slice(i, i + batchSize);
-      await sendBatch(batch);
+      const batch = tasks.slice(i, Math.min(i + batchSize, tasks.length));
+      if (batch.length > 0) {
+        await sendBatch(batch);
+      }
       i += batchSize;
     }
 

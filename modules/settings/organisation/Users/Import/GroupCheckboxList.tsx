@@ -22,7 +22,7 @@ const GroupCheckboxList: React.FC<GroupCheckboxListProps> = ({ groups, selectedG
           <input
             type="checkbox"
             id={group.id}
-            className="focus:ring-teams_brand_500 h-4 w-4 text-teams_brand_600 border-gray-300 rounded dark:bg-teams_brand_dark_100 dark:text-gray-200"
+            className="focus:ring-teams_brand_500 h-4 w-4 text-teams_brand_600 border-gray-300 rounded dark:bg-teams_brand_dark_100 dark:text-gray-200  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
             checked={selectedGroups.includes(group.id)}
             onChange={(event) => handleGroupChange(event, group)}
           />

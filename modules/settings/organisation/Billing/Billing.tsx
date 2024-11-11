@@ -135,7 +135,7 @@ const Billing: NextPage = () => {
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
-                      plan: 'Business'
+                      plan: 'Essentials'
                     })
                   }}
                 />
@@ -147,7 +147,7 @@ const Billing: NextPage = () => {
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
-                      plan: subscription.enterprise + ' x Enterprise'
+                      plan: subscription.enterprise + ' x Plus'
                     })
                   }}
                 />
@@ -159,7 +159,7 @@ const Billing: NextPage = () => {
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
-                      plan: subscription.small_team + ' x Small Team'
+                      plan: subscription.small_team + ' x Mini'
                     })
                   }}
                 />
@@ -171,7 +171,7 @@ const Billing: NextPage = () => {
                   dangerouslySetInnerHTML={{
                     __html: t('selectedPlan', {
                       interpolation: { escapeValue: false },
-                      plan: subscription.business_by_user + ' x Business'
+                      plan: subscription.business_by_user + ' x Essentials'
                     })
                   }}
                 />

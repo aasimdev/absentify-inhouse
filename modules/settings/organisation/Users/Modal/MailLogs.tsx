@@ -29,62 +29,62 @@ export default function MailLogs(props: { onClose: Function; currentMember: defa
         <div className="mt-6">
           <div className="w-full max-w-4xl mx-auto">
             <div className="inline-block min-w-full py-2 align-middle sm:px-2 lg:px-1 px-2">
-              <div className="overflow-hidden border-b border-gray-200 dark:border-gray-900 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-500 dark:bg-teams_brand_dark_100">
-                  <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+              <div className="overflow-hidden border-b border-gray-200 dark:border-0 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
+                <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-teams_brand_tbody_border dark:bg-teams_brand_tbody">
+                  <thead className="bg-gray-50 dark:bg-teams_brand_tbody">
                     <tr>
                       <th
                         scope="col"
-                        className={`px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase dark:text-gray-200 tracking-wider ${hasStatusMessage ? 'w-1/3' : 'w-1/2'}`}
+                        className={`px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase dark:text-teams_brand_th tracking-wider ${hasStatusMessage ? 'w-1/3' : 'w-1/2'}`}
                       >
                         {t('Subject')}
                       </th>
                       <th
                         scope="col"
-                        className="w-1/12 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200"
+                        className="w-1/12 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-teams_brand_th"
                       >
                         {t('Delivery_Status')}
                       </th>
                       {hasStatusMessage && (
                         <th
                           scope="col"
-                          className=" w-1/3 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200"
+                          className=" w-1/3 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-teams_brand_th"
                         >
                           {t('Delivery_Details')}
                         </th>
                       )}
                       <th
                         scope="col"
-                        className=" w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-200"
+                        className=" w-1/6 px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-teams_brand_th"
                       >
                         {t('Timestamp')}
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                  <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_tbody_border">
                     {mailHistoryData?.map((mail, index) => (
                       <tr key={index}>
                         <td
-                          className="px-4 py-2 text-sm text-gray-500 break-words whitespace-normal max-w-xs dark:text-gray-200"
+                          className="px-4 py-2 text-sm text-gray-500 break-words whitespace-normal max-w-xs dark:text-white"
                           title={mail.emailHistory.subject}
                         >
                           {mail.emailHistory.subject}
                         </td>
                         <td
-                          className="px-4 py-2 text-sm text-gray-500 break-words whitespace-normal max-w-xs dark:text-gray-200"
+                          className="px-4 py-2 text-sm text-gray-500 break-words whitespace-normal max-w-xs dark:text-white"
                           title={mail.deliveryStatus ?? t('Mail_Pending')}
                         >
                           {mail.deliveryStatus ?? t('Mail_Pending')}
                         </td>
                         {hasStatusMessage && (
                           <td
-                            className="px-4 py-2 text-sm text-gray-500 break-all whitespace-normal max-w-lg dark:text-gray-200"
+                            className="px-4 py-2 text-sm text-gray-500 break-all whitespace-normal max-w-lg dark:text-white"
                             title={mail.deliveryDetails ? JSON.parse(mail.deliveryDetails).statusMessage : ''}
                           >
                             {mail.deliveryDetails ? JSON.parse(mail.deliveryDetails).statusMessage : ''}
                           </td>
                         )}
-                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500 dark:text-gray-200">
+                        <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-500 dark:text-white">
                           {mail.deliveryAttemptTimestamp
                             ? format(
                                 new Date(mail.deliveryAttemptTimestamp),

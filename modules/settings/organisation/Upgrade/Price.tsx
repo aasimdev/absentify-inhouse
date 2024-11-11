@@ -18,7 +18,7 @@ const Price: React.FC<{
     return (
       <div className={`py-1 dark:text-gray-300 ${props.fontSize} text-gray-800 inline`}>
         {props.from && <span className="text-sm">{t('from')}</span>}{' '}
-        {currencies[props.currency]?.symbol + props.amount?.toFixed(2).toLocaleString()}
+        {currencies[props.currency]?.symbol + props.amount?.toFixed(2).toLocaleString() + ' '}
         <p className="text-sm inline">
         {props.perUser && t('per_user')}
           {props.amount != 0 && '/' + t('Mo') + '.'}

@@ -63,7 +63,7 @@ const SortableItem = (props: { member_id: string; removeManager: Function }) => 
       <button
         {...listeners}
         type="button"
-        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 "
+        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500  dark:bg-teams_dark_mode_core dark:text-gray-200"
         style={{ cursor: grabbing ? 'grabbing' : 'grab' }}
       >
         <ChevronUpDownIcon height={15} /> <span className="sr-only"> {person.name}</span>
@@ -76,7 +76,7 @@ const SortableItem = (props: { member_id: string; removeManager: Function }) => 
       <button
         onClick={() => props.removeManager()}
         type="button"
-        className="ml-6 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+        className="ml-6 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 "
       >
         <XMarkIcon height={15} /> <span className="sr-only"> {person.name}</span>
       </button>
@@ -762,15 +762,16 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                   } `}
                                                 >
                                                   <div className="flex justify-between">
-                                                    <p className={selected ? 'font-semibold dark:text-gray-900' : 'font-normal dark:text-gray-200'}>
+                                                  <p className={selected ? 'font-semibold dark:text-gray-200' : 'font-normal dark:text-gray-200'}>
+
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_dark_400 dark:text-gray-600">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_dark_mode_core dark:text-gray-300">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
                                                           href="/settings/organisation/upgrade"
-                                                          className="underline hover:text-blue-700"
+                                                          className="underline hover:text-blue-700 dark:hover:text-teams_brand_dark_300"
                                                         >
                                                           {t('upgradeT2')}
                                                         </Link>
@@ -936,12 +937,12 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                     <p className={selected ? 'font-semibold' : 'font-normal'}>
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:text-gray-900">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:text-gray-300">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
                                                           href="/settings/organisation/upgrade"
-                                                          className="underline hover:text-blue-700"
+                                                          className="underline hover:text-blue-700 dark:hover:text-teams_brand_dark_300"
                                                         >
                                                           {t('upgradeT2')}
                                                         </Link>

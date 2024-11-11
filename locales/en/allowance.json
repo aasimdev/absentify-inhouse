@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Future changes to the previous year’s allowance records will no longer influence the carryover. Meaning, if the calculated carryover would increase due to subsequent adjustments in allowance, the manually set carryover will remain unaffected.",
   "ManualCarryoverDialog_Confirmation": "In order to proceed, please confirm your understanding of the manual adjustment implications by clicking `Confirm`.",
   "Default": "Default",
-  "Visible": "Visible"
+  "Visible": "Visible",
+  "carryForward_expired_single": "{{count}} {{unit}} expired on {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} expired on {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} will expire on {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} will expire on {{date}}",
+  "units_days": "day",
+  "units_days_plural": "days",
+  "units_hours": "hour",
+  "units_hours_plural": "hours",
+  "Expire": "Expire"
 }

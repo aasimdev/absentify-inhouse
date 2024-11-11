@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "Le future modifiche alle registrazioni delle quote dell'anno precedente non influenzeranno più il riporto. In altre parole, se il riporto calcolato dovesse aumentare a causa di successivi aggiustamenti dell'indennità, il riporto impostato manualmente rimarrà inalterato.",
   "ManualCarryoverDialog_Confirmation": "Per procedere, conferma la tua comprensione delle implicazioni della regolazione manuale cliccando su \"Conferma\".",
   "Default": "Predefinito",
-  "Visible": "Visibile"
+  "Visible": "Visibile",
+  "carryForward_expired_single": "{{count}} {{unit}} scaduto su {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} scaduto su {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} scadrà su {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} scadrà su {{date}}",
+  "units_days": "giorno",
+  "units_days_plural": "giorni",
+  "units_hours": "ora",
+  "units_hours_plural": "ore",
+  "Expire": "Scadenza"
 }

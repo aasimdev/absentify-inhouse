@@ -22,5 +22,14 @@
   "ManualCarryoverDialog_NoAutomaticAdjustmentDesc": "As alterações futuras aos registos de subsídio do ano anterior já não influenciarão o transporte. Ou seja, se o transporte calculado aumentar devido a ajustes subsequentes na dedução, o transporte definido manualmente não será afetado.",
   "ManualCarryoverDialog_Confirmation": "Para prosseguir, confirma a tua compreensão das implicações da regulação manual clicando em \"Confirmar\".",
   "Default": "Predefinição",
-  "Visible": "Visível"
+  "Visible": "Visível",
+  "carryForward_expired_single": "{{count}} {{unit}} expirou em {{date}}",
+  "carryForward_expired_multiple": "{{count}} {{unit}} expirou em {{date}}",
+  "carryForward_willExpire_single": "{{count}} {{unit}} expira em {{date}}",
+  "carryForward_willExpire_multiple": "{{count}} {{unit}} expira em {{date}}",
+  "units_days": "dia",
+  "units_days_plural": "dias",
+  "units_hours": "hora",
+  "units_hours_plural": "horas",
+  "Expire": "Expira"
 }
