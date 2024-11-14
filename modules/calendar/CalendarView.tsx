@@ -225,7 +225,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                   type="button"
                   className=" mx-6 inline-flex items-center rounded border border-gray-300 bg-white dark:bg-transparent px-6 py-1.5 text-sm font-medium text-gray-700 dark:text-teams_brand_gray shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 dark:ring-teams_brand_tbody_border focus:ring-offset-2 dark:border-teams_brand_border"
                 >
-                  <PlusCircleIcon className="-ml-0.5 mr-2 h-4 w-4 text-teams_brand_700" aria-hidden="true" />
+                  <PlusCircleIcon className="-ml-0.5 mr-2 h-4 w-4" aria-hidden="true" />
                   {t('Create_request')}
                 </button>
               </a>
