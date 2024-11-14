@@ -494,7 +494,7 @@ const Cell = ({
           <div style={dynamicMorningBackground()} className="absolute z-10 top-0 left-0 h-10 dark:h-[39px] w-1/2">
             <div
               className={`${getMorningBackgroundClass()} h-10 ${
-                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_brand_thead'
               } ${
                 withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
@@ -512,7 +512,7 @@ const Cell = ({
           >
             <div
               className={`${getAfternoonBackgroundClass()} h-10 ${
-                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_brand_thead'
               } ${
                 withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
@@ -573,8 +573,8 @@ const Cell = ({
     <>
       <div
         className={classNames(
-          'relative h-10 box-content dark:bg-teams_brand_border',
-          withBorder ? 'border-r border-gray-300 bg-transparent w-10 dark:border-teams_brand_tbody_border' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
+          'relative h-10 box-content dark:bg-teams_brand_tbody ',
+          withBorder ? 'border-r border-gray-300 bg-transparent dark:bg-teams_brand_thead w-10 dark:border-teams_brand_tbody_border' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
         )}
       >
         {isToday && (
@@ -585,7 +585,7 @@ const Cell = ({
           data-tooltip-id="cell-tooltip"
           data-tooltip-content={combineMorningTooltips()}
           className={`absolute z-20 top-0 left-0 h-10 w-1/2  ${
-            userHasPermissionToCreateRequest && hoverLeft ? 'bg-black' : 'bg-transparentt'
+            userHasPermissionToCreateRequest && hoverLeft ? 'bg-black' : 'bg-transparent'
           } ${(userHasPermissionToCreateRequest || lRequests[0] || publicHoliday?.morning) && 'cursor-pointer'}`}
           onMouseEnter={() => handleMouseEnter('left')}
           onMouseLeave={() => handleMouseLeave('left')}
@@ -681,7 +681,7 @@ const Cell = ({
           data-tooltip-id="cell-tooltip"
           data-tooltip-content={combineAfternoonTooltips()}
           className={`absolute z-20 top-0 right-0 h-10 w-1/2 ${
-            userHasPermissionToCreateRequest && hoverRight ? 'bg-gray-300' : 'bg-transparentt'
+            userHasPermissionToCreateRequest && hoverRight ? 'bg-gray-300' : 'bg-transparent'
           } ${(userHasPermissionToCreateRequest || rRequests[0] || publicHoliday?.afternoon) && 'cursor-pointer'}`}
           onMouseEnter={() => handleMouseEnter('right')}
           onMouseLeave={() => handleMouseLeave('right')}

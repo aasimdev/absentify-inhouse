@@ -93,11 +93,11 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_tbody dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -148,7 +148,7 @@ export function UnarchiveUserAlert(props: { usersToUnarchive: defaultMemberSelec
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -252,11 +252,11 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_tbody dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -307,7 +307,7 @@ export function ActivateUsersAlert(props: { usersToActivate: defaultMemberSelect
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -416,11 +416,11 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100 ">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-visible shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody ">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500  dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500  dark:bg-teams_brand_tbody dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -452,7 +452,7 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
                       locale={lang}
                       dateFormat={current_member?.date_format}
                       className={
-                        'block z-30 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_dark_400 dark:text-white'
+                        'block z-30 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_border dark:text-white'
                       }
                       required
                       selected={employment_end_date}
@@ -488,7 +488,7 @@ export function ArchiveUserAlert(props: { usersToArchive: defaultMemberSelectOut
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -581,11 +581,11 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
                 <button
                   type="button"
-                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                  className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_tbody dark:text-gray-200"
                   onClick={() => {
                     props.onClose(false);
                   }}
@@ -638,7 +638,7 @@ export function DeleteUserAlert(props: { usersToDelete: defaultMemberSelectOutpu
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                   onClick={() => {
                     props.onClose(false);
                   }}

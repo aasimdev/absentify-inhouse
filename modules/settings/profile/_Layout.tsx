@@ -55,8 +55,8 @@ const ProfileLayout: React.FC<{children:ReactNode}> = ( props ) => {
               key={item.name}
               className={classNames(
                 item.current
-                  ? 'bg-teams_brand_50 dark:bg-teams_brand_dark_100 dark:text-gray-200 border-teams_brand_500 text-teams_brand_700 hover:bg-teams_brand_50 dark:hover:bg-teams_brand_dark_400 hover:text-teams_brand_700'
-                  : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 dark:hover:text-gray-200 dark:hover:bg-teams_brand_dark_100',
+                  ? 'bg-teams_brand_50 dark:bg-teams_brand_tbody dark:text-gray-200 border-teams_brand_500 text-teams_brand_700 hover:bg-teams_brand_50 dark:hover:bg-teams_brand_dark_400 hover:text-teams_brand_700'
+                  : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 dark:hover:text-gray-200 dark:hover:bg-teams_brand_tbody',
                 'group border-l-4 px-3 py-2 flex items-center text-sm font-medium dark:text-gray-200'
               )}
               aria-current={item.current ? 'page' : undefined}>

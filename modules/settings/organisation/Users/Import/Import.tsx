@@ -525,7 +525,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block overflow-hidden px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="inline-block overflow-hidden px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
               <nav aria-label="Progress">
                 <ol role="list" className="space-y-4 md:flex md:space-y-0 md:space-x-8">
                   {steps.map((step) => (
@@ -557,9 +557,9 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                   ))}
                 </ol>
               </nav>
-              <div className="border-t border-gray-200 mt-5 dark:border-gray-500"></div>
+              <div className="border-t border-gray-200 mt-5 dark:border-teams_brand_border"></div>
               {steps.find((x) => x.status == 'current')?.key == 'populate_excel' && (
-                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_tbody">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
@@ -611,7 +611,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         onClick={() => {
                           props.onClose();
                         }}
-                        className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                        className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>
@@ -643,7 +643,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                 </div>
               )}
               {steps.find((x) => x.status == 'current')?.key == 'download_template' && (
-                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-500 dark:rounded">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_tbody dark:border dark:border-teams_brand_border dark:rounded">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-center sm:justify-between">
                       <div>
@@ -674,7 +674,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
               )}
 
               {steps.find((x) => x.status == 'current')?.key == 'upload_excel' && (
-                <div className="bg-white  mt-5 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:rounded">
+                <div className="bg-white  mt-5 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:rounded">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-center sm:justify-between">
                       <div>
@@ -751,7 +751,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                              <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-gray-500">
+                              <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-teams_brand_border">
                                 <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                                   <tr>
                                     <th
@@ -835,7 +835,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           onClick={() => {
                             props.onClose();
                           }}
-                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                          className="bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_border_1 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                         >
                           {t('Cancel')}
                         </button>
@@ -872,7 +872,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                 </div>
               )}
               {steps.find((x) => x.status == 'current')?.key == 'invite_users' && (
-                <div className="px-4 sm:px-6 lg:px-8 mt-5 dark:bg-teams_brand_dark_100">
+                <div className="px-4 sm:px-6 lg:px-8 mt-5 dark:bg-teams_brand_tbody">
                   <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
                       <p className="mt-2 text-sm text-gray-700 dark:text-gray-200">{t('Upload_Excel_File_description_2')}</p>
@@ -883,7 +883,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg ">
-                          <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-gray-500">
+                          <table className="min-w-full divide-y divide-gray-300 dark:bg-teams_brand_tbody dark:divide-teams_brand_border">
                             <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                               <tr>
                                 <th

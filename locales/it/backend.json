@@ -90,7 +90,7 @@
   "deleted": "cancellato",
   "no_approver_set": "Nessun approvatore impostato",
   "error_this_user_still_approver": "{{employee}} non può essere archiviata. L'utente è ancora l'approvatore per i seguenti dipendenti: {{approverOf}} Cambia prima l'approvatore.",
-  "error_this_user_still_manager": "{{employee}} non può essere archiviata. L'utente è ancora il responsabile dei seguenti reparti: {{approverOf}} Cambia prima il responsabile.",
+  "error_this_user_still_manager": "{{employee}} non può essere archiviata. L'utente è ancora il responsabile dei seguenti reparti: {{managerOf}} Cambia prima il manager.",
   "error_last_admin": "{{employee}} non può essere archiviato mentre è l'ultimo amministratore",
   "error_last_admin_inactive": "{{employee}} non può essere disattivato mentre è un ultimo amministratore",
   "error_you_have_to_be_admin": "Devi essere un amministratore per questa azione",

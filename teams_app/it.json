@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.Localization.schema.json",
+  "name.short": "absentify - Ferie",
+  "name.full": "absentify - Traccia e gestisci tutte le assenze, richieste di ferie e tendenze",
+  "description.short": "Il modo più semplice per gestire ferie e assenze dei dipendenti",
+  "description.full": "<b>absentify</b> è una soluzione tutto-in-uno per la gestione delle assenze, sviluppata per l'ecosistema Microsoft 365. Dimentica i fogli di calcolo e ottimizza la gestione di assenze e lavoro da remoto.<br><br><b>🌟 Principali vantaggi:</b><ul><li><b>Integrazione completa</b>: Si integra perfettamente con Microsoft Teams, Outlook e Microsoft 365, consolidando tutti i dati di assenze e lavoro remoto in un unico posto.</li><li><b>Monitoraggio in tempo reale</b>: Monitora le assenze, il lavoro da remoto e approva le richieste direttamente in Teams.</li><li><b>Maggiore trasparenza</b>: Visualizza immediatamente la disponibilità del team, riducendo conflitti e migliorando la pianificazione.</li><li><b>Alta sicurezza</b>: Conforme a ISO 27001 e GDPR, con dati archiviati in sicurezza su Microsoft Azure.</li><li><b>Gestione completa</b>: Ideale per tenere traccia delle ferie, assenze, lavoro da remoto e gestione delle festività.</li></ul><br><b>👉 Per i nuovi utenti:</b><ul><li><b>Iscrizione</b>: Onboarding semplice – inizia direttamente nell'app.</li><li><b>Guida iniziale</b>: Amministratori, consultate la <a href=\"https://support.absentify.com/en/category/initial-setup-xm2n61/\">guida alla configurazione</a>. Dipendenti, vedete la <a href=\"https://support.absentify.com/en/article/quickstart-guide-for-employees-j2r3gd/\">guida rapida</a>.</li><li><b>Contattaci</b>: Domande? <a href=\"https://support.absentify.com/en/\">Invia una e-mail o inizia una chat</a> sulla nostra pagina di supporto.</li><li><b>Assistenza</b>: Per il supporto, visita la nostra <a href=\"https://support.absentify.com/en/\">pagina di supporto</a>.</li></ul><br>Gestisci facilmente assenze e lavoro da remoto con <b>absentify</b>. Approfitta anche del nostro chatbot AI per richieste di assenza in linguaggio naturale.<br><br><b>Nota:</b> La funzione AI richiede l’attivazione da parte dell’amministratore. I dati vengono condivisi solo con il consenso dell’utente. Segnala contenuti inappropriati tempestivamente.",
+  "staticTabs[0].name": "Home",
+  "staticTabs[1].name": "Richieste aperte",
+  "bots[0].commandLists[0].commands[0].title": "aiuto",
+  "bots[0].commandLists[0].commands[0].description": "Visualizza un elenco dei comandi disponibili e una breve spiegazione del loro utilizzo.",
+  "bots[0].commandLists[0].commands[1].title": "inizia",
+  "bots[0].commandLists[0].commands[1].description": "Inizia una nuova sessione con il bot.",
+  "bots[0].commandLists[0].commands[2].title": "Crea una nuova assenza",
+  "bots[0].commandLists[0].commands[2].description": "Imposta un'assenza con frasi come 'domani assente' o 'vacanza settimana prossima'."
+}

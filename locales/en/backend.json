@@ -90,7 +90,7 @@
   "deleted": "deleted",
   "no_approver_set": "No approver set",
   "error_this_user_still_approver": "{{employee}} cannot be archived. The user is still the approver for the following employee(s) : {{approverOf}} Please change the approver first.",
-  "error_this_user_still_manager": "{{employee}} cannot be archived. The user is still the manager of the following department(s) : {{approverOf}} Please change the manager first.",
+  "error_this_user_still_manager": "{{employee}} cannot be archived. The user is still the manager of the following department(s) : {{managerOf}} Please change the manager first.",
   "error_last_admin": "{{employee}} cannot be archived while being a last admin",
   "error_last_admin_inactive": "{{employee}} cannot be unactivated while being a  last admin",
   "error_you_have_to_be_admin": "You have to be admin for this action",

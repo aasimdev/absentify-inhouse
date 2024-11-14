@@ -90,7 +90,7 @@
   "deleted": "silindi",
   "no_approver_set": "Onaylayıcı seti yok",
   "error_this_user_still_approver": "{{employee}} arşivlenemez. Kullanıcı hala aşağıdaki çalışan(lar) için onaylayıcıdır: {{approverOf}} Lütfen önce onaylayıcıyı değiştirin.",
-  "error_this_user_still_manager": "{{employee}} arşivlenemez. Kullanıcı hala aşağıdaki departman(lar)ın yöneticisidir: {{approverOf}} Lütfen önce yöneticiyi değiştirin.",
+  "error_this_user_still_manager": "{{employee}} arşivlenemez. Kullanıcı hala aşağıdaki departman(lar)ın yöneticisidir: {{managerOf}} Lütfen önce yöneticiyi değiştirin.",
   "error_last_admin": "{{employee}} son yönetici iken arşivlenemez",
   "error_last_admin_inactive": "{{employee}} son yönetici iken etkinleştirilemez",
   "error_you_have_to_be_admin": "Bu işlem için yönetici olmanız gerekir",

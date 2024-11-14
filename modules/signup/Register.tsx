@@ -244,7 +244,7 @@ export default function RegisterModal(props: { onClose: Function }) {
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                     {t('Register_a_new_company')}
                   </Dialog.Title>
-                  <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:divide-teams_brand_border" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">
@@ -556,7 +556,7 @@ export default function RegisterModal(props: { onClose: Function }) {
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

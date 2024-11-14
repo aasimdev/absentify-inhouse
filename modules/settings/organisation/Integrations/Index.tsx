@@ -30,7 +30,7 @@ const Integrations: NextPage = () => {
       description: t('integration_desc1'),
       integration: 'power_automate',
       imageUrl: '/integrations/powerautomate_400x400.png',
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100'
+      bgColor: 'bg-white dark:bg-teams_brand_tbody'
     },
     {
       name: 'Calendar Sync',
@@ -38,7 +38,7 @@ const Integrations: NextPage = () => {
       integration:isAnyCalSyncSetting ? 'calendar_sync/settings ' :  'calendar_sync',
 
       imageUrl: '/integrations/cal_sync.png',
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100'
+      bgColor: 'bg-white dark:bg-teams_brand_tbody'
     },
     {
       name: 'timeghost',
@@ -46,40 +46,40 @@ const Integrations: NextPage = () => {
       integration: isAnyTgSyncSetting ? 'timeghost/settings': 'timeghost',
 
       imageUrl: '/integrations/timeghost-favicon.png',
-      bgColor: 'bg-black dark:bg-teams_brand_dark_100'
+      bgColor: 'bg-black dark:bg-teams_brand_tbody'
     },
     {
       name: 'API',
       description: t('integration_desc4'),
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
+      bgColor: 'bg-white dark:bg-teams_brand_tbody',
       integration: 'api',
       imageUrl: '/integrations/api_logo.png'
     },
     {
       name: 'Webhooks',
       description: t('integration_desc5'),
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
+      bgColor: 'bg-white dark:bg-teams_brand_tbody',
       integration: 'webhooks',
       imageUrl: '/integrations/webhook.png'
     },
     {
       name: 'Power Bi',
       description: t('integration_desc6'),
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
+      bgColor: 'bg-white dark:bg-teams_brand_tbody',
       integration: 'powerbi',
       imageUrl: '/integrations/powerbi.svg'
     },
     {
       name: 'Outlook out of office',
       description: t('integration_desc7'),
-      bgColor: 'bg-[#e1e1e1] dark:bg-teams_brand_dark_100',
+      bgColor: 'bg-[#e1e1e1] dark:bg-teams_brand_tbody',
       integration: 'outlook_oof',
       imageUrl: '/integrations/outlook_oof.png'
     },
     {
       name: 'Microsoft Entra ID/Teams Group Synchronization',
       description: t('integration_desc8'),
-      bgColor: 'bg-white dark:bg-teams_brand_dark_100',
+      bgColor: 'bg-white dark:bg-teams_brand_tbody',
       integration: 'ad_group_sync',
       imageUrl: '/integrations/adgroup.png'
     }
@@ -97,15 +97,15 @@ const Integrations: NextPage = () => {
   ,[timeghostSyncSettings])
 
   return (
-    <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10">
-      <div className="pt-6 divide-y divide-gray-200 dark:divide-gray-500">
+    <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10">
+      <div className="pt-6 divide-y divide-gray-200 dark:divide-teams_brand_border">
         <div className="p-4 sm:px-6 ">
           <div>
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('absentify_Integrations')}</h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('absentify_Integrations_description')} </p>
           </div>
           {!subscription.has_valid_subscription && (
-            <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_dark_100">
+            <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_tbody">
               <div className="w-full text-sm dark:text-gray-200">
                 {t('Integrations_description_available_in_plan') + ' '}
                 <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">
@@ -155,7 +155,7 @@ const Integrations: NextPage = () => {
           <ReactTooltip
             id="cell-tooltip"
             place="top"
-            className="shadow z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
+            className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_thead"
             classNameArrow="shadow-sm"
             opacity={1}
             style={{ width: '300px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}

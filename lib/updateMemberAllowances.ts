@@ -453,7 +453,11 @@ export function hasEnoughAllowanceForRequest(
   // Perform the calculation
   const updatedMemberAllowances = calculateMemberAllowances(workspace, member_id, requests);
   const lowAllowance = updatedMemberAllowances
-    .filter((y) => y.allowance_type_id == leaveType.allowance_type_id)
+    .filter(
+      (y) =>
+        y.allowance_type_id == leaveType.allowance_type_id &&
+        y.year >= new_request.start.getFullYear() 
+    )
     .find((y) => y.remaining < 0);
   return lowAllowance ? false : true;
 }
@@ -670,7 +674,8 @@ export function calculateMemberAllowances(
         leave_types_stats: stats,
         start: new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)),
         end: addDays(addYears(new Date(Date.UTC(member_allowance.year, workspace.fiscal_year_start_month, 1)), 1), -1),
-        allowance_type_id: member_allowance.allowance_type_id
+        allowance_type_id: member_allowance.allowance_type_id,
+        year: member_allowance.year
       });
     }
   }

@@ -32,7 +32,7 @@ const Plan: React.FC<{
 
   return (
     <div className="flex mr-2 mb-2 grow w-full sm:w-52 min-w-52">
-      <div className="flex flex-col rounded-md border dark:border-gray-500 grow px-5 lg:px-8 py-10 border-element-10 ">
+      <div className="flex flex-col rounded-md border dark:border-teams_brand_border grow px-5 lg:px-8 py-10 border-element-10 ">
         {!current_member || !workspace || isLoading ? (
           <div className="w-full mx-auto">
             <div className="pt-2 animate-pulse flex space-x-4">

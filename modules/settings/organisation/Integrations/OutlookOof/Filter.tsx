@@ -49,7 +49,7 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
 
             ">
               <fieldset>
-                <legend className="block font-medium">{t('departaments')}</legend>
+                <legend className="block font-medium dark:text-gray-200">{t('departaments')}</legend>
                 <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
                   {departaments.map((dep) => (
                     <div key={dep.id} className="flex items-center text-base sm:text-sm pr-4">
@@ -58,7 +58,7 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
                         name="departament"
                         defaultValue={dep.id}
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500  dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200 dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500  dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200 dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                         onChange={() => {handleSelectDep(dep)}}
                         checked={!!selectedDep(dep)}
                       />

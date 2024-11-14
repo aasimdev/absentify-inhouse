@@ -90,7 +90,7 @@
   "deleted": "deletado",
   "no_approver_set": "Não há aprovador definido",
   "error_this_user_still_approver": "{{employee}} não pode ser arquivado. O utilizador ainda é o autorizador para o(s) seguinte(s) empregado(s): {{approverOf}} Altera primeiro o autorizador.",
-  "error_this_user_still_manager": "{{employee}} não pode ser arquivado. O utilizador ainda é o gestor do(s) seguinte(s) departamento(s) : {{approverOf}} Altera primeiro o gestor.",
+  "error_this_user_still_manager": "{{employee}} não pode ser arquivado. O utilizador ainda é o gestor do(s) seguinte(s) departamento(s) : {{managerOf}} Altera primeiro o gestor.",
   "error_last_admin": "{{employee}} não podes ser arquivado enquanto fores o último administrador",
   "error_last_admin_inactive": "{{employee}} não pode ser desativado enquanto for o último administrador",
   "error_you_have_to_be_admin": "Tens de ser administrador para esta ação",

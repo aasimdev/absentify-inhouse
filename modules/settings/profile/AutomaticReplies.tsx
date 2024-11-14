@@ -173,13 +173,13 @@ const AutomaticReplies: NextPage = () => {
           <div className="px-4 sm:px-6 md:px-0">
             <hr className="mt-10 mb-5" />
             <div className="mt-10">
-              <div className="flex w-full bg-gray-50 px-4 py-4 sm:px-6 dark:bg-teams_brand_dark_100">
+              <div className="flex w-full bg-gray-50 px-4 py-4 sm:px-6 dark:bg-teams_brand_tbody">
                 <div className="my-auto w-1/2 dark:text-gray-200">{t('LeaveTypeTemplate')}</div>
                 <div className="w-1/2">
                   <Combobox as="div" value={selectedLeaveType} onChange={setSelectedLeaveType}>
                     <div className="relative mt-1">
                       <Combobox.Input
-                        className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teams_brand_background_2 focus:outline-none focus:ring-1 focus:ring-teams_brand_foreground_bg sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                        className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-teams_brand_background_2 focus:outline-none focus:ring-1 focus:ring-teams_brand_foreground_bg sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
                         onChange={(event) => setQuery(event.target.value)}
                         displayValue={(person: any) => person?.name}
                       />
@@ -188,7 +188,7 @@ const AutomaticReplies: NextPage = () => {
                       </Combobox.Button>
 
                       {filteredPeople && filteredPeople.length > 0 && (
-                        <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                        <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200">
                           {filteredPeople.map((person) => (
                             <Combobox.Option
                               key={person.id}
@@ -290,7 +290,7 @@ const AutomaticReplies: NextPage = () => {
 
                       <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                         <div className=" w-full">
-                          <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                          <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody dark:text-gray-200">
                             <ReactQuill
                               readOnly={
                                 selectedMailboxSetting?.allow_member_edit_out_of_office_message === false &&
@@ -363,7 +363,7 @@ const AutomaticReplies: NextPage = () => {
                               onClick={() => {
                                 setCheckedExternal(!checkedExternal);
                               }}
-                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                              className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200  dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -388,11 +388,11 @@ const AutomaticReplies: NextPage = () => {
                                   onClick={() => {
                                     setCheckedOnlyContacts(!checkedOnlyContacts);
                                   }}
-                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                                  className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200  dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                                 />
                               </div>
                               <div className="ml-3 text-sm">
-                                <label htmlFor="allAllowed" className="font-medium text-gray-700 dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                                <label htmlFor="allAllowed" className="font-medium text-gray-700 dark:bg-teams_brand_tbody dark:text-gray-200">
                                   {t('SendRepliesOnlyToContacts')}
                                 </label>
                               </div>
@@ -433,7 +433,7 @@ const AutomaticReplies: NextPage = () => {
 
                             <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                               <div className=" w-full">
-                                <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                                <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody dark:text-gray-200">
                                   <ReactQuill
                                     readOnly={
                                       selectedMailboxSetting?.allow_member_edit_out_of_office_message === false &&
@@ -539,7 +539,7 @@ const AutomaticReplies: NextPage = () => {
                 <div>
                   <div className="mb-96">
                     <div className="px-4 sm:px-6">
-                      <ul role="list" className="mt-2 divide-y divide-gray-200">
+                      <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-teams_brand_border">
                         <Switch.Group as="li" className="flex items-center justify-between py-4">
                           <div className="flex flex-col">
                             <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
@@ -580,7 +580,7 @@ const AutomaticReplies: NextPage = () => {
                               );
                             }}
                             className={classNames(
-                              selectedMailboxSetting ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                              selectedMailboxSetting ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                               'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                             )}
                           >

@@ -237,7 +237,7 @@ const Stats = (props: {
                   })}
 
                 <div className="border-t dark:border-teams_brand_tbody_border bg-white dark:bg-teams_brand_tbody px-4 py-2 grid grid-cols-3 gap-4  xl:px-4">
-                  <dt className="mt-1 text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">
+                  <dt className="mt-1 text-sm font-medium text-gray-500 col-span-2 dark:text-gray-200">
                     {allowance.allowance_type.allowance_unit == 'days' && t('Days_remaining')}
                     {allowance.allowance_type.allowance_unit == 'hours' && t('Hours_remaining')}
                   </dt>
@@ -275,7 +275,7 @@ const Stats = (props: {
                 if (!x.leave_type) return null;
                 if (x.leave_type.take_from_allowance) return null;
                 return (
-                  <div className=" bg-white px-4 pt-5 flex" key={x.id + 'requests'}>
+                  <div className=" bg-white px-4 pt-5 flex dark:bg-teams_brand_tbody" key={x.id + 'requests'}>
                     <dt className="flex-1 text-sm font-medium text-gray-500 col-span-2">
                       <LeaveRow leaveType={x.leave_type} />
                     </dt>

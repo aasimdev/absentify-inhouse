@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.Localization.schema.json",
+  "name.short": "absentify - Planer urlopów",
+  "name.full": "absentify - Śledzenie i zarządzanie nieobecnościami, wnioskami urlopowymi i trendami",
+  "description.short": "Najprostszy sposób na zarządzanie urlopami i nieobecnościami pracowników",
+  "description.full": "<b>absentify</b> to kompleksowe narzędzie do zarządzania nieobecnościami, stworzone dla ekosystemu Microsoft 365. Zapomnij o chaotycznych arkuszach Excel i zoptymalizuj zarządzanie nieobecnościami i pracą zdalną.<br><br><b>🌟 Główne korzyści:</b><ul><li><b>Pełna integracja</b>: Integruje się z Microsoft Teams, Outlook i Microsoft 365, łącząc wszystkie dane o nieobecnościach i pracy zdalnej w jednym miejscu.</li><li><b>Śledzenie w czasie rzeczywistym</b>: Monitoruj nieobecności, pracę zdalną i zatwierdzaj wnioski bezpośrednio w Teams.</li><li><b>Zwiększona przejrzystość</b>: Błyskawiczny wgląd w dostępność zespołu, zmniejsza konflikty i poprawia planowanie.</li><li><b>Wysokie bezpieczeństwo</b>: Zgodne z ISO 27001 i RODO, dane są bezpiecznie przechowywane w Microsoft Azure.</li><li><b>Wszechstronne zarządzanie</b>: Idealne do śledzenia urlopów, nieobecności, pracy zdalnej i zarządzania dniami wolnymi.</li></ul><br><b>👉 Dla nowych użytkowników:</b><ul><li><b>Rejestracja</b>: Prosty onboarding – rozpocznij bezpośrednio w aplikacji.</li><li><b>Pierwsze kroki</b>: Administratorzy, zobaczcie <a href=\"https://support.absentify.com/en/category/initial-setup-xm2n61/\">Przewodnik konfiguracji</a>. Pracownicy mogą zobaczyć <a href=\"https://support.absentify.com/en/article/quickstart-guide-for-employees-j2r3gd/\">Przewodnik szybkiego startu</a>.</li><li><b>Skontaktuj się z nami</b>: Masz pytania? <a href=\"https://support.absentify.com/en/\">Wyślij e-mail lub rozpocznij czat</a> na naszej stronie wsparcia.</li><li><b>Pomoc</b>: Aby uzyskać wsparcie, odwiedź naszą <a href=\"https://support.absentify.com/en/\">stronę wsparcia</a>.</li></ul><br>Łatwe i zintegrowane zarządzanie nieobecnościami i pracą zdalną z <b>absentify</b>. Skorzystaj także z naszego chatbota AI do zapytań w języku naturalnym.<br><br><b>Uwaga:</b> Funkcja AI wymaga aktywacji przez administratora. Dane są udostępniane AI tylko za zgodą użytkownika. Zgłaszaj nieodpowiednie treści natychmiast.",
+  "staticTabs[0].name": "Start",
+  "staticTabs[1].name": "Otwarte wnioski",
+  "bots[0].commandLists[0].commands[0].title": "pomoc",
+  "bots[0].commandLists[0].commands[0].description": "Wyświetla listę dostępnych poleceń oraz krótkie wyjaśnienia ich użycia.",
+  "bots[0].commandLists[0].commands[1].title": "rozpocznij",
+  "bots[0].commandLists[0].commands[1].description": "Rozpocznij nową sesję z botem.",
+  "bots[0].commandLists[0].commands[2].title": "Utwórz nową nieobecność",
+  "bots[0].commandLists[0].commands[2].description": "Ustaw nieobecność, np. 'jutro nieobecny' lub 'urlop w przyszłym tygodniu'."
+}

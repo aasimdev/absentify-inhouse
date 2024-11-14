@@ -33,7 +33,7 @@ const GenerateKey = () => {
           <div className="flex-initial sm:w-2/5 w-full">
             <input
               type="text"
-              className=" w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200 dark:bg-teams_brand_dark_100"
+              className=" w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200 dark:bg-teams_brand_tbody"
               value={apikey}
             />
           </div>

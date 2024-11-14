@@ -90,7 +90,7 @@
   "deleted": "gelöscht",
   "no_approver_set": "Kein Genehmiger eingestellt",
   "error_this_user_still_approver": "{{employee}} kann nicht archiviert werden. Der Benutzer ist immer noch der Genehmigende für den/die folgenden Mitarbeiter: {{approverOf}} Bitte ändere zuerst den Genehmigenden.",
-  "error_this_user_still_manager": "{{employee}} kann nicht archiviert werden. Der Benutzer ist immer noch der Manager der folgenden Abteilung(en): {{approverOf}} Bitte ändere zuerst den Manager.",
+  "error_this_user_still_manager": "{{employee}} kann nicht archiviert werden. Der Benutzer ist immer noch der Manager der folgenden Abteilung(en): {{managerOf}} Bitte ändere zuerst den Manager.",
   "error_last_admin": "{{employee}} kann nicht archiviert werden, wenn er der letzte Admin ist",
   "error_last_admin_inactive": "{{employee}} kann nicht deaktiviert werden, wenn er der letzte Administrator ist",
   "error_you_have_to_be_admin": "Für diese Aktion musst du Administrator sein",

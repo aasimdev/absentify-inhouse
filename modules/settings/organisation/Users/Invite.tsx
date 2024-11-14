@@ -293,13 +293,13 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                     {t('add_new_user')}
                   </Dialog.Title>
-                  <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:divide-teams_brand_border" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -315,7 +315,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             autoComplete="name"
                             className={`block w-full min-w-0 grow rounded-md  ${
                               errors.name ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                           />
                         </div>
                       </div>
@@ -332,7 +332,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           </span>
                           <ReactTooltip
                             id="info-tooltip"
-                            className="z-50 shadow-sm dark:bg-teams_dark_mode_core dark:text-gray-200"
+                            className="z-50 shadow-sm dark:bg-teams_brand_thead dark:text-gray-200"
                             classNameArrow="shadow-sm"
                             place="top"
                             opacity={1}
@@ -374,7 +374,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             autoComplete="email"
                             className={`block w-full min-w-0 grow rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                           />
                         </div>
                       </div>
@@ -487,7 +487,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                               dateFormat={current_member?.date_format}
                               className={`block w-full min-w-0 grow rounded-md ${
                                 errors.employment_start_date ? 'border-red-400 ' : 'border-gray-300'
-                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                               selected={field.value}
                               onChange={(date: Date) => field.onChange(date)}
                             />
@@ -515,7 +515,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                   <span className="block text-sm text-gray-700 mt-2 dark:text-gray-200">
                                     {t('Annual_allowance_current_year')}
                                   </span>
-                                  <div className="mt-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_dark_100">
+                                  <div className="mt-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_tbody">
                                     {
                                       <InputPicker
                                         unit={allowanceType.allowance_unit}
@@ -529,7 +529,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                        className ="dark:bg-teams_brand_dark_100 dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
+                                        className ="dark:bg-teams_brand_tbody dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>
@@ -550,7 +550,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                       className ="dark:bg-teams_brand_dark_100 dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
+                                       className ="dark:bg-teams_brand_tbody dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>
@@ -568,7 +568,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

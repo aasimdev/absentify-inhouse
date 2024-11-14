@@ -79,7 +79,7 @@ const AllowancesPage: NextPage = () => {
   };
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-10 dark:divide-gray-500">
+    <div className="divide-y divide-gray-200 lg:col-span-10 dark:divide-teams_brand_border">
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('allowances_title')}</h2>
@@ -142,7 +142,7 @@ const AllowancesPage: NextPage = () => {
                               className={`flex items-center mb-2 ${leaveType.deleted ? 'line-through' : ''}`}
                             >
                               {leaveType.icon !== 'NoIcon' && (
-                                <div className="w-4 mr-2 dark:bg-teams_brand_dark_100  dark:border-0 "
+                                <div className="w-4 mr-2 dark:bg-teams_brand_tbody  dark:border-0 "
                                 data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -153,7 +153,7 @@ const AllowancesPage: NextPage = () => {
                               {leaveType.icon === 'NoIcon' && (
                                 <div
                                   style={{ backgroundColor: leaveType.color }}
-                                  className="mr-2 mt-0.5 h-4 w-4 rounded-sm dark:border-0 dark:bg-teams_brand_dark_100"
+                                  className="mr-2 mt-0.5 h-4 w-4 rounded-sm dark:border-0 dark:bg-teams_brand_tbody"
                                   data-tooltip-id="index-allowance-tooltip"
                                 data-tooltip-content={leaveType.name}
                                 data-tooltip-variant={theme === 'dark' ? 'dark' : 'light'}
@@ -168,7 +168,7 @@ const AllowancesPage: NextPage = () => {
                           <Switch
                             checked={allowancesType.ignore_allowance_limit}
                             className={classNames(
-                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                               'relative inline-flex h-6 w-11 flex-shrink-0  rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-default dark:ring-1 dark:ring-offset-0'
                             )}
                           >
@@ -275,7 +275,7 @@ const AllowancesPage: NextPage = () => {
                           <div className="flex">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 dark:text-gray-200"
+                              className="h-5 w-5 dark:text-teams_brand_dark_550"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -314,7 +314,7 @@ const AllowancesPage: NextPage = () => {
                       )}
                       <ReactTooltip
                         id="depLimit-tooltip"
-                        className="shadow-sm z-50 dark:text-gray-200 dark:teams_dark_mode_core"
+                        className="shadow-sm z-50 dark:text-gray-200 dark:teams_brand_thead"
                         classNameArrow="shadow-sm"
                         place="top"
                         opacity={1}
@@ -324,7 +324,7 @@ const AllowancesPage: NextPage = () => {
                   </tbody>
                   <ReactTooltip
                           id="index-allowance-tooltip"
-                          className="shadow-sm z-50 dark:text-gray-200 dark:teams_dark_mode_core"
+                          className="shadow-sm z-50 dark:text-gray-200 dark:teams_brand_thead"
                           classNameArrow="shadow-sm"
                           place="top"
                           style={{

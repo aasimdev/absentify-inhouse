@@ -19,7 +19,7 @@ export default function OofTabs({tabs, handler, selectedTab}: Props) {
               onClick={() => {handler(tab.id)}}
               className={classNames(
                 selectedTab === tab.id ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
-                'group relative min-w-0 flex-1 bg-white dark:bg-teams_brand_dark_100  dark:text-gray-200 px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10'
+                'group relative min-w-0 flex-1 bg-white dark:bg-teams_brand_tbody  dark:text-gray-200 px-4 py-2 text-center text-sm font-medium hover:bg-gray-50 focus:z-10'
               )}
               aria-current={selectedTab === tab.id ? 'page' : undefined}
             >

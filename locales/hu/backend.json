@@ -90,7 +90,7 @@
   "deleted": "törölve",
   "no_approver_set": "Nincs jóváhagyó beállítva",
   "error_this_user_still_approver": "{{employee}} nem lehet archiválni. A felhasználó továbbra is a következő alkalmazott(ak) jóváhagyója: {{approverOf}} Kérjük, először változtassa meg a jóváhagyót.",
-  "error_this_user_still_manager": "{{employee}} nem lehet archiválni. A felhasználó továbbra is a következő részleg(ek) vezetője: {{approverOf}} Kérjük, először változtassa meg a vezetőt.",
+  "error_this_user_still_manager": "{{employee}} nem lehet archiválni. A felhasználó továbbra is a következő részleg(ek) vezetője: {{managerOf}} Kérjük, először változtassa meg a vezetőt.",
   "error_last_admin": "{{employee}} nem lehet archiválni, amíg utolsó adminisztrátor",
   "error_last_admin_inactive": "{{employee}} nem lehet deaktiválni, amíg utolsó adminisztrátor vagy.",
   "error_you_have_to_be_admin": "Ehhez a művelethez adminisztrátornak kell lenned",

@@ -105,7 +105,7 @@ export const DeletionModal = (props: {
         <div className="flex justify-between mt-4">
         <button
             type="button" onClick={handleBackOption}
-            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Back')}
           </button>
@@ -126,7 +126,7 @@ export const DeletionModal = (props: {
         <div className="flex justify-between align-middle mt-4">
         <button
             type="button" onClick={handleBackOption}
-            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+            className="rounded-md bg-teams_brand_foreground_bg px-2.5 py-1.5 font-semibold text-white shadow-sm hover:bg-teams_brand_background_2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Back')}
         </button>
@@ -172,7 +172,7 @@ export const DeletionModal = (props: {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-teams_brand_dark_100">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all dark:bg-teams_brand_tbody">
                   {checkedPage(page)}
                   <div className="border border-b-gray-300 py-8 dark:border-0">
                   <div className="mb-6">

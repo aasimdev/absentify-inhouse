@@ -163,7 +163,7 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
+            <div className="z-30 inline-block transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_tbody">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -182,7 +182,7 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                           name="name"
                           id="name"
                           autoComplete="name"
-                          className="block w-full min-w-0 flex-grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                          className="block w-full min-w-0 flex-grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody dark:border-teams_brand_border"
                         />
                       </div>
                     </div>
@@ -200,16 +200,16 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                         }}
                         id="tabs"
                         name="tabs"
-                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody"
                         defaultValue={tabs.find((tab) => tab.current)?.name}
                       >
                         {tabs.map((tab) => (
-                          <option key={tab.name} className='dark:text-gray-200 dark:bg-teams_brand_dark_100'>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
+                          <option key={tab.name} className='dark:text-gray-200 dark:bg-teams_brand_tbody'>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
                         ))}
                       </select>
                     </div>
                     <div className="hidden sm:block">
-                      <div className="border-b border-gray-200">
+                      <div className="border-b border-gray-200 dark:border-teams_brand_border">
                         <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                           {tabs.map((tab) => (
                             <a
@@ -221,7 +221,7 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                                 tab.current
                                   ? 'border-teams_brand_500 text-teams_brand_600'
                                   : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                                'cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium dark:text-gray-200 dark:bg-teams_brand_dark_100'
+                                'cursor-pointer whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium dark:text-gray-200 dark:bg-teams_brand_tbody'
                               )}
                               aria-current={tab.current ? 'page' : undefined}
                             >
@@ -251,7 +251,7 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                         e.preventDefault();
                         props.onClose();
                       }}
-                      className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                      className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                     >
                       {t('Cancel')}
                     </button>

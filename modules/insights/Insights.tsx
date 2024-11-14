@@ -375,9 +375,9 @@ const Insights = () => {
   }, [members, current_member, departments]);
 
   return (
-    <div className="grid bg-white grid-cols-1 md:grid-cols-8 pb-5 border-t border-b sm:rounded sm:border drop-shadow-lg dark:bg-teams_brand_dark_100 dark:border-[#595869]">
-      <div className="md:col-span-10  border-b dark:bg-teams_brand_dark_100 dark:divide-gray-500">
-        <div className="flex bg-white justify-between pl-6 -mb-px dark:bg-teams_brand_dark_100">
+    <div className="grid bg-white grid-cols-1 md:grid-cols-8 pb-5 border-t border-b sm:rounded sm:border drop-shadow-lg dark:bg-teams_dark_mode  dark:border-teams_dark_mode ">
+      <div className="md:col-span-10  border-b dark:bg-teams_dark_mode  dark:divide-teams_brand_border">
+        <div className="flex bg-white justify-between pl-6 -mb-px dark:bg-teams_dark_mode ">
           <div className="lg:flex hidden"></div>
 
           <div className="">
@@ -432,12 +432,12 @@ const Insights = () => {
           </div>
         </div>
       </div>
-      <div className="mx-2 sm:col-span-5 md:col-span-10 lg:col-span-10 xl:col-span-2 w-auto xl:w-full dark:bg-teams_brand_dark_100 ">
-        <div className="mt-4 divide-y divide-slate-400/20 rounded-lg border bg-white text-[0.8125rem] leading-5 text-slate-900 drop-shadow dark:bg-teams_brand_dark_100">
+      <div className="mx-2 sm:col-span-5 md:col-span-10 lg:col-span-10 xl:col-span-2 w-auto xl:w-full dark:bg-teams_dark_mode ">
+        <div className="mt-4 divide-y divide-slate-400/20 rounded-lg border bg-white text-[0.8125rem] leading-5 text-slate-900 drop-shadow dark:bg-teams_dark_mode dark:border-teams_brand_border">
           <p className="p-2 text-center dark:text-gray-200">{t('upcomming')}</p>
           {/* Upcoming loading */}
           {isLoading && (
-            <div className="block w-full animate-puls dark:bg-teams_brand_dark_100">
+            <div className="block w-full animate-puls dark:bg-teams_dark_mode">
               <div className="mx-auto w-full">
                 <div className="p-4 animate-pulse py-6e flex space-x-4 ">
                   <div className="h-8 w-8 rounded-full bg-gray-700"></div>
@@ -531,7 +531,7 @@ const Insights = () => {
         {isLoading && !chartData && (
           <>
             {/* DayOffChart Loading */}
-            <div className="p-6 px-20 m-2 bg-white drop-shadow overflow-hidden rounded-lg dark:bg-teams_brand_dark_100">
+            <div className="p-6 px-20 m-2 bg-white drop-shadow overflow-hidden rounded-lg dark:bg-teams_dark_mode">
               <div className="block w-full ">
                 <div className="w-full mx-auto">
                   <div className="pt-2 animate-pulse flex lg:flex-row flex-col space-x-4">
@@ -549,7 +549,7 @@ const Insights = () => {
             </div>
             {/* Annual trand loading */}
             <div
-              className="relative  p-8 lg:pb-14 sm:px-6 pt-20  inline-flex space-x-2 sm:space-x-3 lg:space-x-6 justify-center bg-white drop-shadow overflow-hidden rounded-lg m-4 dark:bg-teams_brand_dark_100"
+              className="relative  p-8 lg:pb-14 sm:px-6 pt-20  inline-flex space-x-2 sm:space-x-3 lg:space-x-6 justify-center bg-white drop-shadow overflow-hidden rounded-lg m-4 dark:bg-teams_dark_mode"
               style={{ width: '97.7%' }}
             >
               <h1 className="absolute text-base text-center pb-4 -mt-12">{t('annualTrend')}</h1>
@@ -593,7 +593,7 @@ const Insights = () => {
           </>
         )}
         {doughnutData && !isLoading && (
-          <div className="p-6 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow border overflow-hidden rounded-lg dark:bg-teams_brand_dark_100">
+          <div className="p-6 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow border overflow-hidden rounded-lg dark:bg-teams_dark_mode dark:border-teams_brand_border">
             {allowancesTypes && allowancesTypes.length > 1 && (
               <div className="flex-none ml-auto right-0 mr-4 w-56 ">
                 <div className={'mt-1 '}>
@@ -627,7 +627,7 @@ const Insights = () => {
           </div>
         )}
         {chartData && !isLoading && (
-          <div className="lg:p-6 p-1 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow overflow-hidden rounded-lg border dark:bg-teams_brand_dark_100">
+          <div className="lg:p-6 p-1 my-4 ml-2 xl:ml-4  mr-2 bg-white drop-shadow overflow-hidden rounded-lg border dark:bg-teams_dark_mode dark:border-teams_brand_border">
             <div className="flex items-center justify-center">
               <div className="flex justify-center flex-grow">
                 <h1 className="text-base dark:text-gray-200">{t('annualTrend')}</h1>
@@ -690,7 +690,7 @@ const Insights = () => {
           </div>
         )}
         <div className=" h-auto my-4 ml-2 xl:ml-4  mr-2">
-          <div className="bg-white drop-shadow border overflow-hidden rounded-lg mt-3 w-full h-full lg:p-4 p-0 pt-6 dark:bg-teams_brand_dark_100">
+          <div className="bg-white drop-shadow border overflow-hidden rounded-lg mt-3 w-full h-full lg:p-4 p-0 pt-6 dark:bg-teams_dark_mode dark:border-teams_brand_border">
             <p className="  text-base text-center block dark:text-gray-200">{t('burnOutBoard')}</p>
             {/* burnout board loading */}
             {isLoading && (
@@ -739,7 +739,7 @@ const Insights = () => {
                 </div>
               </div>
             )}
-            <div className="flex flex-wrap bg-white overflow-hidden lg:p-4 p-0 dark:bg-teams_brand_dark_100">
+            <div className="flex flex-wrap bg-white overflow-hidden lg:p-4 p-0 dark:bg-teams_dark_mode">
               {!burnoutBoardData.length && !isLoading && <p className="text-center mx-auto dark:text-gray-200">{t('allGood')}</p>}
               <table cellPadding="0" cellSpacing="0" className=" select-none border-0 w-full">
                 <tbody>

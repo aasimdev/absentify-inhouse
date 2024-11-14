@@ -74,9 +74,9 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_brand_dark_600 dark:divide-gray-500">
+            <div className="inline-block transform overflow-visible rounded-lg bg-white pt-5 pb-4 text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl sm:pt-6 sm:align-middle dark:bg-teams_dark_mode dark:divide-teams_brand_border">
               <div className="sm:flex sm:items-start">
-                <div className="mt-3 w-full text-center sm:mt-0 sm:text-left dark:divide-gray-500">
+                <div className="mt-3 w-full text-center sm:mt-0 sm:text-left dark:divide-teams_brand_border">
                   <Dialog.Title
                     as="h3"
                     className="ml-2 md:ml-4 mb-4 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"
@@ -95,8 +95,8 @@ export default function Modal(props: {
                   </Dialog.Title>
                   <main className="border-t">
                     <div className="overflow-visible bg-white">
-                      <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x dark:divide-gray-500">
-                        <aside className="py-6 lg:col-span-3 dark:bg-teams_dark_mode_core">
+                      <div className="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x dark:divide-teams_brand_border">
+                        <aside className="py-6 lg:col-span-3 dark:bg-teams_dark_mode">
                           <nav className="space-y-1">
                             {subNavigation.map((item) => (
                               <a
@@ -106,9 +106,9 @@ export default function Modal(props: {
                                 }}
                                 className={classNames(
                                   currentNavigation == item.id
-                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 dark:bg-teams_brand_dark_100 hover:bg-teams_brand_50 hover:text-teams_brand_700 hover:dark:bg-teams_brand_dark_100'
+                                    ? 'border-teams_brand_500 bg-teams_brand_50 text-teams_brand_700 dark:bg-teams_brand_700  hover:bg-teams_brand_50 hover:text-teams_brand_700 hover:dark:bg-teams_brand_700'
                                     : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium dark:text-gray-200 hover:dark:bg-teams_brand_dark_100 dark:hover:text-gray-200'
+                                  'group flex cursor-pointer items-center border-l-4 px-3 py-2 text-sm font-medium dark:text-gray-200 hover:dark:bg-teams_brand_700 dark:hover:text-gray-200'
                                 )}
                                 aria-current={item.current ? 'page' : undefined}
                               >

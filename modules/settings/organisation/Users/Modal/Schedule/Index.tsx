@@ -19,7 +19,7 @@ export default function Schedule(props: {
   const schedules = props.schedules;
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+    <div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_dark_mode dark:divide-teams_brand_border">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Schedule')}</h2>
@@ -45,9 +45,9 @@ export default function Schedule(props: {
                   setAddEditMode(true);
                 }}
                 type="button"
-                className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-2 text-center hover:border-gray-400"
+                className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-2 text-center hover:border-gray-400 dark:border-teams_brand_border"
               >
-                <PlusCircleIcon className="mx-auto h-6 w-6 text-gray-400 dark:text-gray-200" />
+                <PlusCircleIcon className="mx-auto h-6 w-6 text-gray-400 dark:text-teams_brand_dark_550" />
 
                 <span className="mt-2 block text-sm font-medium text-gray-900 dark:text-gray-200">{t('New_Schedule')}</span>
               </button>
@@ -85,7 +85,7 @@ export default function Schedule(props: {
             props.onClose(false);
           }}
           type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>

@@ -262,7 +262,7 @@ function getIn10YearsDate(): Date {
     return adminIds.length <= 1;
   };
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_600 dark:divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_dark_mode dark:divide-teams_brand_border" onSubmit={handleSubmit(onSubmit)}>
       {/* Profile section */}
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
@@ -301,7 +301,7 @@ function getIn10YearsDate(): Date {
                       <input
                         {...register('first_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-transparent"
                       />
                     </div>
                   )}
@@ -318,7 +318,7 @@ function getIn10YearsDate(): Date {
                       <input
                         {...register('last_name', { required: false })}
                         type="text"
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-transparent"
                       />
                     </div>
                   )}
@@ -334,7 +334,7 @@ function getIn10YearsDate(): Date {
                     <input
                       {...register('name', { required: false })}
                       type="text"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-transparent"
                     />
                   </div>
                 )}
@@ -398,7 +398,7 @@ function getIn10YearsDate(): Date {
               type="text"
               maxLength={30}
               placeholder={t('Custom_id_placeholder')}
-              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white dark:bg-teams_brand_dark_100"
+              className="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_border dark:bg-transparent dark:text-white dark:bg-transparent"
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -415,7 +415,7 @@ function getIn10YearsDate(): Date {
                   locale={lang}
                   maxDate={getLastYearDate()} 
                   dateFormat={current_member?.date_format}
-                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
+                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_border dark:bg-transparent dark:text-white"
                   selected={field.value}
                   onChange={(date: Date) => field.onChange(date)}
                   wrapperClassName="w-full"
@@ -442,7 +442,7 @@ function getIn10YearsDate(): Date {
                   maxDate={getIn10YearsDate()}
                   locale={lang}
                   dateFormat={current_member?.date_format}
-                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
+                  className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_border dark:bg-transparent dark:text-white"
                   selected={field.value}
                   onChange={(date: Date) => field.onChange(date)}
                   wrapperClassName="w-full"
@@ -469,7 +469,7 @@ function getIn10YearsDate(): Date {
                     calendarStartDay={current_member?.week_start ? parseInt(current_member?.week_start) : 0}
                     locale={lang}
                     dateFormat={current_member?.date_format}
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:border-teams_brand_border dark:bg-transparent dark:text-white"
                     selected={field.value}
                     required
                     onChange={(date: Date) => {
@@ -487,7 +487,7 @@ function getIn10YearsDate(): Date {
               ' self-end'
             )}
           >
-            <label htmlFor="Public_holidays" className="block text-sm font-medium text-gray-700 mb-1 dark:border-teams_brand_dark_400 dark:bg-transparent dark:text-white">
+            <label htmlFor="Public_holidays" className="block text-sm font-medium text-gray-700 mb-1 dark:border-teams_brand_border dark:bg-transparent dark:text-white">
               {t('Public_holidays')}
             </label>
             {PUBLIC_HOLIDAYS && (
@@ -750,7 +750,7 @@ function getIn10YearsDate(): Date {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-transparent dark:ring-white',
                       'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
@@ -769,12 +769,12 @@ function getIn10YearsDate(): Date {
         </div>
       </div>
       {/* Privacy section */}
-      <div className=" divide-y divide-gray-200 dark:divide-gray-500">
+      <div className=" divide-y divide-gray-200 dark:divide-teams_brand_border">
         {(!isLastAdmin() ||
           props.currentMember.status === Status.ARCHIVED ||
           props.currentMember.status === Status.INACTIVE) && (
           <div className="px-4 sm:px-6">
-            <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-gray-500">
+            <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-teams_brand_border">
               <div className="sm:col-span-5">
                 <div className="mt-1 flex ">
                   <Switch.Group as="li" className="flex items-center justify-between py-4">
@@ -848,7 +848,7 @@ function getIn10YearsDate(): Date {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-transparent dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -887,7 +887,7 @@ function getIn10YearsDate(): Date {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-transparent dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -913,7 +913,7 @@ function getIn10YearsDate(): Date {
               props.onClose(false);
             }}
             type="button"
-            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Cancel')}
           </button>

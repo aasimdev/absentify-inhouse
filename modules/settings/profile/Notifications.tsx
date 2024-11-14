@@ -112,7 +112,7 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -158,7 +158,7 @@ const Email_notifications: NextPage = () => {
             />
             {errors.notifications_receiving_method && <span>{t('This_field_is_required')}</span>}
           </div>
-          <ul role="list" className="mt-2 divide-y divide-gray-200">
+          <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-teams_brand_border">
             <Switch.Group as="li" className="flex items-center justify-between py-4">
               <div className="flex flex-col">
                 <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
@@ -176,7 +176,7 @@ const Email_notifications: NextPage = () => {
                       onChange(val);
                     }}
                     className={classNames(
-                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                      value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                       'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                     )}
                   >
@@ -214,7 +214,7 @@ const Email_notifications: NextPage = () => {
                           notifyError(t('This_feature_is_not_available_for_your_plan_birthday_anniversary'));
                         }}
                         className={classNames(
-                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                           'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                         )}
                       >
@@ -250,7 +250,7 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -290,7 +290,7 @@ const Email_notifications: NextPage = () => {
                           notifyError(t('This_feature_is_not_available_for_your_plan_weekly_absence_summary'));
                         }}
                         className={classNames(
-                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                          value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                           'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                         )}
                       >
@@ -326,7 +326,7 @@ const Email_notifications: NextPage = () => {
                         onChange(val);
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:text-gray-200'
                       )}
                     >

@@ -194,7 +194,7 @@ const Upgrade: NextPage = () => {
   );
 
   const Spacer: React.FC<{ width: string }> = (props) => {
-    return <hr className={`${props.width} flex my-5 dark:border-gray-500`}></hr>;
+    return <hr className={`${props.width} flex my-5 dark:border-teams_brand_border`}></hr>;
   };
 
   const paddleCheckout = (plan: 'smallTeamPlan' | 'enterprisePlan' | 'businessPlan') => {
@@ -462,7 +462,7 @@ const Upgrade: NextPage = () => {
         <div className="flex">
           <Button
             disabled={true}
-            className="inline-flex cursor-not-allowed w-full items-center px-3 py-2.5 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:text-gray-200"
+            className="inline-flex cursor-not-allowed w-full items-center px-3 py-2.5 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white dark:bg-teams_brand_tbody hover:bg-gray-50 dark:text-gray-200"
           >
             {t('plan_active_in_days', {
               days: Math.ceil(
@@ -1012,7 +1012,7 @@ const Upgrade: NextPage = () => {
           }}
           className={classNames(
             toggleEnabled
-              ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+              ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
           )}
         >
@@ -1267,25 +1267,25 @@ const Upgrade: NextPage = () => {
                           </div>
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_tbody"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.free}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_tbody"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.smallteam}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_tbody"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.startup}
                         </div>
                         <div
-                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_dark_100"
+                          className="flex justify-center bg-gray-100 py-4 shrink-0 text-xs text-center dark:bg-teams_brand_tbody"
                           style={{ width: '210px' }}
                         >
                           {feature && feature.enterprise}

@@ -242,7 +242,7 @@ const Users = () => {
   const [theme] = useDarkSide();
 
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10">
+    <div className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10">
       {/* Profile section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <TabsUsers tabs={tabs} handler={handleTabs} showArchived={showArchived} />
@@ -390,7 +390,7 @@ const Users = () => {
                               type="checkbox"
                               checked={selectMultiMode}
                               aria-describedby="user_name"
-                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200 dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                              className="h-3 w-3 rounded border-gray-300 text-teams_brand_500 focus:ring-teams_brand_500 mr-3 dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200 dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                               onChange={(e) => {
                                 setSelectMultiMode(e.target.checked);
                                 setSelectedMembers([]);

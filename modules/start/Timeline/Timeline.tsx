@@ -745,7 +745,7 @@ const Timeline: NextPage = () => {
                     <Menu as="div" className="relative -ml-px block">
                       <Menu.Button className="relative inline-flex items-center rounded-r-md bg-white dark:bg-transparent px-2 py-2 text-gray-400 dark:text-teams_brand_gray ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_tbody_border hover:bg-teams_brand_tbody focus:z-10">
                         <span className="sr-only">Open options</span>
-                        <ChevronDownIcon aria-hidden="true" className="h-5 w-5" />
+                        <ChevronDownIcon aria-hidden="true" className="h-5 w-5 dark:text-teams_brand_border" />
                       </Menu.Button>
                       <Transition
                         as={Fragment}
@@ -756,7 +756,7 @@ const Timeline: NextPage = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30 dark:bg-teams_brand_dark_100 dark:text-gray-200">
+                        <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-30 dark:bg-teams_brand_tbody dark:text-gray-200">
                           <div className="py-1">
                             <Menu.Item key="1">
                               <a
@@ -779,7 +779,7 @@ const Timeline: NextPage = () => {
                                     department_id: selectedDepartment?.id ?? null
                                   });
                                 }}
-                                className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:teams_brand_dark_100 dark:text-gray-200 dark:hover:bg-teams_brand_dark_100'}
+                                className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:teams_brand_tbody dark:text-gray-200 dark:hover:bg-teams_brand_tbody'}
                               >
                                 {t('Group_booking')}
                               </a>

@@ -129,7 +129,7 @@ const BaseLayout = (props: { children: any }) => {
   if (current_member && current_member.status === Status.ARCHIVED)
     return <NoAccessAlertDialog text={'Deactivated_account'} description={'Deactivated_account_description'} />;
   return (
-    <div className='bg-white dark:bg-teams_dark_mode_core'>
+    <div className='bg-white dark:bg-teams_brand_tbody'>
       <Disclosure as="div" className="relative overflow-visible bg-teams_brand_700 pb-32">
         {({ open, close }) => {
           return (
@@ -144,7 +144,7 @@ const BaseLayout = (props: { children: any }) => {
                   className={classNames(
                     in_teams
                       ? theme == 'dark'
-                        ? 'bg-teams_dark_mode_core'
+                        ? 'bg-teams_brand_tbody'
                         : 'bg-teams_light_mode'
                       : ' mx-auto max-w-screen-2xl px-2 sm:px-6 lg:px-32 xl:px-28 1xl:px-4'
                   )}
@@ -204,7 +204,7 @@ const BaseLayout = (props: { children: any }) => {
                           }}
                           className={classNames(
                             in_teams
-                              ? 'text-teams_dark_mode_core_menu_underline hover:text-teams_brand_500'
+                              ? 'text-teams_brand_tbody_menu_underline  hover:text-teams_brand_500'
                               : 'text-teams_brand_200 hover:bg-teams_brand_800 hover:text-white',
                             'flex-shrink-0 rounded-full p-1 focus:bg-teams_brand_900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teams_brand_900'
                           )}
@@ -229,7 +229,7 @@ const BaseLayout = (props: { children: any }) => {
 
                         {/* Profile dropdown */}
                         {!current_member && !in_teams && (
-                          <span className="ml-3 inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 dark:bg-teams_brand_dark_100">
+                          <span className="ml-3 inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100 dark:bg-teams_brand_tbody">
                             <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                             </svg>
@@ -241,7 +241,7 @@ const BaseLayout = (props: { children: any }) => {
                               <Menu.Button
                                 className={classNames(
                                   in_teams
-                                    ? 'text-teams_dark_mode_core_menu_underline hover:text-teams_brand_500'
+                                    ? 'text-teams_brand_tbody_menu_underline  hover:text-teams_brand_500'
                                     : 'text-white',
                                   'flex rounded-full text-sm focus:bg-teams_brand_900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teams_brand_900'
                                 )}
@@ -262,7 +262,7 @@ const BaseLayout = (props: { children: any }) => {
                               leaveFrom="transform opacity-100 scale-100"
                               leaveTo="transform opacity-0 scale-95"
                             >
-                              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_dark_100">
+                              <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_tbody">
                                 {userNavigation.map((item) => (
                                   <Menu.Item key={item.name}>
                                     {({ active }) => (

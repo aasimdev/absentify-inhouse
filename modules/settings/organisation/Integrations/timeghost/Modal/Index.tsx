@@ -620,7 +620,7 @@ export default function CustomModal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_tbody">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full mr-2">
                       <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-gray-200">
@@ -647,8 +647,8 @@ export default function CustomModal(props: {
                           <input
                             type="text"
                             className={` w-full rounded-md ${
-                              apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
-                            }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                              apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_tbody dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_tbody dark:text-gray-200'
+                            }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                             onChange={(val) => {
                               if (val) {
                                 onChange(val.target.value);
@@ -685,7 +685,7 @@ export default function CustomModal(props: {
                     </button>
                     <button
                       type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       onClick={() => props.onClose(false)}
                     >
                       {t('Cancel')}
@@ -728,7 +728,7 @@ export default function CustomModal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className=" inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-5xl sm:p-6 sm:align-middle dark:bg-teams_brand_dark_100">
+            <div className=" inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-5xl sm:p-6 sm:align-middle dark:bg-teams_brand_tbody">
               <Dialog.Title as="h3" className="py-6 text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
                 {t('Add_timeghost_sync')}
               </Dialog.Title>
@@ -765,7 +765,7 @@ export default function CustomModal(props: {
               </nav>
               <div className="mt-5 border-t border-gray-200"></div>
               {steps[0] && steps[0].status === 'current' && (
-                <div className="mt-5  bg-white dark:bg-teams_brand_dark_100">
+                <div className="mt-5  bg-white dark:bg-teams_brand_tbody">
                   <div className="px-2 py-5 sm:p-2">
                     <div className="sm:flex sm:items-start sm:justify-between">
                       <div>
@@ -779,7 +779,7 @@ export default function CustomModal(props: {
                       <div className="sEm:ml-6 mt-5 sm:mt-0 sm:flex sm:shrink-0 sm:items-center"></div>
                     </div>
                   </div>
-                  <form className="divide-y divide-gray-200 dark:divide-gray-500 pl-0 lg:pl-4" onSubmit={() => {}}>
+                  <form className="divide-y divide-gray-200 dark:divide-teams_brand_border pl-0 lg:pl-4" onSubmit={() => {}}>
                     <div className="mt-6 mb-10 grid grid-cols-1 content-center gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block pb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -796,8 +796,8 @@ export default function CustomModal(props: {
                                 type="text"
                                 autoComplete="name"
                                 className={`block w-full min-w-0 grow rounded-md ${
-                                  errors.name ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : 'dark:bg-teams_brand_dark_100 border-gray-300  dark:text-gray-200 '
-                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                                  errors.name ? ' border-red-500 dark:bg-teams_brand_tbody dark:text-gray-200' : 'dark:bg-teams_brand_tbody border-gray-300  dark:text-gray-200 '
+                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -825,8 +825,8 @@ export default function CustomModal(props: {
                                 type="text"
                                 autoComplete="description"
                                 className={`block w-full min-w-0 grow rounded-md ${
-                                  errors.description ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
-                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                                  errors.description ? ' border-red-500 dark:bg-teams_brand_tbody dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_tbody dark:text-gray-200'
+                                } focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                                 onChange={(val) => onChange(val.target.value)}
                               />
                             )}
@@ -982,8 +982,8 @@ export default function CustomModal(props: {
                             <input
                               type="text"
                               className={` w-full rounded-md ${
-                                apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_dark_100 dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200'
-                              }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                                apiKeyErrorState ? ' border-red-500 dark:bg-teams_brand_tbody dark:text-gray-200' : ' border-gray-300 dark:bg-teams_brand_tbody dark:text-gray-200'
+                              }shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                               onChange={(val) => {
                                 if (val) {
                                   onChange(val.target.value);
@@ -1064,7 +1064,7 @@ export default function CustomModal(props: {
                       checked={syncPastAndFuture}
                       onChange={setSyncPastAndFuture}
                       className={classNames(
-                        syncPastAndFuture ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        syncPastAndFuture ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -1107,7 +1107,7 @@ export default function CustomModal(props: {
                     e.preventDefault();
                     props.onClose();
                   }}
-                  className="mx-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                  className="mx-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                 >
                   {t('Cancel')}
                 </button>
@@ -1127,7 +1127,7 @@ export default function CustomModal(props: {
                     className={` ${
                       nextButtonState
                         ? 'bg-teams_brand_foreground_bg text-white hover:bg-teams_brand_foreground_1 focus:outline-none focus:ring-2'
-                        : '  border-gray-300 bg-gray-200 text-gray-500 hover:bg-gray-300 dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:border-gray-200 '
+                        : '  border-gray-300 bg-gray-200 text-gray-500 hover:bg-gray-300 dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-gray-200 '
                     } mx-2 inline-flex items-center rounded-md border border-transparent px-4 py-2 font-medium   shadow-sm focus:ring-teams_brand_500 focus:ring-offset-2 sm:text-sm`}
                   >
                     {loading && (

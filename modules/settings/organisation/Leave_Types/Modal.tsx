@@ -348,7 +348,7 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
+            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_tbody">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -357,7 +357,7 @@ export default function Modal(props: {
                       {!props.value && t('Leave_types_Dialog_title')}
                     </>
                   </Dialog.Title>
-                  <form className="divide-y divide-gray-200 dark:divide-gray-500 dark:text-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:divide-teams_brand_border dark:text-gray-200" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 flex flex-col lg:flex-row">
                       <div className="grow space-y-6">
                         <div>
@@ -377,7 +377,7 @@ export default function Modal(props: {
                               name="name"
                               id="name"
                               autoComplete="name"
-                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border"
                             />
                             {errors.name?.message && (
                               <div className="mt-2 inline-flex">
@@ -442,7 +442,7 @@ export default function Modal(props: {
                                 </span>
                                 <ReactTooltip
                                   id="outSync-tooltip"
-                                  className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                                  className="shadow-sm z-50 dark:bg-teams_brand_thead dark:text-gray-200"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -465,7 +465,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                                      className="shadow-sm z-50 dark:bg-teams_brand_thead dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -519,7 +519,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                                      className="shadow-sm z-50 dark:bg-teams_brand_thead dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -537,7 +537,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -571,7 +571,7 @@ export default function Modal(props: {
                                               onChange(val);
                                             }}
                                             className={classNames(
-                                              value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                              value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                               'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                             )}
                                           >
@@ -595,7 +595,7 @@ export default function Modal(props: {
                           watch('sync_option') !== 'Disabled' && (
                             <div className="text-sm block font-medium text-gray-700 mb-2 pl-2 dark:text-gray-200">
                               {t('iCal_Synchronization_Settings')}{' '}
-                              <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2">
+                              <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2 dark:border-teams_brand_border">
                                 <div className="mb-6">
                                   <label
                                     htmlFor="iCal_event_show_as"
@@ -612,7 +612,7 @@ export default function Modal(props: {
                                     </span>
                                     <ReactTooltip
                                       id="outSync-tooltip"
-                                      className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200 "
+                                      className="shadow-sm z-50 dark:bg-teams_brand_thead dark:text-gray-200 "
                                       classNameArrow="shadow-sm"
                                       place="top"
                                       opacity={1}
@@ -669,7 +669,7 @@ export default function Modal(props: {
                                     <ReactTooltip
                                       id="ical-tooltip"
                                       place="top"
-                                      className="shadow z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                                      className="shadow z-50 dark:bg-teams_brand_thead dark:text-gray-200"
                                       classNameArrow="shadow-sm"
                                       opacity={1}
                                       style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -687,7 +687,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-100"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-100 dark:border-teams_brand_border"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -705,7 +705,7 @@ export default function Modal(props: {
                         <ul role="list" className="mt-2">
                           <div className="text-sm block font-medium text-gray-700 mb-2 pl-2 dark:text-gray-200">
                             {t('Leave_types_Deduct_from_allowance')}{' '}
-                            <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2">
+                            <div className="border-solid border-gray-300 border p-2 rounded-md mt-2 -ml-2 dark:border-teams_brand_border">
                               <Switch.Group as="li" className="flex items-center justify-between py-4">
                                 <div className="flex flex-col">
                                   <Switch.Label as="p" className="text-sm font-medium text-gray-900 dark:text-gray-200" passive>
@@ -733,7 +733,7 @@ export default function Modal(props: {
                                           setValue('allowance_type_id', allowancesTypes[0]?.id);
                                       }}
                                       className={classNames(
-                                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                       )}
                                     >
@@ -748,6 +748,51 @@ export default function Modal(props: {
                                   )}
                                 />
                               </Switch.Group>
+                              {allowancesTypes &&
+                                allowancesTypes.length > 1 &&
+                                watch('take_from_allowance') == true && (
+                                  <div>
+                                    <label
+                                      htmlFor="allowance_type_id"
+                                      className="block text-sm font-medium text-gray-700"
+                                    >
+                                      {t('take_from_allowance_type')}
+                                    </label>
+                                    <div className="mt-1">
+                                      <Controller
+                                        rules={{ required: true }}
+                                        control={control}
+                                        name="allowance_type_id"
+                                        defaultValue={allowancesTypes[0]?.id}
+                                        render={({ field: { onChange, value } }) => (
+                                          <Select
+                                            styles={{
+                                              menuPortal: (base) => ({
+                                                ...base,
+                                                zIndex: 9999
+                                              }),
+                                              control: (base) => ({
+                                                ...base,
+                                                '*': {
+                                                  boxShadow: 'none !important'
+                                                }
+                                              })
+                                            }}
+                                            menuPortalTarget={document.body}
+                                            value={allowancesTypes.find((x) => x.id === value)}
+                                            className="w-full"
+                                            onChange={(val) => {
+                                              if (val) onChange(val.id);
+                                            }}
+                                            getOptionLabel={(option) => `${option.name} (${t(option.allowance_unit)})`}
+                                            getOptionValue={(option) => option.id}
+                                            options={allowancesTypes}
+                                          />
+                                        )}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
 
                               {watch('take_from_allowance') == true && (
                                 <div>
@@ -771,7 +816,7 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
@@ -806,7 +851,7 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
@@ -823,53 +868,7 @@ export default function Modal(props: {
                                   </Switch.Group>
                                 </div>
                               )}
-                              {allowancesTypes &&
-                                allowancesTypes.length > 1 &&
-                                watch('take_from_allowance') == true && (
-                                  <div>
-                                    <label
-                                      htmlFor="allowance_type_id"
-                                      className="block text-sm font-medium text-gray-700 dark:text-gray-200"
-                                    >
-                                      {t('take_from_allowance_type')}
-                                    </label>
-                                    <div className="mt-1">
-                                      <Controller
-                                        rules={{ required: true }}
-                                        control={control}
-                                        name="allowance_type_id"
-                                        defaultValue={allowancesTypes[0]?.id}
-                                        render={({ field: { onChange, value } }) => (
-                                          <Select
-                                            styles={{
-                                              menuPortal: (base) => ({
-                                                ...base,
-                                                zIndex: 9999
-                                              }),
-                                              control: (base) => ({
-                                                ...base,
-                                                '*': {
-                                                  boxShadow: 'none !important'
-                                                }
-                                              })
-                                            }}
-                                            // menuPortalTarget={document.body}
-                                            value={allowancesTypes.find((x) => x.id === value)}
-                                           
-                                            className="w-full my-react-select-container"
-                                            classNamePrefix="my-react-select"
-                                            onChange={(val) => {
-                                              if (val) onChange(val.id);
-                                            }}
-                                            getOptionLabel={(option) => `${option.name} (${t(option.allowance_unit)})`}
-                                            getOptionValue={(option) => option.id}
-                                            options={allowancesTypes}
-                                          />
-                                        )}
-                                      />
-                                    </div>
-                                  </div>
-                                )}
+                              
                             </div>
                           </div>
 
@@ -879,7 +878,7 @@ export default function Modal(props: {
                             </label>
                             <div className="mt-1">
                               <Controller
-                                // className ="dark:bg-teams_brand_dark_100"
+                                // className ="dark:bg-teams_brand_tbody"
                                 rules={{ required: true }}
                                 control={control}
                                 name="leave_unit"
@@ -896,13 +895,13 @@ export default function Modal(props: {
                                   >
                                     {({ open }) => (
                                       <>
-                                        <Listbox.Label className="sr-only dark:text-gray-200 dark:bg-teams_brand_dark_100">
+                                        <Listbox.Label className="sr-only dark:text-gray-200 dark:bg-teams_brand_tbody">
                                           <p> {t('Leave_types_leave_unit')}</p>{' '}
                                         </Listbox.Label>
                                         <div className="relative w-full">
                                           <div className="inline-flex w-full rounded-md border-gray-300 ">
                                             <div className="inline-flex w-full rounded-md border-gray-300">
-                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white dark:bg-teams_brand_dark_100 py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:text-gray-200">
+                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white dark:bg-teams_brand_tbody py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:text-gray-200 dark:border-teams_brand_border">
                                                 <div className="inline-flex">
                                                   <p className=" text-sm font-medium dark:text-gray-200">
                                                     {
@@ -913,9 +912,9 @@ export default function Modal(props: {
                                                   </p>
                                                 </div>
                                               </Listbox.Button>
-                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_dark_100 dark:text-gray-100">
+                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_tbody dark:text-gray-100 dark:border-teams_brand_border">
                                                 <span className="sr-only dark:text-gray-200"> {t('Leave_types_leave_unit')}</span>
-                                                <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" aria-hidden="true" />
+                                                <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-teams_brand_border" aria-hidden="true" />
                                               </Listbox.Button>
                                             </div>
                                           </div>
@@ -927,7 +926,7 @@ export default function Modal(props: {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                           >
-                                            <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+                                            <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-teams_brand_thead dark:divide-teams_brand_border">
                                               {leaveUnitSelectValues.map((option) => (
                                                 <Listbox.Option
                                                   key={option.name}
@@ -936,7 +935,7 @@ export default function Modal(props: {
                                                       'cursor-pointer select-none p-4 text-sm',
                                                       hasValidSubscription
                                                         ? active
-                                                          ? 'bg-gray-100 text-gray-800 dark:text-gray-200 dark:bg-teams_brand_dark_500'
+                                                          ? 'bg-gray-100 text-gray-800 dark:text-gray-200 dark:bg-teams_brand_tbody'
                                                           : 'text-gray-800 dark:text-gray-400'
                                                         : option.id !== 'days' && option.id !== 'half_days'
                                                         ? 'cursor-not-allowed bg-gray-100 text-gray-800'
@@ -1015,7 +1014,7 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
@@ -1050,7 +1049,7 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
@@ -1079,7 +1078,7 @@ export default function Modal(props: {
                                 </span>
                                 <ReactTooltip
                                   id="reason_hint_text"
-                                  className="shadow-sm z-50 dark:bg-teams_dark_mode_core dark:text-gray-200"
+                                  className="shadow-sm z-50 dark:bg-teams_brand_thead  dark:text-gray-200"
                                   classNameArrow="shadow-sm"
                                   place="top"
                                   style={{ width: '300px', boxShadow: '0 0 10px rgba(0,0,0,.1)' }}
@@ -1097,7 +1096,7 @@ export default function Modal(props: {
                                 type="text"
                                 name="reason_hint_text"
                                 id="reason_hint_text"
-                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
                               />
                               {errors.reason_hint_text?.message && (
                                 <div className="mt-2 inline-flex">
@@ -1127,7 +1126,7 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
@@ -1163,7 +1162,7 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
@@ -1187,7 +1186,7 @@ export default function Modal(props: {
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

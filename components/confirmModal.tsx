@@ -40,8 +40,8 @@ export default function ConfirmModal({text, handleCallback, onClose }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6 dark:bg-teams_brand_dark_100">
-                <div className='dark:bg-teams_brand_dark_100'>
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6 dark:bg-teams_brand_tbody">
+                <div className='dark:bg-teams_brand_tbody'>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-gray-200">
                       {text}
@@ -69,7 +69,7 @@ export default function ConfirmModal({text, handleCallback, onClose }: Props) {
                   </button>
                   <button
                     type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:col-start-1 sm:mt-0 dark:bg-teams_brand_tbody  dark:border dark:border-gray-200 dark:text-white"
                     onClick={(e) => {
                       e.preventDefault();
                       onClose();

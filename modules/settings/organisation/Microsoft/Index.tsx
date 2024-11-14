@@ -261,14 +261,14 @@ const Microsoft: NextPage = () => {
     );
   };
   return (
-    <form className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
-      <div className="pt-6 divide-y divide-gray-200 dark:divide-gray-500">
+    <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
+      <div className="pt-6 divide-y divide-gray-200 dark:divide-teams_brand_border">
         <div className="px-4 sm:px-6">
           <div>
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Microsoft_Integration')}</h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Microsoft_Integration_Description')} </p>
           </div>
-          <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-gray-500">
+          <ul role="list" className="mt-2 divide-y divide-gray-200 dark:divide-teams_brand_border">
             {scopes && !loadingSwitch.CalendarsReadWrite ? (
               <Switch.Group as="li" className="flex justify-between items-center py-4">
                 <div className="flex flex-col">
@@ -324,7 +324,7 @@ const Microsoft: NextPage = () => {
                         setLoadingSwitch({ ...loadingSwitch, CalendarsReadWrite: false });
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -394,7 +394,7 @@ const Microsoft: NextPage = () => {
                         setLoadingSwitch({ ...loadingSwitch, MailboxSettingsReadWrite: false });
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -465,7 +465,7 @@ const Microsoft: NextPage = () => {
                         }
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -536,7 +536,7 @@ const Microsoft: NextPage = () => {
                         }
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >
@@ -592,7 +592,7 @@ const Microsoft: NextPage = () => {
                         );
                       }}
                       className={classNames(
-                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                         'inline-flex relative flex-shrink-0 ml-4 w-11 h-6 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:ring-1 dark:ring-offset-0'
                       )}
                     >

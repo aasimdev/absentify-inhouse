@@ -38,14 +38,14 @@ export const Faqs = () => {
   };
 
   return (
-    <div className="space-y-5 p-8">
-      <h1 className="font-bold text-xl">FAQs</h1>
+    <div className="space-y-5 p-8 dark:bg-teams_dark_mode">
+      <h1 className="font-bold text-xl dark:text-gray-200">FAQs</h1>
       <ul role="list" className="space-y-8 pb-6">
         {items.map((item, i) => (
           <li key={item.id} className="shadow-[0_3px_10px_rgb(0,0,0,0.1)] overflow-hidden rounded-md cursor-pointer">
             {!item.visible && (
               <div
-                className="flex justify-between px-6 py-8 bg-white"
+                className="flex justify-between px-6 py-8 bg-white dark:bg-teams_brand_tbody"
                 onClick={() => {
                   const newItems = items.map((newItem, j) => ({
                     ...newItem,
@@ -54,10 +54,10 @@ export const Faqs = () => {
                   setItems(newItems);
                 }}
               >
-                <p className="font-bold">{t(item.question)}</p>
+                <p className="font-bold dark:text-gray-200">{t(item.question)}</p>
                 <span>
                   <svg
-                    className="w-6 h-6"
+                    className="w-6 h-6 dark:text-gray-200"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export const Faqs = () => {
             )}
             {item.visible && (
               <div
-                className="flex flex-col px-6 py-8 bg-white"
+                className="flex flex-col px-6 py-8 bg-white dark:bg-teams_brand_tbody"
                 onClick={() => {
                   const newItems = items.map((newItem, j) => ({
                     ...newItem,
@@ -80,9 +80,9 @@ export const Faqs = () => {
                 }}
               >
                 <div className="flex justify-between pb-4">
-                  <p className="font-bold">{t(item.question)}</p>
+                  <p className="font-bold dark:text-gray-200">{t(item.question)}</p>
                   <span>
-                    <MinusIcon className="w-6 h-6" />
+                    <MinusIcon className="w-6 h-6 dark:text-gray-200" />
                   </span>
                 </div>
                 <div

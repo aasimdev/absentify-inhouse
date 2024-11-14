@@ -423,7 +423,7 @@ export default function AddEditSchedule(props: {
                     calendarStartDay={current_member?.week_start ? parseInt(current_member?.week_start) : 0}
                     locale={lang}
                     dateFormat={current_member?.date_format}
-                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                    className="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-gray-200 dark:border-teams_brand_border"
                     selected={field.value}
                     onChange={(date: Date) => field.onChange(date)}
                   />
@@ -901,12 +901,12 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
             <div className=" mb-6 inline-flex">
               <input
                 {...register('deduct_fullday', { required: true })}
-                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_dark_100"
+                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_tbody  "
                 type="checkbox"
               />{' '}
               <label htmlFor="deduct_fullday" className='dark:text-gray-200'>{t('deductFullday')}</label>
               <span
-                className="ml-1  flex items-center cursor-pointer dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                className="ml-1  flex items-center cursor-pointer dark:text-gray-200 dark:bg-teams_brand_tbody"
                 data-tooltip-id="schedule-tooltip"
                 data-tooltip-content={t('deduct_fullday_txt')}
                 data-tooltip-variant= 'light'
@@ -916,7 +916,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
               <ReactTooltip
                 id="schedule-tooltip"
                 place="top"
-                className="shadow z-50 dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                className="shadow z-50 dark:bg-teams_brand_tbody dark:text-gray-200"
                 classNameArrow="shadow-sm"
                 style={{
                   width: '300px',
@@ -934,7 +934,7 @@ function Row(props: { onChange: Function; value: RowValue; weekday: number; enab
             <div className=" mb-6 inline-flex">
               <input
                 {...register('deduct_fullday', { required: true })}
-                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100 dark:text-gray-200  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_dark_100"
+                className="my-auto mr-2 h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_bg focus:ring-teams_brand_450 dark:bg-teams_brand_tbody dark:text-gray-200  dark:border-gray-200  focus:border-teams_brand_500 focus:ring-teams_brand_500 dark:focus:bg-teams_brand_tbody"
                 type="checkbox"
                 disabled={true}
                 style={{

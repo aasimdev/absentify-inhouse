@@ -57,7 +57,7 @@ const Delete: NextPage = () => {
   const { in_teams, in_sharePoint, current_member } = useAbsentify();
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10">
+      <div className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10">
         <div className="px-4 sm:px-6">
           <div className="inline-block w-full max-w-lg transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom transition-all sm:my-8 sm:p-6 sm:align-middle dark:bg-teams_brand_tbody">
             <div className="sm:flex sm:items-start">

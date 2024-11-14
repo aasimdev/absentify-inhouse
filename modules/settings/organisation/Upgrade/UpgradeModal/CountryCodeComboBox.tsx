@@ -37,7 +37,7 @@ export default function CountryCodeComboBox({countries, onChange, value, error}:
     <Combobox as="div" value={selectedCountry || value} onChange={setSelectedCountry}>
       <div className="relative mt-2">
         <Combobox.Input
-          className={`w-full rounded-md bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 focus:ring-teams_brand_500 dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400 ${error ? 'border border-red-500' : 'border-0'}`}
+          className={`w-full rounded-md bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 focus:ring-teams_brand_500 dark:bg-transparent dark:text-white dark:border-teams_brand_border ${error ? 'border border-red-500' : 'border-0'}`}
           onChange={(event) => setQuery(event.target.value)}
           defaultValue={countries[0]?.name || ''}
           //@ts-ignore
@@ -56,7 +56,7 @@ export default function CountryCodeComboBox({countries, onChange, value, error}:
                 className={({ active }) =>
                   classNames(
                     'relative cursor-default select-none py-2 pl-3 pr-9',
-                    active ? 'bg-teams_brand_foreground_bg text-white dark:bg-teams_brand_dark_100' : 'text-gray-900 dark:text-white'
+                    active ? 'bg-teams_brand_foreground_bg text-white dark:bg-teams_brand_tbody' : 'text-gray-900 dark:text-white'
                   )
                 }
               >

@@ -141,7 +141,7 @@ export default function UpgradeModalDepartment(props: { open: boolean; onClose: 
                     {t('Change_department_quantity')}
                   </Dialog.Title>
 
-                  <form className="divide-y divide-gray-200" onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:divide-teams_brand_border" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">

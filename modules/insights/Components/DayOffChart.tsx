@@ -47,7 +47,7 @@ const DayOffChart: React.FC<{
   if (!data || !data.labels) return <></>;
 
   return (
-    <div className="lg:inline-flex md:flex-row flex-col flex w-full flex-wrap md:flex-wrap lg:pr-4 px-6 md:space-x-10 sm:space-x-0 justify-center  dark:bg-teams_brand_dark_100">
+    <div className="lg:inline-flex md:flex-row flex-col flex w-full flex-wrap md:flex-wrap lg:pr-4 px-6 md:space-x-10 sm:space-x-0 justify-center  dark:bg-teams_dark_mode">
       <div className="w-auto mx-auto">
         <Doughnut data={data} options={options} style={{ maxWidth: '111px' }} />
       </div>

@@ -292,7 +292,7 @@ const UsersPage: NextPage = () => {
                     </div>
                   </div>
                   {tabs.find((x) => x.name == 'Users')?.current && (
-                    <table className="min-w-full divide-y divide-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_border">
                       <thead className="bg-gray-50">
                         <tr>
                           <th
@@ -348,7 +348,7 @@ const UsersPage: NextPage = () => {
                     </table>
                   )}
                   {tabs.find((x) => x.name == 'Active Companys')?.current && (
-                    <table className="min-w-full divide-y divide-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_border">
                       <thead className="bg-gray-50">
                         <tr>
                           <th

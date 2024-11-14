@@ -130,7 +130,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
   if (!current_member) return <></>;
 
   return (
-<div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+<div className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_dark_mode dark:divide-teams_brand_border">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Allowance')}</h2>
@@ -172,7 +172,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                       key={allowanceType.id}
                       className="mt-6 flex flex-col lg:flex-row overflow-hidden border-b border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody dark:border-0"
                     >
-                      <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border dark:bg-teams_brand_tbody ">
+                      <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
                       <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                           <tr>
                             <th
@@ -264,7 +264,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                 </td>
 
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500" colSpan={4}>
-                                  <div className="divide-y divide-gray-200">
+                                  <div className="divide-y divide-gray-200 dark:divide-teams_brand_border">
                                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                                       <div className="sm:col-span-5">
                                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -295,7 +295,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 y.expiration = expiration;
                                                 setEditMode(y);
                                               }}
-                                                className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
+                                                className ="dark:text-gray-200 dark:bg-teams_brand_tbody w-full rounded-md dark:border-teams_brand_border dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                             />
                                           )}
                                           {filteredAllowance[0] &&
@@ -311,7 +311,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 <InputPicker
                                                   unit={allowance.allowance_type.allowance_unit}
                                                   value={editMode.brought_forward}
-                                                  className="block w-full rounded-md border-0 py-1.5 pr-7 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6 dark:text-gray-200 dark:bg-teams_brand_dark_100 dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
+                                                  className="block w-full rounded-md border-0 py-1.5 pr-7 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6 dark:text-gray-200 dark:bg-teams_brand_tbody dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                                   onChange={(x) => {
                                                     const y = cloneDeep(editMode);
                                                     y.brought_forward = x;
@@ -350,7 +350,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                             filteredAllowance[0].id != allowance.id &&
                                             !allowance.overwrite_brought_forward &&
                                             !editMode.overwrite_brought_forward && (
-                                              <span className="flex dark:text-gray-800">
+                                              <span className="flex dark:text-gray-200">
                                                 {allowancePart(allowance)}{' '}
                                                 <a
                                                   onClick={async (e) => {
@@ -388,7 +388,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                                 y.allowance + y.brought_forward + y.compensatory_time_off - y.taken;
                                               setEditMode(y);
                                             }}
-                                            className="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
+                                            className="dark:text-gray-200 dark:bg-teams_brand_tbody w-full rounded-md dark:border-teams_brand_border dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                           />
                                         </div>
                                       </div>
@@ -408,7 +408,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                               setEditMode(y);
                                             }}
                                             
-                                            className ="dark:text-gray-200 dark:bg-teams_brand_dark_100 w-full rounded-md dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
+                                            className ="dark:text-gray-200 dark:bg-teams_brand_tbody w-full rounded-md dark:border-teams_brand_border dark:focus:border-teams_brand_dark_300 dark:focus:ring-teams_brand_dark_300"
                                           />
                                         </div>
                                       </div>
@@ -449,7 +449,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                                           e.preventDefault();
                                           setEditMode(null);
                                         }}
-                                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                                       >
                                         {t('Cancel')}
                                       </button>
@@ -552,7 +552,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
                         </tbody>
                         <ReactTooltip
                           id="allowance-tooltip"
-                          className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
+                          className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_brand_tbody"
                           classNameArrow="shadow-sm "
                           place="top"
                           style={{
@@ -577,7 +577,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
             utils.member.all.invalidate();
           }}
           type="button"
-        className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+        className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>
@@ -585,7 +585,7 @@ export default function Allowance(props: { onClose: Function; currentMember: def
       {showConfirmModal && (
         <ConfirmModal
           text={
-            <div className="text-left dark:bg-teams_brand_dark_100">
+            <div className="text-left dark:bg-teams_brand_tbody">
               <h1 className="underline dark:text-gray-200">{t('ManualCarryoverDialog_Title')}</h1>
               <p className="mt-2 dark:text-gray-200">{t('ManualCarryoverDialog_Intro')}</p>
               <ol className="mt-2">
@@ -694,7 +694,7 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  props.allowance_type_config.default ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  props.allowance_type_config.default ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                   'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >
@@ -777,7 +777,7 @@ const AllowanceTypeHeadline = (props: {
                   );
                 }}
                 className={classNames(
-                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_dark_100 dark:ring-white',
+                  !props.allowance_type_config.disabled ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
                   'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand-600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                 )}
               >

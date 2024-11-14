@@ -90,7 +90,7 @@
   "deleted": "usunięto",
   "no_approver_set": "Nie ustawiono zatwierdzającego",
   "error_this_user_still_approver": "Nie można zarchiwizować {{employee}}. Użytkownik jest nadal osobą zatwierdzającą dla następujących pracowników: {{approverOf}} Najpierw zmień osobę zatwierdzającą.",
-  "error_this_user_still_manager": "Nie można zarchiwizować {{employee}}. Użytkownik jest nadal menedżerem następujących działów: {{approverOf}} Najpierw zmień menedżera.",
+  "error_this_user_still_manager": "{{employee}} nie można zarchiwizować. Użytkownik jest nadal menedżerem następujących działów: {{managerOf}} Najpierw zmień menedżera.",
   "error_last_admin": "{{employee}} nie może zostać zarchiwizowany będąc ostatnim administratorem",
   "error_last_admin_inactive": "{{employee}} nnie może zostać zarchiwizowanyć będąc ostatnim administratorem",
   "error_you_have_to_be_admin": "Aby wykonać tę akcję, musisz być administratorem",

@@ -250,7 +250,7 @@ const Billing: NextPage = () => {
                 <div key={x.subscription_id}>
                   {x.state != 'deleted' && x.payment_information && (
                     <>
-                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
+                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-teams_brand_border" />
                       <div className="flex flex-col space-y-3">
                         <h3 className="text-base font-medium dark:text-gray-200">{t('Payement_details')}</h3>
                         {x.next_payment && (
@@ -339,7 +339,7 @@ const Billing: NextPage = () => {
                 <div key={x.subscription_id}>
                   {x.state != 'deleted' && (
                     <>
-                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
+                      <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-teams_brand_border" />
                       <div className="flex flex-col space-y-3">
                         <h3 className="text-base font-medium">{t('Payement_details')}</h3>
                         {x.next_payment && (
@@ -376,7 +376,7 @@ const Billing: NextPage = () => {
                   )}
                 </div>
               ))}
-            <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-gray-400" />
+            <hr className="flex w-full text-element-0 mt-12 mb-8 dark:border-teams_brand_border" />
             <div className="flex flex-col space-y-3">
               <h3 className="font-medium text-base dark:text-gray-200">{t('history')}</h3>
               {!payments && <p className="text-sm dark:text-gray-400">{t('defaultHistory')} </p>}

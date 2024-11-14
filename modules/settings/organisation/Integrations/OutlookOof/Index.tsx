@@ -488,7 +488,7 @@ const OutlookOof: NextPage = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 dark:bg-teams_brand_dark_100 bg-opacity-75 transition-opacity" />
+            <div className="fixed inset-0 bg-gray-500 dark:bg-teams_brand_tbody bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -597,7 +597,7 @@ const OutlookOof: NextPage = () => {
                     </button>
                     <button
                       type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                      className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                       onClick={() => {
                         props.onClose(false);
                         setSelectedLeaveTypes([]);
@@ -747,7 +747,7 @@ const OutlookOof: NextPage = () => {
                               quill.editor.insertText(selection.index, item.value);
                             }}
                             type="button"
-                            className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100  dark:text-gray-200"
+                            className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody  dark:text-gray-200"
                           >
                             {item.name}
                           </button>
@@ -757,7 +757,7 @@ const OutlookOof: NextPage = () => {
 
                     <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                       <div className=" w-full">
-                        <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
+                        <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody  dark:text-gray-200">
                           <ReactQuill
                             theme="snow"
                             placeholder={placeholder}
@@ -783,7 +783,7 @@ const OutlookOof: NextPage = () => {
                   <div className="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-5">
                     <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                       <div className=" w-full">
-                        <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
+                        <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody  dark:text-gray-200">
                           <ReactQuill
                             theme="snow"
                             placeholder={placeholder}
@@ -810,7 +810,7 @@ const OutlookOof: NextPage = () => {
                           type="text"
                           value={current_member?.email + ''}
                           readOnly={true}
-                          className="sm:mb-0 mb-4 rounded dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                          className="sm:mb-0 mb-4 rounded dark:text-gray-200 dark:bg-teams_brand_tbody"
                         ></input>
                         <button
                           onClick={async () => {
@@ -889,7 +889,7 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedExternal(!checkedExternal);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:bg-teams_brand_dark_100  dark:text-gray-200  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450 dark:bg-teams_brand_tbody  dark:text-gray-200  dark:border-gray-200  dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -914,7 +914,7 @@ const OutlookOof: NextPage = () => {
                             onChange={() => {
                               setCheckedOnlyContacts(!checkedOnlyContacts);
                             }}
-                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                            className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200  dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                           />
                         </div>
                         <div className="ml-3 text-sm">
@@ -951,7 +951,7 @@ const OutlookOof: NextPage = () => {
                                   quill.editor.insertText(selection.index, item.value);
                                 }}
                                 type="button"
-                                className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2  dark:bg-teams_brand_dark_100  dark:text-gray-200"
+                                className="mx-1 inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2  dark:bg-teams_brand_tbody  dark:text-gray-200"
                               >
                                 {item.name}
                               </button>
@@ -961,7 +961,7 @@ const OutlookOof: NextPage = () => {
 
                         <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                           <div className=" w-full">
-                            <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
+                            <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody  dark:text-gray-200">
                               <ReactQuill
                                 theme="snow"
                                 placeholder={placeholder}
@@ -987,7 +987,7 @@ const OutlookOof: NextPage = () => {
                       <div className="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-5">
                         <div className="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
                           <div className=" w-full">
-                            <div className="w-full bg-gray-50 dark:bg-teams_brand_dark_100  dark:text-gray-200">
+                            <div className="w-full bg-gray-50 dark:bg-teams_brand_tbody  dark:text-gray-200">
                               <ReactQuill
                                 theme="snow"
                                 placeholder={placeholder}
@@ -1014,7 +1014,7 @@ const OutlookOof: NextPage = () => {
                               type="text"
                               value={current_member?.email + ''}
                               readOnly={true}
-                              className="sm:mb-0 mb-4 dark:bg-teams_brand_dark_100  dark:text-gray-200"
+                              className="sm:mb-0 mb-4 dark:bg-teams_brand_tbody  dark:text-gray-200"
                             ></input>
                             <button
                               onClick={async () => {
@@ -1095,7 +1095,7 @@ const OutlookOof: NextPage = () => {
                         onChange={() => {
                           setCheckedAllowToEdit(!checkedAllowToEdit);
                         }}
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_dark_100  dark:border-gray-200  dark:focus:ring-teams_brand_dark_100 dark:focus:bg-teams_brand_dark_100"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_foreground_1 focus:ring-teams_brand_450  dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200  dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
                       />
                     </div>
                     <div className="ml-3 text-sm">

@@ -339,7 +339,7 @@ const UsersPage: NextPage = () => {
             </div>
             {/* Directory list */}
             <nav className="min-h-0 flex-1 overflow-y-auto" aria-label="Directory">
-              <ul role="list" className="relative z-0 divide-y divide-gray-200">
+              <ul role="list" className="relative z-0 divide-y divide-gray-200 dark:divide-teams_brand_border">
                 {isSearchLoading && (
                   <div className="mb-3  ml-10">
                     <Loader />

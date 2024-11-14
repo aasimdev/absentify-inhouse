@@ -70,7 +70,7 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-auto sm:p-6 dark:bg-teams_brand_dark_100">
+              <Dialog.Panel className="relative transform rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 w-auto sm:p-6 dark:bg-teams_brand_tbody">
                 <div>
                   <div className="mt-1 text-start sm:mt-1 mb-4">
                     <Dialog.Title as="h1" className=" text-lg font-bold  text-gray-900 dark:text-gray-200">
@@ -117,7 +117,7 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
                         onChange={(e) => {
                           setCustomName(e.target.value);
                         }}
-                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200"
+                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
                       />
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
                       onClose();
                     }}
                     ref={cancelButtonRef}
-                    className="inline-flex w-24 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                    className="inline-flex w-24 justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                   >
                     {t('Cancel')}
                   </button>

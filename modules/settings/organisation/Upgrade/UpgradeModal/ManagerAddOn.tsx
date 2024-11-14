@@ -106,7 +106,7 @@ export default function UpgradeModalManagerAddOn(props: { open: boolean; onClose
                     {(alreadyEnabled ? t('disable') : t('enable')) + ' ' + t('more-than-one-approver-add-on')}
                   </Dialog.Title>
 
-                  <div className="divide-y divide-gray-200">
+                  <div className="divide-y divide-gray-200 dark:divide-teams_brand_border">
                     <div className="grid grid-cols-1 gap-x-4 gap-y-6 mt-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-4">

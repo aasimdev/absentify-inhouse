@@ -14,7 +14,7 @@
   }
 
   .my-react-select-container .my-react-select__control--is-focused {
-    @apply border-neutral-500 hover:border-neutral-500 dark:border-teams_brand_dark_400 dark:hover:border-teams_brand_dark_400 shadow-none text-white;
+    @apply border-neutral-500 hover:border-neutral-500 dark:border-teams_brand_border dark:hover:border-teams_brand_dark_400 shadow-none text-white;
   }
 
   .my-react-select-container .my-react-select__menu {

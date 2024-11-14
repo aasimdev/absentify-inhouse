@@ -167,6 +167,53 @@ export const leaveTypeRouter = createTRPCRouter({
       });
       return leaveType;
     }),
+  delete: protectedProcedure  
+  .input(
+    z.object({
+      id: z.string(),
+    })
+  )
+  .mutation(async ({ input, ctx }) => {
+    const { id } = input;
+    if (!ctx.current_member.is_admin) {
+      throw new TRPCError({
+        code: 'UNAUTHORIZED',
+        message: ctx.t('error_you_have_to_be_admin')
+      });
+    }
+
+      const count = await ctx.prisma.leaveType.count({
+        where: { workspace_id: ctx.current_member.workspace_id, deleted: false }
+      });
+     
+
+      if (count == 1) {
+        throw new TRPCError({
+          code: 'FORBIDDEN',
+          message: ctx.t('minOneLeaveType')
+        });
+      }
+      
+      let requestsCount = await ctx.prisma.requestDetail.count({
+        where: {
+          workspace_id: ctx.current_member.workspace_id,
+          leave_type_id: id,
+          OR: [{ status: 'APPROVED' }, { status: 'PENDING' }]
+        }
+      });
+      if (requestsCount == 0) {
+        await prisma.leaveType.delete({
+          where: { id }
+        });
+        return null;
+      } else {
+        await prisma.leaveType.update({
+          where: { id },
+          data: { deleted: true, deleted_at: new Date(), deleted_by_member_id: ctx.current_member.id }
+        })
+        return null;
+      }
+  }),
   // read
   all: protectedProcedure.query(async ({ ctx }) => {
     /**
@@ -290,33 +337,6 @@ export const leaveTypeRouter = createTRPCRouter({
           code: 'UNAUTHORIZED',
           message: ctx.t('error_you_have_to_be_admin')
         });
-      }
-
-      const count = await ctx.prisma.leaveType.count({
-        where: { workspace_id: ctx.current_member.workspace_id, deleted: false }
-      });
-
-      if (count == 1) {
-        throw new TRPCError({
-          code: 'FORBIDDEN',
-          message: ctx.t('minOneLeaveType')
-        });
-      }
-
-      if (data.deleted) {
-        let requestsCount = await ctx.prisma.requestDetail.count({
-          where: {
-            workspace_id: ctx.current_member.workspace_id,
-            leave_type_id: id,
-            OR: [{ status: 'APPROVED' }, { status: 'PENDING' }]
-          }
-        });
-        if (requestsCount == 0) {
-          await prisma.leaveType.delete({
-            where: { id }
-          });
-          return null;
-        }
       }
 
       const [workspace, oldData] = await ctx.prisma.$transaction([

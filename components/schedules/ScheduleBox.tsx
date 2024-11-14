@@ -68,7 +68,7 @@ export default function ScheduleBox(props: {
 
         <div className="mt-2 max-w-xl text-sm text-gray-500">
           <div
-            className={`flex items-center justify-between bg-white dark:bg-transparent py-3 sm:px-6 md:px-4${
+            className={`flex items-center justify-between bg-white dark:bg-transparent py-3 sm:px-6 dark:border-t-teams_brand_border md:px-4${
               props.mode == 'member_schedules' ? ' border-t border-gray-200' : ''
             }`}
           >
@@ -295,7 +295,7 @@ export default function ScheduleBox(props: {
 const CustomLoading = () => {
   return (
     <>
-      <div className="px-4 w-full max-w-screen-2xl bg-white shadow sm:rounded-lg p-4 dark:bg-teams_brand_dark_100">
+      <div className="px-4 w-full max-w-screen-2xl bg-white shadow sm:rounded-lg p-4 dark:bg-teams_brand_tbody">
         <div>
           <div className="mx-auto w-full">
             <div className="flex animate-pulse space-x-4 pt-2">

@@ -14,7 +14,6 @@ import { Squares2X2Icon } from '@heroicons/react/24/outline';
 import { notifyError, notifySuccess } from '~/helper/notify';
 import { useAbsentify } from '@components/AbsentifyContext';
 import ConfirmModal from '@components/confirmModal';
-import { tr } from 'date-fns/locale';
 
 const Leave_Types: NextPage = () => {
   const { t } = useTranslation('settings_organisation');
@@ -22,7 +21,7 @@ const Leave_Types: NextPage = () => {
   const [valueForEdit, setValueForEdit] = useState<RouterOutputs['leave_type']['all'][0] | null>(null);
 
   const [items, setItems] = useState<UniqueIdentifier[]>([]);
-
+  const [isLastItem, setIsLastItem] = useState<boolean>(false);
   const { data: leave_types, refetch: refetchLeaveTypes } = api.leave_type.all.useQuery(undefined, {
     staleTime: 60000
   });
@@ -64,6 +63,11 @@ const Leave_Types: NextPage = () => {
       });
     }
   };
+  useEffect(() => {
+    if (items.length > 0) {
+      setIsLastItem(items.length === 1);
+    }
+  }, [items]);
 
   return (
     <form className="divide-y divide-gray-200 lg:col-span-10" action="#" method="POST">
@@ -118,6 +122,7 @@ const Leave_Types: NextPage = () => {
                               setModalOpen(e);
                             }}
                             lastTwo={isLastTwo(id + '') as boolean}
+                            lastItem={isLastItem}
                           />
                         ))}
                       </SortableContext>
@@ -178,6 +183,7 @@ const SortableItem = (props: {
   setValueForEdit: Function;
   setModalOpen: Function;
   lastTwo: boolean;
+  lastItem: boolean;
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: props.leave_type_id });
 
@@ -191,6 +197,7 @@ const SortableItem = (props: {
   });
   const { current_member } = useAbsentify();
   const editLeaveType = api.leave_type.edit.useMutation();
+  const deleteLeaveType = api.leave_type.delete.useMutation();
   const [openColorPicker, setOpenColorPicker] = useState<string | null>();
   const [valueForDelete, setValueForDelete] = useState<LeaveType | null>(null);
 
@@ -218,18 +225,40 @@ const SortableItem = (props: {
     );
   };
 
+  useEffect(() => {
+    if (!leave_type || !leave_type.deleted || !props.lastItem) return;
+  
+    const restoreLeaveType = async () => {
+        // Modify leave_type properties
+        leave_type.deleted = false;
+        leave_type.deleted_at = null;
+        leave_type.deleted_by_member_id = '';
+  
+        // Trigger mutation to update leave_type on the server without notifications
+        await editLeaveType.mutateAsync(
+          {
+            id: leave_type.id,
+            data: leave_type,
+          },
+          {
+            onSuccess: async () => {
+              await refetchLeaveTypes();
+            },
+          }
+        );
+    };
+  
+    restoreLeaveType();
+  }, [leave_type, props.lastItem]);
+  
+  
+
   const handleDelete = async (leave_type: LeaveType | null) => {
     if (!leave_type) return;
-    if (!current_member) return;
 
-    leave_type.deleted = true;
-    leave_type.deleted_at = new Date();
-    leave_type.deleted_by_member_id = current_member.id + '';
-
-    await editLeaveType.mutateAsync(
+    await deleteLeaveType.mutateAsync(
       {
-        id: leave_type.id,
-        data: leave_type
+        id: leave_type.id
       },
       {
         async onSuccess() {
@@ -260,7 +289,7 @@ const SortableItem = (props: {
             style={{ backgroundColor: leave_type.color }}
           ></div>
           {openColorPicker == leave_type.id && (
-            <div className="absolute z-10 dark:bg-teams_brand_dark_100">
+            <div className="absolute z-10 dark:bg-teams_brand_tbody">
               <OutsideAlerter
                 onClick={() => {
                   setOpenColorPicker(null);
@@ -272,7 +301,7 @@ const SortableItem = (props: {
                     await saveLeaveType(leave_type);
                     setOpenColorPicker(null);
                   }}
-                  className="fixed mt-2 -ml-3 dark:bg-teams_brand_dark_100"
+                  className="fixed mt-2 -ml-3 dark:bg-teams_brand_tbody"
                   styles={{
                     default: {
                       card: {

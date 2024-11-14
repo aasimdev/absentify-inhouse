@@ -141,14 +141,14 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <div className="inline-block max-w-3xl w-1/2 1md:w-1/3 p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-teams_brand_dark_100  shadow-xl rounded">
+                  <div className="inline-block max-w-3xl w-1/2 1md:w-1/3 p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white dark:bg-teams_brand_tbody  shadow-xl rounded">
                     <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                       {t('billing_info')}
                     </Dialog.Title>
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="mb-4">
                         <p className="block text-md font-medium text-gray-700 py-2 dark:text-gray-200">{t('customer')}</p>
-                        <hr className=" py-2 dark:border-gray-400"></hr>
+                        <hr className=" py-2 dark:border-teams_brand_border"></hr>
                         <label htmlFor="member_email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                           {t('email')}
                           <span className="text-red-500">*</span>
@@ -166,7 +166,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           type="text"
                           className={`w-full rounded-md border ${
                             errors?.member?.email ? 'border-red-500' : 'border-gray-300'
-                          } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400 `}
+                          } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border `}
                         />
                         {errors?.member?.email && (
                           <p className="mt-2 text-sm text-red-500">{errors.member.email.message}</p>
@@ -182,14 +182,14 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           type="text"
                           className={`w-full rounded-md border ${
                             errors?.member?.name ? 'border-red-500' : 'border-gray-300'
-                          } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400`}
+                          } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border`}
                         />
                         {errors?.member?.name && (
                           <p className="mt-2 text-sm text-red-500">{errors?.member?.name.message}</p>
                         )}
                       </div>
                       <p className="block text-md font-medium text-gray-700 pb-2 dark:text-gray-200">{t('business')}</p>
-                      <hr className=" py-2 dark:border-gray-400"></hr>
+                      <hr className=" py-2 dark:border-teams_brand_border"></hr>
                       <>
                         <div className="mb-4">
                           <label htmlFor="business_name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -201,7 +201,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                             type="text"
                             className={`w-full rounded-md border ${
                               errors?.businessParams?.name ? 'border-red-500' : 'border-gray-300'
-                            } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400`}
+                            } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border`}
                           />
                           {errors?.businessParams?.name && (
                             <p className="mt-2 text-sm text-red-500">{errors.businessParams.name.message}</p>
@@ -214,12 +214,12 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <input
                             {...register('businessParams.tax_identifier')}
                             type="text"
-                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400"
+                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border"
                           />
                         </div>
                         <div className="mb-4">
                           <p className="block text-md font-medium text-gray-700 pb-2 dark:text-gray-200">{t('address')}</p>
-                          <hr className=" py-2 dark:border-gray-400"></hr>
+                          <hr className=" py-2 dark:border-teams_brand_border"></hr>
                           <label htmlFor="country_code" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             {t('country_code')}
                             <span className="text-red-500">*</span>
@@ -251,7 +251,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                             type="text"
                             className={`w-full rounded-md border ${
                               errors?.addressParams?.postal_code ? 'border-red-500' : 'border-gray-300'
-                            } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400`}
+                            } shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border`}
                           />
                           {errors?.addressParams?.postal_code && (
                             <p className="mt-2 text-sm text-red-500">{errors.addressParams.postal_code.message}</p>
@@ -264,7 +264,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <input
                             {...register('addressParams.first_line')}
                             type="text"
-                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400"
+                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border"
                           />
                         </div>
                         <div className="mb-4">
@@ -274,7 +274,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <input
                             {...register('addressParams.second_line')}
                             type="text"
-                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400"
+                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border"
                           />
                         </div>
                         <div className="mb-4">
@@ -284,7 +284,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <input
                             {...register('addressParams.city')}
                             type="text"
-                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400"
+                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border"
                           />
                         </div>
                         <div className="mb-4">
@@ -294,7 +294,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <input
                             {...register('addressParams.region')}
                             type="text"
-                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_dark_400" 
+                            className="w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:text-white dark:border-teams_brand_border" 
                           />
                         </div>
                       </>
@@ -304,7 +304,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                           <button
                             type="button"
                             onClick={closeUpdate}
-                            className="inline-flex p-2 w-full items-center py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 hover:bg-gray-100 dark:hover:bg-transparent dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+                            className="inline-flex p-2 w-full items-center py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 hover:bg-gray-100 dark:hover:bg-transparent dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
                           >
                             {t('cancel')}
                           </button>
@@ -312,7 +312,7 @@ function UpdateBillingInfoModal({ isOpen, closeUpdate, successModal, upgradeInfo
                         <div className="">
                           <button
                             type="submit"
-                            className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0 dark:border-teams_brand_dark_300 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white" 
+                            className="inline-flex p-2 w-full items-center  py-2 border border-white text-sm font-medium rounded-md shadow-sm text-white bg-teams_brand_foreground_bg hover:bg-teams_brand_border_1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teams_brand_500 dark:bg-teams_brand_dark_300 dark:text-gray-200 dark:ring-0 dark:border-teams_brand_dark_300 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white" 
                           >
                             {editBillingInfo.isLoading && (
                               <div className="mr-2">

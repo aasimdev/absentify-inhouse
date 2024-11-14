@@ -63,7 +63,7 @@ const SortableItem = (props: { member_id: string; removeManager: Function }) => 
       <button
         {...listeners}
         type="button"
-        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500  dark:bg-teams_dark_mode_core dark:text-gray-200"
+        className=" w-5 rounded-md bg-white text-sm font-medium text-gray-600 hover:text-gray-500  dark:bg-teams_brand_thead dark:text-gray-200"
         style={{ cursor: grabbing ? 'grabbing' : 'grab' }}
       >
         <ChevronUpDownIcon height={15} /> <span className="sr-only"> {person.name}</span>
@@ -498,7 +498,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
   if (!members) return null;
   if (!departments) return null;
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_brand_dark_100 dark:divide-gray-500" onSubmit={() => {}}>
+    <form className="divide-y divide-gray-200 lg:col-span-9 dark:bg-teams_dark_mode dark:divide-teams_brand_border" onSubmit={() => {}}>
       <UpgradeModal
         open={showModal}
         useInDepartment={false}
@@ -517,7 +517,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
               <RadioGroup.Label className="sr-only dark:text-gray-200">
                 <p>{t('approver')}</p>{' '}
               </RadioGroup.Label>
-              <div className="relative -space-y-px rounded-md bg-white">
+              <div className="relative -space-y-px rounded-md bg-white dark:bg-teams_brand_tbody">
                 {approverOptions.map((approverOption, planIdx) => (
                   <RadioGroup.Option
                     key={approverOption.department_name}
@@ -527,9 +527,9 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                         planIdx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
                         planIdx === approverOptions.length - 1 || planIdx === approverOptions.length - 2
                           ? 'rounded-bl-md rounded-br-md md:grid md:grid-cols-1 '
-                          : 'md:grid  md:grid-cols-2 ',
-                        checked ? 'z-10 border-teams_brand_200 bg-teams_brand_50 dark:bg-teams_dark_mode_core dark:divide-gray-500 dark:text-gray-200' : 'border-gray-200 dark:bg-teams_brand_dark_100 dark:text-gray-200',
-                        'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:pl-4 md:pr-6'
+                          : 'md:grid md:grid-cols-1 ',
+                          checked ? 'z-10 border-teams_brand_200 bg-teams_brand_50 dark:bg-teams_brand_thead  dark:divide-teams_brand_border dark:text-gray-200' : 'border-gray-200 dark:bg-teams_brand_tbody dark:text-gray-200',
+                        'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:pl-4 md:pr-6 dark:border-teams_brand_border'
                       )
                     }
                   >
@@ -538,13 +538,13 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                         <span className="flex items-center text-sm">
                           <span
                             className={classNames(
-                              checked ? 'border-transparent bg-teams_brand_600' : 'border-gray-300 bg-white',
-                              active ? 'ring-2 ring-teams_brand_500 ring-offset-2' : '',
+                              checked ? 'border-transparent bg-teams_brand_600 dark:bg-teams_brand_dark_550' : 'border-gray-300 bg-white dark:border-teams_brand_border dark:bg-teams_dark_mode',
+                              active ? 'ring-2 ring-teams_brand_500 ring-offset-2 ' : '',
                               'flex h-4 w-4 items-center justify-center rounded-full border'
                             )}
                             aria-hidden="true"
                           >
-                            <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                            <span className={classNames(checked ? 'bg-white' : 'bg-white dark:bg-teams_brand_border' ,"h-1.5 w-1.5 rounded-full  ")} />
                           </span>
                           <RadioGroup.Label
                             as="span"
@@ -592,7 +592,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                           </span>
                           <ReactTooltip
                             id="approv-tooltip"
-                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_dark_mode_core"
+                            className="shadow-sm z-50 dark:text-gray-200 dark:bg-teams_brand_tbody"
                             classNameArrow="shadow-sm"
                             place="top"
                             style={{
@@ -603,9 +603,9 @@ export default function Approver(props: { onClose: Function; currentMember: defa
 
                         {checked && approverOption?.department_id === '0' && (
                           <div className="ml-6 mt-5 flex flex-col ">
-                            <div className="w-full bg-white px-2 shadow sm:rounded-lg dark:bg-teams_brand_dark_100">
+                            <div className="w-full bg-white px-2 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
                               <div className="">
-                                <ul role="list" className="mt-2 divide-y divide-gray-200  dark:divide-gray-500">
+                                <ul role="list" className="mt-2 divide-y divide-gray-200  dark:divide-teams_brand_border">
                                   <SortableContext items={items} strategy={verticalListSortingStrategy}>
                                     {items.map((id) => (
                                       <SortableItem
@@ -623,10 +623,10 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                       <button
                                         onClick={() => setSelectManager(true)}
                                         type="button"
-                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-teams_brand_dark_100 dark:border dark:border-2 dark:border-gray-200"
+                                        className="group -ml-1 flex items-center rounded-md bg-white p-1 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-teams_brand_tbody  dark:border-2 dark:border-teams_brand_border"
                                       >
-                                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-gray-400 dark:border-gray-200 dark:text-gray-100">
-                                          <PlusIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-gray-400 dark:border-teams_brand_dark_550 dark:text-gray-100">
+                                          <PlusIcon className="h-5 w-5 dark:text-teams_brand_dark_550" aria-hidden="true" />
                                         </span>
                                         <span className="ml-4 text-sm font-medium text-gray-600 group-hover:text-gray-500 dark:text-gray-200">
                                           {t('add-approver')}
@@ -702,9 +702,9 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                       <p>{t('change-approval-process')}</p>{' '}
                                     </Listbox.Label>
                                     <div className="relative w-full">
-                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_400">
-                                        <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_dark_400">
-                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 dark:text-gray-200 shadow-sm dark:bg-teams_brand_dark_100">
+                                      <div className="inline-flex w-full rounded-md border-gray-300 dark:border-teams_brand_border">
+                                        <div className="inline-flex w-full rounded-md border-gray-300 dark:border-teams_brand_border">
+                                          <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 dark:text-gray-200 shadow-sm dark:bg-teams_brand_tbody dark:border-teams_brand_border">
                                             <div className="inline-flex">
                                               <CheckIcon className="h-5 w-5 dark:text-gray-200" aria-hidden="true" />
                                               <p className="ml-2.5 text-sm font-medium dark:text-gray-200">
@@ -716,9 +716,9 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                               </p>
                                             </div>
                                           </Listbox.Button>
-                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50  dark:text-gray-200 shadow-sm dark:bg-teams_brand_dark_100">
+                                          <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50  dark:text-gray-200 shadow-sm dark:bg-teams_brand_tbody dark:border-teams_brand_border">
                                             <span className="sr-only">{t('change-approval-process')}</span>
-                                            <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-gray-200" aria-hidden="true" />
+                                            <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-teams_brand_border" aria-hidden="true" />
                                           </Listbox.Button>
                                         </div>
                                       </div>
@@ -730,7 +730,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                       >
-                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white dark:bg-teams_brand_dark_100 dark:text-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-gray-500">
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white dark:bg-teams_brand_thead dark:text-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:divide-teams_brand_border">
                                           {approvalProcessOptions.map((option) => (
                                             <Listbox.Option
                                               key={option.title}
@@ -738,10 +738,10 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                 classNames(
                                                   hasValidSubscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
-                                                      : ' text-gray-800 '
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_tbody dark:text-gray-200'
+                                                      : ' text-gray-800 dark:text-gray-200'
                                                     : option.id !== 'Linear_all_have_to_agree'
-                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
+                                                    ? ' cursor-not-allowed bg-gray-100 text-gray-800 dark:bg-teams_brand_thead  dark:text-gray-200'
                                                     : ' ',
                                                   'cursor-pointer select-none p-4 text-sm'
                                                 )
@@ -762,11 +762,11 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                   } `}
                                                 >
                                                   <div className="flex justify-between">
-                                                  <p className={selected ? 'font-semibold dark:text-gray-200' : 'font-normal dark:text-gray-200'}>
+                                                  <p className={selected ? 'font-semibold dark:text-white' : 'font-normal dark:text-white'}>
 
                                                       {option.title}
                                                     </p>
-                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_dark_mode_core dark:text-gray-300">
+                                                    <span className=" stooltip -mt-14 -ml-4 w-11/12 rounded p-2 text-center shadow-custom bg-white dark:bg-teams_brand_tbody  dark:text-gray-200">
                                                       <p>{t('upgradeT1')}</p>
                                                       {current_member?.is_admin && (
                                                         <Link
@@ -778,14 +778,14 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                       )}
                                                     </span>
                                                     {selected ? (
-                                                      <span className={active ? 'text-black dark:text-gray-900' : 'text-gray-300'}>
+                                                      <span className={active ? 'text-black dark:text-gray-200' : 'text-gray-300'}>
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                       </span>
                                                     ) : null}
                                                   </div>
                                                   <p
                                                     className={classNames(
-                                                      active ? ' text-gray-700' : 'text-gray-500',
+                                                      active ? ' text-gray-700 dark:text-gray-200' : 'text-gray-500 dark:text-teams_brand_gray',
                                                       'mt-2'
                                                     )}
                                                   >
@@ -859,7 +859,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                             )}
 
                             <div className="mt-2 ">
-                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700">
+                              <label htmlFor="username" className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">
                                 {t('approval-process')}
                               </label>
 
@@ -892,7 +892,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                           </Listbox.Button>
                                           <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 ">
                                             <span className="sr-only">{t('change-approval-process')}</span>
-                                            <ChevronDownIcon className="h-5 w-5 text-gray-800" aria-hidden="true" />
+                                            <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-teams_brand_border" aria-hidden="true" />
                                           </Listbox.Button>
                                         </div>
                                       </div>
@@ -904,7 +904,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                         leaveFrom="opacity-100"
                                         leaveTo="opacity-0"
                                       >
-                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-teams_brand_dark_100 dark:text-gray-200 dark:divide-gray-500">
+                                        <Listbox.Options className="absolute right-0 z-10 mt-2 w-72 origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-teams_brand_tbody dark:text-gray-200 dark:divide-teams_brand_border">
                                           {approvalProcessOptions.map((option) => (
                                             <Listbox.Option
                                               key={option.title}
@@ -912,12 +912,12 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                 classNames(
                                                   subscription
                                                     ? active
-                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-900'
+                                                      ? 'bg-gray-100 text-gray-800 dark:bg-teams_brand_dark_400 dark:text-gray-200'
                                                       : ' text-gray-800 '
                                                     : option.id !== 'Linear_all_have_to_agree'
                                                     ? ' cursor-not-allowed bg-gray-100 text-gray-800 '
                                                     : ' ',
-                                                  'cursor-pointer select-none p-4 text-sm dark:bg-teams_brand_dark_400 dark:text-gray-900'
+                                                  'cursor-pointer select-none p-4 text-sm dark:bg-teams_brand_dark_400 dark:text-gray-200'
                                                 )
                                               }
                                               disabled={subscription ? false : option.id !== 'Linear_all_have_to_agree'}
@@ -949,14 +949,14 @@ export default function Approver(props: { onClose: Function; currentMember: defa
                                                       )}
                                                     </span>
                                                     {selected ? (
-                                                      <span className={active ? 'text-black dark:text-gray-900' : 'text-gray-300'}>
+                                                      <span className={active ? 'text-black dark:text-gray-200' : 'text-gray-300'}>
                                                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                       </span>
                                                     ) : null}
                                                   </div>
                                                   <p
                                                     className={classNames(
-                                                      active ? ' text-gray-700' : 'text-gray-500',
+                                                      active ? ' text-gray-700 dark:text-gray-200' : 'text-gray-500',
                                                       'mt-2'
                                                     )}
                                                   >
@@ -991,7 +991,7 @@ export default function Approver(props: { onClose: Function; currentMember: defa
               props.onClose(false);
             }}
             type="button"
-            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+            className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
           >
             {t('Cancel')}
           </button>

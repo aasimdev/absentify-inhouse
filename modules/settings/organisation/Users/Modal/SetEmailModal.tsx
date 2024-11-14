@@ -108,7 +108,7 @@ export default function SetEmailModal(props: {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_dark_100">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_tbody">
                 <form>
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -132,7 +132,7 @@ export default function SetEmailModal(props: {
                             autoComplete="email"
                             className={`block flex-grow w-full min-w-0 rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm dark:bg-teams_brand_dark_100 dark:text-gray-200`}
+                            }  focus:ring-teams_brand_500 focus:border-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
                           />
                         </div>
                       </div>

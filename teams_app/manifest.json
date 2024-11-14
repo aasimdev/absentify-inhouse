@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "version": "1.0.13",
+  "manifestVersion": "1.16",
+  "id": "fbd349eb-146f-4e94-af76-df4754f40749",
+  "name": {
+    "short": "absentify - leave tracking",
+    "full": "absentify - Track and manage all vacations, leave requests and absence trends"
+  },
+  "developer": {
+    "name": "BrainCore Solutions",
+    "mpnId": "4835581",
+    "websiteUrl": "https://absentify.com",
+    "privacyUrl": "https://absentify.com/privacy-policy",
+    "termsOfUseUrl": "https://absentify.com/terms-and-conditions"
+  },
+  "description": {
+    "short": "The easiest way to manage employees' vacations, PTO, absences, and home office.",
+    "full": "<b>absentify</b> is an all-in-one time-off management solution built for the Microsoft 365 ecosystem. Move beyond messy spreadsheets to streamlined absence and remote work management.\n\n<b>🌟 Key Benefits:</b>\n<ul>\n  <li><b>Full Integration</b>: Integrates with Microsoft Teams, Outlook, and Microsoft 365, consolidating absence and remote work data in one place.</li>\n  <li><b>Real-Time Tracking</b>: Track absences, remote work, and approve requests directly in Teams.</li>\n  <li><b>Enhanced Transparency</b>: Gain insight into team availability, reducing conflicts and improving planning.</li>\n  <li><b>High Security</b>: ISO 27001 and GDPR compliant, with data securely stored in Microsoft Azure.</li>\n  <li><b>Comprehensive Management</b>: Ideal for tracking vacations, PTO, absences, remote work, and holiday management.</li>\n</ul>\n\n<b>👉 For New Users:</b>\n<ul>\n  <li><b>Sign Up</b>: Quick onboarding—start directly in the app.</li>\n  <li><b>Get Started</b>: Admins, visit our <a href=\"https://support.absentify.com/en/category/initial-setup-xm2n61/\">Setup Guide</a>. Employees, see the <a href=\"https://support.absentify.com/en/article/quickstart-guide-for-employees-j2r3gd/\">Quickstart Guide</a>.</li>\n  <li><b>Contact Us</b>: Questions? <a href=\"https://support.absentify.com/en/\">Email or chat with us</a> on our support page.</li>\n  <li><b>Help</b>: For support, explore our <a href=\"https://support.absentify.com/en/\">Support Page</a>.</li>\n</ul>\n\nExperience simple, integrated management of absences, remote work, and more with <b>absentify</b>. Benefit from our AI Chatbot for natural language absence requests.\n\n<b>Note:</b> The AI feature requires admin activation. Data is shared with AI only upon user consent. Report objectionable content promptly."
+  },
+  "icons": {
+    "outline": "outline.png",
+    "color": "color.png"
+  },
+  "accentColor": "#494b83",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://teams.absentify.com/microsoft/ms-teams/tab/config",
+      "canUpdateConfiguration": true,
+      "scopes": ["team"],
+      "context": ["channelTab"]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "6dd703da-58b7-4dd7-9037-d6476ab068e8",
+      "name": "Start",
+      "contentUrl": "https://teams.absentify.com",
+      "websiteUrl": "https://app.absentify.com",
+      "scopes": ["personal"]
+    },
+    {
+      "entityId": "b84cfd2d-d4b4-4273-8354-2ee4cfdb8bca",
+      "name": "Open requests",
+      "contentUrl": "https://teams.absentify.com/requests",
+      "websiteUrl": "https://app.absentify.com/requests",
+      "scopes": ["personal"]
+    },
+    {
+      "entityId": "conversations",
+      "scopes": ["personal"]
+    },
+    {
+      "entityId": "about",
+      "scopes": ["personal"]
+    }
+  ],
+  "bots": [
+    {
+      "botId": "4dce2abf-3f8e-4281-9f7a-d602fc391886",
+      "scopes": ["personal"],
+      "commandLists": [
+        {
+          "commands": [
+            {
+              "title": "Create a new absence",
+              "description": "Set an absence using phrases like 'out tomorrow' or 'vacation next week."
+            },
+            {
+              "title": "/start",
+              "description": "Start a new session with the bot."
+            },
+            {
+              "title": "/help",
+              "description": "Get a list of available commands and a brief explanation of their usage."
+            }
+          ],
+          "scopes": ["personal"]
+        }
+      ],
+      "isNotificationOnly": false,
+      "supportsCalling": false,
+      "supportsVideo": false,
+      "supportsFiles": false
+    }
+  ],
+  "validDomains": ["teams.absentify.com", "app.absentify.com"],
+  "webApplicationInfo": {
+    "id": "4dce2abf-3f8e-4281-9f7a-d602fc391886",
+    "resource": "api://teams.absentify.com/4dce2abf-3f8e-4281-9f7a-d602fc391886"
+  },
+  "devicePermissions": ["notifications", "openExternal"],
+  "localizationInfo": {
+    "defaultLanguageTag": "en-us",
+    "additionalLanguages": [
+      {
+        "languageTag": "de",
+        "file": "de.json"
+      },
+      {
+        "languageTag": "fr",
+        "file": "fr.json"
+      },
+      {
+        "languageTag": "es",
+        "file": "es.json"
+      },
+      {
+        "languageTag": "it",
+        "file": "it.json"
+      },
+      {
+        "languageTag": "pl",
+        "file": "pl.json"
+      },
+      {
+        "languageTag": "hu",
+        "file": "hu.json"
+      }
+    ]
+  },
+  "defaultGroupCapability": {
+    "team": "tab",
+    "groupchat": "tab",
+    "meetings": "tab"
+  },
+  "configurableProperties": [
+    "name",
+    "shortDescription",
+    "longDescription",
+    "smallImageUrl",
+    "largeImageUrl",
+    "accentColor"
+  ],
+  "authorization": {
+    "permissions": {
+      "resourceSpecific": []
+    }
+  }
+}

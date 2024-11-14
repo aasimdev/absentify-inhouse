@@ -76,8 +76,8 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
   if (!current_member) return <></>;
   return (
     <>
-      <table className="min-w-full divide-y divide-gray-200 border dark:divide-gray-500  z-0">
-        <thead className="bg-gray-50 dark:bg-teams_brand_dark_100">
+      <table className="min-w-full divide-y divide-gray-200 border dark:divide-teams_brand_border dark:bg-teams_brand_tbody z-0 dark:border-teams_brand_border">
+        <thead className="bg-gray-50 dark:bg-teams_brand_tbody">
           <tr>
             <th
               scope="col"
@@ -90,16 +90,16 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
             <th scope="col" className="relative px-6 py-3"></th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_dark_100 dark:divide-gray-500">
+        <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_border">
           {publicHolidayDays
             ?.filter((x) => x.year == props.year)
             .map((holiday) => (
               <tr key={holiday.id}>
-                <td colSpan={2} className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 dark:bg-teams_brand_dark_100 ">
+                <td colSpan={2} className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-200 dark:bg-teams_brand_tbody ">
                   <div className="w-32 truncate dark:text-gray-200">{holiday.name} </div>
                   <div className="dark:text-gray-200">{format(dateToIsoDate(holiday.date), current_member?.date_format)}</div>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap dark:text-gray-200 dark:bg-teams_brand_dark_100">
+                <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap dark:text-gray-200 dark:bg-teams_brand_tbody">
                   {holiday.custom_value && (
                     <a
                       onClick={() => {

@@ -143,7 +143,7 @@ const Export: NextPage = () => {
 
   if (!current_member) return <></>;
   return (
-    <form className=" divide-y divide-gray-200 dark:divide-gray-500 lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
+    <form className=" divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('Export')}</h2>

@@ -142,7 +142,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                   <ReactTooltip
                     id="yearnav-tooltip"
                     place="top"
-                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_tbody"
                     classNameArrow="shadow-sm"
                     style={{
                       boxShadow: '0 0 10px rgba(0,0,0,.1)'
@@ -167,7 +167,7 @@ const CalendarView = (props: { member_id?: string; request_id?: string }) => {
                   <ReactTooltip
                     id="yearnav-tooltip"
                     place="top"
-                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_dark_100"
+                    className="shadow z-50 dark:text-gray-200 dark:bg-teams_brand_tbody"
                     classNameArrow="shadow-sm"
                     style={{
                       boxShadow: '0 0 10px rgba(0,0,0,.1)'

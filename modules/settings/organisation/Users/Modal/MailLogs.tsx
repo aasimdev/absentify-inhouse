@@ -20,7 +20,7 @@ export default function MailLogs(props: { onClose: Function; currentMember: defa
   const hasStatusMessage = mailHistoryData?.some(mail => mail.deliveryDetails && JSON.parse(mail.deliveryDetails).statusMessage);
 
   return (
-    <div className="divide-y divide-gray-200 lg:col-span-9 max-w-full dark:divide-gray-500 dark:bg-teams_brand_dark_100">
+    <div className="divide-y divide-gray-200 lg:col-span-9 max-w-full dark:divide-teams_brand_border dark:bg-teams_dark_mode">
       <div className="py-6 px-4 sm:p-6 lg:pb-8">
         <div>
           <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">{t('EmailHistory')}</h2>
@@ -110,7 +110,7 @@ export default function MailLogs(props: { onClose: Function; currentMember: defa
             props.onClose(false);
           }}
           type="button"
-          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_dark_100 dark:border dark:border-gray-200 dark:text-white"
+          className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-transparent dark:border dark:border-gray-200 dark:text-white"
         >
           {t('Cancel')}
         </button>
