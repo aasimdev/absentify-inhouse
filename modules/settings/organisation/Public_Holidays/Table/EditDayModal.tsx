@@ -117,7 +117,7 @@ export default function EditDayModal({ holiday, onClose, handleEditDay }: Props)
                         onChange={(e) => {
                           setCustomName(e.target.value);
                         }}
-                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
+                        className="block w-60 min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:border-teams_brand_border dark:text-gray-200"
                       />
                     </div>
                   </div>

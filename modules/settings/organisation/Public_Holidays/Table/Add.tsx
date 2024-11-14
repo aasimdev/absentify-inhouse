@@ -101,7 +101,7 @@ export default function Add(props: { open: boolean; onClose: Function; year: num
                             name="name"
                             id="name"
                             autoComplete="name"
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody dark:border-teams_brand_border"
                           />
                         </div>
                       </div>
@@ -126,7 +126,7 @@ export default function Add(props: { open: boolean; onClose: Function; year: num
                                 className={
                                   errors.date
                                     ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody'
-                                    : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody'
+                                    : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody dark:border-teams_brand_border'
                                 }
                                 selected={field.value}
                                 onChange={(date: Date) => field.onChange(date)}
@@ -161,7 +161,7 @@ export default function Add(props: { open: boolean; onClose: Function; year: num
                                 className={
                                   errors.duration
                                     ? 'block w-full rounded-md border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody'
-                                    : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody'
+                                    : 'block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody dark:border-teams_brand_border'
                                 }
                               >
                                 <option value="Morning dark:text-gray-200 dark:bg-teams_brand_tbody">{t('Morning')}</option>
@@ -190,7 +190,7 @@ export default function Add(props: { open: boolean; onClose: Function; year: num
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

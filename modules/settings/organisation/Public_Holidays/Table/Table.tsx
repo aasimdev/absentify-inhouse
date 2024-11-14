@@ -76,18 +76,18 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
   if (!current_member) return <></>;
   return (
     <>
-      <table className="min-w-full divide-y divide-gray-200 border dark:divide-teams_brand_border dark:bg-teams_brand_tbody z-0 dark:border-teams_brand_border">
-        <thead className="bg-gray-50 dark:bg-teams_brand_tbody">
+      <table className="min-w-full divide-y divide-gray-200 border dark:divide-teams_brand_border dark:bg-teams_brand_tbody z-0 dark:border-0">
+        <thead className="bg-gray-50 dark:bg-teams_brand_thead">
           <tr>
             <th
               scope="col"
               colSpan={2}
-              className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider text-gray-500 dark:text-gray-200"
+              className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider text-gray-500 dark:text-teams_brand_th"
             >
               {t('Name')}
             </th>
 
-            <th scope="col" className="relative px-6 py-3"></th>
+            <th scope="col" colSpan={2} className="relative px-6 py-3"></th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-white dark:bg-teams_brand_tbody dark:divide-teams_brand_border">
@@ -99,7 +99,7 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
                   <div className="w-32 truncate dark:text-gray-200">{holiday.name} </div>
                   <div className="dark:text-gray-200">{format(dateToIsoDate(holiday.date), current_member?.date_format)}</div>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap dark:text-gray-200 dark:bg-teams_brand_tbody">
+                <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap dark:text-teams_brand_gray dark:bg-teams_brand_tbody">
                   {holiday.custom_value && (
                     <a
                       onClick={() => {
@@ -110,7 +110,7 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 dark:text-gray-200"
+                        className="w-5 h-5 dark:text-teams_brand_gray"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -125,9 +125,9 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
                     onClick={() => {
                       setValueForDelete(holiday);
                     }}
-                    className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-gray-200"
+                    className="cursor-pointer text-gray-300 hover:text-gray-900 dark:text-teams_brand_gray"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 dark:text-teams_brand_gray" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fillRule="evenodd"
                         d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -149,14 +149,14 @@ const Table = (props: { public_holiday: PublicHoliday; year: number }) => {
               }}
             >
               <div className="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 dark:text-gray-200" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 dark:text-teams_brand_dark_550" viewBox="0 0 20 20" fill="currentColor">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                     clipRule="evenodd"
                   />
                 </svg>{' '}
-                <span className="ml-2 dark:text-gray-200"> {t('Add_public_holiday_day')}</span>
+                <span className="ml-2 dark:text-teams_brand_gray"> {t('Add_public_holiday_day')}</span>
               </div>
             </td>
           </tr>

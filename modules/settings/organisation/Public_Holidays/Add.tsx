@@ -101,7 +101,7 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                     {t('Add_public_holiday')}
                   </Dialog.Title>
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{t('Add_public_holiday_description')}</p>
-                  <form className="divide-y divide-gray-200 dark:text-gray-500 " onSubmit={handleSubmit(onSubmit)}>
+                  <form className="divide-y divide-gray-200 dark:text-gray-500 dark:divide-teams_brand_border" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
                       <div className="sm:col-span-5">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
@@ -114,7 +114,7 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                             name="name"
                             id="name"
                             autoComplete="name"
-                            className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody dark:border-teams_brand_border"
+                            className="block w-full min-w-0 grow rounded-md border-gray-300 focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-transparent dark:border-teams_brand_border"
                           />
                         </div>
                       </div>
@@ -214,7 +214,7 @@ export default function Add(props: { open: boolean; onClose: Function }) {
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

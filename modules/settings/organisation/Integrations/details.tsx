@@ -158,7 +158,7 @@ export default function IntegrationDetails(props: {
   }, [props.integration]);
   if (!integration) return null;
   return (
-    <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10 dark:bg-teams_brand_tbody">
+    <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10 dark:bg-teams_dark_mode">
       <div className="pt-6 divide-y divide-gray-200 dark:divide-teams_brand_border">
         <div className="p-4 sm:px-6">
           <div>
@@ -166,7 +166,7 @@ export default function IntegrationDetails(props: {
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-200">{integration.description} </p>
             <br />
             {integration.integration === 'calendar_sync' && (
-              <p className='mt-1 text-sm text-gray-500 dark:text-gray-200 dark:bg-teams_brand_tbody'>{integration.calendar_sync_description_note} <a target="_blank" href="https://support.absentify.com/en/article/setting-up-microsoft-integrations-abpgzq/?bust=1686129063445#2-outlook-calendar-synchronization)."><span className='hover:underline cursor-pointer hover:text-gray-400'>Calendar Sync <ArrowTopRightOnSquareIcon className=" mb-1 inline-block" height={15} />  </span></a></p>
+              <p className='mt-1 text-sm text-gray-500 dark:text-gray-200'>{integration.calendar_sync_description_note} <a target="_blank" href="https://support.absentify.com/en/article/setting-up-microsoft-integrations-abpgzq/?bust=1686129063445#2-outlook-calendar-synchronization)."><span className='hover:underline cursor-pointer hover:text-gray-400'>Calendar Sync <ArrowTopRightOnSquareIcon className=" mb-1 inline-block" height={15} />  </span></a></p>
             )}
           </div>
           {integration.integration != 'timeghost' &&
@@ -177,7 +177,7 @@ export default function IntegrationDetails(props: {
             integration.integration != 'powerbi' &&
             integration.integration != 'outlook_oof' &&
             integration.integration != 'ad_group_sync' && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt- dark:text-gray-200 dark:bg-teams_brand_tbody dark:border dark:rounded dark:border-gray-100">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-transparent dark:border dark:rounded dark:border-teams_brand_border">
                 <div className="w-full text-sm ">
                   {t('Integrations_description_available_in_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">
@@ -191,7 +191,7 @@ export default function IntegrationDetails(props: {
             (integration.integration == 'api' ||
               integration.integration == 'powerbi' ||
               integration.integration == 'outlook_oof') && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border dark:rounded dark:border-gray-100">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_dark_mode  dark:border dark:rounded dark:border-teams_brand_border">
                 <div className="w-full text-sm dark:text-gray-200">
                   {t('Integration_description_available_in_enterprise_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">

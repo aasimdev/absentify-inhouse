@@ -159,7 +159,7 @@
 .dark select:-webkit-autofill,
 .dark select:-webkit-autofill:hover,
 .dark select:-webkit-autofill:focus {
-  @apply border-gray-300 !bg-black text-white;
-  -webkit-box-shadow: 0 0 0 30px #292929 inset !important;
-  -webkit-text-fill-color: #e5e7eb !important;
+  @apply border-teams_brand_border !bg-teams_dark_mode text-white;
+  -webkit-box-shadow: 0 0 0 30px #0C111D inset !important;
+  -webkit-text-fill-color: #ffffff !important;
 }

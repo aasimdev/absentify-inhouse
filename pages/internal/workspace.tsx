@@ -44,7 +44,7 @@ const WorkspacePage: NextPage = () => {
                 <h3 className="text-lg font-medium leading-6 text-gray-900">{workspace.name}</h3>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500">.</p>
               </div>
-              <div className="mt-5 border-t border-gray-200">
+              <div className="mt-5 border-t border-gray-200 dark:border-teams_brand_border">
                 <dl className="sm:divide-y sm:divide-gray-200">
                   <div className="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
                     <dt className="text-sm font-medium text-gray-500">ID</dt>

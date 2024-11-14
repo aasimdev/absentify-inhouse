@@ -343,7 +343,7 @@ const Webhooks: NextPage = () => {
               {t('Webhooks_description_2')}
             </a>
             {!hasValidSubscription && (
-              <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left dark:bg-teams_brand_thead">
+              <div className="relative z-0 mt-5 flex w-full items-center rounded-md bg-teams_brand_50 py-5 px-6 text-left dark:bg-teams_dark_mode">
                 <div className="w-full text-sm  dark:text-gray-200">
                   {t('Webhooks_description_available_in_plan') + ' '}
                   <Link href="/settings/organisation/upgrade" className="transition-color underline duration-200  dark:text-gray-200">

@@ -655,7 +655,7 @@ const OutlookOof: NextPage = () => {
               ))}
             </ol>
           </nav>
-          <div className="mt-5 border-t border-gray-200"></div>
+          <div className="mt-5 border-t border-gray-200 dark:border-teams_brand_border"></div>
           {steps[0] && steps[0].status === 'current' && (
             <div>
               <div className="mt-4">
@@ -1108,7 +1108,7 @@ const OutlookOof: NextPage = () => {
               </div>
             </>
           )}
-          <div className="mt-4 flex justify-end border-t p-4 sm:px-6 dark:border-t-gray-500">
+          <div className="mt-4 flex justify-end border-t p-4 sm:px-6 dark:border-teams_brand_border">
             {countStep >= 1 && countStep !== steps.length - 1 && (
               <button
                 onClick={() => {

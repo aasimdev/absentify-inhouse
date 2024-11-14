@@ -5,7 +5,7 @@ import { SubscriptionSummary } from '../../../../../lib/subscriptionHelper'
 const WebhookBanner:React.FC<{subscription:SubscriptionSummary; t:Function}> = (props) => {
   const IntegrationPlanBanner:React.FC<{text:string; t:Function}> = (props) => {
     return ( 
-      <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 ">
+      <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:bg-teams_dark_mode">
       <div className="w-full text-sm ">
         {props.text}
         <Link href="/settings/organisation/upgrade" className="transition-color duration-200 underline ">

@@ -315,7 +315,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             autoComplete="name"
                             className={`block w-full min-w-0 grow rounded-md  ${
                               errors.name ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_border dark:text-gray-200`}
                           />
                         </div>
                       </div>
@@ -374,7 +374,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                             autoComplete="email"
                             className={`block w-full min-w-0 grow rounded-md ${
                               errors.email ? 'border-red-400 ' : 'border-gray-300'
-                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
+                            }  focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_border dark:text-gray-200`}
                           />
                         </div>
                       </div>
@@ -487,7 +487,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                               dateFormat={current_member?.date_format}
                               className={`block w-full min-w-0 grow rounded-md ${
                                 errors.employment_start_date ? 'border-red-400 ' : 'border-gray-300'
-                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200`}
+                              }   focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm dark:bg-transparent dark:border-teams_brand_border dark:text-gray-200`}
                               selected={field.value}
                               onChange={(date: Date) => field.onChange(date)}
                             />
@@ -568,7 +568,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>

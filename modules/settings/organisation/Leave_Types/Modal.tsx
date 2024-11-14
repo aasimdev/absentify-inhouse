@@ -571,14 +571,14 @@ export default function Modal(props: {
                                               onChange(val);
                                             }}
                                             className={classNames(
-                                              value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                              value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                               'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                             )}
                                           >
                                             <span
                                               aria-hidden="true"
                                               className={classNames(
-                                                value ? 'translate-x-5' : 'translate-x-0',
+                                                value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                                 'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                               )}
                                             />
@@ -733,14 +733,14 @@ export default function Modal(props: {
                                           setValue('allowance_type_id', allowancesTypes[0]?.id);
                                       }}
                                       className={classNames(
-                                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                        value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                         'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                       )}
                                     >
                                       <span
                                         aria-hidden="true"
                                         className={classNames(
-                                          value ? 'translate-x-5' : 'translate-x-0',
+                                          value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                           'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                         )}
                                       />
@@ -816,14 +816,14 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
                                           <span
                                             aria-hidden="true"
                                             className={classNames(
-                                              value ? 'translate-x-5' : 'translate-x-0',
+                                              value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                               'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                             )}
                                           />
@@ -851,14 +851,14 @@ export default function Modal(props: {
                                             onChange(val);
                                           }}
                                           className={classNames(
-                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                            value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                             'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                           )}
                                         >
                                           <span
                                             aria-hidden="true"
                                             className={classNames(
-                                              value ? 'translate-x-5' : 'translate-x-0',
+                                              value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                               'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                             )}
                                           />
@@ -1014,14 +1014,14 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      value ? 'translate-x-5' : 'translate-x-0',
+                                      value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                       'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -1049,14 +1049,14 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      value ? 'translate-x-5' : 'translate-x-0',
+                                      value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                       'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -1126,14 +1126,14 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      value ? 'translate-x-5' : 'translate-x-0',
+                                      value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                       'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -1162,14 +1162,14 @@ export default function Modal(props: {
                                     onChange(val);
                                   }}
                                   className={classNames(
-                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                    value ? 'bg-teams_brand_500 dark:bg-teams_brand_dark_550 dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                     'relative ml-4 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                   )}
                                 >
                                   <span
                                     aria-hidden="true"
                                     className={classNames(
-                                      value ? 'translate-x-5' : 'translate-x-0',
+                                      value ? 'translate-x-5 dark:bg-teams_dark_mode' : 'translate-x-0 dark:bg-teams_brand_gray',
                                       'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
                                     )}
                                   />
@@ -1186,7 +1186,7 @@ export default function Modal(props: {
                           e.preventDefault();
                           props.onClose();
                         }}
-                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                        className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                       >
                         {t('Cancel')}
                       </button>
