@@ -20,14 +20,14 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
       <Disclosure
         as="section"
         aria-labelledby="filter-heading"
-        className="grid items-center border rounded-md border-gray-300"
+        className="grid items-center border rounded-md border-gray-300 dark:border-teams_brand_border"
       >
         <div className="relative col-start-1 row-start-1 py-2">
-          <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 dark:divide-teams_brand_border px-4 text-sm sm:px-6 lg:px-8">
             <div>
               <Disclosure.Button className="group flex items-center font-medium text-gray-700">
                 <FunnelIcon
-                  className="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500  dark:text-gray-200"
+                  className="mr-2 h-5 w-5 flex-none text-gray-400 group-hover:text-gray-500 dark:border-teams_brand_border  dark:text-gray-200"
                   aria-hidden="true"
                 />
                 <span className=' dark:text-gray-200'>{t('filters')}</span>
@@ -41,7 +41,7 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
             </div>
           </div>
         </div>
-        <Disclosure.Panel className="border-t border-gray-200 py-4">
+        <Disclosure.Panel className="border-t border-gray-200 dark:border-teams_brand_border py-4">
           <div className="
             flex flex-col ml-4
            ">
@@ -58,7 +58,7 @@ export default function Filter({departaments, handleSelectDep, selectedDep, clea
                         name="departament"
                         defaultValue={dep.id}
                         type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500  dark:text-gray-200 dark:bg-teams_brand_tbody  dark:border-gray-200 dark:focus:ring-teams_brand_tbody dark:focus:bg-teams_brand_tbody"
+                        className="h-4 w-4 rounded border-gray-300 text-teams_brand_600 focus:ring-teams_brand_500  dark:text-gray-200 dark:bg-teams_dark_mode  dark:border-teams_brand_border dark:focus:ring-teams_brand_border"
                         onChange={() => {handleSelectDep(dep)}}
                         checked={!!selectedDep(dep)}
                       />

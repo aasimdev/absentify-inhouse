@@ -168,7 +168,7 @@ const AllowancesPage: NextPage = () => {
                           <Switch
                             checked={allowancesType.ignore_allowance_limit}
                             className={classNames(
-                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_dark_300' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                              allowancesType.ignore_allowance_limit ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark:ring-teams_brand_border' : 'bg-gray-200 dark:bg-teams_brand_thead dark:ring-teams_brand_border',
                               'relative inline-flex h-6 w-11 flex-shrink-0  rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out cursor-default dark:ring-1 dark:ring-offset-0'
                             )}
                           >

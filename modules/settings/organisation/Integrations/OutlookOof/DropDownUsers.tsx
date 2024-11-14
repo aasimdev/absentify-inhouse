@@ -90,7 +90,7 @@ export default function DropDownUsers({members, handleSelect, selectedMembers, d
                 <input
                   id="search"
                   name="search"
-                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
+                  className="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-teams_brand_500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border"
                   placeholder={t('search')}
                   type="search"
                   ref={searchRef}

@@ -104,7 +104,7 @@ const Webhooks: NextPage = () => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_tbody">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_dark_mode">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="py-4 text-lg font-medium leading-6 text-gray-900  dark:text-gray-200">
@@ -165,7 +165,7 @@ const Webhooks: NextPage = () => {
                     </button>
                     <button
                       type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                      className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_dark_mode dark:border dark:border-teams_brand_border dark:text-white"
                       onClick={() => {
                         props.onClose(false);
                       }}
@@ -249,7 +249,7 @@ const Webhooks: NextPage = () => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6  dark:bg-teams_brand_tbody  dark:text-gray-200">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6  dark:bg-teams_dark_mode  dark:text-gray-200">
                   <form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -265,7 +265,7 @@ const Webhooks: NextPage = () => {
                             <select
                               {...register('event')}
                               id="event"
-                              className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200  dark:bg-teams_brand_tbody  dark:text-gray-200"
+                              className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200  dark:bg-teams_dark_mode  dark:text-gray-200 dark:border-teams_brand_border"
                               defaultValue={props.value?.event as string}
                               onChange={(e: any) => setValue('event', e.target.value)}
                             >
@@ -290,7 +290,7 @@ const Webhooks: NextPage = () => {
                               name="url"
                               autoComplete="url"
                               pattern="https://.*"
-                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200  dark:bg-teams_brand_tbody  dark:text-gray-200"
+                              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:text-gray-200 dark:border-teams_brand_border dark:bg-teams_dark_mode  dark:text-gray-200"
                               placeholder="https://"
                             />
                           </div>
@@ -307,7 +307,7 @@ const Webhooks: NextPage = () => {
                       </button>
                       <button
                         type="button"
-                        className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                        className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                         onClick={() => {
                           props.onClose(false);
                         }}
@@ -329,7 +329,7 @@ const Webhooks: NextPage = () => {
 
   return (
     <>
-      <form className="divide-y divide-gray-200 lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
+      <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10" onSubmit={handleSubmit(onSubmit)}>
         {/* Profile section */}
         <div className="px-4 py-6 sm:p-6 lg:pb-8">
           <div>
@@ -369,7 +369,7 @@ const Webhooks: NextPage = () => {
               <select
                 id="event"
                 {...register('event', { required: true })}
-                className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_brand_tbody  dark:text-gray-200"
+                className=" block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_dark_mode dark:border-teams_brand_border  dark:text-gray-200"
               >
                 <option value="request_created;request_status_changed"> {t('all')} </option>
                 <option value="request_created">{t('created')} </option>
@@ -385,7 +385,7 @@ const Webhooks: NextPage = () => {
                 type="url"
                 name="url"
                 pattern="https://.*"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_brand_tbody  dark:text-gray-200"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teams_brand_500 focus:ring-teams_brand_500 sm:text-sm  dark:bg-teams_dark_mode  dark:text-gray-200 dark:border-teams_brand_border"
                 placeholder="https://"
               />
             </div>
@@ -493,7 +493,7 @@ const Webhooks: NextPage = () => {
               </div>
             ))
           }
-          <hr className="mt-4" />
+          <hr className="mt-4 dark:border dark:border-teams_brand_border" />
           <div className="mt-4 flex justify-between ">
             <div className="block">
               <h2 className="text-base font-semibold  dark:text-gray-200"> {t('history')} </h2>

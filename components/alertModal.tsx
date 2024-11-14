@@ -35,7 +35,7 @@ export default function AlertModal({text, onClose }: Props) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className=" bg-white relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6 dark:bg-teams_brand_tbody">
+              <Dialog.Panel className=" bg-white relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 w-80 sm:p-6 dark:bg-teams_dark_mode">
                 <div className="p-4">
         <div className="flex">
         <div className="flex-shrink-0 pt-1">

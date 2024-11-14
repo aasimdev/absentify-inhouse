@@ -267,12 +267,12 @@ const BaseLayout = (props: { children: any }) => {
                                   <Menu.Item key={item.name}>
                                     {({ active }) => (
                                       <div
-                                        className="inline-flex w-full px-4 py-2 text-sm hover:bg-gray-100 text-gray-700 cursor-pointer dark:text-gray-200 dark:hover:bg-teams_brand_dark_600"
+                                        className="inline-flex w-full px-4 py-2 text-sm hover:bg-gray-100 text-gray-700 cursor-pointer dark:text-gray-200 dark:hover:bg-teams_brand_700"
                                         onClick={(event) => {
                                           onClickItemHandler(event, item);
                                         }}
                                       >
-                                        <a className={classNames(active ? '  bg-gray-100 dark:bg-teams_brand_dark_600 dark:text-gray-200' : '', 'pr-2')}>{item.name}</a>
+                                        <a className={classNames(active ? '  bg-gray-100 dark:bg-teams_brand_700 dark:text-gray-200' : '', 'pr-2')}>{item.name}</a>
                                         {item.name !== t('Your_Preferences') && (
                                           <ArrowTopRightOnSquareIcon height={16} />
                                         )}
@@ -291,7 +291,7 @@ const BaseLayout = (props: { children: any }) => {
                                             '_blank'
                                           );
                                         }}
-                                        className=" flex flex-1 cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_dark_600"
+                                        className=" flex flex-1 cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_700"
                                       >
                                         {t('open_in_microsoft_teams')}{' '}
                                         <svg
@@ -355,7 +355,7 @@ const BaseLayout = (props: { children: any }) => {
                                       e.preventDefault();
                                       location.href = location.origin + '/api/auth/signout';
                                     }}
-                                    className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_dark_600'}
+                                    className={'block cursor-pointer hover:bg-gray-100 px-4 py-2 text-sm text-gray-700 dark:text-gray-200 dark:hover:bg-teams_brand_700'}
                                   >
                                     {t('Sign_out')}
                                   </a>

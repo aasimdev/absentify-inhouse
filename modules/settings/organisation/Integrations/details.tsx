@@ -202,7 +202,7 @@ export default function IntegrationDetails(props: {
             )}
 
             {integration.integration == 'ad_group_sync' && workspace?.microsoft_groups_read_write_all !== 'ACTIVATED' && (
-              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_tbody dark:border dark:rounded dark:border-gray-100 ">
+              <div className="flex relative z-0 py-5 px-6 w-full items-center text-left bg-teams_brand_50 rounded-md mt-5 dark:text-gray-200 dark:bg-teams_brand_tbody dark:border dark:rounded dark:border-gray-100 dark:border-teams_brand_border">
                 <div className="w-full text-sm dark:text-gray-200">
                   <Link href="/settings/organisation/microsoft" className="transition-color duration-200 underline ">
                   {t('ad_groups_needs_activated') + ' '}

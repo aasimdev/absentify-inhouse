@@ -548,7 +548,7 @@ export default function ImportModal(props: { open: boolean; onClose: Function })
                           <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>
                       ) : (
-                        <span className="group pl-4 py-2 flex flex-col border-l-4 border-gray-200  md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4">
+                        <span className="group pl-4 py-2 flex flex-col border-l-4 border-gray-200 dark:border-teams_brand_border  md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4">
                           <span className="text-xs text-gray-500 font-semibold tracking-wide uppercase">{step.id}</span>
                           <span className="text-sm font-medium dark:text-gray-200">{step.name}</span>
                         </span>

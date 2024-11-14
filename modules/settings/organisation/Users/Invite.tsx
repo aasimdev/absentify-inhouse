@@ -293,7 +293,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_brand_tbody">
+            <div className="z-30 inline-block overflow-visible px-4 pt-5 pb-4 text-left align-bottom bg-white rounded-lg shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6 dark:bg-teams_dark_mode">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -515,7 +515,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                   <span className="block text-sm text-gray-700 mt-2 dark:text-gray-200">
                                     {t('Annual_allowance_current_year')}
                                   </span>
-                                  <div className="mt-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_brand_tbody">
+                                  <div className="mt-1 flex rounded-md shadow-sm dark:text-gray-200 dark:bg-teams_dark_mode">
                                     {
                                       <InputPicker
                                         unit={allowanceType.allowance_unit}
@@ -529,7 +529,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                        className ="dark:bg-teams_brand_tbody dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
+                                        className ="dark:bg-teams_dark_mode dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>
@@ -550,7 +550,7 @@ export default function InviteModal(props: { open: boolean; onClose: Function })
                                             });
                                           }
                                         }}
-                                       className ="dark:bg-teams_brand_tbody dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
+                                       className ="dark:bg-teams_dark_mode dark:text-gray-200 rounded-md focus:border-teams_brand_500 focus:ring-teams_brand_500"
                                       />
                                     }
                                   </div>

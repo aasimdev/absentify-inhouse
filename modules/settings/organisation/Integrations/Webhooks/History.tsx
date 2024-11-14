@@ -29,7 +29,7 @@ const History: NextPage = () => {
   if (!current_member) return <></>;
   return (
     <>
-      <div className="divide-y divide-gray-200 lg:col-span-10">
+      <div className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10">
         <div className="px-4 py-6 sm:p-6 lg:pb-8">
           <h2
             className="py-2 text-base font-semibold inline-flex -ml-2 cursor-pointer  dark:text-gray-200"
@@ -61,9 +61,9 @@ const History: NextPage = () => {
                 <div className="mt-8 flex flex-col">
                   <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle">
-                      <div className="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
-                        <table className="min-w-full divide-y divide-gray-300 dark:divide-teams_brand_border">
-                          <thead className="bg-gray-50 dark:bg-teams_brand_tbody">
+                    <div className="overflow-hidden border-b dark:border-0 border-gray-200 shadow sm:rounded-lg dark:bg-teams_brand_tbody">
+                      <table className="min-w-full divide-y divide-gray-200 dark:divide-teams_brand_tbody_border">
+                          <thead className="bg-gray-50 dark:bg-teams_brand_thead">
                             <tr>
                               <th
                                 scope="col"
@@ -221,7 +221,7 @@ const History: NextPage = () => {
                 </div>
               </div>
               <nav
-                className="flex items-center justify-between border-t border-gray-200 bg-white dark:bg-teams_brand_tbody px-4 py-3 sm:px-6"
+                className="flex items-center justify-between border-t border-gray-200 bg-white dark:bg-teams_brand_tbody px-4 py-3 sm:px-6 dark:border-teams_brand_border"
                 aria-label="Pagination"
               >
                 <div className="hidden sm:block">

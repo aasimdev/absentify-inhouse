@@ -1036,7 +1036,7 @@ const Upgrade: NextPage = () => {
 
   return (
     <>
-      <div className="divide-y divide-gray-200 lg:col-span-10 min-h-screen">
+      <div className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-10 min-h-screen">
         <div className="flex py-6 md:py-6 flex-col w-full px-6 md:px-6">
           <div className="flex flex-col space-y-2">
             <div className="flex items-center justify-between">

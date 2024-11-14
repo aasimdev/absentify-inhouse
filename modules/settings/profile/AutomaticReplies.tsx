@@ -152,7 +152,7 @@ const AutomaticReplies: NextPage = () => {
   };
 
   return (
-    <form className="divide-y divide-gray-200 lg:col-span-9">
+    <form className="divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-9">
       <div className="divide-y divide-gray-200 pt-6">
         <div className="px-4 sm:px-6">
           <div>

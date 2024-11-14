@@ -200,11 +200,11 @@ export default function Edit(props: { open: boolean; onClose: Function; value: P
                         }}
                         id="tabs"
                         name="tabs"
-                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_brand_tbody"
+                        className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:text-gray-200 dark:bg-teams_dark_mode"
                         defaultValue={tabs.find((tab) => tab.current)?.name}
                       >
                         {tabs.map((tab) => (
-                          <option key={tab.name} className='dark:text-gray-200 dark:bg-teams_brand_tbody'>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
+                          <option key={tab.name} className='dark:text-gray-200 dark:bg-teams_dark_mode'>{tab.add ? <PlusCircleIcon className="h-4" /> : tab.name} </option>
                         ))}
                       </select>
                     </div>

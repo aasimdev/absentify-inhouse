@@ -225,7 +225,7 @@ export default function Modal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_brand_tbody">
+                <div className="z-30 inline-block overflow-visible rounded-lg bg-white px-4 pt-5 pb-4 text-left align-bottom shadow-xl transition-all transform sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:align-middle dark:bg-teams_dark_mode">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -305,9 +305,9 @@ export default function Modal(props: {
                                             <p> {t('allowances_allowance_unit')}</p>{' '}
                                           </Listbox.Label>
                                           <div className="relative w-full">
-                                            <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_brand_tbody dark:text-gray-200">
+                                            <div className="inline-flex w-full rounded-md border-gray-300 dark:bg-teams_dark_mode dark:text-gray-200">
                                               <div className="inline-flex w-full rounded-md border-gray-300">
-                                                <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border">
+                                                <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border">
                                                   <div className="inline-flex">
                                                     <p className=" text-sm font-medium dark:text-gray-200">
                                                       {
@@ -318,7 +318,7 @@ export default function Modal(props: {
                                                     </p>
                                                   </div>
                                                 </Listbox.Button>
-                                                <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border dark:focus:ring-0">
+                                                <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border dark:focus:ring-0">
                                                   <span className="sr-only dark:text-gray-200"> {t('allowances_allowance_unit')}</span>
                                                   <ChevronDownIcon
                                                     className="h-5 w-5 text-gray-800 dark:text-teams_brand_border"
@@ -426,7 +426,7 @@ export default function Modal(props: {
                                       onChange={(val) => {
                                         onChange(val);
                                       }}
-                                      className = "w-full dark:bg-teams_brand_tbody  dark:text-gray-200 rounded-md dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550"
+                                      className = "w-full dark:bg-teams_dark_mode  dark:text-gray-200 rounded-md dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550"
                                     />
                                   )}
                                 />
@@ -509,7 +509,7 @@ export default function Modal(props: {
                                     }}
                                     disabled={addAllowanceType.isLoading || editAllowanceType.isLoading}
                                     className={classNames(
-                                      value ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark' : 'bg-gray-200 dark:bg-teams_brand_tbody dark:ring-white',
+                                      value ? 'bg-teams_brand_600 dark:bg-teams_brand_foreground_bg dark' : 'bg-gray-200 dark:bg-teams_dark_mode dark:ring-teams_brand_border',
                                       'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teams_brand_600 focus:ring-offset-2 dark:ring-1 dark:ring-offset-0'
                                     )}
                                   >
@@ -591,7 +591,7 @@ export default function Modal(props: {
                                         onChange={(val) => {
                                           onChange(val);
                                         }}
-                                        className = "w-full dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550 rounded-md"
+                                        className = "w-full dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550 rounded-md"
                                       />
                                     )}
                                   />
@@ -625,7 +625,7 @@ export default function Modal(props: {
                                         onChange={(val) => {
                                           onChange(val);
                                         }}
-                                        className = "w-full dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550 rounded-md"
+                                        className = "w-full dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border dark:focus:border-teams_brand_dark_550 rounded-md"
                                       />
                                     )}
                                   />
@@ -646,7 +646,7 @@ export default function Modal(props: {
                               e.preventDefault();
                               props.onClose();
                             }}
-                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:bg-teams_brand_tbody dark:border dark:border-gray-200 dark:text-white"
+                            className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none dark:bg-teams_dark_mode dark:border dark:border-gray-200 dark:text-white"
                           >
                             {t('Cancel')}
                           </button>

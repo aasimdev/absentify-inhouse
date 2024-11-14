@@ -110,7 +110,7 @@ const General: NextPage = () => {
   }, [member]);
 
   return (
-    <form className="min-h-screen divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmit)}>
+    <form className="min-h-screen divide-y divide-gray-200 dark:divide-teams_brand_border lg:col-span-9" onSubmit={handleSubmit(onSubmit)}>
       {/* Workspace section */}
       <div className="px-4 py-6 sm:p-6 lg:pb-8">
         <div>

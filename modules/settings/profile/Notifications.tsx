@@ -75,7 +75,7 @@ const Email_notifications: NextPage = () => {
     <form className="divide-y divide-gray-200 lg:col-span-9" onSubmit={handleSubmit(onSubmit)}>
       {/* Email notifications section */}
 
-      <div className="divide-y divide-gray-200 pt-6">
+      <div className="divide-y divide-gray-200 dark:divide-teams_brand_border pt-6">
         <div className="px-4 sm:px-6">
           <div className="mb-6">
             <h2 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200"> {t('notifications')}</h2>

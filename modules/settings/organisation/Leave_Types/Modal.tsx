@@ -348,7 +348,7 @@ export default function Modal(props: {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_brand_tbody">
+            <div className="z-30 inline-block overflow-hidden  bg-white px-4 pt-5 pb-4 text-left align-bottom rounded-lg shadow-xl transition-all transform sm:align-middle sm:my-8 sm:w-full sm:max-w-lg sm:p-6 dark:bg-teams_dark_mode">
               <div className="sm:flex sm:items-start">
                 <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -377,7 +377,7 @@ export default function Modal(props: {
                               name="name"
                               id="name"
                               autoComplete="name"
-                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200 dark:border-teams_brand_border"
+                              className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_dark_mode dark:text-gray-200 dark:border-teams_brand_border"
                             />
                             {errors.name?.message && (
                               <div className="mt-2 inline-flex">
@@ -537,7 +537,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_dark_mode"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -687,7 +687,7 @@ export default function Modal(props: {
                                       type="text"
                                       name="outlook_synchronization_subject"
                                       id="outlook_synchronization_subject"
-                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-100 dark:border-teams_brand_border"
+                                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_dark_mode dark:text-gray-100 dark:border-teams_brand_border"
                                     />
                                     {errors.outlook_synchronization_subject?.message && (
                                       <div className="mt-2 inline-flex">
@@ -878,7 +878,7 @@ export default function Modal(props: {
                             </label>
                             <div className="mt-1">
                               <Controller
-                                // className ="dark:bg-teams_brand_tbody"
+                                // className ="dark:bg-teams_dark_mode"
                                 rules={{ required: true }}
                                 control={control}
                                 name="leave_unit"
@@ -895,13 +895,13 @@ export default function Modal(props: {
                                   >
                                     {({ open }) => (
                                       <>
-                                        <Listbox.Label className="sr-only dark:text-gray-200 dark:bg-teams_brand_tbody">
+                                        <Listbox.Label className="sr-only dark:text-gray-200 dark:bg-teams_dark_mode">
                                           <p> {t('Leave_types_leave_unit')}</p>{' '}
                                         </Listbox.Label>
                                         <div className="relative w-full">
                                           <div className="inline-flex w-full rounded-md border-gray-300 ">
                                             <div className="inline-flex w-full rounded-md border-gray-300">
-                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white dark:bg-teams_brand_tbody py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:text-gray-200 dark:border-teams_brand_border">
+                                              <Listbox.Button className="inline-flex w-full  items-center rounded-l-md border border-gray-300 bg-white dark:bg-teams_dark_mode py-2 pl-3 pr-4 text-gray-800 shadow-sm dark:text-gray-200 dark:border-teams_brand_border">
                                                 <div className="inline-flex">
                                                   <p className=" text-sm font-medium dark:text-gray-200">
                                                     {
@@ -912,7 +912,7 @@ export default function Modal(props: {
                                                   </p>
                                                 </div>
                                               </Listbox.Button>
-                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_brand_tbody dark:text-gray-100 dark:border-teams_brand_border">
+                                              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md border border-l-0 border-gray-300 bg-white p-2 text-sm font-medium text-black shadow-sm hover:bg-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:bg-teams_dark_mode dark:text-gray-100 dark:border-teams_brand_border">
                                                 <span className="sr-only dark:text-gray-200"> {t('Leave_types_leave_unit')}</span>
                                                 <ChevronDownIcon className="h-5 w-5 text-gray-800 dark:text-teams_brand_border" aria-hidden="true" />
                                               </Listbox.Button>
@@ -1096,7 +1096,7 @@ export default function Modal(props: {
                                 type="text"
                                 name="reason_hint_text"
                                 id="reason_hint_text"
-                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_brand_tbody dark:text-gray-200"
+                                className="w-full mt-1 rounded-md border border-gray-300 shadow-sm focus:border-teams_brand_500 focus:outline-none focus:ring-teams_brand_500 sm:text-sm dark:bg-teams_dark_mode dark:text-gray-200"
                               />
                               {errors.reason_hint_text?.message && (
                                 <div className="mt-2 inline-flex">
