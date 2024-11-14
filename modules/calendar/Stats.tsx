@@ -186,7 +186,7 @@ const Stats = (props: {
                 </div>
                 <div className="bg-white dark:bg-teams_brand_tbody px-4 pt-2 grid grid-cols-3 gap-4 ">
                   <dt className="text-sm font-medium text-gray-500 col-span-2 dark:text-gray-300">
-                    {t('Brought_forward') + ' (' + (props.dateRange.startDate.getFullYear() - 1) + ')'}
+                    {t('Brought_forward')}
                   </dt>
                   <dd className=" text-right text-sm text-gray-900 mt-0 dark:text-white">
                     {formatDuration(
