@@ -711,7 +711,19 @@ const Timeline: NextPage = () => {
                     className="mb-2 flex w-full sm:w-auto justify-center rounded border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-teams_brand_500 focus:ring-offset-2 md:mb-0"
                   >
                     <div className="my-auto ">
-                      <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '}
+                      {/* <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '} */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 pr-1 dark:text-teams_brand_dark_550"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                          clipRule="evenodd"
+                        />
+                      </svg>{' '}
                     </div>
                     <p className='truncate w-auto sm:w-20 md:w-auto '>{t('Create_request')}</p>
                   </button>
@@ -738,7 +750,19 @@ const Timeline: NextPage = () => {
                       className="relative w-full sm:w-auto inline-flex items-center rounded-l-md bg-white dark:bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 dark:text-teams_brand_gray ring-1 ring-inset ring-gray-300 dark:ring-teams_brand_tbody_border hover:bg-teams_brand_tbody focus:z-10"
                     >
                       <div className="my-auto">
-                        <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '}
+                        {/* <PlusCircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />{' '} */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5 pr-1 dark:text-teams_brand_dark_550"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                            clipRule="evenodd"
+                          />
+                        </svg>{' '}
                       </div>
                       <p className='truncate w-auto sm:w-20 md:w-auto '>{t('Create_request')}</p>
                     </button>

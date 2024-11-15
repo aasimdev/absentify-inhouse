@@ -494,13 +494,13 @@ const Cell = ({
           <div style={dynamicMorningBackground()} className="absolute z-10 top-0 left-0 h-10 dark:h-[39px] w-1/2">
             <div
               className={`${getMorningBackgroundClass()} h-10 ${
-                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_brand_thead'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
               } ${
                 withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
             >
               {schedule.morning && (
-                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 ${getOverlayClass(true)}`}></div>
+                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 dark:bg-teams_brand_thead  ${getOverlayClass(true)}`}></div>
               )}
             </div>
           </div>
@@ -512,13 +512,13 @@ const Cell = ({
           >
             <div
               className={`${getAfternoonBackgroundClass()} h-10 ${
-                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_brand_thead'
+                hasCalendarInUrl ? 'dark:bg-teams_brand_tbody' : 'dark:bg-teams_dark_mode'
               } ${
                 withBorder ? 'border-b border-gray-300 w-5 dark:border-teams_brand_border' : 'w-4 1md:w-5 lg:w-5 xl:w-5'
               }`}
             >
               {schedule.afternoon && (
-                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 ${getOverlayClass(false)}`}></div>
+                <div className={`absolute inset-0 bg-gray-300 opacity-40 dark:opacity-100 dark:bg-teams_brand_thead   ${getOverlayClass(false)}`}></div>
               )}
             </div>
           </div>
@@ -573,8 +573,8 @@ const Cell = ({
     <>
       <div
         className={classNames(
-          'relative h-10 box-content dark:bg-teams_brand_tbody ',
-          withBorder ? 'border-r border-gray-300 bg-transparent dark:bg-teams_brand_thead w-10 dark:border-teams_brand_tbody_border' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
+          'relative h-10 box-content ',
+          withBorder ? 'border-r border-gray-300 bg-transparent w-10 dark:border-teams_brand_tbody_border' : 'w-8 1md:w-10 lg:w-10 xl:w-10'
         )}
       >
         {isToday && (
